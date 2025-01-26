@@ -1,0 +1,2 @@
+/usr/bin/ar qc libregression.a CMakeFiles/regression.dir/lib/RegressionModel.cpp.o CMakeFiles/regression.dir/lib/Metrics.cpp.o
+/usr/bin/ranlib libregression.a

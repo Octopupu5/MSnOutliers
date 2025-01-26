@@ -1,0 +1,34 @@
+#ifndef ONE_CLASS_SVM_HPP
+#define ONE_CLASS_SVM_HPP
+
+#include "Feature.hpp"
+#include <vector>
+
+class OneClassSVM {
+public:
+    OneClassSVM(float nu, float gamma);
+    void fit(const Ndarray& data);
+
+    // -1 = anomaly; 1 = inlier
+    Ndarray predict(const Ndarray& data) const;
+
+private:
+    // radial basis func kernel
+    double kernel(const Ndarray& x1, const Ndarray& x2) const;
+
+    // decision boundary offset (rho)
+    void calculateDecisionBoundary(const Ndarray& data);
+
+private:
+    // regularization
+    float nu;
+    // kernel coef
+    float gamma;
+    Ndarray supportVectors;
+    // coefs for supvectors
+    Ndarray coefficients;
+    // offset for decision boundary
+    double rho;
+};
+
+#endif // ONE_CLASS_SVM_HPP

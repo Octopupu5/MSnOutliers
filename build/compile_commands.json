@@ -1,0 +1,38 @@
+[
+{
+  "directory": "/Users/heritagetime/VSCode/MSnOutliers/build",
+  "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/regression.dir/lib/RegressionModel.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/lib/RegressionModel.cpp",
+  "file": "/Users/heritagetime/VSCode/MSnOutliers/lib/RegressionModel.cpp",
+  "output": "CMakeFiles/regression.dir/lib/RegressionModel.cpp.o"
+},
+{
+  "directory": "/Users/heritagetime/VSCode/MSnOutliers/build",
+  "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/regression.dir/lib/Metrics.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/lib/Metrics.cpp",
+  "file": "/Users/heritagetime/VSCode/MSnOutliers/lib/Metrics.cpp",
+  "output": "CMakeFiles/regression.dir/lib/Metrics.cpp.o"
+},
+{
+  "directory": "/Users/heritagetime/VSCode/MSnOutliers/build",
+  "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib -isystem /opt/homebrew/Cellar/sdl2/2.30.11/include/SDL2 -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/main_app.dir/src/graph.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/src/graph.cpp",
+  "file": "/Users/heritagetime/VSCode/MSnOutliers/src/graph.cpp",
+  "output": "CMakeFiles/main_app.dir/src/graph.cpp.o"
+},
+{
+  "directory": "/Users/heritagetime/VSCode/MSnOutliers/build",
+  "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib -isystem /usr/local/include -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/run_tests.dir/tests/test_main.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/tests/test_main.cpp",
+  "file": "/Users/heritagetime/VSCode/MSnOutliers/tests/test_main.cpp",
+  "output": "CMakeFiles/run_tests.dir/tests/test_main.cpp.o"
+},
+{
+  "directory": "/Users/heritagetime/VSCode/MSnOutliers/build",
+  "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib -isystem /usr/local/include -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/run_tests.dir/tests/test_regression.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/tests/test_regression.cpp",
+  "file": "/Users/heritagetime/VSCode/MSnOutliers/tests/test_regression.cpp",
+  "output": "CMakeFiles/run_tests.dir/tests/test_regression.cpp.o"
+},
+{
+  "directory": "/Users/heritagetime/VSCode/MSnOutliers/build",
+  "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib -isystem /usr/local/include -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/run_tests.dir/tests/test_metrics.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/tests/test_metrics.cpp",
+  "file": "/Users/heritagetime/VSCode/MSnOutliers/tests/test_metrics.cpp",
+  "output": "CMakeFiles/run_tests.dir/tests/test_metrics.cpp.o"
+}
+]

@@ -1,0 +1,10 @@
+/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles/main_app.dir
+/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles/regression.dir
+/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles/run_tests.dir
+/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles/test.dir
+/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles/edit_cache.dir
+/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles/rebuild_cache.dir
+/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles/list_install_components.dir
+/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles/install.dir
+/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles/install/local.dir
+/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles/install/strip.dir
