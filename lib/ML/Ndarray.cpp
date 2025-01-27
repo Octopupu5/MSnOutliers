@@ -26,6 +26,12 @@ void Ndarray::EnsureSameShape(const Ndarray& other) const {
     }
 }
 
+void Ndarray::EnsureSameRowsOrCols(const Ndarray& other) const {
+    if (_rows != other._rows || _cols != other._cols) {
+        throw std::invalid_argument("Arrays must have identical rows or cols amount for this operation");
+    }
+}
+
 Feature& Ndarray::At(size_t row, size_t col) {
     CheckIndices(row, col);
     return _data[row][col];
@@ -68,6 +74,53 @@ Ndarray Ndarray::Matmul(const Ndarray& other) const {
             for (size_t k = 0; k < _cols; ++k) {
                 result._data[i][j] += _data[i][k] * other._data[k][j];
             }
+        }
+    }
+    return result;
+}
+
+Ndarray Ndarray::ColumnWiseMean() const {
+    return ColumnWiseSum() / _rows; 
+}
+
+Ndarray Ndarray::RowWiseMean() const {
+    return RowWiseSum() / _cols;
+}
+
+// 1 2 3
+// 4 5 6
+// 1 2 5
+// --->>
+// 6 9 14
+Ndarray Ndarray::ColumnWiseSum() const {
+    Ndarray result(1, _cols);
+    for (size_t j = 0; j < _cols; ++j) {
+        double accumulated = 0.0;
+        for (size_t i = 0; i < _rows; ++i) {
+            accumulated += _data[i][j].Value();
+        }
+        result.At(0, j).SetValue(accumulated);
+    }
+    return result;
+}
+
+Ndarray Ndarray::RowWiseSum() const {
+    Ndarray result(_rows, 1);
+    for (size_t i = 0; i < _rows; ++i) {
+        double accumulated = 0.0;
+        for (size_t j = 0; j < _cols; ++j) {
+            accumulated += _data[i][j].Value();
+        }
+        result.At(i, 0).SetValue(accumulated);
+    }
+    return result;
+}
+
+double Ndarray::Sum() const {
+    double result = 0.0;
+    for (size_t i = 0; i < _rows; ++i) {
+        for (size_t j = 0; j < _cols; ++j) {
+            result += _data[i][j].Value();
         }
     }
     return result;

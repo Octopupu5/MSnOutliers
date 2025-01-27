@@ -28,7 +28,6 @@ public:
     std::pair<size_t, size_t> Shape() const;
 
     void Fill(double scalar);
-    void AddSample(const Ndarray& sample);
 
     Ndarray Transpose() const;
     Ndarray operator+(const Ndarray& other) const;
@@ -41,6 +40,12 @@ public:
     Ndarray operator/(double scalar) const;
     Ndarray Matmul(const Ndarray& other) const;
     
+    Ndarray ColumnWiseMean() const;
+    Ndarray RowWiseMean() const;
+    Ndarray ColumnWiseSum() const;
+    Ndarray RowWiseSum() const;
+    double Sum() const;
+
     double L1Norm(const Ndarray& other) const;
     double L2Norm(const Ndarray& other) const;
 
@@ -52,6 +57,7 @@ private:
 
     void CheckIndices(size_t row, size_t col) const;
     void EnsureSameShape(const Ndarray& other) const;
+    void EnsureSameRowsOrCols(const Ndarray& other) const;
 };
 
 #endif // NDARRAY_HPP

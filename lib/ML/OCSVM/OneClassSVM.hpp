@@ -1,23 +1,23 @@
 #ifndef ONE_CLASS_SVM_HPP
 #define ONE_CLASS_SVM_HPP
 
-#include "Feature.hpp"
+#include "Ndarray.hpp"
 #include <vector>
 
 class OneClassSVM {
 public:
     OneClassSVM(float nu, float gamma);
-    void fit(const Ndarray& data);
+    void Fit(const Ndarray& data);
 
     // -1 = anomaly; 1 = inlier
-    Ndarray predict(const Ndarray& data) const;
+    Ndarray Predict(const Ndarray& data) const;
 
 private:
     // radial basis func kernel
-    double kernel(const Ndarray& x1, const Ndarray& x2) const;
+    double Kernel(const Ndarray& x1, const Ndarray& x2) const;
 
     // decision boundary offset (rho)
-    void calculateDecisionBoundary(const Ndarray& data);
+    void DecisionBoundary(const Ndarray& data);
 
 private:
     // regularization
