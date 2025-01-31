@@ -71,5 +71,5 @@ private:
     void EnsureSameShape(const Ndarray& other) const;
     void EnsureShapeForOperator(const Ndarray& other) const;
 };
-// aboba
+
 #endif // NDARRAY_HPP
