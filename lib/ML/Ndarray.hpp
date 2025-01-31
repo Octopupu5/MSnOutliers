@@ -38,6 +38,16 @@ public:
     Ndarray operator-(double scalar) const;
     Ndarray operator*(double scalar) const;
     Ndarray operator/(double scalar) const;
+
+    Ndarray& operator+=(const Ndarray& other);
+    Ndarray& operator-=(const Ndarray& other);
+    Ndarray& operator*=(const Ndarray& other);
+    Ndarray& operator/=(const Ndarray& other);
+    Ndarray& operator+=(double scalar);
+    Ndarray& operator-=(double scalar);
+    Ndarray& operator*=(double scalar);
+    Ndarray& operator/=(double scalar);
+    
     Ndarray Matmul(const Ndarray& other) const;
     
     Ndarray ColumnWiseMean() const;
@@ -45,6 +55,8 @@ public:
     Ndarray ColumnWiseSum() const;
     Ndarray RowWiseSum() const;
     double Sum() const;
+
+    Ndarray Sqrt() const;
 
     double L1Norm(const Ndarray& other) const;
     double L2Norm(const Ndarray& other) const;
@@ -57,7 +69,7 @@ private:
 
     void CheckIndices(size_t row, size_t col) const;
     void EnsureSameShape(const Ndarray& other) const;
-    void EnsureSameRowsOrCols(const Ndarray& other) const;
+    void EnsureShapeForOperator(const Ndarray& other) const;
 };
 
 #endif // NDARRAY_HPP

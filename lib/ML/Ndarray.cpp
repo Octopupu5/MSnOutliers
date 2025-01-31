@@ -26,9 +26,12 @@ void Ndarray::EnsureSameShape(const Ndarray& other) const {
     }
 }
 
-void Ndarray::EnsureSameRowsOrCols(const Ndarray& other) const {
-    if (_rows != other._rows || _cols != other._cols) {
-        throw std::invalid_argument("Arrays must have identical rows or cols amount for this operation");
+void Ndarray::EnsureShapeForOperator(const Ndarray& other) const {
+    if ((_rows != other._rows && _cols != other._cols)) {
+        throw std::invalid_argument("Arrays must have at least identical rows or cols amount for this operation");
+    }
+    if ((_rows == other._rows && other._cols != 1) || (other._rows != 1 && _cols == other._cols)) {
+        throw std::invalid_argument("Arrays must have at least identical rows or cols amount for this operation");
     }
 }
 
@@ -121,6 +124,16 @@ double Ndarray::Sum() const {
     for (size_t i = 0; i < _rows; ++i) {
         for (size_t j = 0; j < _cols; ++j) {
             result += _data[i][j].Value();
+        }
+    }
+    return result;
+}
+
+Ndarray Ndarray::Sqrt() const {
+    Ndarray result(_rows, _cols);
+    for (size_t i = 0; i < _rows; ++i) {
+        for (size_t j = 0; j < _cols; ++j) {
+            result._data[i][j] = sqrt(_data[i][j].Value());
         }
     }
     return result;
