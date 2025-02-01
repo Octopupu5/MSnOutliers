@@ -179,11 +179,29 @@ void Ndarray::Fill(double scalar) {
     }
 }
 
-Ndarray Ndarray::rowNdarray(size_t index) const {
+Ndarray Ndarray::RowNdarray(size_t index) const {
     if (index >= _rows) {
         throw std::invalid_argument("Row size is less, invalid index");
     }
     return Ndarray({_data[index]});
+}
+
+void Ndarray::AddColumns(const Ndarray& other) {
+    if (_rows != other._rows) {
+        throw std::invalid_argument("Row size should be the same");
+    }
+    _cols += other._cols;
+    for (size_t i = 0; i < _rows; ++i) {
+        _data[i].insert(_data[i].end(), other._data[i].begin(), other._data[i].end());
+    }
+}
+
+void Ndarray::AddRows(const Ndarray& other) {
+    if (_cols != other._cols) {
+        throw std::invalid_argument("Row size should be the same");
+    }
+    _rows += other._rows;
+    _data.insert(_data.end(), other._data.begin(), other._data.end());
 }
 
 void Ndarray::Print() const {

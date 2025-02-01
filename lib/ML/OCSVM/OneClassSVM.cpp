@@ -9,7 +9,7 @@ void OneClassSVM::Fit(const Ndarray& data) {
     Ndarray kernelMatrix(rows, rows);
     for (size_t i = 0; i < rows; ++i) {
         for (size_t j = 0; j < rows; ++j) {
-            kernelMatrix.At(i, j) = Kernel(data.rowNdarray(i), data.rowNdarray(j));
+            kernelMatrix.At(i, j) = Kernel(data.RowNdarray(i), data.RowNdarray(j));
         }
     }
 
@@ -34,7 +34,7 @@ Ndarray OneClassSVM::Predict(const Ndarray& data) const {
     for (size_t i = 0; i < nSamples; ++i) {
         double decision = 0.0;
         for (size_t j = 0; j < supportVectors.Rows(); ++j) {
-            decision += coefficients.At(j, 0).Value() * Kernel(supportVectors.rowNdarray(i), supportVectors.rowNdarray(j));
+            decision += coefficients.At(j, 0).Value() * Kernel(supportVectors.RowNdarray(i), supportVectors.RowNdarray(j));
         }
         decision -= rho;
         predictions.At(i, 0) = (decision >= 0) ? 1 : -1;
@@ -52,7 +52,7 @@ void OneClassSVM::DecisionBoundary(const Ndarray& data) {
     for (size_t i = 0; i < supportVectors.Rows(); ++i) {
         double decision = 0.0;
         for (size_t j = 0; j < supportVectors.Rows(); ++j) {
-            decision += coefficients.At(j, 0).Value() * Kernel(supportVectors.rowNdarray(i), supportVectors.rowNdarray(j));
+            decision += coefficients.At(j, 0).Value() * Kernel(supportVectors.RowNdarray(i), supportVectors.RowNdarray(j));
         }
         sum += decision;
     }

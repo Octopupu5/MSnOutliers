@@ -17,8 +17,7 @@ class GradientDescent {
 public:
     GradientDescent(size_t batchSize, double learningRate, size_t stopCriterion, const std::vector<double>& criterions, GradientFunction func);
     void Run(const Ndarray& X, const Ndarray& y);
-    void GradientStep(const Ndarray& X, const Ndarray& y);
-    void InitializeParams(size_t nParams);
+    Ndarray Weights() const;
 
 protected:
     size_t _curIter;
@@ -30,6 +29,9 @@ protected:
     double _epsilon;
     Ndarray _w;
     GradientFunction _calcGrad;
+
+    void GradientStep(const Ndarray& X, const Ndarray& y);
+    void InitializeParams(size_t nParams);
 };
 
 

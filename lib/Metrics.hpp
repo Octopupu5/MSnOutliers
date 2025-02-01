@@ -1,7 +1,7 @@
 #ifndef METRICS_HPP
 #define METRICS_HPP
 
-#include "ML/Ndarray.hpp"
+#include "Ndarray.hpp"
 
 #include <vector>
 #include <cmath>

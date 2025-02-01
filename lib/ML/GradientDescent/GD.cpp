@@ -33,3 +33,7 @@ void GradientDescent::GradientStep(const Ndarray& X, const Ndarray& y) {
 void GradientDescent::InitializeParams(size_t nParams) {
     _w = Ndarray(nParams, 1);
 }
+
+Ndarray GradientDescent::Weights() const {
+    return _w;
+}

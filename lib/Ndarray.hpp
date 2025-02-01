@@ -16,9 +16,12 @@ public:
     Ndarray(size_t _rows, size_t cols, double scalar = 0.0);
     Ndarray(const std::vector<std::vector<Feature>>& data);
 
-    Ndarray rowNdarray(size_t index) const;
+    Ndarray RowNdarray(size_t index) const;
     std::vector<Feature> operator[](int index) const;
     std::vector<Feature>& operator[](int index);
+
+    void AddColumns(const Ndarray& other);
+    void AddRows(const Ndarray& other);
 
     Feature& At(size_t row, size_t col);
     const Feature& At(size_t row, size_t col) const;

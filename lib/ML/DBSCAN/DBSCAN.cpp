@@ -7,7 +7,7 @@ DBSCAN::DBSCAN(double r, uint32_t minimumClusterSize) : _r(r), _minimumClusterSi
 std::vector<uint32_t> DBSCAN::GetNeighbors(uint32_t index) const {
     std::vector<uint32_t> neighbors;
     for (size_t i = 0; i < _data.Rows(); ++i) {
-        if (_data.rowNdarray(index).L2Norm(_data.rowNdarray(i)) <= _r) {
+        if (_data.RowNdarray(index).L2Norm(_data.RowNdarray(i)) <= _r) {
             neighbors.push_back(i);
         }
     }
