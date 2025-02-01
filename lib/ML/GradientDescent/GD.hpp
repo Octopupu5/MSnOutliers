@@ -9,6 +9,8 @@ using GradientFunction = std::function<Ndarray(const Ndarray&, const Ndarray&, c
 enum StopCriterion {
     N_ITERS=1,
     W_DIFF=2,
+    // GRAD_DIFF=4,
+    // ...=2^n
 };
 
 class GradientDescent {

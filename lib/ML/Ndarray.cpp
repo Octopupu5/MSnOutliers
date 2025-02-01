@@ -133,7 +133,17 @@ Ndarray Ndarray::Sqrt() const {
     Ndarray result(_rows, _cols);
     for (size_t i = 0; i < _rows; ++i) {
         for (size_t j = 0; j < _cols; ++j) {
-            result._data[i][j] = sqrt(_data[i][j].Value());
+            result._data[i][j] = std::sqrt(_data[i][j].Value());
+        }
+    }
+    return result;
+}
+
+Ndarray Ndarray::Abs() const {
+    Ndarray result(_rows, _cols);
+    for (size_t i = 0; i < _rows; ++i) {
+        for (size_t j = 0; j < _cols; ++j) {
+            result._data[i][j] = std::fabs(_data[i][j].Value());
         }
     }
     return result;

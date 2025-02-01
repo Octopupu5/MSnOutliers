@@ -1,5 +1,5 @@
-#ifndef DATA_PROCESSOR_H
-#define DATA_PROCESSOR_H
+#ifndef DATA_PROCESSOR_HPP
+#define DATA_PROCESSOR_HPP
 
 #include <vector>
 #include <string>
@@ -25,4 +25,4 @@ private:
     double computeStdDev(const std::vector<double>& column, double mean);
 };
 
-#endif // DATA_PROCESSOR_H
+#endif // DATA_PROCESSOR_HPP

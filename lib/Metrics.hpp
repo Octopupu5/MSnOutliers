@@ -1,6 +1,8 @@
 #ifndef METRICS_HPP
 #define METRICS_HPP
 
+#include "ML/Ndarray.hpp"
+
 #include <vector>
 #include <cmath>
 #include <numeric>
@@ -9,23 +11,13 @@
 
 class Metrics {
 public:
-    static double meanAbsoluteError(const std::vector<double>& trueValues, const std::vector<double>& predictions);
-
-    static double meanSquaredError(const std::vector<double>& trueValues, const std::vector<double>& predictions);
-
-    static double rootMeanSquaredError(const std::vector<double>& trueValues, const std::vector<double>& predictions);
-
-    static double r2Score(const std::vector<double>& trueValues, const std::vector<double>& predictions);
-
-    static double meanAbsolutePercentageError(const std::vector<double>& trueValues, const std::vector<double>& predictions);
-
-    static double symmetricMeanAbsolutePercentageError(const std::vector<double>& trueValues, const std::vector<double>& predictions);
-
-    static double medianAbsoluteError(const std::vector<double>& trueValues, const std::vector<double>& predictions);
-
-    static double adjustedR2Score(const std::vector<double>& trueValues, const std::vector<double>& predictions, int numFeatures);
-private:
-    static void validateInputs(const std::vector<double>& trueValues, const std::vector<double>& predictions);
+    static double meanAbsoluteError(const Ndarray& trueValues, const Ndarray& predictions);
+    static double meanSquaredError(const Ndarray& trueValues, const Ndarray& predictions);
+    static double rootMeanSquaredError(const Ndarray& trueValues, const Ndarray& predictions);
+    static double r2Score(const Ndarray& trueValues, const Ndarray& predictions);
+    static double meanAbsolutePercentageError(const Ndarray& trueValues, const Ndarray& predictions);
+    static double symmetricMeanAbsolutePercentageError(const Ndarray& trueValues, const Ndarray& predictions);
+    static double adjustedR2Score(const Ndarray& trueValues, const Ndarray& predictions, int numFeatures);
 };
 
 #endif // METRICS_HPP

@@ -57,6 +57,7 @@ public:
     double Sum() const;
 
     Ndarray Sqrt() const;
+    Ndarray Abs() const;
 
     double L1Norm(const Ndarray& other) const;
     double L2Norm(const Ndarray& other) const;

@@ -2,7 +2,6 @@
 #define ONE_CLASS_SVM_HPP
 
 #include "Ndarray.hpp"
-#include <vector>
 
 class OneClassSVM {
 public:
@@ -18,8 +17,6 @@ private:
 
     // decision boundary offset (rho)
     void DecisionBoundary(const Ndarray& data);
-
-private:
     // regularization
     float nu;
     // kernel coef
