@@ -127,7 +127,7 @@ run_tests: CMakeFiles/run_tests.dir/tests/test_main.cpp.o
 run_tests: CMakeFiles/run_tests.dir/tests/test_regression.cpp.o
 run_tests: CMakeFiles/run_tests.dir/tests/test_metrics.cpp.o
 run_tests: CMakeFiles/run_tests.dir/build.make
-run_tests: libregression.a
+run_tests: libmodels.a
 run_tests: /usr/local/lib/libgtest_main.a
 run_tests: /usr/local/lib/libgtest.a
 run_tests: CMakeFiles/run_tests.dir/link.txt

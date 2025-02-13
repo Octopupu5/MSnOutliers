@@ -1,8 +1,8 @@
 #ifndef DBSCAN_HPP
 #define DBSCAN_HPP
 
-#include "Feature.hpp"
-#include "Ndarray.hpp"
+#include "../Feature.hpp"
+#include "../Ndarray.hpp"
 #include <vector>
 
 class DBSCAN {

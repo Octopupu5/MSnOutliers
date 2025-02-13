@@ -95,7 +95,7 @@ main_app_EXTERNAL_OBJECTS =
 
 main_app: CMakeFiles/main_app.dir/src/graph.cpp.o
 main_app: CMakeFiles/main_app.dir/build.make
-main_app: libregression.a
+main_app: libmodels.a
 main_app: /opt/homebrew/Cellar/sdl2/2.30.11/lib/libSDL2.dylib
 main_app: CMakeFiles/main_app.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable main_app"

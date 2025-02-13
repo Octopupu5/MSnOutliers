@@ -5,4 +5,4 @@
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
 add_test(UnitTests "/Users/heritagetime/VSCode/MSnOutliers/build/run_tests")
-set_tests_properties(UnitTests PROPERTIES  _BACKTRACE_TRIPLES "/Users/heritagetime/VSCode/MSnOutliers/CMakeLists.txt;50;add_test;/Users/heritagetime/VSCode/MSnOutliers/CMakeLists.txt;0;")
+set_tests_properties(UnitTests PROPERTIES  _BACKTRACE_TRIPLES "/Users/heritagetime/VSCode/MSnOutliers/CMakeLists.txt;52;add_test;/Users/heritagetime/VSCode/MSnOutliers/CMakeLists.txt;0;")

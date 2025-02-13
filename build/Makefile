@@ -185,17 +185,17 @@ main_app/fast:
 .PHONY : main_app/fast
 
 #=============================================================================
-# Target rules for targets named regression
+# Target rules for targets named models
 
 # Build rule for target.
-regression: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 regression
-.PHONY : regression
+models: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 models
+.PHONY : models
 
 # fast build rule for target.
-regression/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/build
-.PHONY : regression/fast
+models/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/build
+.PHONY : models/fast
 
 #=============================================================================
 # Target rules for targets named run_tests
@@ -210,53 +210,149 @@ run_tests/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/build
 .PHONY : run_tests/fast
 
-lib/Metrics.o: lib/Metrics.cpp.o
-.PHONY : lib/Metrics.o
+lib/ML/DBSCAN/DBSCAN.o: lib/ML/DBSCAN/DBSCAN.cpp.o
+.PHONY : lib/ML/DBSCAN/DBSCAN.o
 
 # target to build an object file
-lib/Metrics.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/lib/Metrics.cpp.o
-.PHONY : lib/Metrics.cpp.o
+lib/ML/DBSCAN/DBSCAN.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/DBSCAN/DBSCAN.cpp.o
+.PHONY : lib/ML/DBSCAN/DBSCAN.cpp.o
 
-lib/Metrics.i: lib/Metrics.cpp.i
-.PHONY : lib/Metrics.i
+lib/ML/DBSCAN/DBSCAN.i: lib/ML/DBSCAN/DBSCAN.cpp.i
+.PHONY : lib/ML/DBSCAN/DBSCAN.i
 
 # target to preprocess a source file
-lib/Metrics.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/lib/Metrics.cpp.i
-.PHONY : lib/Metrics.cpp.i
+lib/ML/DBSCAN/DBSCAN.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/DBSCAN/DBSCAN.cpp.i
+.PHONY : lib/ML/DBSCAN/DBSCAN.cpp.i
 
-lib/Metrics.s: lib/Metrics.cpp.s
-.PHONY : lib/Metrics.s
+lib/ML/DBSCAN/DBSCAN.s: lib/ML/DBSCAN/DBSCAN.cpp.s
+.PHONY : lib/ML/DBSCAN/DBSCAN.s
 
 # target to generate assembly for a file
-lib/Metrics.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/lib/Metrics.cpp.s
-.PHONY : lib/Metrics.cpp.s
+lib/ML/DBSCAN/DBSCAN.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/DBSCAN/DBSCAN.cpp.s
+.PHONY : lib/ML/DBSCAN/DBSCAN.cpp.s
 
-lib/RegressionModel.o: lib/RegressionModel.cpp.o
-.PHONY : lib/RegressionModel.o
+lib/ML/GradientDescent/GD.o: lib/ML/GradientDescent/GD.cpp.o
+.PHONY : lib/ML/GradientDescent/GD.o
 
 # target to build an object file
-lib/RegressionModel.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/lib/RegressionModel.cpp.o
-.PHONY : lib/RegressionModel.cpp.o
+lib/ML/GradientDescent/GD.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/GradientDescent/GD.cpp.o
+.PHONY : lib/ML/GradientDescent/GD.cpp.o
 
-lib/RegressionModel.i: lib/RegressionModel.cpp.i
-.PHONY : lib/RegressionModel.i
+lib/ML/GradientDescent/GD.i: lib/ML/GradientDescent/GD.cpp.i
+.PHONY : lib/ML/GradientDescent/GD.i
 
 # target to preprocess a source file
-lib/RegressionModel.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/lib/RegressionModel.cpp.i
-.PHONY : lib/RegressionModel.cpp.i
+lib/ML/GradientDescent/GD.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/GradientDescent/GD.cpp.i
+.PHONY : lib/ML/GradientDescent/GD.cpp.i
 
-lib/RegressionModel.s: lib/RegressionModel.cpp.s
-.PHONY : lib/RegressionModel.s
+lib/ML/GradientDescent/GD.s: lib/ML/GradientDescent/GD.cpp.s
+.PHONY : lib/ML/GradientDescent/GD.s
 
 # target to generate assembly for a file
-lib/RegressionModel.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/regression.dir/build.make CMakeFiles/regression.dir/lib/RegressionModel.cpp.s
-.PHONY : lib/RegressionModel.cpp.s
+lib/ML/GradientDescent/GD.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/GradientDescent/GD.cpp.s
+.PHONY : lib/ML/GradientDescent/GD.cpp.s
+
+lib/ML/LinearRegression/LinearRegression.o: lib/ML/LinearRegression/LinearRegression.cpp.o
+.PHONY : lib/ML/LinearRegression/LinearRegression.o
+
+# target to build an object file
+lib/ML/LinearRegression/LinearRegression.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/LinearRegression/LinearRegression.cpp.o
+.PHONY : lib/ML/LinearRegression/LinearRegression.cpp.o
+
+lib/ML/LinearRegression/LinearRegression.i: lib/ML/LinearRegression/LinearRegression.cpp.i
+.PHONY : lib/ML/LinearRegression/LinearRegression.i
+
+# target to preprocess a source file
+lib/ML/LinearRegression/LinearRegression.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/LinearRegression/LinearRegression.cpp.i
+.PHONY : lib/ML/LinearRegression/LinearRegression.cpp.i
+
+lib/ML/LinearRegression/LinearRegression.s: lib/ML/LinearRegression/LinearRegression.cpp.s
+.PHONY : lib/ML/LinearRegression/LinearRegression.s
+
+# target to generate assembly for a file
+lib/ML/LinearRegression/LinearRegression.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/LinearRegression/LinearRegression.cpp.s
+.PHONY : lib/ML/LinearRegression/LinearRegression.cpp.s
+
+lib/ML/OCSVM/OneClassSVM.o: lib/ML/OCSVM/OneClassSVM.cpp.o
+.PHONY : lib/ML/OCSVM/OneClassSVM.o
+
+# target to build an object file
+lib/ML/OCSVM/OneClassSVM.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/OCSVM/OneClassSVM.cpp.o
+.PHONY : lib/ML/OCSVM/OneClassSVM.cpp.o
+
+lib/ML/OCSVM/OneClassSVM.i: lib/ML/OCSVM/OneClassSVM.cpp.i
+.PHONY : lib/ML/OCSVM/OneClassSVM.i
+
+# target to preprocess a source file
+lib/ML/OCSVM/OneClassSVM.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/OCSVM/OneClassSVM.cpp.i
+.PHONY : lib/ML/OCSVM/OneClassSVM.cpp.i
+
+lib/ML/OCSVM/OneClassSVM.s: lib/ML/OCSVM/OneClassSVM.cpp.s
+.PHONY : lib/ML/OCSVM/OneClassSVM.s
+
+# target to generate assembly for a file
+lib/ML/OCSVM/OneClassSVM.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/OCSVM/OneClassSVM.cpp.s
+.PHONY : lib/ML/OCSVM/OneClassSVM.cpp.s
+
+lib/ML/iForest/Node.o: lib/ML/iForest/Node.cpp.o
+.PHONY : lib/ML/iForest/Node.o
+
+# target to build an object file
+lib/ML/iForest/Node.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/iForest/Node.cpp.o
+.PHONY : lib/ML/iForest/Node.cpp.o
+
+lib/ML/iForest/Node.i: lib/ML/iForest/Node.cpp.i
+.PHONY : lib/ML/iForest/Node.i
+
+# target to preprocess a source file
+lib/ML/iForest/Node.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/iForest/Node.cpp.i
+.PHONY : lib/ML/iForest/Node.cpp.i
+
+lib/ML/iForest/Node.s: lib/ML/iForest/Node.cpp.s
+.PHONY : lib/ML/iForest/Node.s
+
+# target to generate assembly for a file
+lib/ML/iForest/Node.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/iForest/Node.cpp.s
+.PHONY : lib/ML/iForest/Node.cpp.s
+
+lib/ML/iForest/iForest.o: lib/ML/iForest/iForest.cpp.o
+.PHONY : lib/ML/iForest/iForest.o
+
+# target to build an object file
+lib/ML/iForest/iForest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/iForest/iForest.cpp.o
+.PHONY : lib/ML/iForest/iForest.cpp.o
+
+lib/ML/iForest/iForest.i: lib/ML/iForest/iForest.cpp.i
+.PHONY : lib/ML/iForest/iForest.i
+
+# target to preprocess a source file
+lib/ML/iForest/iForest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/iForest/iForest.cpp.i
+.PHONY : lib/ML/iForest/iForest.cpp.i
+
+lib/ML/iForest/iForest.s: lib/ML/iForest/iForest.cpp.s
+.PHONY : lib/ML/iForest/iForest.s
+
+# target to generate assembly for a file
+lib/ML/iForest/iForest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/iForest/iForest.cpp.s
+.PHONY : lib/ML/iForest/iForest.cpp.s
 
 src/graph.o: src/graph.cpp.o
 .PHONY : src/graph.o
@@ -368,14 +464,26 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... main_app"
-	@echo "... regression"
+	@echo "... models"
 	@echo "... run_tests"
-	@echo "... lib/Metrics.o"
-	@echo "... lib/Metrics.i"
-	@echo "... lib/Metrics.s"
-	@echo "... lib/RegressionModel.o"
-	@echo "... lib/RegressionModel.i"
-	@echo "... lib/RegressionModel.s"
+	@echo "... lib/ML/DBSCAN/DBSCAN.o"
+	@echo "... lib/ML/DBSCAN/DBSCAN.i"
+	@echo "... lib/ML/DBSCAN/DBSCAN.s"
+	@echo "... lib/ML/GradientDescent/GD.o"
+	@echo "... lib/ML/GradientDescent/GD.i"
+	@echo "... lib/ML/GradientDescent/GD.s"
+	@echo "... lib/ML/LinearRegression/LinearRegression.o"
+	@echo "... lib/ML/LinearRegression/LinearRegression.i"
+	@echo "... lib/ML/LinearRegression/LinearRegression.s"
+	@echo "... lib/ML/OCSVM/OneClassSVM.o"
+	@echo "... lib/ML/OCSVM/OneClassSVM.i"
+	@echo "... lib/ML/OCSVM/OneClassSVM.s"
+	@echo "... lib/ML/iForest/Node.o"
+	@echo "... lib/ML/iForest/Node.i"
+	@echo "... lib/ML/iForest/Node.s"
+	@echo "... lib/ML/iForest/iForest.o"
+	@echo "... lib/ML/iForest/iForest.i"
+	@echo "... lib/ML/iForest/iForest.s"
 	@echo "... src/graph.o"
 	@echo "... src/graph.i"
 	@echo "... src/graph.s"

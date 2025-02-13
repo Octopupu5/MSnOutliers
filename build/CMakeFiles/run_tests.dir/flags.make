@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/clang++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/heritagetime/VSCode/MSnOutliers/lib -isystem /usr/local/include
+CXX_INCLUDES = -I/Users/heritagetime/VSCode/MSnOutliers/lib/ML -isystem /usr/local/include
 
 CXX_FLAGSarm64 = -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk
 

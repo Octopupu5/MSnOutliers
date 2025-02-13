@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-667b224ca8c0e3184ddf.json",
+					"jsonFile" : "directory-.-Debug-30e372e966c62a093eca.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.14"
@@ -44,21 +44,21 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "main_app::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-main_app-Debug-369a8762ae511172a3a0.json",
+					"jsonFile" : "target-main_app-Debug-4b33ca0245edb8dcc749.json",
 					"name" : "main_app",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
-					"id" : "regression::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-regression-Debug-aeceb58c1571f445abe9.json",
-					"name" : "regression",
+					"id" : "models::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-models-Debug-212dde28da9557c30d96.json",
+					"name" : "models",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "run_tests::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-run_tests-Debug-fe8919258ac8dd136428.json",
+					"jsonFile" : "target-run_tests-Debug-27f5f929c78282b55ce8.json",
 					"name" : "run_tests",
 					"projectIndex" : 0
 				}

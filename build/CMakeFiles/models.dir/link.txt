@@ -1,0 +1,2 @@
+/usr/bin/ar qc libmodels.a CMakeFiles/models.dir/lib/ML/DBSCAN/DBSCAN.cpp.o CMakeFiles/models.dir/lib/ML/iForest/iForest.cpp.o CMakeFiles/models.dir/lib/ML/iForest/Node.cpp.o CMakeFiles/models.dir/lib/ML/GradientDescent/GD.cpp.o CMakeFiles/models.dir/lib/ML/LinearRegression/LinearRegression.cpp.o CMakeFiles/models.dir/lib/ML/OCSVM/OneClassSVM.cpp.o
+/usr/bin/ranlib libmodels.a

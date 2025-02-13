@@ -1,4 +1,5 @@
 #include <SDL.h>
+#include "DBSCAN/DBSCAN.hpp"
 #include <cmath>
 #include <iostream>
 
