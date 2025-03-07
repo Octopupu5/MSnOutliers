@@ -2,6 +2,7 @@
 #define NDARRAY_HPP
 
 #include "Feature.hpp"
+#include "DISTRIBUTIONS/ErrorDistributions.hpp"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -13,7 +14,7 @@ class Ndarray {
 public:
     Ndarray();
     Ndarray(size_t cols);
-    Ndarray(size_t _rows, size_t cols, double scalar = 0.0);
+    Ndarray(size_t _rows, size_t cols, double scalar);
     Ndarray(const std::vector<std::vector<Feature>>& data);
 
     Ndarray RowNdarray(size_t index) const;
@@ -31,6 +32,7 @@ public:
     std::pair<size_t, size_t> Shape() const;
 
     void Fill(double scalar);
+    void RandomFill(ErrorDistributions::DistributionType type, double param1, double param2, std::mt19937& gen);
 
     Ndarray Transpose() const;
     Ndarray operator+(const Ndarray& other) const;

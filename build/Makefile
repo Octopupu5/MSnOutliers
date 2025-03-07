@@ -65,16 +65,6 @@ CMAKE_BINARY_DIR = /Users/heritagetime/VSCode/MSnOutliers/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
-	/opt/homebrew/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-.PHONY : test/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
@@ -94,51 +84,6 @@ rebuild_cache:
 # Special rule for the target rebuild_cache
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-.PHONY : list_install_components/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/opt/homebrew/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/opt/homebrew/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -172,283 +117,82 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named main_app
+# Target rules for targets named ErrorDistributions
 
 # Build rule for target.
-main_app: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 main_app
-.PHONY : main_app
+ErrorDistributions: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ErrorDistributions
+.PHONY : ErrorDistributions
 
 # fast build rule for target.
-main_app/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main_app.dir/build.make CMakeFiles/main_app.dir/build
-.PHONY : main_app/fast
+ErrorDistributions/fast:
+	$(MAKE) $(MAKESILENT) -f lib/CMakeFiles/ErrorDistributions.dir/build.make lib/CMakeFiles/ErrorDistributions.dir/build
+.PHONY : ErrorDistributions/fast
 
 #=============================================================================
-# Target rules for targets named models
+# Target rules for targets named MLComponents
 
 # Build rule for target.
-models: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 models
-.PHONY : models
+MLComponents: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 MLComponents
+.PHONY : MLComponents
 
 # fast build rule for target.
-models/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/build
-.PHONY : models/fast
+MLComponents/fast:
+	$(MAKE) $(MAKESILENT) -f lib/CMakeFiles/MLComponents.dir/build.make lib/CMakeFiles/MLComponents.dir/build
+.PHONY : MLComponents/fast
 
 #=============================================================================
-# Target rules for targets named run_tests
+# Target rules for targets named test_ndarray
 
 # Build rule for target.
-run_tests: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 run_tests
-.PHONY : run_tests
+test_ndarray: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_ndarray
+.PHONY : test_ndarray
 
 # fast build rule for target.
-run_tests/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/build
-.PHONY : run_tests/fast
+test_ndarray/fast:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/test_ndarray.dir/build.make src/CMakeFiles/test_ndarray.dir/build
+.PHONY : test_ndarray/fast
 
-lib/ML/DBSCAN/DBSCAN.o: lib/ML/DBSCAN/DBSCAN.cpp.o
-.PHONY : lib/ML/DBSCAN/DBSCAN.o
+#=============================================================================
+# Target rules for targets named test_main
 
-# target to build an object file
-lib/ML/DBSCAN/DBSCAN.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/DBSCAN/DBSCAN.cpp.o
-.PHONY : lib/ML/DBSCAN/DBSCAN.cpp.o
+# Build rule for target.
+test_main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_main
+.PHONY : test_main
 
-lib/ML/DBSCAN/DBSCAN.i: lib/ML/DBSCAN/DBSCAN.cpp.i
-.PHONY : lib/ML/DBSCAN/DBSCAN.i
+# fast build rule for target.
+test_main/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_main.dir/build.make tests/CMakeFiles/test_main.dir/build
+.PHONY : test_main/fast
 
-# target to preprocess a source file
-lib/ML/DBSCAN/DBSCAN.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/DBSCAN/DBSCAN.cpp.i
-.PHONY : lib/ML/DBSCAN/DBSCAN.cpp.i
+#=============================================================================
+# Target rules for targets named test_metrics
 
-lib/ML/DBSCAN/DBSCAN.s: lib/ML/DBSCAN/DBSCAN.cpp.s
-.PHONY : lib/ML/DBSCAN/DBSCAN.s
+# Build rule for target.
+test_metrics: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_metrics
+.PHONY : test_metrics
 
-# target to generate assembly for a file
-lib/ML/DBSCAN/DBSCAN.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/DBSCAN/DBSCAN.cpp.s
-.PHONY : lib/ML/DBSCAN/DBSCAN.cpp.s
+# fast build rule for target.
+test_metrics/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_metrics.dir/build.make tests/CMakeFiles/test_metrics.dir/build
+.PHONY : test_metrics/fast
 
-lib/ML/GradientDescent/GD.o: lib/ML/GradientDescent/GD.cpp.o
-.PHONY : lib/ML/GradientDescent/GD.o
+#=============================================================================
+# Target rules for targets named test_regression
 
-# target to build an object file
-lib/ML/GradientDescent/GD.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/GradientDescent/GD.cpp.o
-.PHONY : lib/ML/GradientDescent/GD.cpp.o
+# Build rule for target.
+test_regression: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_regression
+.PHONY : test_regression
 
-lib/ML/GradientDescent/GD.i: lib/ML/GradientDescent/GD.cpp.i
-.PHONY : lib/ML/GradientDescent/GD.i
-
-# target to preprocess a source file
-lib/ML/GradientDescent/GD.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/GradientDescent/GD.cpp.i
-.PHONY : lib/ML/GradientDescent/GD.cpp.i
-
-lib/ML/GradientDescent/GD.s: lib/ML/GradientDescent/GD.cpp.s
-.PHONY : lib/ML/GradientDescent/GD.s
-
-# target to generate assembly for a file
-lib/ML/GradientDescent/GD.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/GradientDescent/GD.cpp.s
-.PHONY : lib/ML/GradientDescent/GD.cpp.s
-
-lib/ML/LinearRegression/LinearRegression.o: lib/ML/LinearRegression/LinearRegression.cpp.o
-.PHONY : lib/ML/LinearRegression/LinearRegression.o
-
-# target to build an object file
-lib/ML/LinearRegression/LinearRegression.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/LinearRegression/LinearRegression.cpp.o
-.PHONY : lib/ML/LinearRegression/LinearRegression.cpp.o
-
-lib/ML/LinearRegression/LinearRegression.i: lib/ML/LinearRegression/LinearRegression.cpp.i
-.PHONY : lib/ML/LinearRegression/LinearRegression.i
-
-# target to preprocess a source file
-lib/ML/LinearRegression/LinearRegression.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/LinearRegression/LinearRegression.cpp.i
-.PHONY : lib/ML/LinearRegression/LinearRegression.cpp.i
-
-lib/ML/LinearRegression/LinearRegression.s: lib/ML/LinearRegression/LinearRegression.cpp.s
-.PHONY : lib/ML/LinearRegression/LinearRegression.s
-
-# target to generate assembly for a file
-lib/ML/LinearRegression/LinearRegression.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/LinearRegression/LinearRegression.cpp.s
-.PHONY : lib/ML/LinearRegression/LinearRegression.cpp.s
-
-lib/ML/OCSVM/OneClassSVM.o: lib/ML/OCSVM/OneClassSVM.cpp.o
-.PHONY : lib/ML/OCSVM/OneClassSVM.o
-
-# target to build an object file
-lib/ML/OCSVM/OneClassSVM.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/OCSVM/OneClassSVM.cpp.o
-.PHONY : lib/ML/OCSVM/OneClassSVM.cpp.o
-
-lib/ML/OCSVM/OneClassSVM.i: lib/ML/OCSVM/OneClassSVM.cpp.i
-.PHONY : lib/ML/OCSVM/OneClassSVM.i
-
-# target to preprocess a source file
-lib/ML/OCSVM/OneClassSVM.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/OCSVM/OneClassSVM.cpp.i
-.PHONY : lib/ML/OCSVM/OneClassSVM.cpp.i
-
-lib/ML/OCSVM/OneClassSVM.s: lib/ML/OCSVM/OneClassSVM.cpp.s
-.PHONY : lib/ML/OCSVM/OneClassSVM.s
-
-# target to generate assembly for a file
-lib/ML/OCSVM/OneClassSVM.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/OCSVM/OneClassSVM.cpp.s
-.PHONY : lib/ML/OCSVM/OneClassSVM.cpp.s
-
-lib/ML/iForest/Node.o: lib/ML/iForest/Node.cpp.o
-.PHONY : lib/ML/iForest/Node.o
-
-# target to build an object file
-lib/ML/iForest/Node.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/iForest/Node.cpp.o
-.PHONY : lib/ML/iForest/Node.cpp.o
-
-lib/ML/iForest/Node.i: lib/ML/iForest/Node.cpp.i
-.PHONY : lib/ML/iForest/Node.i
-
-# target to preprocess a source file
-lib/ML/iForest/Node.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/iForest/Node.cpp.i
-.PHONY : lib/ML/iForest/Node.cpp.i
-
-lib/ML/iForest/Node.s: lib/ML/iForest/Node.cpp.s
-.PHONY : lib/ML/iForest/Node.s
-
-# target to generate assembly for a file
-lib/ML/iForest/Node.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/iForest/Node.cpp.s
-.PHONY : lib/ML/iForest/Node.cpp.s
-
-lib/ML/iForest/iForest.o: lib/ML/iForest/iForest.cpp.o
-.PHONY : lib/ML/iForest/iForest.o
-
-# target to build an object file
-lib/ML/iForest/iForest.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/iForest/iForest.cpp.o
-.PHONY : lib/ML/iForest/iForest.cpp.o
-
-lib/ML/iForest/iForest.i: lib/ML/iForest/iForest.cpp.i
-.PHONY : lib/ML/iForest/iForest.i
-
-# target to preprocess a source file
-lib/ML/iForest/iForest.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/iForest/iForest.cpp.i
-.PHONY : lib/ML/iForest/iForest.cpp.i
-
-lib/ML/iForest/iForest.s: lib/ML/iForest/iForest.cpp.s
-.PHONY : lib/ML/iForest/iForest.s
-
-# target to generate assembly for a file
-lib/ML/iForest/iForest.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/models.dir/build.make CMakeFiles/models.dir/lib/ML/iForest/iForest.cpp.s
-.PHONY : lib/ML/iForest/iForest.cpp.s
-
-src/graph.o: src/graph.cpp.o
-.PHONY : src/graph.o
-
-# target to build an object file
-src/graph.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main_app.dir/build.make CMakeFiles/main_app.dir/src/graph.cpp.o
-.PHONY : src/graph.cpp.o
-
-src/graph.i: src/graph.cpp.i
-.PHONY : src/graph.i
-
-# target to preprocess a source file
-src/graph.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main_app.dir/build.make CMakeFiles/main_app.dir/src/graph.cpp.i
-.PHONY : src/graph.cpp.i
-
-src/graph.s: src/graph.cpp.s
-.PHONY : src/graph.s
-
-# target to generate assembly for a file
-src/graph.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main_app.dir/build.make CMakeFiles/main_app.dir/src/graph.cpp.s
-.PHONY : src/graph.cpp.s
-
-tests/test_main.o: tests/test_main.cpp.o
-.PHONY : tests/test_main.o
-
-# target to build an object file
-tests/test_main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/tests/test_main.cpp.o
-.PHONY : tests/test_main.cpp.o
-
-tests/test_main.i: tests/test_main.cpp.i
-.PHONY : tests/test_main.i
-
-# target to preprocess a source file
-tests/test_main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/tests/test_main.cpp.i
-.PHONY : tests/test_main.cpp.i
-
-tests/test_main.s: tests/test_main.cpp.s
-.PHONY : tests/test_main.s
-
-# target to generate assembly for a file
-tests/test_main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/tests/test_main.cpp.s
-.PHONY : tests/test_main.cpp.s
-
-tests/test_metrics.o: tests/test_metrics.cpp.o
-.PHONY : tests/test_metrics.o
-
-# target to build an object file
-tests/test_metrics.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/tests/test_metrics.cpp.o
-.PHONY : tests/test_metrics.cpp.o
-
-tests/test_metrics.i: tests/test_metrics.cpp.i
-.PHONY : tests/test_metrics.i
-
-# target to preprocess a source file
-tests/test_metrics.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/tests/test_metrics.cpp.i
-.PHONY : tests/test_metrics.cpp.i
-
-tests/test_metrics.s: tests/test_metrics.cpp.s
-.PHONY : tests/test_metrics.s
-
-# target to generate assembly for a file
-tests/test_metrics.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/tests/test_metrics.cpp.s
-.PHONY : tests/test_metrics.cpp.s
-
-tests/test_regression.o: tests/test_regression.cpp.o
-.PHONY : tests/test_regression.o
-
-# target to build an object file
-tests/test_regression.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/tests/test_regression.cpp.o
-.PHONY : tests/test_regression.cpp.o
-
-tests/test_regression.i: tests/test_regression.cpp.i
-.PHONY : tests/test_regression.i
-
-# target to preprocess a source file
-tests/test_regression.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/tests/test_regression.cpp.i
-.PHONY : tests/test_regression.cpp.i
-
-tests/test_regression.s: tests/test_regression.cpp.s
-.PHONY : tests/test_regression.s
-
-# target to generate assembly for a file
-tests/test_regression.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/tests/test_regression.cpp.s
-.PHONY : tests/test_regression.cpp.s
+# fast build rule for target.
+test_regression/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_regression.dir/build.make tests/CMakeFiles/test_regression.dir/build
+.PHONY : test_regression/fast
 
 # Help Target
 help:
@@ -457,45 +201,13 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... install"
-	@echo "... install/local"
-	@echo "... install/strip"
-	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... test"
-	@echo "... main_app"
-	@echo "... models"
-	@echo "... run_tests"
-	@echo "... lib/ML/DBSCAN/DBSCAN.o"
-	@echo "... lib/ML/DBSCAN/DBSCAN.i"
-	@echo "... lib/ML/DBSCAN/DBSCAN.s"
-	@echo "... lib/ML/GradientDescent/GD.o"
-	@echo "... lib/ML/GradientDescent/GD.i"
-	@echo "... lib/ML/GradientDescent/GD.s"
-	@echo "... lib/ML/LinearRegression/LinearRegression.o"
-	@echo "... lib/ML/LinearRegression/LinearRegression.i"
-	@echo "... lib/ML/LinearRegression/LinearRegression.s"
-	@echo "... lib/ML/OCSVM/OneClassSVM.o"
-	@echo "... lib/ML/OCSVM/OneClassSVM.i"
-	@echo "... lib/ML/OCSVM/OneClassSVM.s"
-	@echo "... lib/ML/iForest/Node.o"
-	@echo "... lib/ML/iForest/Node.i"
-	@echo "... lib/ML/iForest/Node.s"
-	@echo "... lib/ML/iForest/iForest.o"
-	@echo "... lib/ML/iForest/iForest.i"
-	@echo "... lib/ML/iForest/iForest.s"
-	@echo "... src/graph.o"
-	@echo "... src/graph.i"
-	@echo "... src/graph.s"
-	@echo "... tests/test_main.o"
-	@echo "... tests/test_main.i"
-	@echo "... tests/test_main.s"
-	@echo "... tests/test_metrics.o"
-	@echo "... tests/test_metrics.i"
-	@echo "... tests/test_metrics.s"
-	@echo "... tests/test_regression.o"
-	@echo "... tests/test_regression.i"
-	@echo "... tests/test_regression.s"
+	@echo "... ErrorDistributions"
+	@echo "... MLComponents"
+	@echo "... test_main"
+	@echo "... test_metrics"
+	@echo "... test_ndarray"
+	@echo "... test_regression"
 .PHONY : help
 
 

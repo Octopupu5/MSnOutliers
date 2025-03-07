@@ -2,7 +2,7 @@
 
 Ndarray::Ndarray(): _rows(0), _cols(0) {}
 Ndarray::Ndarray(size_t cols) : _rows(0), _cols(cols) {}
-Ndarray::Ndarray(size_t _rows, size_t cols, double scalar = 0.0)
+Ndarray::Ndarray(size_t _rows, size_t cols, double scalar)
         : _rows(_rows), _cols(cols), _data(_rows, std::vector<Feature>(cols, scalar)) {}
 
 Ndarray::Ndarray(const std::vector<std::vector<Feature>>& data)
@@ -179,6 +179,15 @@ void Ndarray::Fill(double scalar) {
     }
 }
 
+void Ndarray::RandomFill(ErrorDistributions::DistributionType type, double param1, double param2, std::mt19937& gen) {
+    ErrorDistributions distribution(type, param1, param2);
+    for (size_t i = 0; i < _rows; ++i) {
+        for (size_t j = 0; j < _cols; ++j) {
+            _data[i][j] = distribution.generate(gen);
+        }
+    }
+}
+
 Ndarray Ndarray::RowNdarray(size_t index) const {
     if (index >= _rows) {
         throw std::invalid_argument("Row size is less, invalid index");
@@ -207,7 +216,7 @@ void Ndarray::AddRows(const Ndarray& other) {
 void Ndarray::Print() const {
     for (const auto& row : _data) {
         for (Feature value : row) {
-            std::cout << std::setw(10) << value.Name() << " ";
+            std::cout << std::setw(10) << " ";
         }
         std::cout << "\n";
     }

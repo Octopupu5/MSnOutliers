@@ -2,7 +2,7 @@
 #define DBSCAN_HPP
 
 #include "../Feature.hpp"
-#include "../Ndarray.hpp"
+#include "Ndarray.hpp"
 #include <vector>
 
 class DBSCAN {

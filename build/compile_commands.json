@@ -1,62 +1,44 @@
 [
 {
-  "directory": "/Users/heritagetime/VSCode/MSnOutliers/build",
-  "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib/ML -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/models.dir/lib/ML/DBSCAN/DBSCAN.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/lib/ML/DBSCAN/DBSCAN.cpp",
-  "file": "/Users/heritagetime/VSCode/MSnOutliers/lib/ML/DBSCAN/DBSCAN.cpp",
-  "output": "CMakeFiles/models.dir/lib/ML/DBSCAN/DBSCAN.cpp.o"
+  "directory": "/Users/heritagetime/VSCode/MSnOutliers/build/lib",
+  "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib/DISTRIBUTIONS -I/Users/heritagetime/VSCode/MSnOutliers/lib/ML -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/ErrorDistributions.dir/DISTRIBUTIONS/ErrorDistributions.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/lib/DISTRIBUTIONS/ErrorDistributions.cpp",
+  "file": "/Users/heritagetime/VSCode/MSnOutliers/lib/DISTRIBUTIONS/ErrorDistributions.cpp",
+  "output": "lib/CMakeFiles/ErrorDistributions.dir/DISTRIBUTIONS/ErrorDistributions.cpp.o"
 },
 {
-  "directory": "/Users/heritagetime/VSCode/MSnOutliers/build",
-  "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib/ML -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/models.dir/lib/ML/iForest/iForest.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/lib/ML/iForest/iForest.cpp",
-  "file": "/Users/heritagetime/VSCode/MSnOutliers/lib/ML/iForest/iForest.cpp",
-  "output": "CMakeFiles/models.dir/lib/ML/iForest/iForest.cpp.o"
+  "directory": "/Users/heritagetime/VSCode/MSnOutliers/build/lib",
+  "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib/DISTRIBUTIONS -I/Users/heritagetime/VSCode/MSnOutliers/lib/ML -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/MLComponents.dir/Ndarray.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/lib/Ndarray.cpp",
+  "file": "/Users/heritagetime/VSCode/MSnOutliers/lib/Ndarray.cpp",
+  "output": "lib/CMakeFiles/MLComponents.dir/Ndarray.cpp.o"
 },
 {
-  "directory": "/Users/heritagetime/VSCode/MSnOutliers/build",
-  "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib/ML -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/models.dir/lib/ML/iForest/Node.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/lib/ML/iForest/Node.cpp",
-  "file": "/Users/heritagetime/VSCode/MSnOutliers/lib/ML/iForest/Node.cpp",
-  "output": "CMakeFiles/models.dir/lib/ML/iForest/Node.cpp.o"
+  "directory": "/Users/heritagetime/VSCode/MSnOutliers/build/lib",
+  "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib/DISTRIBUTIONS -I/Users/heritagetime/VSCode/MSnOutliers/lib/ML -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/MLComponents.dir/DataProcessor.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/lib/DataProcessor.cpp",
+  "file": "/Users/heritagetime/VSCode/MSnOutliers/lib/DataProcessor.cpp",
+  "output": "lib/CMakeFiles/MLComponents.dir/DataProcessor.cpp.o"
 },
 {
-  "directory": "/Users/heritagetime/VSCode/MSnOutliers/build",
-  "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib/ML -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/models.dir/lib/ML/GradientDescent/GD.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/lib/ML/GradientDescent/GD.cpp",
-  "file": "/Users/heritagetime/VSCode/MSnOutliers/lib/ML/GradientDescent/GD.cpp",
-  "output": "CMakeFiles/models.dir/lib/ML/GradientDescent/GD.cpp.o"
+  "directory": "/Users/heritagetime/VSCode/MSnOutliers/build/src",
+  "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib/DISTRIBUTIONS -I/Users/heritagetime/VSCode/MSnOutliers/lib/ML -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/test_ndarray.dir/test_ndarray.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/src/test_ndarray.cpp",
+  "file": "/Users/heritagetime/VSCode/MSnOutliers/src/test_ndarray.cpp",
+  "output": "src/CMakeFiles/test_ndarray.dir/test_ndarray.cpp.o"
 },
 {
-  "directory": "/Users/heritagetime/VSCode/MSnOutliers/build",
-  "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib/ML -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/models.dir/lib/ML/LinearRegression/LinearRegression.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/lib/ML/LinearRegression/LinearRegression.cpp",
-  "file": "/Users/heritagetime/VSCode/MSnOutliers/lib/ML/LinearRegression/LinearRegression.cpp",
-  "output": "CMakeFiles/models.dir/lib/ML/LinearRegression/LinearRegression.cpp.o"
-},
-{
-  "directory": "/Users/heritagetime/VSCode/MSnOutliers/build",
-  "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib/ML -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/models.dir/lib/ML/OCSVM/OneClassSVM.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/lib/ML/OCSVM/OneClassSVM.cpp",
-  "file": "/Users/heritagetime/VSCode/MSnOutliers/lib/ML/OCSVM/OneClassSVM.cpp",
-  "output": "CMakeFiles/models.dir/lib/ML/OCSVM/OneClassSVM.cpp.o"
-},
-{
-  "directory": "/Users/heritagetime/VSCode/MSnOutliers/build",
-  "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib/ML -isystem /opt/homebrew/Cellar/sdl2/2.30.11/include/SDL2 -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/main_app.dir/src/graph.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/src/graph.cpp",
-  "file": "/Users/heritagetime/VSCode/MSnOutliers/src/graph.cpp",
-  "output": "CMakeFiles/main_app.dir/src/graph.cpp.o"
-},
-{
-  "directory": "/Users/heritagetime/VSCode/MSnOutliers/build",
-  "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib/ML -isystem /usr/local/include -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/run_tests.dir/tests/test_main.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/tests/test_main.cpp",
+  "directory": "/Users/heritagetime/VSCode/MSnOutliers/build/tests",
+  "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib/DISTRIBUTIONS -I/Users/heritagetime/VSCode/MSnOutliers/lib/ML -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/test_main.dir/test_main.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/tests/test_main.cpp",
   "file": "/Users/heritagetime/VSCode/MSnOutliers/tests/test_main.cpp",
-  "output": "CMakeFiles/run_tests.dir/tests/test_main.cpp.o"
+  "output": "tests/CMakeFiles/test_main.dir/test_main.cpp.o"
 },
 {
-  "directory": "/Users/heritagetime/VSCode/MSnOutliers/build",
-  "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib/ML -isystem /usr/local/include -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/run_tests.dir/tests/test_regression.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/tests/test_regression.cpp",
-  "file": "/Users/heritagetime/VSCode/MSnOutliers/tests/test_regression.cpp",
-  "output": "CMakeFiles/run_tests.dir/tests/test_regression.cpp.o"
-},
-{
-  "directory": "/Users/heritagetime/VSCode/MSnOutliers/build",
-  "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib/ML -isystem /usr/local/include -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/run_tests.dir/tests/test_metrics.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/tests/test_metrics.cpp",
+  "directory": "/Users/heritagetime/VSCode/MSnOutliers/build/tests",
+  "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib/DISTRIBUTIONS -I/Users/heritagetime/VSCode/MSnOutliers/lib/ML -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/test_metrics.dir/test_metrics.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/tests/test_metrics.cpp",
   "file": "/Users/heritagetime/VSCode/MSnOutliers/tests/test_metrics.cpp",
-  "output": "CMakeFiles/run_tests.dir/tests/test_metrics.cpp.o"
+  "output": "tests/CMakeFiles/test_metrics.dir/test_metrics.cpp.o"
+},
+{
+  "directory": "/Users/heritagetime/VSCode/MSnOutliers/build/tests",
+  "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib/DISTRIBUTIONS -I/Users/heritagetime/VSCode/MSnOutliers/lib/ML -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/test_regression.dir/test_regression.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/tests/test_regression.cpp",
+  "file": "/Users/heritagetime/VSCode/MSnOutliers/tests/test_regression.cpp",
+  "output": "tests/CMakeFiles/test_regression.dir/test_regression.cpp.o"
 }
 ]

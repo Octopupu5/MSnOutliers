@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/main_app.dir/src/graph.cpp.o"
-  "CMakeFiles/main_app.dir/src/graph.cpp.o.d"
+  "CMakeFiles/main_app.dir/src/test_ndarray.cpp.o"
+  "CMakeFiles/main_app.dir/src/test_ndarray.cpp.o.d"
   "main_app"
   "main_app.pdb"
 )

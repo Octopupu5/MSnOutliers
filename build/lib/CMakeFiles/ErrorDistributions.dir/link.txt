@@ -1,0 +1,2 @@
+/usr/bin/ar qc libErrorDistributions.a CMakeFiles/ErrorDistributions.dir/DISTRIBUTIONS/ErrorDistributions.cpp.o
+/usr/bin/ranlib libErrorDistributions.a

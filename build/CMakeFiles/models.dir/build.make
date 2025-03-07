@@ -156,6 +156,20 @@ CMakeFiles/models.dir/lib/ML/OCSVM/OneClassSVM.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/models.dir/lib/ML/OCSVM/OneClassSVM.cpp.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/heritagetime/VSCode/MSnOutliers/lib/ML/OCSVM/OneClassSVM.cpp -o CMakeFiles/models.dir/lib/ML/OCSVM/OneClassSVM.cpp.s
 
+CMakeFiles/models.dir/lib/Ndarray.cpp.o: CMakeFiles/models.dir/flags.make
+CMakeFiles/models.dir/lib/Ndarray.cpp.o: /Users/heritagetime/VSCode/MSnOutliers/lib/Ndarray.cpp
+CMakeFiles/models.dir/lib/Ndarray.cpp.o: CMakeFiles/models.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/models.dir/lib/Ndarray.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/models.dir/lib/Ndarray.cpp.o -MF CMakeFiles/models.dir/lib/Ndarray.cpp.o.d -o CMakeFiles/models.dir/lib/Ndarray.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/lib/Ndarray.cpp
+
+CMakeFiles/models.dir/lib/Ndarray.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/models.dir/lib/Ndarray.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/heritagetime/VSCode/MSnOutliers/lib/Ndarray.cpp > CMakeFiles/models.dir/lib/Ndarray.cpp.i
+
+CMakeFiles/models.dir/lib/Ndarray.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/models.dir/lib/Ndarray.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/heritagetime/VSCode/MSnOutliers/lib/Ndarray.cpp -o CMakeFiles/models.dir/lib/Ndarray.cpp.s
+
 # Object files for target models
 models_OBJECTS = \
 "CMakeFiles/models.dir/lib/ML/DBSCAN/DBSCAN.cpp.o" \
@@ -163,7 +177,8 @@ models_OBJECTS = \
 "CMakeFiles/models.dir/lib/ML/iForest/Node.cpp.o" \
 "CMakeFiles/models.dir/lib/ML/GradientDescent/GD.cpp.o" \
 "CMakeFiles/models.dir/lib/ML/LinearRegression/LinearRegression.cpp.o" \
-"CMakeFiles/models.dir/lib/ML/OCSVM/OneClassSVM.cpp.o"
+"CMakeFiles/models.dir/lib/ML/OCSVM/OneClassSVM.cpp.o" \
+"CMakeFiles/models.dir/lib/Ndarray.cpp.o"
 
 # External object files for target models
 models_EXTERNAL_OBJECTS =
@@ -174,9 +189,10 @@ libmodels.a: CMakeFiles/models.dir/lib/ML/iForest/Node.cpp.o
 libmodels.a: CMakeFiles/models.dir/lib/ML/GradientDescent/GD.cpp.o
 libmodels.a: CMakeFiles/models.dir/lib/ML/LinearRegression/LinearRegression.cpp.o
 libmodels.a: CMakeFiles/models.dir/lib/ML/OCSVM/OneClassSVM.cpp.o
+libmodels.a: CMakeFiles/models.dir/lib/Ndarray.cpp.o
 libmodels.a: CMakeFiles/models.dir/build.make
 libmodels.a: CMakeFiles/models.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX static library libmodels.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libmodels.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/models.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/models.dir/link.txt --verbose=$(VERBOSE)
 
