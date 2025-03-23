@@ -1,7 +1,7 @@
 #ifndef NODE_HPP
 #define NODE_HPP
 
-#include "../Feature.hpp"
+#include "../../COMMON/Feature.hpp"
 #include <inttypes.h>
 
 class Node {

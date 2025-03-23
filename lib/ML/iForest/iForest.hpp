@@ -1,7 +1,7 @@
 #ifndef IFOREST_HPP
 #define IFOREST_HPP
 
-#include "../Ndarray.hpp"
+#include "../../COMMON/Ndarray.hpp"
 #include "Node.hpp"
 #include <map>
 #include <random>

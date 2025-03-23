@@ -10,22 +10,31 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/Users/heritagetime/VSCode/MSnOutliers/CMakeLists.txt"
   "CMakeFiles/3.31.5/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.31.5/CMakeSystem.cmake"
-  "/Users/heritagetime/VSCode/MSnOutliers/lib/CMakeLists.txt"
   "/Users/heritagetime/VSCode/MSnOutliers/src/CMakeLists.txt"
   "/Users/heritagetime/VSCode/MSnOutliers/tests/CMakeLists.txt"
   "/opt/homebrew/share/cmake/Modules/CMakeCXXInformation.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeCommonLanguageInclude.cmake"
+  "/opt/homebrew/share/cmake/Modules/CMakeFindDependencyMacro.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeGenericSystem.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeInitializeConfigs.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeLanguageInformation.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeSystemSpecificInformation.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake"
+  "/opt/homebrew/share/cmake/Modules/CheckCXXSourceCompiles.cmake"
+  "/opt/homebrew/share/cmake/Modules/CheckIncludeFileCXX.cmake"
+  "/opt/homebrew/share/cmake/Modules/CheckLibraryExists.cmake"
   "/opt/homebrew/share/cmake/Modules/Compiler/AppleClang-CXX.cmake"
   "/opt/homebrew/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
   "/opt/homebrew/share/cmake/Modules/Compiler/Clang.cmake"
   "/opt/homebrew/share/cmake/Modules/Compiler/GNU.cmake"
+  "/opt/homebrew/share/cmake/Modules/FindGTest.cmake"
+  "/opt/homebrew/share/cmake/Modules/FindPackageHandleStandardArgs.cmake"
+  "/opt/homebrew/share/cmake/Modules/FindPackageMessage.cmake"
+  "/opt/homebrew/share/cmake/Modules/FindThreads.cmake"
+  "/opt/homebrew/share/cmake/Modules/GoogleTest.cmake"
   "/opt/homebrew/share/cmake/Modules/Internal/CMakeCXXLinkerInformation.cmake"
   "/opt/homebrew/share/cmake/Modules/Internal/CMakeCommonLinkerInformation.cmake"
+  "/opt/homebrew/share/cmake/Modules/Internal/CheckSourceCompiles.cmake"
   "/opt/homebrew/share/cmake/Modules/Linker/AppleClang-CXX.cmake"
   "/opt/homebrew/share/cmake/Modules/Linker/AppleClang.cmake"
   "/opt/homebrew/share/cmake/Modules/Platform/Apple-AppleClang-CXX.cmake"
@@ -36,6 +45,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/opt/homebrew/share/cmake/Modules/Platform/Linker/Apple-AppleClang-CXX.cmake"
   "/opt/homebrew/share/cmake/Modules/Platform/Linker/Apple-AppleClang.cmake"
   "/opt/homebrew/share/cmake/Modules/Platform/UnixPaths.cmake"
+  "/usr/local/lib/cmake/GTest/GTestConfig.cmake"
+  "/usr/local/lib/cmake/GTest/GTestConfigVersion.cmake"
+  "/usr/local/lib/cmake/GTest/GTestTargets-noconfig.cmake"
+  "/usr/local/lib/cmake/GTest/GTestTargets.cmake"
   )
 
 # The corresponding makefile is:
@@ -47,17 +60,13 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
-  "lib/CMakeFiles/CMakeDirectoryInformation.cmake"
   "src/CMakeFiles/CMakeDirectoryInformation.cmake"
   "tests/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "lib/CMakeFiles/ErrorDistributions.dir/DependInfo.cmake"
-  "lib/CMakeFiles/MLComponents.dir/DependInfo.cmake"
-  "src/CMakeFiles/test_ndarray.dir/DependInfo.cmake"
-  "tests/CMakeFiles/test_main.dir/DependInfo.cmake"
-  "tests/CMakeFiles/test_metrics.dir/DependInfo.cmake"
-  "tests/CMakeFiles/test_regression.dir/DependInfo.cmake"
+  "CMakeFiles/RegressionAnalysisLib.dir/DependInfo.cmake"
+  "src/CMakeFiles/main.dir/DependInfo.cmake"
+  "tests/CMakeFiles/tests.dir/DependInfo.cmake"
   )

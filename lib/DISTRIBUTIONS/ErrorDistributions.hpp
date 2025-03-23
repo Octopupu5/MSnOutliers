@@ -1,5 +1,5 @@
-#ifndef ERROR_DISTRIBUTIONS_HPP
-#define ERROR_DISTRIBUTIONS_HPP
+#ifndef ERRORDISTRIBUTIONS_HPP
+#define ERRORDISTRIBUTIONS_HPP
 
 #include <random>
 #include <variant>
@@ -31,4 +31,4 @@ private:
     double student_t_generate(std::mt19937& gen, double degrees_of_freedom);
 };
 
-#endif // ERROR_DISTRIBUTIONS_HPP
+#endif // ERRORDISTRIBUTIONS_HPP

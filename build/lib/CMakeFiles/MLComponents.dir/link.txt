@@ -1,2 +1,0 @@
-/usr/bin/ar qc libMLComponents.a CMakeFiles/MLComponents.dir/Ndarray.cpp.o CMakeFiles/MLComponents.dir/DataProcessor.cpp.o
-/usr/bin/ranlib libMLComponents.a

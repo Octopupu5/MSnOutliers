@@ -65,6 +65,16 @@ CMAKE_BINARY_DIR = /Users/heritagetime/VSCode/MSnOutliers/build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
+	/opt/homebrew/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+.PHONY : test/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
@@ -117,53 +127,25 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-tests/CMakeFiles/test_main.dir/rule:
-	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_main.dir/rule
-.PHONY : tests/CMakeFiles/test_main.dir/rule
+tests/CMakeFiles/tests.dir/rule:
+	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/tests.dir/rule
+.PHONY : tests/CMakeFiles/tests.dir/rule
 
 # Convenience name for target.
-test_main: tests/CMakeFiles/test_main.dir/rule
-.PHONY : test_main
+tests: tests/CMakeFiles/tests.dir/rule
+.PHONY : tests
 
 # fast build rule for target.
-test_main/fast:
-	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_main.dir/build.make tests/CMakeFiles/test_main.dir/build
-.PHONY : test_main/fast
-
-# Convenience name for target.
-tests/CMakeFiles/test_metrics.dir/rule:
-	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_metrics.dir/rule
-.PHONY : tests/CMakeFiles/test_metrics.dir/rule
-
-# Convenience name for target.
-test_metrics: tests/CMakeFiles/test_metrics.dir/rule
-.PHONY : test_metrics
-
-# fast build rule for target.
-test_metrics/fast:
-	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_metrics.dir/build.make tests/CMakeFiles/test_metrics.dir/build
-.PHONY : test_metrics/fast
-
-# Convenience name for target.
-tests/CMakeFiles/test_regression.dir/rule:
-	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_regression.dir/rule
-.PHONY : tests/CMakeFiles/test_regression.dir/rule
-
-# Convenience name for target.
-test_regression: tests/CMakeFiles/test_regression.dir/rule
-.PHONY : test_regression
-
-# fast build rule for target.
-test_regression/fast:
-	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_regression.dir/build.make tests/CMakeFiles/test_regression.dir/build
-.PHONY : test_regression/fast
+tests/fast:
+	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/build
+.PHONY : tests/fast
 
 test_main.o: test_main.cpp.o
 .PHONY : test_main.o
 
 # target to build an object file
 test_main.cpp.o:
-	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_main.dir/build.make tests/CMakeFiles/test_main.dir/test_main.cpp.o
+	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/test_main.cpp.o
 .PHONY : test_main.cpp.o
 
 test_main.i: test_main.cpp.i
@@ -171,7 +153,7 @@ test_main.i: test_main.cpp.i
 
 # target to preprocess a source file
 test_main.cpp.i:
-	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_main.dir/build.make tests/CMakeFiles/test_main.dir/test_main.cpp.i
+	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/test_main.cpp.i
 .PHONY : test_main.cpp.i
 
 test_main.s: test_main.cpp.s
@@ -179,56 +161,8 @@ test_main.s: test_main.cpp.s
 
 # target to generate assembly for a file
 test_main.cpp.s:
-	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_main.dir/build.make tests/CMakeFiles/test_main.dir/test_main.cpp.s
+	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/test_main.cpp.s
 .PHONY : test_main.cpp.s
-
-test_metrics.o: test_metrics.cpp.o
-.PHONY : test_metrics.o
-
-# target to build an object file
-test_metrics.cpp.o:
-	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_metrics.dir/build.make tests/CMakeFiles/test_metrics.dir/test_metrics.cpp.o
-.PHONY : test_metrics.cpp.o
-
-test_metrics.i: test_metrics.cpp.i
-.PHONY : test_metrics.i
-
-# target to preprocess a source file
-test_metrics.cpp.i:
-	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_metrics.dir/build.make tests/CMakeFiles/test_metrics.dir/test_metrics.cpp.i
-.PHONY : test_metrics.cpp.i
-
-test_metrics.s: test_metrics.cpp.s
-.PHONY : test_metrics.s
-
-# target to generate assembly for a file
-test_metrics.cpp.s:
-	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_metrics.dir/build.make tests/CMakeFiles/test_metrics.dir/test_metrics.cpp.s
-.PHONY : test_metrics.cpp.s
-
-test_regression.o: test_regression.cpp.o
-.PHONY : test_regression.o
-
-# target to build an object file
-test_regression.cpp.o:
-	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_regression.dir/build.make tests/CMakeFiles/test_regression.dir/test_regression.cpp.o
-.PHONY : test_regression.cpp.o
-
-test_regression.i: test_regression.cpp.i
-.PHONY : test_regression.i
-
-# target to preprocess a source file
-test_regression.cpp.i:
-	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_regression.dir/build.make tests/CMakeFiles/test_regression.dir/test_regression.cpp.i
-.PHONY : test_regression.cpp.i
-
-test_regression.s: test_regression.cpp.s
-.PHONY : test_regression.s
-
-# target to generate assembly for a file
-test_regression.cpp.s:
-	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_regression.dir/build.make tests/CMakeFiles/test_regression.dir/test_regression.cpp.s
-.PHONY : test_regression.cpp.s
 
 # Help Target
 help:
@@ -238,18 +172,11 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... test_main"
-	@echo "... test_metrics"
-	@echo "... test_regression"
+	@echo "... test"
+	@echo "... tests"
 	@echo "... test_main.o"
 	@echo "... test_main.i"
 	@echo "... test_main.s"
-	@echo "... test_metrics.o"
-	@echo "... test_metrics.i"
-	@echo "... test_metrics.s"
-	@echo "... test_regression.o"
-	@echo "... test_regression.i"
-	@echo "... test_regression.s"
 .PHONY : help
 
 

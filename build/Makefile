@@ -65,6 +65,16 @@ CMAKE_BINARY_DIR = /Users/heritagetime/VSCode/MSnOutliers/build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
+	/opt/homebrew/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+.PHONY : test/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
@@ -117,82 +127,331 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named ErrorDistributions
+# Target rules for targets named RegressionAnalysisLib
 
 # Build rule for target.
-ErrorDistributions: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ErrorDistributions
-.PHONY : ErrorDistributions
+RegressionAnalysisLib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 RegressionAnalysisLib
+.PHONY : RegressionAnalysisLib
 
 # fast build rule for target.
-ErrorDistributions/fast:
-	$(MAKE) $(MAKESILENT) -f lib/CMakeFiles/ErrorDistributions.dir/build.make lib/CMakeFiles/ErrorDistributions.dir/build
-.PHONY : ErrorDistributions/fast
+RegressionAnalysisLib/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/build
+.PHONY : RegressionAnalysisLib/fast
 
 #=============================================================================
-# Target rules for targets named MLComponents
+# Target rules for targets named main
 
 # Build rule for target.
-MLComponents: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 MLComponents
-.PHONY : MLComponents
+main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 main
+.PHONY : main
 
 # fast build rule for target.
-MLComponents/fast:
-	$(MAKE) $(MAKESILENT) -f lib/CMakeFiles/MLComponents.dir/build.make lib/CMakeFiles/MLComponents.dir/build
-.PHONY : MLComponents/fast
+main/fast:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/build
+.PHONY : main/fast
 
 #=============================================================================
-# Target rules for targets named test_ndarray
+# Target rules for targets named tests
 
 # Build rule for target.
-test_ndarray: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_ndarray
-.PHONY : test_ndarray
+tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests
+.PHONY : tests
 
 # fast build rule for target.
-test_ndarray/fast:
-	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/test_ndarray.dir/build.make src/CMakeFiles/test_ndarray.dir/build
-.PHONY : test_ndarray/fast
+tests/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/build
+.PHONY : tests/fast
 
-#=============================================================================
-# Target rules for targets named test_main
+lib/COMMON/DataProcessor.o: lib/COMMON/DataProcessor.cpp.o
+.PHONY : lib/COMMON/DataProcessor.o
 
-# Build rule for target.
-test_main: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_main
-.PHONY : test_main
+# target to build an object file
+lib/COMMON/DataProcessor.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataProcessor.cpp.o
+.PHONY : lib/COMMON/DataProcessor.cpp.o
 
-# fast build rule for target.
-test_main/fast:
-	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_main.dir/build.make tests/CMakeFiles/test_main.dir/build
-.PHONY : test_main/fast
+lib/COMMON/DataProcessor.i: lib/COMMON/DataProcessor.cpp.i
+.PHONY : lib/COMMON/DataProcessor.i
 
-#=============================================================================
-# Target rules for targets named test_metrics
+# target to preprocess a source file
+lib/COMMON/DataProcessor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataProcessor.cpp.i
+.PHONY : lib/COMMON/DataProcessor.cpp.i
 
-# Build rule for target.
-test_metrics: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_metrics
-.PHONY : test_metrics
+lib/COMMON/DataProcessor.s: lib/COMMON/DataProcessor.cpp.s
+.PHONY : lib/COMMON/DataProcessor.s
 
-# fast build rule for target.
-test_metrics/fast:
-	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_metrics.dir/build.make tests/CMakeFiles/test_metrics.dir/build
-.PHONY : test_metrics/fast
+# target to generate assembly for a file
+lib/COMMON/DataProcessor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataProcessor.cpp.s
+.PHONY : lib/COMMON/DataProcessor.cpp.s
 
-#=============================================================================
-# Target rules for targets named test_regression
+lib/COMMON/Feature.o: lib/COMMON/Feature.cpp.o
+.PHONY : lib/COMMON/Feature.o
 
-# Build rule for target.
-test_regression: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_regression
-.PHONY : test_regression
+# target to build an object file
+lib/COMMON/Feature.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/Feature.cpp.o
+.PHONY : lib/COMMON/Feature.cpp.o
 
-# fast build rule for target.
-test_regression/fast:
-	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_regression.dir/build.make tests/CMakeFiles/test_regression.dir/build
-.PHONY : test_regression/fast
+lib/COMMON/Feature.i: lib/COMMON/Feature.cpp.i
+.PHONY : lib/COMMON/Feature.i
+
+# target to preprocess a source file
+lib/COMMON/Feature.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/Feature.cpp.i
+.PHONY : lib/COMMON/Feature.cpp.i
+
+lib/COMMON/Feature.s: lib/COMMON/Feature.cpp.s
+.PHONY : lib/COMMON/Feature.s
+
+# target to generate assembly for a file
+lib/COMMON/Feature.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/Feature.cpp.s
+.PHONY : lib/COMMON/Feature.cpp.s
+
+lib/COMMON/Metrics.o: lib/COMMON/Metrics.cpp.o
+.PHONY : lib/COMMON/Metrics.o
+
+# target to build an object file
+lib/COMMON/Metrics.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/Metrics.cpp.o
+.PHONY : lib/COMMON/Metrics.cpp.o
+
+lib/COMMON/Metrics.i: lib/COMMON/Metrics.cpp.i
+.PHONY : lib/COMMON/Metrics.i
+
+# target to preprocess a source file
+lib/COMMON/Metrics.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/Metrics.cpp.i
+.PHONY : lib/COMMON/Metrics.cpp.i
+
+lib/COMMON/Metrics.s: lib/COMMON/Metrics.cpp.s
+.PHONY : lib/COMMON/Metrics.s
+
+# target to generate assembly for a file
+lib/COMMON/Metrics.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/Metrics.cpp.s
+.PHONY : lib/COMMON/Metrics.cpp.s
+
+lib/COMMON/Ndarray.o: lib/COMMON/Ndarray.cpp.o
+.PHONY : lib/COMMON/Ndarray.o
+
+# target to build an object file
+lib/COMMON/Ndarray.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/Ndarray.cpp.o
+.PHONY : lib/COMMON/Ndarray.cpp.o
+
+lib/COMMON/Ndarray.i: lib/COMMON/Ndarray.cpp.i
+.PHONY : lib/COMMON/Ndarray.i
+
+# target to preprocess a source file
+lib/COMMON/Ndarray.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/Ndarray.cpp.i
+.PHONY : lib/COMMON/Ndarray.cpp.i
+
+lib/COMMON/Ndarray.s: lib/COMMON/Ndarray.cpp.s
+.PHONY : lib/COMMON/Ndarray.s
+
+# target to generate assembly for a file
+lib/COMMON/Ndarray.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/Ndarray.cpp.s
+.PHONY : lib/COMMON/Ndarray.cpp.s
+
+lib/COMMON/NdarrayOps.o: lib/COMMON/NdarrayOps.cpp.o
+.PHONY : lib/COMMON/NdarrayOps.o
+
+# target to build an object file
+lib/COMMON/NdarrayOps.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/NdarrayOps.cpp.o
+.PHONY : lib/COMMON/NdarrayOps.cpp.o
+
+lib/COMMON/NdarrayOps.i: lib/COMMON/NdarrayOps.cpp.i
+.PHONY : lib/COMMON/NdarrayOps.i
+
+# target to preprocess a source file
+lib/COMMON/NdarrayOps.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/NdarrayOps.cpp.i
+.PHONY : lib/COMMON/NdarrayOps.cpp.i
+
+lib/COMMON/NdarrayOps.s: lib/COMMON/NdarrayOps.cpp.s
+.PHONY : lib/COMMON/NdarrayOps.s
+
+# target to generate assembly for a file
+lib/COMMON/NdarrayOps.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/NdarrayOps.cpp.s
+.PHONY : lib/COMMON/NdarrayOps.cpp.s
+
+lib/DISTRIBUTIONS/ErrorDistributions.o: lib/DISTRIBUTIONS/ErrorDistributions.cpp.o
+.PHONY : lib/DISTRIBUTIONS/ErrorDistributions.o
+
+# target to build an object file
+lib/DISTRIBUTIONS/ErrorDistributions.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/DISTRIBUTIONS/ErrorDistributions.cpp.o
+.PHONY : lib/DISTRIBUTIONS/ErrorDistributions.cpp.o
+
+lib/DISTRIBUTIONS/ErrorDistributions.i: lib/DISTRIBUTIONS/ErrorDistributions.cpp.i
+.PHONY : lib/DISTRIBUTIONS/ErrorDistributions.i
+
+# target to preprocess a source file
+lib/DISTRIBUTIONS/ErrorDistributions.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/DISTRIBUTIONS/ErrorDistributions.cpp.i
+.PHONY : lib/DISTRIBUTIONS/ErrorDistributions.cpp.i
+
+lib/DISTRIBUTIONS/ErrorDistributions.s: lib/DISTRIBUTIONS/ErrorDistributions.cpp.s
+.PHONY : lib/DISTRIBUTIONS/ErrorDistributions.s
+
+# target to generate assembly for a file
+lib/DISTRIBUTIONS/ErrorDistributions.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/DISTRIBUTIONS/ErrorDistributions.cpp.s
+.PHONY : lib/DISTRIBUTIONS/ErrorDistributions.cpp.s
+
+lib/ML/DBSCAN/DBSCAN.o: lib/ML/DBSCAN/DBSCAN.cpp.o
+.PHONY : lib/ML/DBSCAN/DBSCAN.o
+
+# target to build an object file
+lib/ML/DBSCAN/DBSCAN.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/ML/DBSCAN/DBSCAN.cpp.o
+.PHONY : lib/ML/DBSCAN/DBSCAN.cpp.o
+
+lib/ML/DBSCAN/DBSCAN.i: lib/ML/DBSCAN/DBSCAN.cpp.i
+.PHONY : lib/ML/DBSCAN/DBSCAN.i
+
+# target to preprocess a source file
+lib/ML/DBSCAN/DBSCAN.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/ML/DBSCAN/DBSCAN.cpp.i
+.PHONY : lib/ML/DBSCAN/DBSCAN.cpp.i
+
+lib/ML/DBSCAN/DBSCAN.s: lib/ML/DBSCAN/DBSCAN.cpp.s
+.PHONY : lib/ML/DBSCAN/DBSCAN.s
+
+# target to generate assembly for a file
+lib/ML/DBSCAN/DBSCAN.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/ML/DBSCAN/DBSCAN.cpp.s
+.PHONY : lib/ML/DBSCAN/DBSCAN.cpp.s
+
+lib/ML/GradientDescent/GD.o: lib/ML/GradientDescent/GD.cpp.o
+.PHONY : lib/ML/GradientDescent/GD.o
+
+# target to build an object file
+lib/ML/GradientDescent/GD.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/ML/GradientDescent/GD.cpp.o
+.PHONY : lib/ML/GradientDescent/GD.cpp.o
+
+lib/ML/GradientDescent/GD.i: lib/ML/GradientDescent/GD.cpp.i
+.PHONY : lib/ML/GradientDescent/GD.i
+
+# target to preprocess a source file
+lib/ML/GradientDescent/GD.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/ML/GradientDescent/GD.cpp.i
+.PHONY : lib/ML/GradientDescent/GD.cpp.i
+
+lib/ML/GradientDescent/GD.s: lib/ML/GradientDescent/GD.cpp.s
+.PHONY : lib/ML/GradientDescent/GD.s
+
+# target to generate assembly for a file
+lib/ML/GradientDescent/GD.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/ML/GradientDescent/GD.cpp.s
+.PHONY : lib/ML/GradientDescent/GD.cpp.s
+
+lib/ML/LinearRegression/LinearRegression.o: lib/ML/LinearRegression/LinearRegression.cpp.o
+.PHONY : lib/ML/LinearRegression/LinearRegression.o
+
+# target to build an object file
+lib/ML/LinearRegression/LinearRegression.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/ML/LinearRegression/LinearRegression.cpp.o
+.PHONY : lib/ML/LinearRegression/LinearRegression.cpp.o
+
+lib/ML/LinearRegression/LinearRegression.i: lib/ML/LinearRegression/LinearRegression.cpp.i
+.PHONY : lib/ML/LinearRegression/LinearRegression.i
+
+# target to preprocess a source file
+lib/ML/LinearRegression/LinearRegression.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/ML/LinearRegression/LinearRegression.cpp.i
+.PHONY : lib/ML/LinearRegression/LinearRegression.cpp.i
+
+lib/ML/LinearRegression/LinearRegression.s: lib/ML/LinearRegression/LinearRegression.cpp.s
+.PHONY : lib/ML/LinearRegression/LinearRegression.s
+
+# target to generate assembly for a file
+lib/ML/LinearRegression/LinearRegression.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/ML/LinearRegression/LinearRegression.cpp.s
+.PHONY : lib/ML/LinearRegression/LinearRegression.cpp.s
+
+lib/ML/OCSVM/OneClassSVM.o: lib/ML/OCSVM/OneClassSVM.cpp.o
+.PHONY : lib/ML/OCSVM/OneClassSVM.o
+
+# target to build an object file
+lib/ML/OCSVM/OneClassSVM.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/ML/OCSVM/OneClassSVM.cpp.o
+.PHONY : lib/ML/OCSVM/OneClassSVM.cpp.o
+
+lib/ML/OCSVM/OneClassSVM.i: lib/ML/OCSVM/OneClassSVM.cpp.i
+.PHONY : lib/ML/OCSVM/OneClassSVM.i
+
+# target to preprocess a source file
+lib/ML/OCSVM/OneClassSVM.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/ML/OCSVM/OneClassSVM.cpp.i
+.PHONY : lib/ML/OCSVM/OneClassSVM.cpp.i
+
+lib/ML/OCSVM/OneClassSVM.s: lib/ML/OCSVM/OneClassSVM.cpp.s
+.PHONY : lib/ML/OCSVM/OneClassSVM.s
+
+# target to generate assembly for a file
+lib/ML/OCSVM/OneClassSVM.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/ML/OCSVM/OneClassSVM.cpp.s
+.PHONY : lib/ML/OCSVM/OneClassSVM.cpp.s
+
+lib/ML/iForest/Node.o: lib/ML/iForest/Node.cpp.o
+.PHONY : lib/ML/iForest/Node.o
+
+# target to build an object file
+lib/ML/iForest/Node.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/Node.cpp.o
+.PHONY : lib/ML/iForest/Node.cpp.o
+
+lib/ML/iForest/Node.i: lib/ML/iForest/Node.cpp.i
+.PHONY : lib/ML/iForest/Node.i
+
+# target to preprocess a source file
+lib/ML/iForest/Node.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/Node.cpp.i
+.PHONY : lib/ML/iForest/Node.cpp.i
+
+lib/ML/iForest/Node.s: lib/ML/iForest/Node.cpp.s
+.PHONY : lib/ML/iForest/Node.s
+
+# target to generate assembly for a file
+lib/ML/iForest/Node.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/Node.cpp.s
+.PHONY : lib/ML/iForest/Node.cpp.s
+
+lib/ML/iForest/iForest.o: lib/ML/iForest/iForest.cpp.o
+.PHONY : lib/ML/iForest/iForest.o
+
+# target to build an object file
+lib/ML/iForest/iForest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/iForest.cpp.o
+.PHONY : lib/ML/iForest/iForest.cpp.o
+
+lib/ML/iForest/iForest.i: lib/ML/iForest/iForest.cpp.i
+.PHONY : lib/ML/iForest/iForest.i
+
+# target to preprocess a source file
+lib/ML/iForest/iForest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/iForest.cpp.i
+.PHONY : lib/ML/iForest/iForest.cpp.i
+
+lib/ML/iForest/iForest.s: lib/ML/iForest/iForest.cpp.s
+.PHONY : lib/ML/iForest/iForest.s
+
+# target to generate assembly for a file
+lib/ML/iForest/iForest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/iForest.cpp.s
+.PHONY : lib/ML/iForest/iForest.cpp.s
 
 # Help Target
 help:
@@ -202,12 +461,46 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... ErrorDistributions"
-	@echo "... MLComponents"
-	@echo "... test_main"
-	@echo "... test_metrics"
-	@echo "... test_ndarray"
-	@echo "... test_regression"
+	@echo "... test"
+	@echo "... RegressionAnalysisLib"
+	@echo "... main"
+	@echo "... tests"
+	@echo "... lib/COMMON/DataProcessor.o"
+	@echo "... lib/COMMON/DataProcessor.i"
+	@echo "... lib/COMMON/DataProcessor.s"
+	@echo "... lib/COMMON/Feature.o"
+	@echo "... lib/COMMON/Feature.i"
+	@echo "... lib/COMMON/Feature.s"
+	@echo "... lib/COMMON/Metrics.o"
+	@echo "... lib/COMMON/Metrics.i"
+	@echo "... lib/COMMON/Metrics.s"
+	@echo "... lib/COMMON/Ndarray.o"
+	@echo "... lib/COMMON/Ndarray.i"
+	@echo "... lib/COMMON/Ndarray.s"
+	@echo "... lib/COMMON/NdarrayOps.o"
+	@echo "... lib/COMMON/NdarrayOps.i"
+	@echo "... lib/COMMON/NdarrayOps.s"
+	@echo "... lib/DISTRIBUTIONS/ErrorDistributions.o"
+	@echo "... lib/DISTRIBUTIONS/ErrorDistributions.i"
+	@echo "... lib/DISTRIBUTIONS/ErrorDistributions.s"
+	@echo "... lib/ML/DBSCAN/DBSCAN.o"
+	@echo "... lib/ML/DBSCAN/DBSCAN.i"
+	@echo "... lib/ML/DBSCAN/DBSCAN.s"
+	@echo "... lib/ML/GradientDescent/GD.o"
+	@echo "... lib/ML/GradientDescent/GD.i"
+	@echo "... lib/ML/GradientDescent/GD.s"
+	@echo "... lib/ML/LinearRegression/LinearRegression.o"
+	@echo "... lib/ML/LinearRegression/LinearRegression.i"
+	@echo "... lib/ML/LinearRegression/LinearRegression.s"
+	@echo "... lib/ML/OCSVM/OneClassSVM.o"
+	@echo "... lib/ML/OCSVM/OneClassSVM.i"
+	@echo "... lib/ML/OCSVM/OneClassSVM.s"
+	@echo "... lib/ML/iForest/Node.o"
+	@echo "... lib/ML/iForest/Node.i"
+	@echo "... lib/ML/iForest/Node.s"
+	@echo "... lib/ML/iForest/iForest.o"
+	@echo "... lib/ML/iForest/iForest.i"
+	@echo "... lib/ML/iForest/iForest.s"
 .PHONY : help
 
 

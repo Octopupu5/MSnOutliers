@@ -1,7 +1,7 @@
 #ifndef GD_HPP
 #define GD_HPP
 
-#include "../Ndarray.hpp"
+#include "../../COMMON/Ndarray.hpp"
 #include <functional>
 
 using GradientFunction = std::function<Ndarray(const Ndarray&, const Ndarray&, const Ndarray&)>;

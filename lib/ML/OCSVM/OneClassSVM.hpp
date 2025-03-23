@@ -1,7 +1,7 @@
 #ifndef ONE_CLASS_SVM_HPP
 #define ONE_CLASS_SVM_HPP
 
-#include "../Ndarray.hpp"
+#include "../../COMMON/Ndarray.hpp"
 
 class OneClassSVM {
 public:

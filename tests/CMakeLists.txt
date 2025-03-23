@@ -1,21 +1,14 @@
-include_directories(${CMAKE_SOURCE_DIR}/lib/DISTRIBUTIONS)
-include_directories(${CMAKE_SOURCE_DIR}/lib/ML)
-
-add_executable(test_main test_main.cpp)
-add_executable(test_metrics test_metrics.cpp)
-add_executable(test_regression test_regression.cpp)
-
-target_link_libraries(test_main
-    ErrorDistributions
-    MLComponents
+set(TESTFILES
+    test_main.cpp
 )
+set(TEST_MAIN tests)
+set(TEST_RUNNER_PARAMS "")
+add_executable(${TEST_MAIN} ${TESTFILES})
 
-target_link_libraries(test_metrics
-    ErrorDistributions
-    MLComponents
-)
+find_package(GTest REQUIRED)
+target_link_libraries(${TEST_MAIN} PRIVATE ${LIBRARY_NAME} GTest::GTest GTest::Main)
 
-target_link_libraries(test_regression
-    ErrorDistributions
-    MLComponents
+add_test(
+    NAME ${LIBRARY_NAME}.${TEST_MAIN}
+    COMMAND ${TEST_MAIN} ${TEST_RUNNER_PARAMS}
 )

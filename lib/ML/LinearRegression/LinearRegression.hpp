@@ -1,8 +1,8 @@
 #ifndef LINEARREGRESSION_HPP
 #define LINEARREGRESSION_HPP
 
-#include "GradientDescent/Adam.hpp"
-#include "GradientDescent/GD.hpp"
+#include "../GradientDescent/Adam.hpp"
+#include "../GradientDescent/GD.hpp"
 
 class LinearRegression {
 public:

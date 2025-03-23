@@ -1,8 +1,8 @@
-cd build
-cmake ..
-cmake --build .
-./main_app
-./run_tests
+mkdir build
+  cd build
+  cmake ..
+  make
+  make test
 
 # what else
 -   синтетические данные (линейные зависимости, полиномиальные зависимости, timeseries, разные уровни шума)

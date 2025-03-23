@@ -65,6 +65,16 @@ CMAKE_BINARY_DIR = /Users/heritagetime/VSCode/MSnOutliers/build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
+	/opt/homebrew/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+.PHONY : test/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
@@ -117,25 +127,25 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-src/CMakeFiles/test_ndarray.dir/rule:
-	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/test_ndarray.dir/rule
-.PHONY : src/CMakeFiles/test_ndarray.dir/rule
+src/CMakeFiles/main.dir/rule:
+	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/main.dir/rule
+.PHONY : src/CMakeFiles/main.dir/rule
 
 # Convenience name for target.
-test_ndarray: src/CMakeFiles/test_ndarray.dir/rule
-.PHONY : test_ndarray
+main: src/CMakeFiles/main.dir/rule
+.PHONY : main
 
 # fast build rule for target.
-test_ndarray/fast:
-	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/test_ndarray.dir/build.make src/CMakeFiles/test_ndarray.dir/build
-.PHONY : test_ndarray/fast
+main/fast:
+	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/build
+.PHONY : main/fast
 
 test_ndarray.o: test_ndarray.cpp.o
 .PHONY : test_ndarray.o
 
 # target to build an object file
 test_ndarray.cpp.o:
-	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/test_ndarray.dir/build.make src/CMakeFiles/test_ndarray.dir/test_ndarray.cpp.o
+	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/test_ndarray.cpp.o
 .PHONY : test_ndarray.cpp.o
 
 test_ndarray.i: test_ndarray.cpp.i
@@ -143,7 +153,7 @@ test_ndarray.i: test_ndarray.cpp.i
 
 # target to preprocess a source file
 test_ndarray.cpp.i:
-	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/test_ndarray.dir/build.make src/CMakeFiles/test_ndarray.dir/test_ndarray.cpp.i
+	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/test_ndarray.cpp.i
 .PHONY : test_ndarray.cpp.i
 
 test_ndarray.s: test_ndarray.cpp.s
@@ -151,7 +161,7 @@ test_ndarray.s: test_ndarray.cpp.s
 
 # target to generate assembly for a file
 test_ndarray.cpp.s:
-	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/test_ndarray.dir/build.make src/CMakeFiles/test_ndarray.dir/test_ndarray.cpp.s
+	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/test_ndarray.cpp.s
 .PHONY : test_ndarray.cpp.s
 
 # Help Target
@@ -162,7 +172,8 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... test_ndarray"
+	@echo "... test"
+	@echo "... main"
 	@echo "... test_ndarray.o"
 	@echo "... test_ndarray.i"
 	@echo "... test_ndarray.s"
