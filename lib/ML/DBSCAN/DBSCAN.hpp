@@ -1,14 +1,14 @@
 #ifndef DBSCAN_HPP
 #define DBSCAN_HPP
 
-#include "../../COMMON/Ndarray.hpp"
+#include "../../COMMON/Matrix.hpp"
 #include "../../COMMON/Feature.hpp"
 #include <vector>
 
 class DBSCAN {
 public:
     DBSCAN(double r, uint32_t minimumClusterSize);
-    void Fit(const Ndarray& data);
+    void Fit(const Matrix& data);
 
 private:
     std::vector<uint32_t> GetNeighbors(uint32_t index) const;
@@ -17,7 +17,7 @@ private:
     double _r;
     uint32_t _minimumClusterSize;
     std::vector<uint32_t> _idToCluster;
-    Ndarray _data;
+    Matrix _data;
 };
 
 #endif // DBSCAN_HPP

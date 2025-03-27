@@ -1,7 +1,7 @@
 #ifndef METRICS_HPP
 #define METRICS_HPP
 
-#include "Ndarray.hpp"
+#include "Matrix.hpp"
 
 #include <vector>
 #include <cmath>
@@ -11,13 +11,13 @@
 
 class Metrics {
 public:
-    static double meanAbsoluteError(const Ndarray& trueValues, const Ndarray& predictions);
-    static double meanSquaredError(const Ndarray& trueValues, const Ndarray& predictions);
-    static double rootMeanSquaredError(const Ndarray& trueValues, const Ndarray& predictions);
-    static double r2Score(const Ndarray& trueValues, const Ndarray& predictions);
-    static double meanAbsolutePercentageError(const Ndarray& trueValues, const Ndarray& predictions);
-    static double symmetricMeanAbsolutePercentageError(const Ndarray& trueValues, const Ndarray& predictions);
-    static double adjustedR2Score(const Ndarray& trueValues, const Ndarray& predictions, int numFeatures);
+    static double meanAbsoluteError(const Matrix& trueValues, const Matrix& predictions);
+    static double meanSquaredError(const Matrix& trueValues, const Matrix& predictions);
+    static double rootMeanSquaredError(const Matrix& trueValues, const Matrix& predictions);
+    static double r2Score(const Matrix& trueValues, const Matrix& predictions);
+    static double meanAbsolutePercentageError(const Matrix& trueValues, const Matrix& predictions);
+    static double symmetricMeanAbsolutePercentageError(const Matrix& trueValues, const Matrix& predictions);
+    static double adjustedR2Score(const Matrix& trueValues, const Matrix& predictions, int numFeatures);
 };
 
 #endif // METRICS_HPP

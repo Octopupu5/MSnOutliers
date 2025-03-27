@@ -13,11 +13,11 @@ GradientDescent::GradientDescent(size_t batchSize, double learningRate, size_t s
     }
 }
 
-void GradientDescent::Run(const Ndarray& X, const Ndarray& y) {
+void GradientDescent::Run(const Matrix& X, const Matrix& y) {
     _curIter = 1;
     InitializeParams(X.Cols());
     while (_stopCriterion) {
-        const Ndarray& prev_w = _w;
+        const Matrix& prev_w = _w;
         GradientStep(X, y);
         if (((N_ITERS & _stopCriterion) && _curIter < _nIters) || ((W_DIFF & _stopCriterion) && _w.L2Norm(prev_w) < _wTolerance)) {
             break;
@@ -26,14 +26,14 @@ void GradientDescent::Run(const Ndarray& X, const Ndarray& y) {
     }
 }
 
-void GradientDescent::GradientStep(const Ndarray& X, const Ndarray& y) {
+void GradientDescent::GradientStep(const Matrix& X, const Matrix& y) {
     _w -= _calcGrad(X, y, _w) * _learningRate;
 }
 
 void GradientDescent::InitializeParams(size_t nParams) {
-    _w = Ndarray(nParams, 1);
+    _w = Matrix(nParams, 1);
 }
 
-Ndarray GradientDescent::Weights() const {
+Matrix GradientDescent::Weights() const {
     return _w;
 }

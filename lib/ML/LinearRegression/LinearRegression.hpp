@@ -7,8 +7,8 @@
 class LinearRegression {
 public:
     LinearRegression();
-    void Fit(const Ndarray& X, const Ndarray& y);
-    Ndarray Predict(const Ndarray& X) const;
+    void Fit(const Matrix& X, const Matrix& y);
+    Matrix Predict(const Matrix& X) const;
 private:
     Adam _GDrunner;
 };

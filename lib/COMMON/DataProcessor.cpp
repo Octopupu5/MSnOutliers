@@ -1,4 +1,7 @@
 #include "DataProcessor.hpp"
+#include <nlohmann/json.hpp>
+
+using json = nlohmann::json;
 
 std::vector<std::vector<double>> DataProcessor::loadCSV(const std::string& filepath) {
     std::vector<std::vector<double>> data;

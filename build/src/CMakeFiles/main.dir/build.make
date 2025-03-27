@@ -72,28 +72,28 @@ include src/CMakeFiles/main.dir/flags.make
 src/CMakeFiles/main.dir/codegen:
 .PHONY : src/CMakeFiles/main.dir/codegen
 
-src/CMakeFiles/main.dir/test_ndarray.cpp.o: src/CMakeFiles/main.dir/flags.make
-src/CMakeFiles/main.dir/test_ndarray.cpp.o: /Users/heritagetime/VSCode/MSnOutliers/src/test_ndarray.cpp
-src/CMakeFiles/main.dir/test_ndarray.cpp.o: src/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/main.dir/test_ndarray.cpp.o"
-	cd /Users/heritagetime/VSCode/MSnOutliers/build/src && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/main.dir/test_ndarray.cpp.o -MF CMakeFiles/main.dir/test_ndarray.cpp.o.d -o CMakeFiles/main.dir/test_ndarray.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/src/test_ndarray.cpp
+src/CMakeFiles/main.dir/main.cpp.o: src/CMakeFiles/main.dir/flags.make
+src/CMakeFiles/main.dir/main.cpp.o: /Users/heritagetime/VSCode/MSnOutliers/src/main.cpp
+src/CMakeFiles/main.dir/main.cpp.o: src/CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/main.dir/main.cpp.o"
+	cd /Users/heritagetime/VSCode/MSnOutliers/build/src && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/main.dir/main.cpp.o -MF CMakeFiles/main.dir/main.cpp.o.d -o CMakeFiles/main.dir/main.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/src/main.cpp
 
-src/CMakeFiles/main.dir/test_ndarray.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/test_ndarray.cpp.i"
-	cd /Users/heritagetime/VSCode/MSnOutliers/build/src && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/heritagetime/VSCode/MSnOutliers/src/test_ndarray.cpp > CMakeFiles/main.dir/test_ndarray.cpp.i
+src/CMakeFiles/main.dir/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/main.cpp.i"
+	cd /Users/heritagetime/VSCode/MSnOutliers/build/src && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/heritagetime/VSCode/MSnOutliers/src/main.cpp > CMakeFiles/main.dir/main.cpp.i
 
-src/CMakeFiles/main.dir/test_ndarray.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/test_ndarray.cpp.s"
-	cd /Users/heritagetime/VSCode/MSnOutliers/build/src && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/heritagetime/VSCode/MSnOutliers/src/test_ndarray.cpp -o CMakeFiles/main.dir/test_ndarray.cpp.s
+src/CMakeFiles/main.dir/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/main.cpp.s"
+	cd /Users/heritagetime/VSCode/MSnOutliers/build/src && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/heritagetime/VSCode/MSnOutliers/src/main.cpp -o CMakeFiles/main.dir/main.cpp.s
 
 # Object files for target main
 main_OBJECTS = \
-"CMakeFiles/main.dir/test_ndarray.cpp.o"
+"CMakeFiles/main.dir/main.cpp.o"
 
 # External object files for target main
 main_EXTERNAL_OBJECTS =
 
-src/main: src/CMakeFiles/main.dir/test_ndarray.cpp.o
+src/main: src/CMakeFiles/main.dir/main.cpp.o
 src/main: src/CMakeFiles/main.dir/build.make
 src/main: libRegressionAnalysisLib.a
 src/main: src/CMakeFiles/main.dir/link.txt

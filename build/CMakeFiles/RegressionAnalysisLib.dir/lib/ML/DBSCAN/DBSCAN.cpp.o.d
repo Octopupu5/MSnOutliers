@@ -1,7 +1,7 @@
 CMakeFiles/RegressionAnalysisLib.dir/lib/ML/DBSCAN/DBSCAN.cpp.o: \
   /Users/heritagetime/VSCode/MSnOutliers/lib/ML/DBSCAN/DBSCAN.cpp \
   /Users/heritagetime/VSCode/MSnOutliers/lib/ML/DBSCAN/DBSCAN.hpp \
-  /Users/heritagetime/VSCode/MSnOutliers/lib/ML/DBSCAN/../../COMMON/Ndarray.hpp \
+  /Users/heritagetime/VSCode/MSnOutliers/lib/ML/DBSCAN/../../COMMON/Matrix.hpp \
   /Users/heritagetime/VSCode/MSnOutliers/lib/ML/DBSCAN/../../COMMON/Feature.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__assert \

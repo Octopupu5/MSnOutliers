@@ -140,29 +140,29 @@ main/fast:
 	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/build
 .PHONY : main/fast
 
-test_ndarray.o: test_ndarray.cpp.o
-.PHONY : test_ndarray.o
+main.o: main.cpp.o
+.PHONY : main.o
 
 # target to build an object file
-test_ndarray.cpp.o:
-	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/test_ndarray.cpp.o
-.PHONY : test_ndarray.cpp.o
+main.cpp.o:
+	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/main.cpp.o
+.PHONY : main.cpp.o
 
-test_ndarray.i: test_ndarray.cpp.i
-.PHONY : test_ndarray.i
+main.i: main.cpp.i
+.PHONY : main.i
 
 # target to preprocess a source file
-test_ndarray.cpp.i:
-	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/test_ndarray.cpp.i
-.PHONY : test_ndarray.cpp.i
+main.cpp.i:
+	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/main.cpp.i
+.PHONY : main.cpp.i
 
-test_ndarray.s: test_ndarray.cpp.s
-.PHONY : test_ndarray.s
+main.s: main.cpp.s
+.PHONY : main.s
 
 # target to generate assembly for a file
-test_ndarray.cpp.s:
-	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/test_ndarray.cpp.s
-.PHONY : test_ndarray.cpp.s
+main.cpp.s:
+	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/main.cpp.s
+.PHONY : main.cpp.s
 
 # Help Target
 help:
@@ -174,9 +174,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... main"
-	@echo "... test_ndarray.o"
-	@echo "... test_ndarray.i"
-	@echo "... test_ndarray.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 .PHONY : help
 
 

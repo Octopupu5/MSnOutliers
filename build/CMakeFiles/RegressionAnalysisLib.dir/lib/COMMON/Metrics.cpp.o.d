@@ -1,7 +1,7 @@
 CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/Metrics.cpp.o: \
   /Users/heritagetime/VSCode/MSnOutliers/lib/COMMON/Metrics.cpp \
   /Users/heritagetime/VSCode/MSnOutliers/lib/COMMON/Metrics.hpp \
-  /Users/heritagetime/VSCode/MSnOutliers/lib/COMMON/Ndarray.hpp \
+  /Users/heritagetime/VSCode/MSnOutliers/lib/COMMON/Matrix.hpp \
   /Users/heritagetime/VSCode/MSnOutliers/lib/COMMON/Feature.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__assert \

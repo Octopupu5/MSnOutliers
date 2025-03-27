@@ -6,7 +6,7 @@ Forest::~Forest() {
 	Clear();
 }
 
-void Forest::Fit(const Ndarray& data) {
+void Forest::Fit(const Matrix& data) {
 	Clear();
 	_trees.reserve(_nEstimators);
 	for (size_t i = 0; i < _nEstimators; ++i) {
@@ -27,7 +27,7 @@ uint64_t Forest::Rand(uint64_t min, uint64_t max) {
 	return min + (_distribution(_generator) % (max - min + 1));
 }
 
-Node* Forest::CreateTree(const Ndarray& availableData, size_t depth) {
+Node* Forest::CreateTree(const Matrix& availableData, size_t depth) {
 	if (((_depth > 0) && (depth >= _depth)) || availableData.Rows() == 1) {
 		return NULL;
 	}
@@ -63,7 +63,7 @@ Node* Forest::CreateTree(const Ndarray& availableData, size_t depth) {
 	return tree;
 }
 
-	uint32_t Forest::PathLength(Node* const tree, const Ndarray& sample) {
+	uint32_t Forest::PathLength(Node* const tree, const Matrix& sample) {
 		uint32_t depth = 0.0;
 		Node* currentNode = tree;
 		while (currentNode) {
@@ -80,7 +80,7 @@ Node* Forest::CreateTree(const Ndarray& availableData, size_t depth) {
 	}
 
 	// 1 = anomaly / 0 = inlier
-	double Forest::PredictProba(const Ndarray& sample) {
+	double Forest::PredictProba(const Matrix& sample) {
 		double avgPathLen = 0.0;
 		for (Node* tree : _trees) {
 			avgPathLen += PathLength(tree, sample);

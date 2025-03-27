@@ -1,16 +1,16 @@
-#include "Ndarray.hpp"
+#include "Matrix.hpp"
 
-std::vector<Feature> Ndarray::operator[](int index) const {
+std::vector<Feature> Matrix::operator[](int index) const {
     return _data[index];
 }
 
-std::vector<Feature>& Ndarray::operator[](int index) {
+std::vector<Feature>& Matrix::operator[](int index) {
     return _data[index];
 }
 
-Ndarray Ndarray::operator+(const Ndarray& other) const {
+Matrix Matrix::operator+(const Matrix& other) const {
     EnsureShapeForOperator(other);
-    Ndarray result(_rows, _cols);
+    Matrix result(_rows, _cols);
     for (size_t i = 0; i < _rows; ++i) {
         for (size_t j = 0; j < _cols; ++j) {
             result._data[i][j] = _data[i][j] + other._data[other._rows == 1 ? 0 : i][other._cols == 1 ? 0 : j];
@@ -19,9 +19,9 @@ Ndarray Ndarray::operator+(const Ndarray& other) const {
     return result;
 }
 
-Ndarray Ndarray::operator-(const Ndarray& other) const {
+Matrix Matrix::operator-(const Matrix& other) const {
     EnsureShapeForOperator(other);
-    Ndarray result(_rows, _cols);
+    Matrix result(_rows, _cols);
     for (size_t i = 0; i < _rows; ++i) {
         for (size_t j = 0; j < _cols; ++j) {
             result._data[i][j] = _data[i][j] - other._data[other._rows == 1 ? 0 : i][other._cols == 1 ? 0 : j];
@@ -30,9 +30,9 @@ Ndarray Ndarray::operator-(const Ndarray& other) const {
     return result;
 }
 
-Ndarray Ndarray::operator*(const Ndarray& other) const {
+Matrix Matrix::operator*(const Matrix& other) const {
     EnsureShapeForOperator(other);
-    Ndarray result(_rows, _cols);
+    Matrix result(_rows, _cols);
     for (size_t i = 0; i < _rows; ++i) {
         for (size_t j = 0; j < _cols; ++j) {
             result._data[i][j] = _data[i][j] * other._data[other._rows == 1 ? 0 : i][other._cols == 1 ? 0 : j];
@@ -41,9 +41,9 @@ Ndarray Ndarray::operator*(const Ndarray& other) const {
     return result;
 }
 
-Ndarray Ndarray::operator/(const Ndarray& other) const {
+Matrix Matrix::operator/(const Matrix& other) const {
     EnsureShapeForOperator(other);
-    Ndarray result(_rows, _cols);
+    Matrix result(_rows, _cols);
     for (size_t i = 0; i < _rows; ++i) {
         for (size_t j = 0; j < _cols; ++j) {
             Feature value = other._data[other._rows == 1 ? 0 : i][other._cols == 1 ? 0 : j];
@@ -56,8 +56,8 @@ Ndarray Ndarray::operator/(const Ndarray& other) const {
     return result;
 }
 
-Ndarray Ndarray::operator+(double scalar) const {
-    Ndarray result(_rows, _cols);
+Matrix Matrix::operator+(double scalar) const {
+    Matrix result(_rows, _cols);
     for (size_t i = 0; i < _rows; ++i) {
         for (size_t j = 0; j < _cols; ++j) {
             result._data[i][j] = _data[i][j] + scalar;
@@ -66,8 +66,8 @@ Ndarray Ndarray::operator+(double scalar) const {
     return result;
 }
 
-Ndarray Ndarray::operator-(double scalar) const {
-    Ndarray result(_rows, _cols);
+Matrix Matrix::operator-(double scalar) const {
+    Matrix result(_rows, _cols);
     for (size_t i = 0; i < _rows; ++i) {
         for (size_t j = 0; j < _cols; ++j) {
             result._data[i][j] = _data[i][j] - scalar;
@@ -76,8 +76,8 @@ Ndarray Ndarray::operator-(double scalar) const {
     return result;
 }
 
-Ndarray Ndarray::operator*(double scalar) const {
-    Ndarray result(_rows, _cols);
+Matrix Matrix::operator*(double scalar) const {
+    Matrix result(_rows, _cols);
     for (size_t i = 0; i < _rows; ++i) {
         for (size_t j = 0; j < _cols; ++j) {
             result._data[i][j] = _data[i][j] * scalar;
@@ -86,11 +86,11 @@ Ndarray Ndarray::operator*(double scalar) const {
     return result;
 }
 
-Ndarray Ndarray::operator/(double scalar) const {
+Matrix Matrix::operator/(double scalar) const {
     if (std::fabs(scalar) <= 0.000001) {
         scalar = 0.000001 - 2 * 0.000001 * (scalar < 0.0);
     }
-    Ndarray result(_rows, _cols);
+    Matrix result(_rows, _cols);
     for (size_t i = 0; i < _rows; ++i) {
         for (size_t j = 0; j < _cols; ++j) {
             result._data[i][j] = _data[i][j] / scalar;
@@ -99,7 +99,7 @@ Ndarray Ndarray::operator/(double scalar) const {
     return result;
 }
 
-Ndarray& Ndarray::operator+=(const Ndarray& other) {
+Matrix& Matrix::operator+=(const Matrix& other) {
     EnsureShapeForOperator(other);
     for (size_t i = 0; i < _rows; ++i) {
         for (size_t j = 0; j < _cols; ++j) {
@@ -109,7 +109,7 @@ Ndarray& Ndarray::operator+=(const Ndarray& other) {
     return *this;
 }
 
-Ndarray& Ndarray::operator-=(const Ndarray& other) {
+Matrix& Matrix::operator-=(const Matrix& other) {
     EnsureShapeForOperator(other);
     for (size_t i = 0; i < _rows; ++i) {
         for (size_t j = 0; j < _cols; ++j) {
@@ -119,7 +119,7 @@ Ndarray& Ndarray::operator-=(const Ndarray& other) {
     return *this;
 }
 
-Ndarray& Ndarray::operator*=(const Ndarray& other) {
+Matrix& Matrix::operator*=(const Matrix& other) {
     EnsureShapeForOperator(other);
     for (size_t i = 0; i < _rows; ++i) {
         for (size_t j = 0; j < _cols; ++j) {
@@ -129,7 +129,7 @@ Ndarray& Ndarray::operator*=(const Ndarray& other) {
     return *this;
 }
 
-Ndarray& Ndarray::operator/=(const Ndarray& other) {
+Matrix& Matrix::operator/=(const Matrix& other) {
     EnsureShapeForOperator(other);
     for (size_t i = 0; i < _rows; ++i) {
         for (size_t j = 0; j < _cols; ++j) {
@@ -143,7 +143,7 @@ Ndarray& Ndarray::operator/=(const Ndarray& other) {
     return *this;
 }
 
-Ndarray& Ndarray::operator+=(double scalar) {
+Matrix& Matrix::operator+=(double scalar) {
     for (size_t i = 0; i < _rows; ++i) {
         for (size_t j = 0; j < _cols; ++j) {
             _data[i][j] += scalar;
@@ -152,7 +152,7 @@ Ndarray& Ndarray::operator+=(double scalar) {
     return *this;
 }
 
-Ndarray& Ndarray::operator-=(double scalar) {
+Matrix& Matrix::operator-=(double scalar) {
     for (size_t i = 0; i < _rows; ++i) {
         for (size_t j = 0; j < _cols; ++j) {
             _data[i][j] -= scalar;
@@ -161,7 +161,7 @@ Ndarray& Ndarray::operator-=(double scalar) {
     return *this;
 }
 
-Ndarray& Ndarray::operator*=(double scalar) {
+Matrix& Matrix::operator*=(double scalar) {
     for (size_t i = 0; i < _rows; ++i) {
         for (size_t j = 0; j < _cols; ++j) {
             _data[i][j] *= scalar;
@@ -170,7 +170,7 @@ Ndarray& Ndarray::operator*=(double scalar) {
     return *this;
 }
 
-Ndarray& Ndarray::operator/=(double scalar) {
+Matrix& Matrix::operator/=(double scalar) {
     if (std::fabs(scalar) <= 0.000001) {
         scalar = 0.000001 - 2 * 0.000001 * (scalar < 0.0);
     }

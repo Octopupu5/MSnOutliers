@@ -3,7 +3,7 @@ CMakeFiles/RegressionAnalysisLib.dir/lib/ML/LinearRegression/LinearRegression.cp
   /Users/heritagetime/VSCode/MSnOutliers/lib/ML/LinearRegression/LinearRegression.hpp \
   /Users/heritagetime/VSCode/MSnOutliers/lib/ML/LinearRegression/../GradientDescent/Adam.hpp \
   /Users/heritagetime/VSCode/MSnOutliers/lib/ML/LinearRegression/../GradientDescent/GD.hpp \
-  /Users/heritagetime/VSCode/MSnOutliers/lib/ML/LinearRegression/../GradientDescent/../../COMMON/Ndarray.hpp \
+  /Users/heritagetime/VSCode/MSnOutliers/lib/ML/LinearRegression/../GradientDescent/../../COMMON/Matrix.hpp \
   /Users/heritagetime/VSCode/MSnOutliers/lib/ML/LinearRegression/../GradientDescent/../../COMMON/Feature.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__assert \

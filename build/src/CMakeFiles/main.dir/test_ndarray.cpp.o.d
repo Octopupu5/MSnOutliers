@@ -1,5 +1,5 @@
-src/CMakeFiles/main.dir/test_ndarray.cpp.o: \
-  /Users/heritagetime/VSCode/MSnOutliers/src/test_ndarray.cpp \
+src/CMakeFiles/main.dir/test_Matrix.cpp.o: \
+  /Users/heritagetime/VSCode/MSnOutliers/src/test_Matrix.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/random \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__assert \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__config \
@@ -918,7 +918,7 @@ src/CMakeFiles/main.dir/test_ndarray.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/seed_seq.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/student_t_distribution.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/weibull_distribution.h \
-  /Users/heritagetime/VSCode/MSnOutliers/lib/COMMON/Ndarray.hpp \
+  /Users/heritagetime/VSCode/MSnOutliers/lib/COMMON/Matrix.hpp \
   /Users/heritagetime/VSCode/MSnOutliers/lib/COMMON/Feature.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/istream \

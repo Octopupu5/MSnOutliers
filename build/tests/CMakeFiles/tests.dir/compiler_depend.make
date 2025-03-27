@@ -926,7 +926,7 @@ tests/CMakeFiles/tests.dir/test_main.cpp.o: /Users/heritagetime/VSCode/MSnOutlie
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stddef.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h \
   /Users/heritagetime/VSCode/MSnOutliers/lib/COMMON/Feature.hpp \
-  /Users/heritagetime/VSCode/MSnOutliers/lib/COMMON/Ndarray.hpp \
+  /Users/heritagetime/VSCode/MSnOutliers/lib/COMMON/Matrix.hpp \
   /Users/heritagetime/VSCode/MSnOutliers/lib/ML/DBSCAN/DBSCAN.hpp \
   /usr/local/include/gtest/gtest-assertion-result.h \
   /usr/local/include/gtest/gtest-death-test.h \
@@ -968,6 +968,8 @@ tests/CMakeFiles/tests.dir/test_main.cpp.o: /Users/heritagetime/VSCode/MSnOutlie
 /usr/local/include/gtest/gtest-param-test.h:
 
 /usr/local/include/gtest/gtest-message.h:
+
+/Users/heritagetime/VSCode/MSnOutliers/lib/COMMON/Matrix.hpp:
 
 /Users/heritagetime/VSCode/MSnOutliers/lib/COMMON/Feature.hpp:
 
@@ -1804,8 +1806,6 @@ tests/CMakeFiles/tests.dir/test_main.cpp.o: /Users/heritagetime/VSCode/MSnOutlie
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_void.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/unary_negate.h:
-
-/Users/heritagetime/VSCode/MSnOutliers/lib/COMMON/Ndarray.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/pointer_to_unary_function.h:
 

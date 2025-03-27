@@ -9,16 +9,16 @@ public:
     : GradientDescent(batch_size, learning_rate, stop_criterion, criterions, func), _gamma(gamma) {}
 private:
     double _gamma;
-    Ndarray _v;
+    Matrix _v;
 
-    void GradientStep(const Ndarray& X, const Ndarray& y) {
+    void GradientStep(const Matrix& X, const Matrix& y) {
         _v = _v * _gamma + _calcGrad(X, y, _w) * _learningRate;
         _w -= _v;
     }
 
     void InitializeParams(size_t nParams) {
-        _w = Ndarray(nParams, 1);
-        _v = Ndarray(nParams, 1);
+        _w = Matrix(nParams, 1);
+        _v = Matrix(nParams, 1);
     }
 };
 

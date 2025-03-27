@@ -1,7 +1,7 @@
 CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/iForest.cpp.o: \
   /Users/heritagetime/VSCode/MSnOutliers/lib/ML/iForest/iForest.cpp \
   /Users/heritagetime/VSCode/MSnOutliers/lib/ML/iForest/iForest.hpp \
-  /Users/heritagetime/VSCode/MSnOutliers/lib/ML/iForest/../../COMMON/Ndarray.hpp \
+  /Users/heritagetime/VSCode/MSnOutliers/lib/ML/iForest/../../COMMON/Matrix.hpp \
   /Users/heritagetime/VSCode/MSnOutliers/lib/ML/iForest/../../COMMON/Feature.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__assert \

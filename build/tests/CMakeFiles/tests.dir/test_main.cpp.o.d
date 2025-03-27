@@ -944,6 +944,6 @@ tests/CMakeFiles/tests.dir/test_main.cpp.o: \
   /usr/local/include/gtest/gtest_pred_impl.h \
   /usr/local/include/gtest/gtest_prod.h \
   /Users/heritagetime/VSCode/MSnOutliers/lib/ML/DBSCAN/DBSCAN.hpp \
-  /Users/heritagetime/VSCode/MSnOutliers/lib/ML/DBSCAN/../../COMMON/Ndarray.hpp \
+  /Users/heritagetime/VSCode/MSnOutliers/lib/ML/DBSCAN/../../COMMON/Matrix.hpp \
   /Users/heritagetime/VSCode/MSnOutliers/lib/ML/DBSCAN/../../COMMON/Feature.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iomanip

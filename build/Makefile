@@ -213,6 +213,78 @@ lib/COMMON/Feature.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/Feature.cpp.s
 .PHONY : lib/COMMON/Feature.cpp.s
 
+lib/COMMON/FileParser.o: lib/COMMON/FileParser.cpp.o
+.PHONY : lib/COMMON/FileParser.o
+
+# target to build an object file
+lib/COMMON/FileParser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/FileParser.cpp.o
+.PHONY : lib/COMMON/FileParser.cpp.o
+
+lib/COMMON/FileParser.i: lib/COMMON/FileParser.cpp.i
+.PHONY : lib/COMMON/FileParser.i
+
+# target to preprocess a source file
+lib/COMMON/FileParser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/FileParser.cpp.i
+.PHONY : lib/COMMON/FileParser.cpp.i
+
+lib/COMMON/FileParser.s: lib/COMMON/FileParser.cpp.s
+.PHONY : lib/COMMON/FileParser.s
+
+# target to generate assembly for a file
+lib/COMMON/FileParser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/FileParser.cpp.s
+.PHONY : lib/COMMON/FileParser.cpp.s
+
+lib/COMMON/Matrix.o: lib/COMMON/Matrix.cpp.o
+.PHONY : lib/COMMON/Matrix.o
+
+# target to build an object file
+lib/COMMON/Matrix.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/Matrix.cpp.o
+.PHONY : lib/COMMON/Matrix.cpp.o
+
+lib/COMMON/Matrix.i: lib/COMMON/Matrix.cpp.i
+.PHONY : lib/COMMON/Matrix.i
+
+# target to preprocess a source file
+lib/COMMON/Matrix.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/Matrix.cpp.i
+.PHONY : lib/COMMON/Matrix.cpp.i
+
+lib/COMMON/Matrix.s: lib/COMMON/Matrix.cpp.s
+.PHONY : lib/COMMON/Matrix.s
+
+# target to generate assembly for a file
+lib/COMMON/Matrix.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/Matrix.cpp.s
+.PHONY : lib/COMMON/Matrix.cpp.s
+
+lib/COMMON/MatrixOps.o: lib/COMMON/MatrixOps.cpp.o
+.PHONY : lib/COMMON/MatrixOps.o
+
+# target to build an object file
+lib/COMMON/MatrixOps.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/MatrixOps.cpp.o
+.PHONY : lib/COMMON/MatrixOps.cpp.o
+
+lib/COMMON/MatrixOps.i: lib/COMMON/MatrixOps.cpp.i
+.PHONY : lib/COMMON/MatrixOps.i
+
+# target to preprocess a source file
+lib/COMMON/MatrixOps.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/MatrixOps.cpp.i
+.PHONY : lib/COMMON/MatrixOps.cpp.i
+
+lib/COMMON/MatrixOps.s: lib/COMMON/MatrixOps.cpp.s
+.PHONY : lib/COMMON/MatrixOps.s
+
+# target to generate assembly for a file
+lib/COMMON/MatrixOps.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/MatrixOps.cpp.s
+.PHONY : lib/COMMON/MatrixOps.cpp.s
+
 lib/COMMON/Metrics.o: lib/COMMON/Metrics.cpp.o
 .PHONY : lib/COMMON/Metrics.o
 
@@ -236,54 +308,6 @@ lib/COMMON/Metrics.s: lib/COMMON/Metrics.cpp.s
 lib/COMMON/Metrics.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/Metrics.cpp.s
 .PHONY : lib/COMMON/Metrics.cpp.s
-
-lib/COMMON/Ndarray.o: lib/COMMON/Ndarray.cpp.o
-.PHONY : lib/COMMON/Ndarray.o
-
-# target to build an object file
-lib/COMMON/Ndarray.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/Ndarray.cpp.o
-.PHONY : lib/COMMON/Ndarray.cpp.o
-
-lib/COMMON/Ndarray.i: lib/COMMON/Ndarray.cpp.i
-.PHONY : lib/COMMON/Ndarray.i
-
-# target to preprocess a source file
-lib/COMMON/Ndarray.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/Ndarray.cpp.i
-.PHONY : lib/COMMON/Ndarray.cpp.i
-
-lib/COMMON/Ndarray.s: lib/COMMON/Ndarray.cpp.s
-.PHONY : lib/COMMON/Ndarray.s
-
-# target to generate assembly for a file
-lib/COMMON/Ndarray.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/Ndarray.cpp.s
-.PHONY : lib/COMMON/Ndarray.cpp.s
-
-lib/COMMON/NdarrayOps.o: lib/COMMON/NdarrayOps.cpp.o
-.PHONY : lib/COMMON/NdarrayOps.o
-
-# target to build an object file
-lib/COMMON/NdarrayOps.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/NdarrayOps.cpp.o
-.PHONY : lib/COMMON/NdarrayOps.cpp.o
-
-lib/COMMON/NdarrayOps.i: lib/COMMON/NdarrayOps.cpp.i
-.PHONY : lib/COMMON/NdarrayOps.i
-
-# target to preprocess a source file
-lib/COMMON/NdarrayOps.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/NdarrayOps.cpp.i
-.PHONY : lib/COMMON/NdarrayOps.cpp.i
-
-lib/COMMON/NdarrayOps.s: lib/COMMON/NdarrayOps.cpp.s
-.PHONY : lib/COMMON/NdarrayOps.s
-
-# target to generate assembly for a file
-lib/COMMON/NdarrayOps.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/NdarrayOps.cpp.s
-.PHONY : lib/COMMON/NdarrayOps.cpp.s
 
 lib/DISTRIBUTIONS/ErrorDistributions.o: lib/DISTRIBUTIONS/ErrorDistributions.cpp.o
 .PHONY : lib/DISTRIBUTIONS/ErrorDistributions.o
@@ -453,6 +477,54 @@ lib/ML/iForest/iForest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/iForest.cpp.s
 .PHONY : lib/ML/iForest/iForest.cpp.s
 
+lib/MS/LeastSquares.o: lib/MS/LeastSquares.cpp.o
+.PHONY : lib/MS/LeastSquares.o
+
+# target to build an object file
+lib/MS/LeastSquares.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/MS/LeastSquares.cpp.o
+.PHONY : lib/MS/LeastSquares.cpp.o
+
+lib/MS/LeastSquares.i: lib/MS/LeastSquares.cpp.i
+.PHONY : lib/MS/LeastSquares.i
+
+# target to preprocess a source file
+lib/MS/LeastSquares.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/MS/LeastSquares.cpp.i
+.PHONY : lib/MS/LeastSquares.cpp.i
+
+lib/MS/LeastSquares.s: lib/MS/LeastSquares.cpp.s
+.PHONY : lib/MS/LeastSquares.s
+
+# target to generate assembly for a file
+lib/MS/LeastSquares.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/MS/LeastSquares.cpp.s
+.PHONY : lib/MS/LeastSquares.cpp.s
+
+lib/MS/StatsMethod.o: lib/MS/StatsMethod.cpp.o
+.PHONY : lib/MS/StatsMethod.o
+
+# target to build an object file
+lib/MS/StatsMethod.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/MS/StatsMethod.cpp.o
+.PHONY : lib/MS/StatsMethod.cpp.o
+
+lib/MS/StatsMethod.i: lib/MS/StatsMethod.cpp.i
+.PHONY : lib/MS/StatsMethod.i
+
+# target to preprocess a source file
+lib/MS/StatsMethod.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/MS/StatsMethod.cpp.i
+.PHONY : lib/MS/StatsMethod.cpp.i
+
+lib/MS/StatsMethod.s: lib/MS/StatsMethod.cpp.s
+.PHONY : lib/MS/StatsMethod.s
+
+# target to generate assembly for a file
+lib/MS/StatsMethod.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/MS/StatsMethod.cpp.s
+.PHONY : lib/MS/StatsMethod.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -471,15 +543,18 @@ help:
 	@echo "... lib/COMMON/Feature.o"
 	@echo "... lib/COMMON/Feature.i"
 	@echo "... lib/COMMON/Feature.s"
+	@echo "... lib/COMMON/FileParser.o"
+	@echo "... lib/COMMON/FileParser.i"
+	@echo "... lib/COMMON/FileParser.s"
+	@echo "... lib/COMMON/Matrix.o"
+	@echo "... lib/COMMON/Matrix.i"
+	@echo "... lib/COMMON/Matrix.s"
+	@echo "... lib/COMMON/MatrixOps.o"
+	@echo "... lib/COMMON/MatrixOps.i"
+	@echo "... lib/COMMON/MatrixOps.s"
 	@echo "... lib/COMMON/Metrics.o"
 	@echo "... lib/COMMON/Metrics.i"
 	@echo "... lib/COMMON/Metrics.s"
-	@echo "... lib/COMMON/Ndarray.o"
-	@echo "... lib/COMMON/Ndarray.i"
-	@echo "... lib/COMMON/Ndarray.s"
-	@echo "... lib/COMMON/NdarrayOps.o"
-	@echo "... lib/COMMON/NdarrayOps.i"
-	@echo "... lib/COMMON/NdarrayOps.s"
 	@echo "... lib/DISTRIBUTIONS/ErrorDistributions.o"
 	@echo "... lib/DISTRIBUTIONS/ErrorDistributions.i"
 	@echo "... lib/DISTRIBUTIONS/ErrorDistributions.s"
@@ -501,6 +576,12 @@ help:
 	@echo "... lib/ML/iForest/iForest.o"
 	@echo "... lib/ML/iForest/iForest.i"
 	@echo "... lib/ML/iForest/iForest.s"
+	@echo "... lib/MS/LeastSquares.o"
+	@echo "... lib/MS/LeastSquares.i"
+	@echo "... lib/MS/LeastSquares.s"
+	@echo "... lib/MS/StatsMethod.o"
+	@echo "... lib/MS/StatsMethod.i"
+	@echo "... lib/MS/StatsMethod.s"
 .PHONY : help
 
 

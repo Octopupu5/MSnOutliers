@@ -1074,6 +1074,18 @@
 			"value" : "[/usr/local/lib/cmake/GTest/GTestConfig.cmake][c ][v1.15.2()]"
 		},
 		{
+			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_nlohmann_json",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Details about finding nlohmann_json"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "[/opt/homebrew/share/cmake/nlohmann_json/nlohmann_jsonConfig.cmake][v3.11.3(3.11.3)]"
+		},
+		{
 			"name" : "GTest_DIR",
 			"properties" : 
 			[
@@ -1120,6 +1132,18 @@
 			],
 			"type" : "STATIC",
 			"value" : "/Users/heritagetime/VSCode/MSnOutliers"
+		},
+		{
+			"name" : "nlohmann_json_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for nlohmann_json."
+				}
+			],
+			"type" : "PATH",
+			"value" : "/opt/homebrew/share/cmake/nlohmann_json"
 		}
 	],
 	"kind" : "cache",

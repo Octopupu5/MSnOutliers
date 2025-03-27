@@ -14,15 +14,20 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 file(GLOB COMMON_SOURCES lib/COMMON/*.cpp)
 file(GLOB DISTRIBUTION_SOURCES lib/DISTRIBUTIONS/*.cpp)
 file(GLOB ML_SOURCES lib/ML/**/*.cpp)
+file(GLOB MS_SOURCES lib/MS/*.cpp)
 
 set(SOURCES
     ${COMMON_SOURCES}
     ${DISTRIBUTION_SOURCES}
     ${ML_SOURCES}
+    ${MS_SOURCES}
 )
 
 set(LIBRARY_NAME RegressionAnalysisLib)
 add_library(${LIBRARY_NAME} STATIC ${SOURCES})
+
+find_package(nlohmann_json 3.11.3 REQUIRED)
+target_link_libraries(${LIBRARY_NAME} PRIVATE nlohmann_json::nlohmann_json)
 
 add_subdirectory(src)
 

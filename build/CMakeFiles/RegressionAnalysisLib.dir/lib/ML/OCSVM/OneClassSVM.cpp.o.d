@@ -1,7 +1,7 @@
 CMakeFiles/RegressionAnalysisLib.dir/lib/ML/OCSVM/OneClassSVM.cpp.o: \
   /Users/heritagetime/VSCode/MSnOutliers/lib/ML/OCSVM/OneClassSVM.cpp \
   /Users/heritagetime/VSCode/MSnOutliers/lib/ML/OCSVM/OneClassSVM.hpp \
-  /Users/heritagetime/VSCode/MSnOutliers/lib/ML/OCSVM/../../COMMON/Ndarray.hpp \
+  /Users/heritagetime/VSCode/MSnOutliers/lib/ML/OCSVM/../../COMMON/Matrix.hpp \
   /Users/heritagetime/VSCode/MSnOutliers/lib/ML/OCSVM/../../COMMON/Feature.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__assert \

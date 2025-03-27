@@ -1,7 +1,7 @@
 CMakeFiles/RegressionAnalysisLib.dir/lib/ML/GradientDescent/GD.cpp.o: \
   /Users/heritagetime/VSCode/MSnOutliers/lib/ML/GradientDescent/GD.cpp \
   /Users/heritagetime/VSCode/MSnOutliers/lib/ML/GradientDescent/GD.hpp \
-  /Users/heritagetime/VSCode/MSnOutliers/lib/ML/GradientDescent/../../COMMON/Ndarray.hpp \
+  /Users/heritagetime/VSCode/MSnOutliers/lib/ML/GradientDescent/../../COMMON/Matrix.hpp \
   /Users/heritagetime/VSCode/MSnOutliers/lib/ML/GradientDescent/../../COMMON/Feature.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__assert \
