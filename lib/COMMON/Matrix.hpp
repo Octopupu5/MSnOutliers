@@ -13,7 +13,8 @@ class Matrix {
 public:
     Matrix();
     Matrix(size_t cols);
-    Matrix(size_t rows, size_t cols, double scalar = 0.0);
+    Matrix(size_t rows, size_t cols);
+    Matrix(size_t rows, size_t cols, double scalar);
     Matrix(const std::vector<std::vector<Feature>>& data);
 
     Matrix RowMatrix(size_t index) const;

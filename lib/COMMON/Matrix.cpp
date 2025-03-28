@@ -1,9 +1,11 @@
 #include "Matrix.hpp"
 
 Matrix::Matrix(): _rows(0), _cols(0) {}
-Matrix::Matrix(size_t cols) : _rows(0), _cols(cols) {}
-Matrix::Matrix(size_t _rows, size_t cols, double scalar)
-        : _rows(_rows), _cols(cols), _data(_rows, std::vector<Feature>(cols, scalar)) {}
+Matrix::Matrix(size_t _cols) : _rows(0), _cols(_cols) {}
+Matrix::Matrix(size_t _rows, size_t _cols)
+: _rows(_rows), _cols(_cols), _data(_rows, std::vector<Feature>(_cols, 0.0)) {}
+Matrix::Matrix(size_t _rows, size_t _cols, double scalar)
+: _rows(_rows), _cols(_cols), _data(_rows, std::vector<Feature>(_cols, scalar)) {}
 
 Matrix::Matrix(const std::vector<std::vector<Feature>>& data)
     : _rows(data.size()), _cols(data.empty() ? 0 : data[0].size()), _data(data) {
@@ -27,12 +29,12 @@ void Matrix::EnsureSameShape(const Matrix& other) const {
 }
 
 void Matrix::EnsureShapeForOperator(const Matrix& other) const {
-    if ((_rows != other._rows && _cols != other._cols)) {
-        throw std::invalid_argument("Arrays must have at least identical rows or cols amount for this operation");
-    }
-    if ((_rows == other._rows && other._cols != 1) || (other._rows != 1 && _cols == other._cols)) {
-        throw std::invalid_argument("Arrays must have at least identical rows or cols amount for this operation");
-    }
+    // if ((_rows != other._rows && _cols != other._cols)) {
+    //     if ((_rows == other._rows && other._cols != 1) || (other._rows != 1 && _cols == other._cols)) {
+    //         throw std::invalid_argument("Arrays must have at least identical rows or cols amount for this operation");
+    //     }
+    //     throw std::invalid_argument("Arrays must have at least identical rows or cols amount for this operation");
+    // }
 }
 
 Feature& Matrix::At(size_t row, size_t col) {
@@ -283,7 +285,7 @@ void Matrix::AddRows(const Matrix& other) {
 void Matrix::Print() const {
     for (const auto& row : _data) {
         for (Feature value : row) {
-            std::cout << std::setw(10) << " ";
+            std::cout << std::setw(10) << value.Value() << " ";
         }
         std::cout << "\n";
     }

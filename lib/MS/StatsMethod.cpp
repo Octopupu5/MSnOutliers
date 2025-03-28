@@ -9,12 +9,13 @@ CP::StatsMethod::StatsMethod(const RData &data) {
     uint32_t numSamples = data.size();
     featuresMatrix_ = Matrix(numSamples, numFeatures);
     targetMatrix_ = Matrix(numSamples, 1);
+    
     for (uint32_t i = 0; i < numSamples; ++i) {
         for (uint32_t j = 0; j < numFeatures; ++j) {
             if (!j) {
-                featuresMatrix_.At(i, j) = 1;
+                featuresMatrix_.At(i, j).SetValue(1);
             } else {
-                featuresMatrix_.At(i, j) = data[i].features[j-1];
+                featuresMatrix_.At(i, j).SetValue(data[i].features[j-1]);
             }
         }
         targetMatrix_.At(i, 0) = data[i].target;

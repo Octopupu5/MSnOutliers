@@ -21,7 +21,7 @@ stats runOnMethods(const CP::RegressionData& data, const std::vector<std::string
 }
 
 int main() {
-    std::string path = "/Users/heritagetime/VSCode/MSnOutliers/build/src/data/source.csv";
+    std::string path = "/Users/heritagetime/VSCode/MSnOutliers/src/data/source.csv";
     uint32_t numFeatures = 3;
     CP::FileParser parser;
     CP::RegressionData data = parser.parseCSV(path, numFeatures);
