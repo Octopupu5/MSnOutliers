@@ -46,8 +46,8 @@ Node* Forest::CreateTree(const Matrix& availableData, size_t depth) {
 
 	Node* tree = new Node(k, splitValue);
 		
-	std::vector<std::vector<Feature>> leftSplit;
-	std::vector<std::vector<Feature>> rightSplit;
+	std::vector<std::vector<CP::Common::Feature>> leftSplit;
+	std::vector<std::vector<CP::Common::Feature>> rightSplit;
 	for (int j = 0; j < availableData.Rows(); ++j) {
 		if (availableData.At(j, k).Value() <= splitValue) {
 			leftSplit.push_back(availableData[j]);

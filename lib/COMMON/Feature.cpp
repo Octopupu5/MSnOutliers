@@ -1,5 +1,7 @@
 #include "Feature.hpp"
 
+using Feature = CP::Common::Feature;
+
 Feature::Feature(const std::string& name, double value) : _name(name), _value(value) {}
 Feature::Feature(double value) : _name("Empty"), _value(value) {}
 

@@ -1,5 +1,7 @@
 #include "Matrix.hpp"
 
+using Feature = CP::Common::Feature;
+
 Matrix::Matrix(): _rows(0), _cols(0) {}
 Matrix::Matrix(size_t _cols) : _rows(0), _cols(_cols) {}
 Matrix::Matrix(size_t _rows, size_t _cols)

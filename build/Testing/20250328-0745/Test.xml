@@ -6,7 +6,7 @@
 	CompilerName=""
 	CompilerVersion=""
 	OSName="macOS"
-	Hostname="MacBook-Pro"
+	Hostname="172.31.111.36-vpn.dhcp.yndx.net"
 	OSRelease="14.4"
 	OSVersion="23E214"
 	OSPlatform="arm64"
@@ -25,11 +25,11 @@
 	ProcessorClockFrequency="0"
 	>
 	<Testing>
-		<StartDateTime>Mar 28 11:42 MSK</StartDateTime>
-		<StartTestTime>1743151375</StartTestTime>
+		<StartDateTime>Mar 28 11:56 MSK</StartDateTime>
+		<StartTestTime>1743152174</StartTestTime>
 		<TestList/>
-		<EndDateTime>Mar 28 11:42 MSK</EndDateTime>
-		<EndTestTime>1743151375</EndTestTime>
+		<EndDateTime>Mar 28 11:56 MSK</EndDateTime>
+		<EndTestTime>1743152174</EndTestTime>
 		<ElapsedMinutes>0</ElapsedMinutes>
 	</Testing>
 </Site>

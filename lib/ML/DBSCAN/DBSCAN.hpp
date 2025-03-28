@@ -2,7 +2,6 @@
 #define DBSCAN_HPP
 
 #include "../../COMMON/Matrix.hpp"
-#include "../../COMMON/Feature.hpp"
 #include <vector>
 
 class DBSCAN {

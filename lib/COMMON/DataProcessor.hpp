@@ -12,7 +12,6 @@ class DataProcessor {
 public:
     DataProcessor() = default;
 
-    std::vector<std::vector<double>> loadCSV(const std::string& filepath);
     void handleMissingValues(std::vector<std::vector<double>>& data, double fillValue = 0.0);
     void removeOutliers(std::vector<std::vector<double>>& data, double threshold = 3.0);
     void normalize(std::vector<std::vector<double>>& data);

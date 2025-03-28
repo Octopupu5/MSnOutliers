@@ -1,32 +1,4 @@
 #include "DataProcessor.hpp"
-#include <nlohmann/json.hpp>
-
-using json = nlohmann::json;
-
-std::vector<std::vector<double>> DataProcessor::loadCSV(const std::string& filepath) {
-    std::vector<std::vector<double>> data;
-    std::ifstream file(filepath);
-
-    if (!file.is_open()) {
-        throw std::runtime_error("Could not open file: " + filepath);
-    }
-
-    std::string line;
-    while (std::getline(file, line)) {
-        std::stringstream ss(line);
-        std::string val;
-        std::vector<double> row;
-
-        while (std::getline(ss, val, ',')) {
-            row.push_back(std::stod(val));
-        }
-
-        data.push_back(row);
-    }
-
-    file.close();
-    return data;
-}
 
 void DataProcessor::handleMissingValues(std::vector<std::vector<double>>& data, double fillValue) {
     for (auto& row : data) {

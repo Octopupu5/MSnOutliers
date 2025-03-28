@@ -1,10 +1,10 @@
 #include "Matrix.hpp"
 
-std::vector<Feature> Matrix::operator[](int index) const {
+std::vector<CP::Common::Feature> Matrix::operator[](int index) const {
     return _data[index];
 }
 
-std::vector<Feature>& Matrix::operator[](int index) {
+std::vector<CP::Common::Feature>& Matrix::operator[](int index) {
     return _data[index];
 }
 
@@ -46,7 +46,7 @@ Matrix Matrix::operator/(const Matrix& other) const {
     Matrix result(_rows, _cols);
     for (size_t i = 0; i < _rows; ++i) {
         for (size_t j = 0; j < _cols; ++j) {
-            Feature value = other._data[other._rows == 1 ? 0 : i][other._cols == 1 ? 0 : j];
+            CP::Common::Feature value = other._data[other._rows == 1 ? 0 : i][other._cols == 1 ? 0 : j];
             if (std::fabs(value.Value()) <= 0.000001) {
                 value = 0.000001 - 2 * 0.000001 * (value < 0.0);
             }
@@ -133,7 +133,7 @@ Matrix& Matrix::operator/=(const Matrix& other) {
     EnsureShapeForOperator(other);
     for (size_t i = 0; i < _rows; ++i) {
         for (size_t j = 0; j < _cols; ++j) {
-            Feature value = other._data[other._rows == 1 ? 0 : i][other._cols == 1 ? 0 : j];
+            CP::Common::Feature value = other._data[other._rows == 1 ? 0 : i][other._cols == 1 ? 0 : j];
             if (std::fabs(value.Value()) <= 0.000001) {
                 value = 0.000001 - 2 * 0.000001 * (value < 0.0);
             }

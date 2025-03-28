@@ -15,17 +15,17 @@ public:
     Matrix(size_t cols);
     Matrix(size_t rows, size_t cols);
     Matrix(size_t rows, size_t cols, double scalar);
-    Matrix(const std::vector<std::vector<Feature>>& data);
+    Matrix(const std::vector<std::vector<CP::Common::Feature>>& data);
 
     Matrix RowMatrix(size_t index) const;
-    std::vector<Feature> operator[](int index) const;
-    std::vector<Feature>& operator[](int index);
+    std::vector<CP::Common::Feature> operator[](int index) const;
+    std::vector<CP::Common::Feature>& operator[](int index);
 
     void AddColumns(const Matrix& other);
     void AddRows(const Matrix& other);
 
-    Feature& At(size_t row, size_t col);
-    const Feature& At(size_t row, size_t col) const;
+    CP::Common::Feature& At(size_t row, size_t col);
+    const CP::Common::Feature& At(size_t row, size_t col) const;
 
     size_t Rows() const;
     size_t Cols() const;
@@ -74,7 +74,7 @@ public:
 
 private:
     size_t _rows, _cols;
-    std::vector<std::vector<Feature>> _data;
+    std::vector<std::vector<CP::Common::Feature>> _data;
 
     void CheckIndices(size_t row, size_t col) const;
     void EnsureSameShape(const Matrix& other) const;
