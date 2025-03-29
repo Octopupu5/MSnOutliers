@@ -153,6 +153,19 @@ main/fast:
 .PHONY : main/fast
 
 #=============================================================================
+# Target rules for targets named generation
+
+# Build rule for target.
+generation: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 generation
+.PHONY : generation
+
+# fast build rule for target.
+generation/fast:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/generation.dir/build.make src/CMakeFiles/generation.dir/build
+.PHONY : generation/fast
+
+#=============================================================================
 # Target rules for targets named tests
 
 # Build rule for target.
@@ -165,29 +178,29 @@ tests/fast:
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/build
 .PHONY : tests/fast
 
-lib/COMMON/DataProcessor.o: lib/COMMON/DataProcessor.cpp.o
-.PHONY : lib/COMMON/DataProcessor.o
+lib/COMMON/DataDistortion.o: lib/COMMON/DataDistortion.cpp.o
+.PHONY : lib/COMMON/DataDistortion.o
 
 # target to build an object file
-lib/COMMON/DataProcessor.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataProcessor.cpp.o
-.PHONY : lib/COMMON/DataProcessor.cpp.o
+lib/COMMON/DataDistortion.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataDistortion.cpp.o
+.PHONY : lib/COMMON/DataDistortion.cpp.o
 
-lib/COMMON/DataProcessor.i: lib/COMMON/DataProcessor.cpp.i
-.PHONY : lib/COMMON/DataProcessor.i
+lib/COMMON/DataDistortion.i: lib/COMMON/DataDistortion.cpp.i
+.PHONY : lib/COMMON/DataDistortion.i
 
 # target to preprocess a source file
-lib/COMMON/DataProcessor.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataProcessor.cpp.i
-.PHONY : lib/COMMON/DataProcessor.cpp.i
+lib/COMMON/DataDistortion.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataDistortion.cpp.i
+.PHONY : lib/COMMON/DataDistortion.cpp.i
 
-lib/COMMON/DataProcessor.s: lib/COMMON/DataProcessor.cpp.s
-.PHONY : lib/COMMON/DataProcessor.s
+lib/COMMON/DataDistortion.s: lib/COMMON/DataDistortion.cpp.s
+.PHONY : lib/COMMON/DataDistortion.s
 
 # target to generate assembly for a file
-lib/COMMON/DataProcessor.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataProcessor.cpp.s
-.PHONY : lib/COMMON/DataProcessor.cpp.s
+lib/COMMON/DataDistortion.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataDistortion.cpp.s
+.PHONY : lib/COMMON/DataDistortion.cpp.s
 
 lib/COMMON/Feature.o: lib/COMMON/Feature.cpp.o
 .PHONY : lib/COMMON/Feature.o
@@ -535,11 +548,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... RegressionAnalysisLib"
+	@echo "... generation"
 	@echo "... main"
 	@echo "... tests"
-	@echo "... lib/COMMON/DataProcessor.o"
-	@echo "... lib/COMMON/DataProcessor.i"
-	@echo "... lib/COMMON/DataProcessor.s"
+	@echo "... lib/COMMON/DataDistortion.o"
+	@echo "... lib/COMMON/DataDistortion.i"
+	@echo "... lib/COMMON/DataDistortion.s"
 	@echo "... lib/COMMON/Feature.o"
 	@echo "... lib/COMMON/Feature.i"
 	@echo "... lib/COMMON/Feature.s"

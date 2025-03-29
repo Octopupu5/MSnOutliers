@@ -5,13 +5,15 @@
 #include "StatsMethod.hpp"
 
 namespace CP {
-    using RData = RegressionData;
+    namespace MS {
+        using RData = Common::RegressionData;
 
-    class LeastSquaresMethod : public StatsMethod {
-    public:
-        explicit LeastSquaresMethod(const RData& data): StatsMethod(data){}
-        Matrix compute() override;
-    };
+        class LeastSquaresMethod : public StatsMethod {
+        public:
+            explicit LeastSquaresMethod(const RData& data): StatsMethod(data){}
+            Common::Matrix compute() override;
+        };
+    }
 } // namespace CP
 
 #endif

@@ -27,7 +27,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 27,
+				"line" : 34,
 				"parent" : 0
 			},
 			{
@@ -37,9 +37,15 @@
 				"parent" : 0
 			},
 			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 31,
+				"parent" : 0
+			},
+			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 30,
+				"line" : 37,
 				"parent" : 0
 			}
 		]
@@ -61,6 +67,10 @@
 				},
 				{
 					"backtrace" : 3,
+					"path" : "/Users/heritagetime/VSCode/MSnOutliers/build"
+				},
+				{
+					"backtrace" : 4,
 					"isSystem" : true,
 					"path" : "/opt/homebrew/include"
 				}
@@ -70,7 +80,7 @@
 			{
 				"backtraces" : 
 				[
-					3
+					4
 				],
 				"standard" : "17"
 			},
@@ -131,7 +141,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "lib/COMMON/DataProcessor.cpp",
+			"path" : "lib/COMMON/DataDistortion.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

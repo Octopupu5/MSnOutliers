@@ -5,16 +5,18 @@
 #include "../COMMON/Matrix.hpp"
 
 namespace CP {
-    using RData = RegressionData;
-    class StatsMethod {
-    public:
-        explicit StatsMethod(const RData& data);
-        virtual Matrix compute() = 0;
+    namespace MS {
+        using RData = Common::RegressionData;
+        class StatsMethod {
+        public:
+            explicit StatsMethod(const RData& data);
+            virtual Common::Matrix compute() = 0;
 
-    protected:
-        Matrix featuresMatrix_;
-        Matrix targetMatrix_;
-    };
+        protected:
+            Common::Matrix _featuresMatrix;
+            Common::Matrix _targetMatrix;
+        };
+    }
 }
 
 

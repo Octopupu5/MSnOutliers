@@ -72,19 +72,19 @@ include CMakeFiles/RegressionAnalysisLib.dir/flags.make
 CMakeFiles/RegressionAnalysisLib.dir/codegen:
 .PHONY : CMakeFiles/RegressionAnalysisLib.dir/codegen
 
-CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataProcessor.cpp.o: CMakeFiles/RegressionAnalysisLib.dir/flags.make
-CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataProcessor.cpp.o: /Users/heritagetime/VSCode/MSnOutliers/lib/COMMON/DataProcessor.cpp
-CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataProcessor.cpp.o: CMakeFiles/RegressionAnalysisLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataProcessor.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataProcessor.cpp.o -MF CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataProcessor.cpp.o.d -o CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataProcessor.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/lib/COMMON/DataProcessor.cpp
+CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataDistortion.cpp.o: CMakeFiles/RegressionAnalysisLib.dir/flags.make
+CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataDistortion.cpp.o: /Users/heritagetime/VSCode/MSnOutliers/lib/COMMON/DataDistortion.cpp
+CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataDistortion.cpp.o: CMakeFiles/RegressionAnalysisLib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataDistortion.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataDistortion.cpp.o -MF CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataDistortion.cpp.o.d -o CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataDistortion.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/lib/COMMON/DataDistortion.cpp
 
-CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataProcessor.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataProcessor.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/heritagetime/VSCode/MSnOutliers/lib/COMMON/DataProcessor.cpp > CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataProcessor.cpp.i
+CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataDistortion.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataDistortion.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/heritagetime/VSCode/MSnOutliers/lib/COMMON/DataDistortion.cpp > CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataDistortion.cpp.i
 
-CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataProcessor.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataProcessor.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/heritagetime/VSCode/MSnOutliers/lib/COMMON/DataProcessor.cpp -o CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataProcessor.cpp.s
+CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataDistortion.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataDistortion.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/heritagetime/VSCode/MSnOutliers/lib/COMMON/DataDistortion.cpp -o CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataDistortion.cpp.s
 
 CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/Feature.cpp.o: CMakeFiles/RegressionAnalysisLib.dir/flags.make
 CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/Feature.cpp.o: /Users/heritagetime/VSCode/MSnOutliers/lib/COMMON/Feature.cpp
@@ -284,7 +284,7 @@ CMakeFiles/RegressionAnalysisLib.dir/lib/MS/StatsMethod.cpp.s: cmake_force
 
 # Object files for target RegressionAnalysisLib
 RegressionAnalysisLib_OBJECTS = \
-"CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataProcessor.cpp.o" \
+"CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataDistortion.cpp.o" \
 "CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/Feature.cpp.o" \
 "CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/FileParser.cpp.o" \
 "CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/Matrix.cpp.o" \
@@ -303,7 +303,7 @@ RegressionAnalysisLib_OBJECTS = \
 # External object files for target RegressionAnalysisLib
 RegressionAnalysisLib_EXTERNAL_OBJECTS =
 
-libRegressionAnalysisLib.a: CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataProcessor.cpp.o
+libRegressionAnalysisLib.a: CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/DataDistortion.cpp.o
 libRegressionAnalysisLib.a: CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/Feature.cpp.o
 libRegressionAnalysisLib.a: CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/FileParser.cpp.o
 libRegressionAnalysisLib.a: CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/Matrix.cpp.o

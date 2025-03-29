@@ -1,43 +1,42 @@
 #include "Node.hpp"
+namespace CP {
+	namespace ML {
+		Node::Node(): _j(1000000), _predicate(0), _sub_l(nullptr), _sub_r(nullptr) {};
+		Node::Node(const uint64_t& feature, double predicate) : _j(feature), _predicate(predicate), _sub_l(nullptr), _sub_r(nullptr) {}
 
-#define UNKNOWN 1000000
+		Node::~Node() {
+			ReplaceL(nullptr);
+			ReplaceR(nullptr);
+		}
 
-Node::Node(): _j(UNKNOWN), _predicate(0), _sub_l(NULL), _sub_r(NULL) {};
-Node::Node(const uint64_t& feature, double predicate) :
-		_j(feature), _predicate(predicate),
-		_sub_l(NULL), _sub_r(NULL) {}
+		uint64_t Node::FeatureIndex() const {
+			return _j;
+		};
 
-Node::~Node() {
-	ReplaceL(nullptr);
-	ReplaceR(nullptr);
-}
+		double Node::Predicate() const {
+			return _predicate;
+		};
 
-uint64_t Node::FeatureIndex() const {
-	return _j;
-};
+		Node* Node::Left() const {
+			return _sub_l;
+		};
 
-double Node::Predicate() const {
-	return _predicate;
-};
+		Node* Node::Right() const {
+			return _sub_r;
+		};
 
-Node* Node::Left() const {
-	return _sub_l;
-};
+		void Node::ReplaceL(Node* node) {
+			if (_sub_l) {
+				delete _sub_l;
+			}
+			_sub_l = node;
+		}
 
-Node* Node::Right() const {
-	return _sub_r;
-};
-
-void Node::ReplaceL(Node* node) {
-	if (_sub_l) {
-		delete _sub_l;
+		void Node::ReplaceR(Node* node) {
+			if (_sub_r) {
+				delete _sub_r;
+			}
+			_sub_r = node;
+		}
 	}
-	_sub_l = node;
-}
-
-void Node::ReplaceR(Node* node) {
-	if (_sub_r) {
-		delete _sub_r;
-	}
-	_sub_r = node;
 }

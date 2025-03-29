@@ -4,15 +4,16 @@
 #include "MS/LeastSquares.hpp"
 #include "COMMON/Metrics.hpp"
 #include "nlohmann/json.hpp"
+#include "config.h"
 
 using json = nlohmann::json;
-using stats = std::unordered_map<std::string, Matrix>;
+using stats = std::unordered_map<std::string, CP::Common::Matrix>;
 
-stats runOnMethods(const CP::RegressionData& data, const std::vector<std::string>& methods) {
+stats runOnMethods(const CP::Common::RegressionData& data, const std::vector<std::string>& methods) {
     stats res;
     for (auto& el : methods) {
         if (el == "LSM") {
-            res["LSM"] = CP::LeastSquaresMethod(data).compute();
+            res["LSM"] = CP::MS::LeastSquaresMethod(data).compute();
         } else if (el == "AVG") {
             // ... other methods;
         }
@@ -21,12 +22,12 @@ stats runOnMethods(const CP::RegressionData& data, const std::vector<std::string
 }
 
 int main() {
-    std::string path = "/Users/heritagetime/VSCode/MSnOutliers/src/data/source.csv";
+    std::string path = std::string(DATA_DIR) + "/source.csv";
     uint32_t numFeatures = 3;
-    CP::FileParser parser;
-    CP::RegressionData data = parser.parseCSV(path, numFeatures);
-    Matrix target({{0}, {1}, {1}, {1}});
-    Metrics calc;
+    CP::Common::FileParser parser;
+    CP::Common::RegressionData data = parser.parseCSV(path, numFeatures);
+    CP::Common::Matrix target({{0}, {1}, {1}, {1}});
+    CP::Common::Metrics calc;
 
     stats computed = runOnMethods(data, {"LSM"});
     for (auto &[name, v] : computed) {

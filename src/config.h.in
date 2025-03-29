@@ -1,0 +1,2 @@
+// config.h.in
+#define DATA_DIR "@DATA_DIR@"

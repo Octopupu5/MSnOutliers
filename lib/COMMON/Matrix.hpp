@@ -9,76 +9,86 @@
 #include <cmath>
 #include <iomanip>
 
-class Matrix {
-public:
-    Matrix();
-    Matrix(size_t cols);
-    Matrix(size_t rows, size_t cols);
-    Matrix(size_t rows, size_t cols, double scalar);
-    Matrix(const std::vector<std::vector<CP::Common::Feature>>& data);
+namespace CP {
+    namespace Common {
+        class Matrix {
+        public:
+            Matrix();
+            Matrix(size_t cols);
+            Matrix(size_t rows, size_t cols);
+            Matrix(size_t rows, size_t cols, double scalar);
+            Matrix(const std::vector<std::vector<Feature>>& data);
 
-    Matrix RowMatrix(size_t index) const;
-    std::vector<CP::Common::Feature> operator[](int index) const;
-    std::vector<CP::Common::Feature>& operator[](int index);
+            Matrix RowMatrix(size_t index) const;
+            Matrix ColumnMatrix(size_t index) const;
+            std::vector<Feature> operator[](int index) const;
+            std::vector<Feature>& operator[](int index);
 
-    void AddColumns(const Matrix& other);
-    void AddRows(const Matrix& other);
+            void AddColumns(const Matrix& other);
+            void AddRows(const Matrix& other);
 
-    CP::Common::Feature& At(size_t row, size_t col);
-    const CP::Common::Feature& At(size_t row, size_t col) const;
+            Feature& At(size_t row, size_t col);
+            const Feature& At(size_t row, size_t col) const;
 
-    size_t Rows() const;
-    size_t Cols() const;
-    std::pair<size_t, size_t> Shape() const;
+            size_t Rows() const;
+            size_t Cols() const;
+            std::pair<size_t, size_t> Shape() const;
 
-    void Fill(double scalar);
-    // void RandomFill(ErrorDistributions::DistributionType type, double param1, double param2, std::mt19937& gen);
+            void Fill(double scalar);
 
-    Matrix T() const;
-    Matrix Inv() const;
+            Matrix T() const;
+            Matrix Inv() const;
 
-    Matrix operator+(const Matrix& other) const;
-    Matrix operator-(const Matrix& other) const;
-    Matrix operator*(const Matrix& other) const;
-    Matrix operator/(const Matrix& other) const;
-    Matrix operator+(double scalar) const;
-    Matrix operator-(double scalar) const;
-    Matrix operator*(double scalar) const;
-    Matrix operator/(double scalar) const;
+            Matrix operator+(const Matrix& other) const;
+            Matrix operator-(const Matrix& other) const;
+            Matrix operator*(const Matrix& other) const;
+            Matrix operator/(const Matrix& other) const;
+            Matrix operator+(double scalar) const;
+            Matrix operator-(double scalar) const;
+            Matrix operator*(double scalar) const;
+            Matrix operator/(double scalar) const;
 
-    Matrix& operator+=(const Matrix& other);
-    Matrix& operator-=(const Matrix& other);
-    Matrix& operator*=(const Matrix& other);
-    Matrix& operator/=(const Matrix& other);
-    Matrix& operator+=(double scalar);
-    Matrix& operator-=(double scalar);
-    Matrix& operator*=(double scalar);
-    Matrix& operator/=(double scalar);
-    
-    Matrix Matmul(const Matrix& other) const;
-    
-    Matrix ColumnWiseMean() const;
-    Matrix RowWiseMean() const;
-    Matrix ColumnWiseSum() const;
-    Matrix RowWiseSum() const;
-    double Sum() const;
+            Matrix& operator+=(const Matrix& other);
+            Matrix& operator-=(const Matrix& other);
+            Matrix& operator*=(const Matrix& other);
+            Matrix& operator/=(const Matrix& other);
+            Matrix& operator+=(double scalar);
+            Matrix& operator-=(double scalar);
+            Matrix& operator*=(double scalar);
+            Matrix& operator/=(double scalar);
+            
+            Matrix Matmul(const Matrix& other) const;
+            
+            Matrix ColumnWiseMean() const;
+            Matrix RowWiseMean() const;
+            Matrix ColumnWiseSum() const;
+            Matrix RowWiseSum() const;
+            double Sum() const;
 
-    Matrix Sqrt() const;
-    Matrix Abs() const;
-    Matrix Pow(double power) const;
+            template <typename Function>
+            typename std::enable_if<std::is_invocable_r<Feature, Function, Feature>::value, Matrix>::type Apply(Function&& f) const;
 
-    double L1Norm(const Matrix& other) const;
-    double L2Norm(const Matrix& other) const;
+            template <typename Function>
+            typename std::enable_if<std::is_invocable_r<Feature, Function, double>::value, Matrix>::type Apply(Function&& f) const;
 
-    void Print() const;
+            Matrix Sqrt() const;
+            Matrix Abs() const;
+            Matrix Pow(double power) const;
 
-private:
-    size_t _rows, _cols;
-    std::vector<std::vector<CP::Common::Feature>> _data;
+            double L1Norm(const Matrix& other) const;
+            double L2Norm(const Matrix& other) const;
 
-    void CheckIndices(size_t row, size_t col) const;
-    void EnsureSameShape(const Matrix& other) const;
-    void EnsureShapeForOperator(const Matrix& other) const;
-};
+            void Print() const;
+
+        private:
+            size_t _rows, _cols;
+            std::vector<std::vector<Feature>> _data;
+
+            void CheckIndices(size_t row, size_t col) const;
+            void EnsureSameShape(const Matrix& other) const;
+            void EnsureShapeForOperator(const Matrix& other) const;
+        };
+    }
+}
 
 #endif // Matrix_HPP

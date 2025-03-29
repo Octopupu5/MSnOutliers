@@ -140,6 +140,20 @@ main/fast:
 	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/build
 .PHONY : main/fast
 
+# Convenience name for target.
+src/CMakeFiles/generation.dir/rule:
+	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/generation.dir/rule
+.PHONY : src/CMakeFiles/generation.dir/rule
+
+# Convenience name for target.
+generation: src/CMakeFiles/generation.dir/rule
+.PHONY : generation
+
+# fast build rule for target.
+generation/fast:
+	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/generation.dir/build.make src/CMakeFiles/generation.dir/build
+.PHONY : generation/fast
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -164,6 +178,30 @@ main.cpp.s:
 	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+test_generation.o: test_generation.cpp.o
+.PHONY : test_generation.o
+
+# target to build an object file
+test_generation.cpp.o:
+	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/generation.dir/build.make src/CMakeFiles/generation.dir/test_generation.cpp.o
+.PHONY : test_generation.cpp.o
+
+test_generation.i: test_generation.cpp.i
+.PHONY : test_generation.i
+
+# target to preprocess a source file
+test_generation.cpp.i:
+	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/generation.dir/build.make src/CMakeFiles/generation.dir/test_generation.cpp.i
+.PHONY : test_generation.cpp.i
+
+test_generation.s: test_generation.cpp.s
+.PHONY : test_generation.s
+
+# target to generate assembly for a file
+test_generation.cpp.s:
+	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/generation.dir/build.make src/CMakeFiles/generation.dir/test_generation.cpp.s
+.PHONY : test_generation.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -173,10 +211,14 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test"
+	@echo "... generation"
 	@echo "... main"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... test_generation.o"
+	@echo "... test_generation.i"
+	@echo "... test_generation.s"
 .PHONY : help
 
 

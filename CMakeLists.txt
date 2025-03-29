@@ -23,6 +23,13 @@ set(SOURCES
     ${MS_SOURCES}
 )
 
+set(DATA_DIR ${CMAKE_SOURCE_DIR}/src/data)
+configure_file(
+    ${CMAKE_SOURCE_DIR}/src/config.h.in
+    ${CMAKE_BINARY_DIR}/config.h
+)
+include_directories(${CMAKE_BINARY_DIR})
+
 set(LIBRARY_NAME RegressionAnalysisLib)
 add_library(${LIBRARY_NAME} STATIC ${SOURCES})
 

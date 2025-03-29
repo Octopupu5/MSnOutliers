@@ -90,10 +90,12 @@ clean: tests/clean
 
 # Recursive "all" directory target.
 src/all: src/CMakeFiles/main.dir/all
+src/all: src/CMakeFiles/generation.dir/all
 .PHONY : src/all
 
 # Recursive "codegen" directory target.
 src/codegen: src/CMakeFiles/main.dir/codegen
+src/codegen: src/CMakeFiles/generation.dir/codegen
 .PHONY : src/codegen
 
 # Recursive "preinstall" directory target.
@@ -102,6 +104,7 @@ src/preinstall:
 
 # Recursive "clean" directory target.
 src/clean: src/CMakeFiles/main.dir/clean
+src/clean: src/CMakeFiles/generation.dir/clean
 .PHONY : src/clean
 
 #=============================================================================
@@ -162,7 +165,7 @@ CMakeFiles/RegressionAnalysisLib.dir/clean:
 src/CMakeFiles/main.dir/all: CMakeFiles/RegressionAnalysisLib.dir/all
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=17,18 "Built target main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=19,20 "Built target main"
 .PHONY : src/CMakeFiles/main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -179,7 +182,7 @@ main: src/CMakeFiles/main.dir/rule
 # codegen rule for target.
 src/CMakeFiles/main.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=17,18 "Finished codegen for target main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=19,20 "Finished codegen for target main"
 .PHONY : src/CMakeFiles/main.dir/codegen
 
 # clean rule for target.
@@ -188,13 +191,45 @@ src/CMakeFiles/main.dir/clean:
 .PHONY : src/CMakeFiles/main.dir/clean
 
 #=============================================================================
+# Target rules for target src/CMakeFiles/generation.dir
+
+# All Build rule for target.
+src/CMakeFiles/generation.dir/all: CMakeFiles/RegressionAnalysisLib.dir/all
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/generation.dir/build.make src/CMakeFiles/generation.dir/depend
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/generation.dir/build.make src/CMakeFiles/generation.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=17,18 "Built target generation"
+.PHONY : src/CMakeFiles/generation.dir/all
+
+# Build rule for subdir invocation for target.
+src/CMakeFiles/generation.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles 18
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/generation.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles 0
+.PHONY : src/CMakeFiles/generation.dir/rule
+
+# Convenience name for target.
+generation: src/CMakeFiles/generation.dir/rule
+.PHONY : generation
+
+# codegen rule for target.
+src/CMakeFiles/generation.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/generation.dir/build.make src/CMakeFiles/generation.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=17,18 "Finished codegen for target generation"
+.PHONY : src/CMakeFiles/generation.dir/codegen
+
+# clean rule for target.
+src/CMakeFiles/generation.dir/clean:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/generation.dir/build.make src/CMakeFiles/generation.dir/clean
+.PHONY : src/CMakeFiles/generation.dir/clean
+
+#=============================================================================
 # Target rules for target tests/CMakeFiles/tests.dir
 
 # All Build rule for target.
 tests/CMakeFiles/tests.dir/all: CMakeFiles/RegressionAnalysisLib.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=19,20 "Built target tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=21,22 "Built target tests"
 .PHONY : tests/CMakeFiles/tests.dir/all
 
 # Build rule for subdir invocation for target.
@@ -211,7 +246,7 @@ tests: tests/CMakeFiles/tests.dir/rule
 # codegen rule for target.
 tests/CMakeFiles/tests.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/tests.dir/build.make tests/CMakeFiles/tests.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=19,20 "Finished codegen for target tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=21,22 "Finished codegen for target tests"
 .PHONY : tests/CMakeFiles/tests.dir/codegen
 
 # clean rule for target.

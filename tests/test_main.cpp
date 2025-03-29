@@ -7,7 +7,7 @@ int main(int argc, char **argv) {
 }
 
 TEST(MetricsTest, mse) {
-    Matrix n(1, 1);
+    CP::Common::Matrix n(1, 1);
     ASSERT_NEAR(0.0, 0.00001, 0.0001);
 }
 
