@@ -154,6 +154,20 @@ generation/fast:
 	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/generation.dir/build.make src/CMakeFiles/generation.dir/build
 .PHONY : generation/fast
 
+# Convenience name for target.
+src/CMakeFiles/writeAndDraw.dir/rule:
+	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/writeAndDraw.dir/rule
+.PHONY : src/CMakeFiles/writeAndDraw.dir/rule
+
+# Convenience name for target.
+writeAndDraw: src/CMakeFiles/writeAndDraw.dir/rule
+.PHONY : writeAndDraw
+
+# fast build rule for target.
+writeAndDraw/fast:
+	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/writeAndDraw.dir/build.make src/CMakeFiles/writeAndDraw.dir/build
+.PHONY : writeAndDraw/fast
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -202,6 +216,30 @@ test_generation.cpp.s:
 	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/generation.dir/build.make src/CMakeFiles/generation.dir/test_generation.cpp.s
 .PHONY : test_generation.cpp.s
 
+writeAndDraw.o: writeAndDraw.cpp.o
+.PHONY : writeAndDraw.o
+
+# target to build an object file
+writeAndDraw.cpp.o:
+	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/writeAndDraw.dir/build.make src/CMakeFiles/writeAndDraw.dir/writeAndDraw.cpp.o
+.PHONY : writeAndDraw.cpp.o
+
+writeAndDraw.i: writeAndDraw.cpp.i
+.PHONY : writeAndDraw.i
+
+# target to preprocess a source file
+writeAndDraw.cpp.i:
+	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/writeAndDraw.dir/build.make src/CMakeFiles/writeAndDraw.dir/writeAndDraw.cpp.i
+.PHONY : writeAndDraw.cpp.i
+
+writeAndDraw.s: writeAndDraw.cpp.s
+.PHONY : writeAndDraw.s
+
+# target to generate assembly for a file
+writeAndDraw.cpp.s:
+	cd /Users/heritagetime/VSCode/MSnOutliers/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/writeAndDraw.dir/build.make src/CMakeFiles/writeAndDraw.dir/writeAndDraw.cpp.s
+.PHONY : writeAndDraw.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -213,12 +251,16 @@ help:
 	@echo "... test"
 	@echo "... generation"
 	@echo "... main"
+	@echo "... writeAndDraw"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
 	@echo "... test_generation.o"
 	@echo "... test_generation.i"
 	@echo "... test_generation.s"
+	@echo "... writeAndDraw.o"
+	@echo "... writeAndDraw.i"
+	@echo "... writeAndDraw.s"
 .PHONY : help
 
 

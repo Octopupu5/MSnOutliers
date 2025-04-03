@@ -102,6 +102,12 @@
   "output": "src/CMakeFiles/generation.dir/test_generation.cpp.o"
 },
 {
+  "directory": "/Users/heritagetime/VSCode/MSnOutliers/build/src",
+  "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib -I/Users/heritagetime/VSCode/MSnOutliers/build -isystem /opt/homebrew/include -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/writeAndDraw.dir/writeAndDraw.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/src/writeAndDraw.cpp",
+  "file": "/Users/heritagetime/VSCode/MSnOutliers/src/writeAndDraw.cpp",
+  "output": "src/CMakeFiles/writeAndDraw.dir/writeAndDraw.cpp.o"
+},
+{
   "directory": "/Users/heritagetime/VSCode/MSnOutliers/build/tests",
   "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib -I/Users/heritagetime/VSCode/MSnOutliers/build -isystem /usr/local/include -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/tests.dir/test_main.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/tests/test_main.cpp",
   "file": "/Users/heritagetime/VSCode/MSnOutliers/tests/test_main.cpp",

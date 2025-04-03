@@ -24,11 +24,17 @@ set(SOURCES
 )
 
 set(DATA_DIR ${CMAKE_SOURCE_DIR}/src/data)
+set(SRC_CONFIGS_DIR ${CMAKE_SOURCE_DIR}/src/configs)
 configure_file(
     ${CMAKE_SOURCE_DIR}/src/config.h.in
     ${CMAKE_BINARY_DIR}/config.h
 )
 include_directories(${CMAKE_BINARY_DIR})
+
+file(WRITE ${CMAKE_SOURCE_DIR}/src/configs/config.py
+"DATA_DIR = '${DATA_DIR}'\n"
+"SRC_CONFIGS_DIR = '${SRC_CONFIGS_DIR}'\n"
+)
 
 set(LIBRARY_NAME RegressionAnalysisLib)
 add_library(${LIBRARY_NAME} STATIC ${SOURCES})

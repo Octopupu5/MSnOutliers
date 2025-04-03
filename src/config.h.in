@@ -1,2 +1,3 @@
 // config.h.in
 #define DATA_DIR "@DATA_DIR@"
+#define SRC_CONFIGS_DIR "@SRC_CONFIGS_DIR@"

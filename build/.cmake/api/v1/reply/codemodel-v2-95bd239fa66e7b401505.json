@@ -36,7 +36,8 @@
 					"targetIndexes" : 
 					[
 						1,
-						2
+						2,
+						4
 					]
 				},
 				{
@@ -71,7 +72,8 @@
 						0,
 						1,
 						2,
-						3
+						3,
+						4
 					]
 				}
 			],
@@ -80,29 +82,36 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "RegressionAnalysisLib::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-RegressionAnalysisLib-Debug-d14e7e3dd0e46cfc8121.json",
+					"jsonFile" : "target-RegressionAnalysisLib-Debug-5c45954b45f9e24615c0.json",
 					"name" : "RegressionAnalysisLib",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 1,
 					"id" : "generation::@145eef247bfb46b6828c",
-					"jsonFile" : "target-generation-Debug-17d1ae2d9d8694ad2c0e.json",
+					"jsonFile" : "target-generation-Debug-4c0b80bda16b3079710d.json",
 					"name" : "generation",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 1,
 					"id" : "main::@145eef247bfb46b6828c",
-					"jsonFile" : "target-main-Debug-d9a8373db13426b6e4d5.json",
+					"jsonFile" : "target-main-Debug-9c37a8896f0f87dd403b.json",
 					"name" : "main",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 2,
 					"id" : "tests::@a44f0ac069e85531cdee",
-					"jsonFile" : "target-tests-Debug-028cf247157baf774374.json",
+					"jsonFile" : "target-tests-Debug-c855d9cb591f6a9b54fb.json",
 					"name" : "tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "writeAndDraw::@145eef247bfb46b6828c",
+					"jsonFile" : "target-writeAndDraw-Debug-0cfe7e5815d5647f2dd8.json",
+					"name" : "writeAndDraw",
 					"projectIndex" : 0
 				}
 			]

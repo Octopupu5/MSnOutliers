@@ -1,0 +1,24 @@
+{
+    "objects": [
+        {
+            "b": 1.0,
+            "color": "green",
+            "k": 1.0,
+            "type": "line"
+        },
+        {
+            "color": "red",
+            "points": [
+                {
+                    "x": 3.0,
+                    "y": 4.0
+                },
+                {
+                    "x": 5.0,
+                    "y": 6.0
+                }
+            ],
+            "type": "points"
+        }
+    ]
+}

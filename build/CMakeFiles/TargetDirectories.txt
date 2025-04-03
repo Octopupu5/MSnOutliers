@@ -4,6 +4,7 @@
 /Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles/rebuild_cache.dir
 /Users/heritagetime/VSCode/MSnOutliers/build/src/CMakeFiles/main.dir
 /Users/heritagetime/VSCode/MSnOutliers/build/src/CMakeFiles/generation.dir
+/Users/heritagetime/VSCode/MSnOutliers/build/src/CMakeFiles/writeAndDraw.dir
 /Users/heritagetime/VSCode/MSnOutliers/build/src/CMakeFiles/test.dir
 /Users/heritagetime/VSCode/MSnOutliers/build/src/CMakeFiles/edit_cache.dir
 /Users/heritagetime/VSCode/MSnOutliers/build/src/CMakeFiles/rebuild_cache.dir

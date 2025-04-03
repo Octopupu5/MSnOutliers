@@ -166,6 +166,19 @@ generation/fast:
 .PHONY : generation/fast
 
 #=============================================================================
+# Target rules for targets named writeAndDraw
+
+# Build rule for target.
+writeAndDraw: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 writeAndDraw
+.PHONY : writeAndDraw
+
+# fast build rule for target.
+writeAndDraw/fast:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/writeAndDraw.dir/build.make src/CMakeFiles/writeAndDraw.dir/build
+.PHONY : writeAndDraw/fast
+
+#=============================================================================
 # Target rules for targets named tests
 
 # Build rule for target.
@@ -551,6 +564,7 @@ help:
 	@echo "... generation"
 	@echo "... main"
 	@echo "... tests"
+	@echo "... writeAndDraw"
 	@echo "... lib/COMMON/DataDistortion.o"
 	@echo "... lib/COMMON/DataDistortion.i"
 	@echo "... lib/COMMON/DataDistortion.s"

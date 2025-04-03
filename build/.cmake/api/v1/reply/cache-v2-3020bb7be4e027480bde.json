@@ -1098,6 +1098,18 @@
 			"value" : "/usr/local/lib/cmake/GTest"
 		},
 		{
+			"name" : "OpenCV_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for OpenCV."
+				}
+			],
+			"type" : "PATH",
+			"value" : "OpenCV_DIR-NOTFOUND"
+		},
+		{
 			"name" : "RegressionAnalysis_BINARY_DIR",
 			"properties" : 
 			[
@@ -1144,6 +1156,30 @@
 			],
 			"type" : "PATH",
 			"value" : "/opt/homebrew/share/cmake/nlohmann_json"
+		},
+		{
+			"name" : "opencv2_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for opencv2."
+				}
+			],
+			"type" : "PATH",
+			"value" : "opencv2_DIR-NOTFOUND"
+		},
+		{
+			"name" : "opencv_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for opencv."
+				}
+			],
+			"type" : "PATH",
+			"value" : "opencv_DIR-NOTFOUND"
 		}
 	],
 	"kind" : "cache",

@@ -91,11 +91,13 @@ clean: tests/clean
 # Recursive "all" directory target.
 src/all: src/CMakeFiles/main.dir/all
 src/all: src/CMakeFiles/generation.dir/all
+src/all: src/CMakeFiles/writeAndDraw.dir/all
 .PHONY : src/all
 
 # Recursive "codegen" directory target.
 src/codegen: src/CMakeFiles/main.dir/codegen
 src/codegen: src/CMakeFiles/generation.dir/codegen
+src/codegen: src/CMakeFiles/writeAndDraw.dir/codegen
 .PHONY : src/codegen
 
 # Recursive "preinstall" directory target.
@@ -105,6 +107,7 @@ src/preinstall:
 # Recursive "clean" directory target.
 src/clean: src/CMakeFiles/main.dir/clean
 src/clean: src/CMakeFiles/generation.dir/clean
+src/clean: src/CMakeFiles/writeAndDraw.dir/clean
 .PHONY : src/clean
 
 #=============================================================================
@@ -221,6 +224,38 @@ src/CMakeFiles/generation.dir/codegen:
 src/CMakeFiles/generation.dir/clean:
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/generation.dir/build.make src/CMakeFiles/generation.dir/clean
 .PHONY : src/CMakeFiles/generation.dir/clean
+
+#=============================================================================
+# Target rules for target src/CMakeFiles/writeAndDraw.dir
+
+# All Build rule for target.
+src/CMakeFiles/writeAndDraw.dir/all: CMakeFiles/RegressionAnalysisLib.dir/all
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/writeAndDraw.dir/build.make src/CMakeFiles/writeAndDraw.dir/depend
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/writeAndDraw.dir/build.make src/CMakeFiles/writeAndDraw.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=23,24 "Built target writeAndDraw"
+.PHONY : src/CMakeFiles/writeAndDraw.dir/all
+
+# Build rule for subdir invocation for target.
+src/CMakeFiles/writeAndDraw.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles 18
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/writeAndDraw.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles 0
+.PHONY : src/CMakeFiles/writeAndDraw.dir/rule
+
+# Convenience name for target.
+writeAndDraw: src/CMakeFiles/writeAndDraw.dir/rule
+.PHONY : writeAndDraw
+
+# codegen rule for target.
+src/CMakeFiles/writeAndDraw.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/writeAndDraw.dir/build.make src/CMakeFiles/writeAndDraw.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=23,24 "Finished codegen for target writeAndDraw"
+.PHONY : src/CMakeFiles/writeAndDraw.dir/codegen
+
+# clean rule for target.
+src/CMakeFiles/writeAndDraw.dir/clean:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/writeAndDraw.dir/build.make src/CMakeFiles/writeAndDraw.dir/clean
+.PHONY : src/CMakeFiles/writeAndDraw.dir/clean
 
 #=============================================================================
 # Target rules for target tests/CMakeFiles/tests.dir
