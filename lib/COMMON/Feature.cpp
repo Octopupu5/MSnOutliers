@@ -2,6 +2,7 @@
 
 namespace CP {
     namespace Common {
+        Feature::Feature() : _name("Empty"), _value(0) {}
         Feature::Feature(const std::string& name, double value) : _name(name), _value(value) {}
         Feature::Feature(double value) : _name("Empty"), _value(value) {}
 

@@ -9,8 +9,10 @@ namespace CP {
     namespace Common {
         class Feature {
         public:
+            Feature();
             Feature(double value);
             Feature(const std::string& name, double value);
+
             ~Feature() {}
 
             void SetName(const std::string& name);
@@ -38,9 +40,6 @@ namespace CP {
         protected:
             std::string _name;
             double _value;
-
-        private:
-            Feature() {}
         };
     }
 }
