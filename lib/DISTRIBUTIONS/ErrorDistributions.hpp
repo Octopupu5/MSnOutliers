@@ -4,6 +4,7 @@
 #include <random>
 #include <variant>
 #include <cmath>
+#include <stdexcept>
 
 namespace CP {
     namespace Distributions {
