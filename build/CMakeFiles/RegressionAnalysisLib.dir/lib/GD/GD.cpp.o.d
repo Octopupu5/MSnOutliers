@@ -1,10 +1,8 @@
-CMakeFiles/RegressionAnalysisLib.dir/lib/ML/LinearRegression/LinearRegression.cpp.o: \
-  /Users/heritagetime/VSCode/MSnOutliers/lib/ML/LinearRegression/LinearRegression.cpp \
-  /Users/heritagetime/VSCode/MSnOutliers/lib/ML/LinearRegression/LinearRegression.hpp \
-  /Users/heritagetime/VSCode/MSnOutliers/lib/ML/LinearRegression/../../GD/Adam.hpp \
-  /Users/heritagetime/VSCode/MSnOutliers/lib/ML/LinearRegression/../../GD/GD.hpp \
-  /Users/heritagetime/VSCode/MSnOutliers/lib/ML/LinearRegression/../../GD/../COMMON/Matrix.hpp \
-  /Users/heritagetime/VSCode/MSnOutliers/lib/ML/LinearRegression/../../GD/../COMMON/Feature.hpp \
+CMakeFiles/RegressionAnalysisLib.dir/lib/GD/GD.cpp.o: \
+  /Users/heritagetime/VSCode/MSnOutliers/lib/GD/GD.cpp \
+  /Users/heritagetime/VSCode/MSnOutliers/lib/GD/GD.hpp \
+  /Users/heritagetime/VSCode/MSnOutliers/lib/GD/../COMMON/Matrix.hpp \
+  /Users/heritagetime/VSCode/MSnOutliers/lib/GD/../COMMON/Feature.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__assert \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__config \

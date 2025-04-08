@@ -359,6 +359,30 @@ lib/DISTRIBUTIONS/ErrorDistributions.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/DISTRIBUTIONS/ErrorDistributions.cpp.s
 .PHONY : lib/DISTRIBUTIONS/ErrorDistributions.cpp.s
 
+lib/GD/GD.o: lib/GD/GD.cpp.o
+.PHONY : lib/GD/GD.o
+
+# target to build an object file
+lib/GD/GD.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/GD/GD.cpp.o
+.PHONY : lib/GD/GD.cpp.o
+
+lib/GD/GD.i: lib/GD/GD.cpp.i
+.PHONY : lib/GD/GD.i
+
+# target to preprocess a source file
+lib/GD/GD.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/GD/GD.cpp.i
+.PHONY : lib/GD/GD.cpp.i
+
+lib/GD/GD.s: lib/GD/GD.cpp.s
+.PHONY : lib/GD/GD.s
+
+# target to generate assembly for a file
+lib/GD/GD.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/GD/GD.cpp.s
+.PHONY : lib/GD/GD.cpp.s
+
 lib/ML/DBSCAN/DBSCAN.o: lib/ML/DBSCAN/DBSCAN.cpp.o
 .PHONY : lib/ML/DBSCAN/DBSCAN.o
 
@@ -382,30 +406,6 @@ lib/ML/DBSCAN/DBSCAN.s: lib/ML/DBSCAN/DBSCAN.cpp.s
 lib/ML/DBSCAN/DBSCAN.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/ML/DBSCAN/DBSCAN.cpp.s
 .PHONY : lib/ML/DBSCAN/DBSCAN.cpp.s
-
-lib/ML/GradientDescent/GD.o: lib/ML/GradientDescent/GD.cpp.o
-.PHONY : lib/ML/GradientDescent/GD.o
-
-# target to build an object file
-lib/ML/GradientDescent/GD.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/ML/GradientDescent/GD.cpp.o
-.PHONY : lib/ML/GradientDescent/GD.cpp.o
-
-lib/ML/GradientDescent/GD.i: lib/ML/GradientDescent/GD.cpp.i
-.PHONY : lib/ML/GradientDescent/GD.i
-
-# target to preprocess a source file
-lib/ML/GradientDescent/GD.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/ML/GradientDescent/GD.cpp.i
-.PHONY : lib/ML/GradientDescent/GD.cpp.i
-
-lib/ML/GradientDescent/GD.s: lib/ML/GradientDescent/GD.cpp.s
-.PHONY : lib/ML/GradientDescent/GD.s
-
-# target to generate assembly for a file
-lib/ML/GradientDescent/GD.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/RegressionAnalysisLib.dir/build.make CMakeFiles/RegressionAnalysisLib.dir/lib/ML/GradientDescent/GD.cpp.s
-.PHONY : lib/ML/GradientDescent/GD.cpp.s
 
 lib/ML/LinearRegression/LinearRegression.o: lib/ML/LinearRegression/LinearRegression.cpp.o
 .PHONY : lib/ML/LinearRegression/LinearRegression.o
@@ -586,12 +586,12 @@ help:
 	@echo "... lib/DISTRIBUTIONS/ErrorDistributions.o"
 	@echo "... lib/DISTRIBUTIONS/ErrorDistributions.i"
 	@echo "... lib/DISTRIBUTIONS/ErrorDistributions.s"
+	@echo "... lib/GD/GD.o"
+	@echo "... lib/GD/GD.i"
+	@echo "... lib/GD/GD.s"
 	@echo "... lib/ML/DBSCAN/DBSCAN.o"
 	@echo "... lib/ML/DBSCAN/DBSCAN.i"
 	@echo "... lib/ML/DBSCAN/DBSCAN.s"
-	@echo "... lib/ML/GradientDescent/GD.o"
-	@echo "... lib/ML/GradientDescent/GD.i"
-	@echo "... lib/ML/GradientDescent/GD.s"
 	@echo "... lib/ML/LinearRegression/LinearRegression.o"
 	@echo "... lib/ML/LinearRegression/LinearRegression.i"
 	@echo "... lib/ML/LinearRegression/LinearRegression.s"

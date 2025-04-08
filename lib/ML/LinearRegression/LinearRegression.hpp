@@ -1,7 +1,7 @@
 #ifndef LINEARREGRESSION_HPP
 #define LINEARREGRESSION_HPP
 
-#include "../GradientDescent/Adam.hpp"
+#include "../../GD/Adam.hpp"
 
 namespace CP {
     namespace ML {

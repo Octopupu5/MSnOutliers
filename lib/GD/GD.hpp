@@ -1,7 +1,7 @@
 #ifndef GD_HPP
 #define GD_HPP
 
-#include "../../COMMON/Matrix.hpp"
+#include "../COMMON/Matrix.hpp"
 #include <functional>
 
 namespace CP {

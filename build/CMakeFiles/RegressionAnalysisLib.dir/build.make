@@ -184,24 +184,10 @@ CMakeFiles/RegressionAnalysisLib.dir/lib/ML/DBSCAN/DBSCAN.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/RegressionAnalysisLib.dir/lib/ML/DBSCAN/DBSCAN.cpp.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/heritagetime/VSCode/MSnOutliers/lib/ML/DBSCAN/DBSCAN.cpp -o CMakeFiles/RegressionAnalysisLib.dir/lib/ML/DBSCAN/DBSCAN.cpp.s
 
-CMakeFiles/RegressionAnalysisLib.dir/lib/ML/GradientDescent/GD.cpp.o: CMakeFiles/RegressionAnalysisLib.dir/flags.make
-CMakeFiles/RegressionAnalysisLib.dir/lib/ML/GradientDescent/GD.cpp.o: /Users/heritagetime/VSCode/MSnOutliers/lib/ML/GradientDescent/GD.cpp
-CMakeFiles/RegressionAnalysisLib.dir/lib/ML/GradientDescent/GD.cpp.o: CMakeFiles/RegressionAnalysisLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/RegressionAnalysisLib.dir/lib/ML/GradientDescent/GD.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RegressionAnalysisLib.dir/lib/ML/GradientDescent/GD.cpp.o -MF CMakeFiles/RegressionAnalysisLib.dir/lib/ML/GradientDescent/GD.cpp.o.d -o CMakeFiles/RegressionAnalysisLib.dir/lib/ML/GradientDescent/GD.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/lib/ML/GradientDescent/GD.cpp
-
-CMakeFiles/RegressionAnalysisLib.dir/lib/ML/GradientDescent/GD.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/RegressionAnalysisLib.dir/lib/ML/GradientDescent/GD.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/heritagetime/VSCode/MSnOutliers/lib/ML/GradientDescent/GD.cpp > CMakeFiles/RegressionAnalysisLib.dir/lib/ML/GradientDescent/GD.cpp.i
-
-CMakeFiles/RegressionAnalysisLib.dir/lib/ML/GradientDescent/GD.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/RegressionAnalysisLib.dir/lib/ML/GradientDescent/GD.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/heritagetime/VSCode/MSnOutliers/lib/ML/GradientDescent/GD.cpp -o CMakeFiles/RegressionAnalysisLib.dir/lib/ML/GradientDescent/GD.cpp.s
-
 CMakeFiles/RegressionAnalysisLib.dir/lib/ML/LinearRegression/LinearRegression.cpp.o: CMakeFiles/RegressionAnalysisLib.dir/flags.make
 CMakeFiles/RegressionAnalysisLib.dir/lib/ML/LinearRegression/LinearRegression.cpp.o: /Users/heritagetime/VSCode/MSnOutliers/lib/ML/LinearRegression/LinearRegression.cpp
 CMakeFiles/RegressionAnalysisLib.dir/lib/ML/LinearRegression/LinearRegression.cpp.o: CMakeFiles/RegressionAnalysisLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/RegressionAnalysisLib.dir/lib/ML/LinearRegression/LinearRegression.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/RegressionAnalysisLib.dir/lib/ML/LinearRegression/LinearRegression.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RegressionAnalysisLib.dir/lib/ML/LinearRegression/LinearRegression.cpp.o -MF CMakeFiles/RegressionAnalysisLib.dir/lib/ML/LinearRegression/LinearRegression.cpp.o.d -o CMakeFiles/RegressionAnalysisLib.dir/lib/ML/LinearRegression/LinearRegression.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/lib/ML/LinearRegression/LinearRegression.cpp
 
 CMakeFiles/RegressionAnalysisLib.dir/lib/ML/LinearRegression/LinearRegression.cpp.i: cmake_force
@@ -215,7 +201,7 @@ CMakeFiles/RegressionAnalysisLib.dir/lib/ML/LinearRegression/LinearRegression.cp
 CMakeFiles/RegressionAnalysisLib.dir/lib/ML/OCSVM/OneClassSVM.cpp.o: CMakeFiles/RegressionAnalysisLib.dir/flags.make
 CMakeFiles/RegressionAnalysisLib.dir/lib/ML/OCSVM/OneClassSVM.cpp.o: /Users/heritagetime/VSCode/MSnOutliers/lib/ML/OCSVM/OneClassSVM.cpp
 CMakeFiles/RegressionAnalysisLib.dir/lib/ML/OCSVM/OneClassSVM.cpp.o: CMakeFiles/RegressionAnalysisLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/RegressionAnalysisLib.dir/lib/ML/OCSVM/OneClassSVM.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/RegressionAnalysisLib.dir/lib/ML/OCSVM/OneClassSVM.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RegressionAnalysisLib.dir/lib/ML/OCSVM/OneClassSVM.cpp.o -MF CMakeFiles/RegressionAnalysisLib.dir/lib/ML/OCSVM/OneClassSVM.cpp.o.d -o CMakeFiles/RegressionAnalysisLib.dir/lib/ML/OCSVM/OneClassSVM.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/lib/ML/OCSVM/OneClassSVM.cpp
 
 CMakeFiles/RegressionAnalysisLib.dir/lib/ML/OCSVM/OneClassSVM.cpp.i: cmake_force
@@ -229,7 +215,7 @@ CMakeFiles/RegressionAnalysisLib.dir/lib/ML/OCSVM/OneClassSVM.cpp.s: cmake_force
 CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/Node.cpp.o: CMakeFiles/RegressionAnalysisLib.dir/flags.make
 CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/Node.cpp.o: /Users/heritagetime/VSCode/MSnOutliers/lib/ML/iForest/Node.cpp
 CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/Node.cpp.o: CMakeFiles/RegressionAnalysisLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/Node.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/Node.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/Node.cpp.o -MF CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/Node.cpp.o.d -o CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/Node.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/lib/ML/iForest/Node.cpp
 
 CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/Node.cpp.i: cmake_force
@@ -243,7 +229,7 @@ CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/Node.cpp.s: cmake_force
 CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/iForest.cpp.o: CMakeFiles/RegressionAnalysisLib.dir/flags.make
 CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/iForest.cpp.o: /Users/heritagetime/VSCode/MSnOutliers/lib/ML/iForest/iForest.cpp
 CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/iForest.cpp.o: CMakeFiles/RegressionAnalysisLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/iForest.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/iForest.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/iForest.cpp.o -MF CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/iForest.cpp.o.d -o CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/iForest.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/lib/ML/iForest/iForest.cpp
 
 CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/iForest.cpp.i: cmake_force
@@ -257,7 +243,7 @@ CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/iForest.cpp.s: cmake_force
 CMakeFiles/RegressionAnalysisLib.dir/lib/MS/LeastSquares.cpp.o: CMakeFiles/RegressionAnalysisLib.dir/flags.make
 CMakeFiles/RegressionAnalysisLib.dir/lib/MS/LeastSquares.cpp.o: /Users/heritagetime/VSCode/MSnOutliers/lib/MS/LeastSquares.cpp
 CMakeFiles/RegressionAnalysisLib.dir/lib/MS/LeastSquares.cpp.o: CMakeFiles/RegressionAnalysisLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/RegressionAnalysisLib.dir/lib/MS/LeastSquares.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/RegressionAnalysisLib.dir/lib/MS/LeastSquares.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RegressionAnalysisLib.dir/lib/MS/LeastSquares.cpp.o -MF CMakeFiles/RegressionAnalysisLib.dir/lib/MS/LeastSquares.cpp.o.d -o CMakeFiles/RegressionAnalysisLib.dir/lib/MS/LeastSquares.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/lib/MS/LeastSquares.cpp
 
 CMakeFiles/RegressionAnalysisLib.dir/lib/MS/LeastSquares.cpp.i: cmake_force
@@ -271,7 +257,7 @@ CMakeFiles/RegressionAnalysisLib.dir/lib/MS/LeastSquares.cpp.s: cmake_force
 CMakeFiles/RegressionAnalysisLib.dir/lib/MS/StatsMethod.cpp.o: CMakeFiles/RegressionAnalysisLib.dir/flags.make
 CMakeFiles/RegressionAnalysisLib.dir/lib/MS/StatsMethod.cpp.o: /Users/heritagetime/VSCode/MSnOutliers/lib/MS/StatsMethod.cpp
 CMakeFiles/RegressionAnalysisLib.dir/lib/MS/StatsMethod.cpp.o: CMakeFiles/RegressionAnalysisLib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/RegressionAnalysisLib.dir/lib/MS/StatsMethod.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/RegressionAnalysisLib.dir/lib/MS/StatsMethod.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RegressionAnalysisLib.dir/lib/MS/StatsMethod.cpp.o -MF CMakeFiles/RegressionAnalysisLib.dir/lib/MS/StatsMethod.cpp.o.d -o CMakeFiles/RegressionAnalysisLib.dir/lib/MS/StatsMethod.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/lib/MS/StatsMethod.cpp
 
 CMakeFiles/RegressionAnalysisLib.dir/lib/MS/StatsMethod.cpp.i: cmake_force
@@ -281,6 +267,20 @@ CMakeFiles/RegressionAnalysisLib.dir/lib/MS/StatsMethod.cpp.i: cmake_force
 CMakeFiles/RegressionAnalysisLib.dir/lib/MS/StatsMethod.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/RegressionAnalysisLib.dir/lib/MS/StatsMethod.cpp.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/heritagetime/VSCode/MSnOutliers/lib/MS/StatsMethod.cpp -o CMakeFiles/RegressionAnalysisLib.dir/lib/MS/StatsMethod.cpp.s
+
+CMakeFiles/RegressionAnalysisLib.dir/lib/GD/GD.cpp.o: CMakeFiles/RegressionAnalysisLib.dir/flags.make
+CMakeFiles/RegressionAnalysisLib.dir/lib/GD/GD.cpp.o: /Users/heritagetime/VSCode/MSnOutliers/lib/GD/GD.cpp
+CMakeFiles/RegressionAnalysisLib.dir/lib/GD/GD.cpp.o: CMakeFiles/RegressionAnalysisLib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/RegressionAnalysisLib.dir/lib/GD/GD.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RegressionAnalysisLib.dir/lib/GD/GD.cpp.o -MF CMakeFiles/RegressionAnalysisLib.dir/lib/GD/GD.cpp.o.d -o CMakeFiles/RegressionAnalysisLib.dir/lib/GD/GD.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/lib/GD/GD.cpp
+
+CMakeFiles/RegressionAnalysisLib.dir/lib/GD/GD.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/RegressionAnalysisLib.dir/lib/GD/GD.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/heritagetime/VSCode/MSnOutliers/lib/GD/GD.cpp > CMakeFiles/RegressionAnalysisLib.dir/lib/GD/GD.cpp.i
+
+CMakeFiles/RegressionAnalysisLib.dir/lib/GD/GD.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/RegressionAnalysisLib.dir/lib/GD/GD.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/heritagetime/VSCode/MSnOutliers/lib/GD/GD.cpp -o CMakeFiles/RegressionAnalysisLib.dir/lib/GD/GD.cpp.s
 
 # Object files for target RegressionAnalysisLib
 RegressionAnalysisLib_OBJECTS = \
@@ -292,13 +292,13 @@ RegressionAnalysisLib_OBJECTS = \
 "CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/Metrics.cpp.o" \
 "CMakeFiles/RegressionAnalysisLib.dir/lib/DISTRIBUTIONS/ErrorDistributions.cpp.o" \
 "CMakeFiles/RegressionAnalysisLib.dir/lib/ML/DBSCAN/DBSCAN.cpp.o" \
-"CMakeFiles/RegressionAnalysisLib.dir/lib/ML/GradientDescent/GD.cpp.o" \
 "CMakeFiles/RegressionAnalysisLib.dir/lib/ML/LinearRegression/LinearRegression.cpp.o" \
 "CMakeFiles/RegressionAnalysisLib.dir/lib/ML/OCSVM/OneClassSVM.cpp.o" \
 "CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/Node.cpp.o" \
 "CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/iForest.cpp.o" \
 "CMakeFiles/RegressionAnalysisLib.dir/lib/MS/LeastSquares.cpp.o" \
-"CMakeFiles/RegressionAnalysisLib.dir/lib/MS/StatsMethod.cpp.o"
+"CMakeFiles/RegressionAnalysisLib.dir/lib/MS/StatsMethod.cpp.o" \
+"CMakeFiles/RegressionAnalysisLib.dir/lib/GD/GD.cpp.o"
 
 # External object files for target RegressionAnalysisLib
 RegressionAnalysisLib_EXTERNAL_OBJECTS =
@@ -311,13 +311,13 @@ libRegressionAnalysisLib.a: CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/Matr
 libRegressionAnalysisLib.a: CMakeFiles/RegressionAnalysisLib.dir/lib/COMMON/Metrics.cpp.o
 libRegressionAnalysisLib.a: CMakeFiles/RegressionAnalysisLib.dir/lib/DISTRIBUTIONS/ErrorDistributions.cpp.o
 libRegressionAnalysisLib.a: CMakeFiles/RegressionAnalysisLib.dir/lib/ML/DBSCAN/DBSCAN.cpp.o
-libRegressionAnalysisLib.a: CMakeFiles/RegressionAnalysisLib.dir/lib/ML/GradientDescent/GD.cpp.o
 libRegressionAnalysisLib.a: CMakeFiles/RegressionAnalysisLib.dir/lib/ML/LinearRegression/LinearRegression.cpp.o
 libRegressionAnalysisLib.a: CMakeFiles/RegressionAnalysisLib.dir/lib/ML/OCSVM/OneClassSVM.cpp.o
 libRegressionAnalysisLib.a: CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/Node.cpp.o
 libRegressionAnalysisLib.a: CMakeFiles/RegressionAnalysisLib.dir/lib/ML/iForest/iForest.cpp.o
 libRegressionAnalysisLib.a: CMakeFiles/RegressionAnalysisLib.dir/lib/MS/LeastSquares.cpp.o
 libRegressionAnalysisLib.a: CMakeFiles/RegressionAnalysisLib.dir/lib/MS/StatsMethod.cpp.o
+libRegressionAnalysisLib.a: CMakeFiles/RegressionAnalysisLib.dir/lib/GD/GD.cpp.o
 libRegressionAnalysisLib.a: CMakeFiles/RegressionAnalysisLib.dir/build.make
 libRegressionAnalysisLib.a: CMakeFiles/RegressionAnalysisLib.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/heritagetime/VSCode/MSnOutliers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Linking CXX static library libRegressionAnalysisLib.a"

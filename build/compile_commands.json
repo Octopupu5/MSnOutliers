@@ -49,12 +49,6 @@
 },
 {
   "directory": "/Users/heritagetime/VSCode/MSnOutliers/build",
-  "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib -I/Users/heritagetime/VSCode/MSnOutliers/build -isystem /opt/homebrew/include -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/RegressionAnalysisLib.dir/lib/ML/GradientDescent/GD.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/lib/ML/GradientDescent/GD.cpp",
-  "file": "/Users/heritagetime/VSCode/MSnOutliers/lib/ML/GradientDescent/GD.cpp",
-  "output": "CMakeFiles/RegressionAnalysisLib.dir/lib/ML/GradientDescent/GD.cpp.o"
-},
-{
-  "directory": "/Users/heritagetime/VSCode/MSnOutliers/build",
   "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib -I/Users/heritagetime/VSCode/MSnOutliers/build -isystem /opt/homebrew/include -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/RegressionAnalysisLib.dir/lib/ML/LinearRegression/LinearRegression.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/lib/ML/LinearRegression/LinearRegression.cpp",
   "file": "/Users/heritagetime/VSCode/MSnOutliers/lib/ML/LinearRegression/LinearRegression.cpp",
   "output": "CMakeFiles/RegressionAnalysisLib.dir/lib/ML/LinearRegression/LinearRegression.cpp.o"
@@ -88,6 +82,12 @@
   "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib -I/Users/heritagetime/VSCode/MSnOutliers/build -isystem /opt/homebrew/include -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/RegressionAnalysisLib.dir/lib/MS/StatsMethod.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/lib/MS/StatsMethod.cpp",
   "file": "/Users/heritagetime/VSCode/MSnOutliers/lib/MS/StatsMethod.cpp",
   "output": "CMakeFiles/RegressionAnalysisLib.dir/lib/MS/StatsMethod.cpp.o"
+},
+{
+  "directory": "/Users/heritagetime/VSCode/MSnOutliers/build",
+  "command": "/usr/bin/clang++  -I/Users/heritagetime/VSCode/MSnOutliers/lib -I/Users/heritagetime/VSCode/MSnOutliers/build -isystem /opt/homebrew/include -g -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/RegressionAnalysisLib.dir/lib/GD/GD.cpp.o -c /Users/heritagetime/VSCode/MSnOutliers/lib/GD/GD.cpp",
+  "file": "/Users/heritagetime/VSCode/MSnOutliers/lib/GD/GD.cpp",
+  "output": "CMakeFiles/RegressionAnalysisLib.dir/lib/GD/GD.cpp.o"
 },
 {
   "directory": "/Users/heritagetime/VSCode/MSnOutliers/build/src",
