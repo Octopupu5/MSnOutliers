@@ -7,13 +7,14 @@
 namespace CP {
     namespace MS {
         using RData = Common::RegressionData;
+        using Vec = Eigen::VectorXd;
 
         class LeastSquaresMethod : public StatsMethod {
         public:
             explicit LeastSquaresMethod(const RData& data): StatsMethod(data){}
-            Common::Matrix compute() override;
+            Vec compute() override;
         };
-    }
-} // namespace CP
+    } // namespace MS;
+} // namespace CP;
 
 #endif

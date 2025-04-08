@@ -3,6 +3,7 @@
 
 #include "../COMMON/FileParser.hpp"
 #include "../COMMON/Matrix.hpp"
+#include "Eigen/Dense"
 
 namespace CP {
     namespace MS {
@@ -10,14 +11,14 @@ namespace CP {
         class StatsMethod {
         public:
             explicit StatsMethod(const RData& data);
-            virtual Common::Matrix compute() = 0;
+            virtual Eigen::VectorXd compute() = 0;
 
         protected:
-            Common::Matrix _featuresMatrix;
-            Common::Matrix _targetMatrix;
+            Eigen::MatrixXd _featuresMatrix;
+            Eigen::MatrixXd _targetMatrix;
         };
-    }
-}
+    } // namespace MS;
+} // namespace CP;
 
 
 #endif //CP_2025_STATSMETHOD_H

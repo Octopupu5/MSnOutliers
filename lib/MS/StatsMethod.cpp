@@ -7,21 +7,20 @@ namespace CP {
                 std::cout << "Error, data is empty" << std::endl;
                 return;
             }
-            uint32_t numFeatures = data[0].features.size() + 1;
-            uint32_t numSamples = data.size();
-            _featuresMatrix = Common::Matrix(numSamples, numFeatures);
-            _targetMatrix = Common::Matrix(numSamples, 1);
-            
-            for (uint32_t i = 0; i < numSamples; ++i) {
-                for (uint32_t j = 0; j < numFeatures; ++j) {
+            auto numFeatures = static_cast<Eigen::Index>(data[0].features.size() + 1);
+            auto numSamples = static_cast<Eigen::Index>(data.size());
+            _featuresMatrix.resize(numSamples, numFeatures);
+            _targetMatrix.resize(numSamples);
+            for (Eigen::Index i = 0; i < numSamples; ++i) {
+                for (Eigen::Index j = 0; j < numFeatures; ++j) {
                     if (!j) {
-                        _featuresMatrix.At(i, j).SetValue(1);
+                        _featuresMatrix(i, j) = 1;
                     } else {
-                        _featuresMatrix.At(i, j).SetValue(data[i].features[j-1]);
+                        _featuresMatrix(i, j) = data[i].features[j-1];
                     }
                 }
-                _targetMatrix.At(i, 0) = data[i].target;
+                _targetMatrix[i] = data[i].target;
             }
         }
-    }
-}
+    } // namespace MS;
+} // namespace CP;
