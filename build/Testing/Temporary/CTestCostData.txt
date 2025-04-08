@@ -1,3 +1,0 @@
-RegressionAnalysisLib.tests 14 0.101921
----
-RegressionAnalysisLib.tests

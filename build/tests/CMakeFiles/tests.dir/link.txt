@@ -1,1 +1,0 @@
-/usr/bin/clang++ -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/tests.dir/test_main.cpp.o -o tests  ../libRegressionAnalysisLib.a /usr/local/lib/libgtest_main.a /usr/local/lib/libgtest.a
