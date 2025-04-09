@@ -1,2 +1,2 @@
-DATA_DIR = '/Users/heritagetime/VSCode/MSnOutliers/src/data'
-SRC_CONFIGS_DIR = '/Users/heritagetime/VSCode/MSnOutliers/src/configs'
+DATA_DIR = 'D:/MSnOutliers/src/data'
+SRC_CONFIGS_DIR = 'D:/MSnOutliers/src/configs'

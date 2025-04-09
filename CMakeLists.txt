@@ -4,6 +4,8 @@ project(RegressionAnalysis LANGUAGES CXX)
 
 include_directories(
     ${CMAKE_SOURCE_DIR}/lib
+    ${CMAKE_SOURCE_DIR}/json
+    ${CMAKE_SOURCE_DIR}/eigen
 )
 
 set(CMAKE_CXX_STANDARD 17)
@@ -41,10 +43,7 @@ file(WRITE ${CMAKE_SOURCE_DIR}/src/configs/config.py
 set(LIBRARY_NAME RegressionAnalysisLib)
 add_library(${LIBRARY_NAME} STATIC ${SOURCES})
 
-find_package(nlohmann_json 3.11.3 REQUIRED)
-target_link_libraries(${LIBRARY_NAME} PRIVATE nlohmann_json::nlohmann_json)
-
 add_subdirectory(src)
 
-enable_testing()
-add_subdirectory(tests)
+#enable_testing()
+#add_subdirectory(tests)

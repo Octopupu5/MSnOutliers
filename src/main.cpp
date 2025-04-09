@@ -6,7 +6,7 @@
 #include "MS/Huber.hpp"
 #include "MS/Tukey.hpp"
 #include "COMMON/Metrics.hpp"
-#include "nlohmann/json.hpp"
+#include "..json/single_include/nlohmann/json.hpp"
 #include "config.h"
 
 using json = nlohmann::json;
@@ -35,13 +35,14 @@ stats runOnMethods(const CP::Common::RegressionData& data, const std::vector<std
 }
 
 CP::Common::Matrix fromEigenVec(const Eigen::VectorXd& vec) {
-    std::vector<CP::Common::Feature> f;
+    std::vector<std::vector<CP::Common::Feature>> f;
     auto len = vec.size();
     for (int i = 0; i < len; ++i) {
-        f.emplace_back(vec[i]);
+        f.push_back({CP::Common::Feature(vec[i])});
     }
-    return CP::Common::Matrix({f});
+    return CP::Common::Matrix(f);
 }
+
 
 int main() {
     std::string path = std::string(DATA_DIR) + "/source.csv";

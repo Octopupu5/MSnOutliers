@@ -15,7 +15,7 @@ namespace CP {
 
         protected:
             Eigen::MatrixXd _featuresMatrix;
-            Eigen::MatrixXd _targetMatrix;
+            Eigen::VectorXd _targetMatrix;
         };
     } // namespace MS;
 } // namespace CP;
