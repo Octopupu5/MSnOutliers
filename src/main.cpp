@@ -6,7 +6,7 @@
 #include "MS/Huber.hpp"
 #include "MS/Tukey.hpp"
 #include "COMMON/Metrics.hpp"
-#include "..json/single_include/nlohmann/json.hpp"
+#include "../json/single_include/nlohmann/json.hpp"
 #include "config.h"
 
 using json = nlohmann::json;
