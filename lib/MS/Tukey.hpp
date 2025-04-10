@@ -1,4 +1,4 @@
-#include "StatsMethod.hpp"
+#include "GradMethod.hpp"
 #ifndef CP_2025_TUKEY_H
 #define CP_2025_TUKEY_H
 
@@ -8,14 +8,13 @@ namespace CP {
         using Vec = Eigen::VectorXd;
         using Mat = Eigen::MatrixXd;
 
-        class Tukey : public StatsMethod {
+        class Tukey : public GradMethod {
         public:
-            Tukey(const RData& data, double del, double eps): StatsMethod(data), delta_(del), epochs_(eps){}
-            Vec compute() override;
+            Tukey(const RData& data, double del, double eps, double lr): GradMethod(data, eps, lr), delta_(del){}
         private:
-            double gradient(double rem);
+            double gradient(double rem) const override;
+            double loss(double rem) const override;
             double delta_;
-            double epochs_;
         };
     } // namespace MS;
 } // namespace CP;

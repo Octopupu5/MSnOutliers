@@ -26,7 +26,7 @@ stats runOnMethods(const CP::Common::RegressionData& data, const std::vector<std
         }
         else if (el == "TUK") {
             // need to parametrize here
-            res["TUK"] = CP::MS::Tukey(data, 4.685, 1000).compute();
+            res["TUK"] = CP::MS::Tukey(data, 4.685, 1000, 0.001).compute();
             weights << "TUK: " << res["TUK"] << std::endl;
         }
     }

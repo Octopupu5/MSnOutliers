@@ -1,6 +1,6 @@
 #ifndef CP_2025_HUBER_H
 #define CP_2025_HUBER_H
-#include "StatsMethod.hpp"
+#include "GradMethod.hpp"
 
 namespace CP {
     namespace MS {
@@ -8,17 +8,14 @@ namespace CP {
         using Mat = Eigen::MatrixXd;
         using Vec = Eigen::VectorXd;
 
-        class Huber : public StatsMethod {
+        class Huber : public GradMethod {
             public:
-                Huber(const RData& data, double del, double eps, double lr): StatsMethod(data), delta_(del), epochs_(eps), learningRate_(lr){}
-                Vec compute() override;
-
+                Huber(const RData& data, double del, double eps, double lr): GradMethod(data, eps, lr), delta_(del){}
+                
             private:
-                double loss(double residual) const;
-                double gradient(double residual) const;
+                double loss(double residual) const override;
+                double gradient(double residual) const override;
                 double delta_;
-                double epochs_;
-                double learningRate_;
         };
     } // namespace MS;
 } // namespace CP;
