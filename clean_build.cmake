@@ -1,0 +1,8 @@
+file(GLOB_RECURSE build_files "${CMAKE_BINARY_DIR}/*")
+foreach(file ${build_files})
+    if(IS_DIRECTORY ${file})
+        file(REMOVE_RECURSE ${file})
+    else()
+        file(REMOVE ${file})
+    endif()
+endforeach()
