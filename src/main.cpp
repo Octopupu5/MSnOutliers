@@ -49,7 +49,7 @@ int main() {
     uint32_t numFeatures = 3;
     CP::Common::FileParser parser;
     CP::Common::RegressionData data = parser.parseCSV(path, numFeatures);
-    CP::Common::Matrix target({{-1.2}, {2.7}, {3.5}, {4.78}});
+    CP::Common::Matrix target({{-1.2}, {2.7}, {3.5}, {4.78}}); // -1.2 + 2.7x1 + 3.5x2 + 4.78x3
     CP::Common::Metrics calc;
 
     stats computed = runOnMethods(data, {"LSM", "HUB", "TUK"});
