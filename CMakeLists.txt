@@ -27,8 +27,13 @@ set(SOURCES
     ${GD_SOURCES}
 )
 
-set(DATA_DIR ${CMAKE_SOURCE_DIR}/src/data)
+set(SRC_DATA_DIR ${CMAKE_SOURCE_DIR}/src/data)
 set(SRC_CONFIGS_DIR ${CMAKE_SOURCE_DIR}/src/configs)
+set(SRC_OUTPUTS_DIR ${CMAKE_SOURCE_DIR}/src/outputs)
+set(SRC_PAINTINGS_DIR ${CMAKE_SOURCE_DIR}/src/PAINTINGS)
+
+set(PYTHON_EXEC_PATH "/Users/heritagetime/VSCode/.venv/bin/python3") # path to your python interpreter
+
 configure_file(
     ${CMAKE_SOURCE_DIR}/src/config.h.in
     ${CMAKE_BINARY_DIR}/config.h
@@ -36,8 +41,11 @@ configure_file(
 include_directories(${CMAKE_BINARY_DIR})
 
 file(WRITE ${CMAKE_SOURCE_DIR}/src/configs/config.py
-"DATA_DIR = '${DATA_DIR}'\n"
+"SRC_DATA_DIR = '${SRC_DATA_DIR}'\n"
 "SRC_CONFIGS_DIR = '${SRC_CONFIGS_DIR}'\n"
+"SRC_OUTPUTS_DIR = '${SRC_OUTPUTS_DIR}'\n"
+"SRC_PAINTINGS_DIR = '${SRC_PAINTINGS_DIR}'\n"
+"PYTHON_EXEC_PATH = '${PYTHON_EXEC_PATH}'\n"
 )
 
 set(LIBRARY_NAME RegressionAnalysisLib)
@@ -45,7 +53,7 @@ add_library(${LIBRARY_NAME} STATIC ${SOURCES})
 
 add_subdirectory(src)
 
-add_custom_target(clean_build COMMAND ${CMAKE_COMMAND} -P ${CMAKE_SOURCE_DIR}/clean_build.cmake)
+# add_custom_target(clean_build COMMAND ${CMAKE_COMMAND} -P ${CMAKE_SOURCE_DIR}/clean_build.cmake)
 
 #enable_testing()
 #add_subdirectory(tests)

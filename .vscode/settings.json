@@ -88,6 +88,12 @@
         "ios": "cpp",
         "locale": "cpp",
         "valarray": "cpp",
-        "*.inc": "cpp"
+        "*.inc": "cpp",
+        "csignal": "cpp",
+        "queue": "cpp",
+        "regex": "cpp",
+        "abobik": "cpp",
+        "filesystem": "cpp",
+        "*.in": "cpp"
     }
 }
