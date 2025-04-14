@@ -22,5 +22,35 @@ namespace CP {
                 _targetMatrix[i] = data[i].target;
             }
         }
+
+        void StatsMethod::makeNoise(int numNoise, Distrib& dist){
+            auto targetSize = _targetMatrix.size();
+            assert(targetSize && "Target matrix is empty");
+            assert((numNoise >= 0 && numNoise <= targetSize) && "numNoise must be somewhere in between 0 and target size");
+
+            // this one for noise;
+            std::random_device rd;
+            std::mt19937 gen(rd());
+
+            //this one for index in _targetMatrix;
+            std::random_device dev;
+            std::mt19937 rng(dev());
+            std::uniform_int_distribution<std::mt19937::result_type> randomIdx(0, targetSize * 100);
+            std::vector<bool> noised(targetSize, false);
+
+            int countNoised = 0;
+            // may take a while if we want to noise ~50%;
+            while (countNoised < numNoise) {
+                auto currentIndex = randomIdx(dev);
+                while (noised[currentIndex%targetSize]) {
+                    currentIndex = randomIdx(dev);
+                }
+                std::cout << "attempt " << countNoised << " index " << currentIndex << std::endl; 
+                noised[currentIndex%targetSize] = true;
+                ++countNoised;
+                _targetMatrix[currentIndex%targetSize] += dist.generate(gen);
+            }
+        }
+
     } // namespace MS;
 } // namespace CP;
