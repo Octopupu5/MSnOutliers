@@ -39,7 +39,6 @@ class Drawer:
             points_sorted = sorted(points, key=lambda p: p.get('x'))
             x = [p.get('x') for p in points_sorted]
             y = [p.get('y') for p in points_sorted]
-            plt.plot(x, y, color=obj.get('color', 'blue'), linewidth=obj.get('thickness', 1.0), alpha=obj.get('transparency', 1.0))
             plt.scatter(x, y, color=obj.get('color', 'blue'), s=obj.get('pointSize', 5.0), alpha=obj.get('transparency', 1.0))
 
 def main(config_path):
