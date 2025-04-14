@@ -71,11 +71,15 @@ int main() {
     auto scatter = std::make_shared<Scatter>(points, "red", 10.0, 0.9);
     auto vertLine = std::make_shared<VerticalLine>(3, -10, 10);
     auto horLine = std::make_shared<HorizontalLine>(3, -10, 10);
+    auto func = std::make_shared<FunctionPlot>([&] (const double &a) {
+        return sin(a) * cos(a);
+    }, 0, 40, 1000, "blue", 1, 0.7);
 
     graph.addObject(scatter);
     graph.addObject(line);
     graph.addObject(vertLine);
     graph.addObject(horLine);
+    graph.addObject(func);
     
     graph.saveConfig();
     graph.draw();
