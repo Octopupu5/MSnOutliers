@@ -5,6 +5,8 @@
 #include "MS/LeastSquares.hpp"
 #include "MS/Huber.hpp"
 #include "MS/Tukey.hpp"
+#include "MS/TheilSen.hpp"
+#include "MS/MinAbsDeviation.hpp"
 #include "COMMON/Metrics.hpp"
 #include "../json/single_include/nlohmann/json.hpp"
 #include "config.h"
@@ -16,7 +18,7 @@ stats runOnMethods(const CP::Common::RegressionData& data, const std::vector<std
     stats res;
     std::ofstream weights;
     weights.open("models.txt");
-    CP::Distributions::ErrorDistributions dist(CP::Distributions::ErrorDistributions::DistributionType::StudentT);
+    CP::Distributions::ErrorDistributions dist(CP::Distributions::ErrorDistributions::DistributionType::Normal);
     for (auto& el : methods) {
         if (el == "LSM") {
             auto model = CP::MS::LeastSquaresMethod(data);
@@ -28,13 +30,24 @@ stats runOnMethods(const CP::Common::RegressionData& data, const std::vector<std
             model.makeNoise(25, dist);
             res["HUB"] = model.compute();
             weights << "HUB: " << res["HUB"] << std::endl;
-        }
-        else if (el == "TUK") {
+        } else if (el == "TUK") {
             // need to parametrize here
             auto model = CP::MS::Tukey(data, 4.685, 1000, 0.001);
             model.makeNoise(25, dist);
             res["TUK"] = model.compute();
             weights << "TUK: " << res["TUK"] << std::endl;
+        } else if (el == "THS") {
+            // need to parametrize here
+            auto model = CP::MS::TheilSen(data);
+            model.makeNoise(25, dist);
+            res["THS"] = model.compute();
+            weights << "THS: " << res["THS"] << std::endl;
+        } else if (el == "LAD") {
+            // need to parametrize here
+            auto model = CP::MS::MinAbsDeviation(data, 1000, 0.001);
+            model.makeNoise(25, dist);
+            res["LAD"] = model.compute();
+            weights << "LAD: " << res["LAD"] << std::endl;
         }
     }
     weights.close();
@@ -59,7 +72,7 @@ int main() {
     CP::Common::Matrix target({{-1.2}, {2.7}, {3.5}, {4.78}}); // -1.2 + 2.7x1 + 3.5x2 + 4.78x3
     CP::Common::Metrics calc;
 
-    stats computed = runOnMethods(data, {"LSM", "HUB", "TUK"});
+    stats computed = runOnMethods(data, {"LSM", "HUB", "TUK", "THS", "LAD"});
     for (auto &[name, v] : computed) {
         std::cout << "Error on " << name << ": " << calc.meanSquaredError(target, std::move(fromEigenVec(v))) << std::endl;
     }

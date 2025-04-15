@@ -4,7 +4,7 @@ namespace CP {
         Eigen::VectorXd GradMethod::compute() {
             auto n = _featuresMatrix.rows();
             auto d = _featuresMatrix.cols();
-            Vec w = Vec::Zero(d);
+            Vec w  = Vec::Constant(d, 0);
 
             for (auto ep = 0; ep < epochs_; ++ep) {
                 Vec grad = Vec::Zero(d);

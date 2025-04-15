@@ -2,6 +2,16 @@
 
 namespace CP {
     namespace MS {
+        double median(const Eigen::VectorXd& v) {
+            std::vector<double> vec(v.data(), v.data() + v.size());
+            std::sort(vec.begin(), vec.end());
+            auto len = vec.size();
+            if (!(len % 2)) {
+                return (vec[len/2] + vec[len/2 - 1]) / 2.0;
+            }
+            return vec[len/2];
+        }
+
         StatsMethod::StatsMethod(const RData &data) {
             if (data.empty()) {
                 std::cout << "Error, data is empty" << std::endl;
@@ -45,7 +55,6 @@ namespace CP {
                 while (noised[currentIndex%targetSize]) {
                     currentIndex = randomIdx(dev);
                 }
-                std::cout << "attempt " << countNoised << " index " << currentIndex << std::endl; 
                 noised[currentIndex%targetSize] = true;
                 ++countNoised;
                 _targetMatrix[currentIndex%targetSize] += dist.generate(gen);

@@ -8,6 +8,8 @@ namespace CP {
         using Vec = Eigen::VectorXd;
         using Mat = Eigen::MatrixXd;
 
+        double median(const Vec& vec);
+
         class GradMethod : public StatsMethod {
         public:
             GradMethod(const RData& data, double ep, double lr): StatsMethod(data), epochs_(ep), learningRate_(lr){}
