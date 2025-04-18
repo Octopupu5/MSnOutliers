@@ -5,6 +5,7 @@ namespace CP {
             auto n = _featuresMatrix.rows();
             auto d = _featuresMatrix.cols();
             Vec w  = Vec::Constant(d, 0);
+            w(0) = median(_targetMatrix);
 
             for (auto ep = 0; ep < epochs_; ++ep) {
                 Vec grad = Vec::Zero(d);
