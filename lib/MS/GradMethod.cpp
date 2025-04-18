@@ -10,7 +10,7 @@ namespace CP {
                 Vec grad = Vec::Zero(d);
                 double loss = 0.0;
 
-                for (int i = 0; i < d; ++i) {
+                for (int i = 0; i < n; ++i) {
                     double pred = _featuresMatrix.row(i).dot(w);
                     double rem = pred - _targetMatrix[i];
                     double g = this->gradient(rem);

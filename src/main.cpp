@@ -32,7 +32,7 @@ stats runOnMethods(const CP::Common::RegressionData& data, const std::vector<std
             weights << "HUB: " << res["HUB"] << std::endl;
         } else if (el == "TUK") {
             // need to parametrize here
-            auto model = CP::MS::Tukey(data, 4.685, 1000, 0.001);
+            auto model = CP::MS::Tukey(data, 4.685, 10000, 0.001);
             model.makeNoise(25, dist);
             res["TUK"] = model.compute();
             weights << "TUK: " << res["TUK"] << std::endl;
