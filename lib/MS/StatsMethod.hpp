@@ -15,13 +15,14 @@ namespace CP {
         using Distrib = Distributions::ErrorDistributions;
         class StatsMethod {
         public:
-            explicit StatsMethod(const RData& data);
+            explicit StatsMethod(const RData& data, const std::string& n);
             void makeNoise(int percent, Distrib& dist);
             virtual Eigen::VectorXd compute() { return Eigen::VectorXd::Zero(_featuresMatrix.cols()); }
 
         protected:
             Eigen::MatrixXd _featuresMatrix;
             Eigen::VectorXd _targetMatrix;
+            std::string _name;
         };
     } // namespace MS;
 } // namespace CP;

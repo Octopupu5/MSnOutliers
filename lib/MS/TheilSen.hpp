@@ -9,7 +9,7 @@ namespace CP {
         using Mat = Eigen::MatrixXd;
         class TheilSen : public StatsMethod {
         public:
-            explicit TheilSen(const RData& data): StatsMethod(data) {}
+            explicit TheilSen(const RData& data): StatsMethod(data, "THS") {}
             Vec compute() override;
         };
     } // namespace MS;

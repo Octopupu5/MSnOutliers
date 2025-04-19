@@ -4,8 +4,8 @@ namespace CP {
     namespace MS {
         double Tukey::gradient(double rem) const {
             double u = rem / delta_;
-            if (std::abs(u) < 1.0) {
-                return (1.0 - u * u) * (1.0 - u * u);
+            if (std::abs(u) <= 1.0) {
+                return rem * (1.0 - u * u) * (1.0 - u * u);
             }
             return 0.0;
         }

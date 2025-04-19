@@ -24,30 +24,31 @@ stats runOnMethods(const CP::Common::RegressionData& data, const std::vector<std
             auto model = CP::MS::LeastSquaresMethod(data);
             model.makeNoise(25, dist);
             res["LSM"] = model.compute();
+            weights << "LSM: \n" << res["LSM"] << std::endl;
         } else if (el == "HUB") {
             // need to parametrize here
-            auto model = CP::MS::Huber(data, 1.345, 300000, 0.01);
+            auto model = CP::MS::Huber(data, 1.345, 10000, 0.001);
             model.makeNoise(25, dist);
             res["HUB"] = model.compute();
-            weights << "HUB: " << res["HUB"] << std::endl;
+            weights << "HUB: \n" << res["HUB"] << std::endl;
         } else if (el == "TUK") {
             // need to parametrize here
-            auto model = CP::MS::Tukey(data, 4.685, 100000, 0.001);
+            auto model = CP::MS::Tukey(data, 4.685, 10000, 0.0001);
             model.makeNoise(25, dist);
             res["TUK"] = model.compute();
-            weights << "TUK: " << res["TUK"] << std::endl;
+            weights << "TUK: \n" << res["TUK"] << std::endl;
         } else if (el == "THS") {
             // need to parametrize here
             auto model = CP::MS::TheilSen(data);
             model.makeNoise(25, dist);
             res["THS"] = model.compute();
-            weights << "THS: " << res["THS"] << std::endl;
+            weights << "THS: \n" << res["THS"] << std::endl;
         } else if (el == "LAD") {
             // need to parametrize here
             auto model = CP::MS::MinAbsDeviation(data, 10000, 0.001);
             model.makeNoise(25, dist);
             res["LAD"] = model.compute();
-            weights << "LAD: " << res["LAD"] << std::endl;
+            weights << "LAD: \n" << res["LAD"] << std::endl;
         }
     }
     weights.close();

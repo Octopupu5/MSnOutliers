@@ -9,7 +9,7 @@ namespace CP {
         using Mat = Eigen::MatrixXd;
         class MinAbsDeviation : public StatsMethod {
         public:
-            explicit MinAbsDeviation(const RData& data, double eps, double lr): StatsMethod(data), epochs_(eps), learningRate_(lr) {}
+            explicit MinAbsDeviation(const RData& data, double eps, double lr): StatsMethod(data, "LAD"), epochs_(eps), learningRate_(lr) {}
             Vec compute() override;
         private:
             double epochs_;

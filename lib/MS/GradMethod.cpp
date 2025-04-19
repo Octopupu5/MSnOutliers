@@ -4,8 +4,7 @@ namespace CP {
         Eigen::VectorXd GradMethod::compute() {
             auto n = _featuresMatrix.rows();
             auto d = _featuresMatrix.cols();
-            Vec w  = Vec::Constant(d, 0);
-            w(0) = median(_targetMatrix);
+            Vec w  = initialWeights_;
 
             for (auto ep = 0; ep < epochs_; ++ep) {
                 Vec grad = Vec::Zero(d);
@@ -19,6 +18,10 @@ namespace CP {
                     loss += this->loss(rem);
                 }
                 grad /= n;
+                if (grad.norm() < 1e-6) {
+                    std::cout << _name << " Out on epoch: " << ep << std::endl;
+                    break;
+                }
                 w -= learningRate_ * grad;
             }
             return w;

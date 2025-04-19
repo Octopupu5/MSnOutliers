@@ -11,7 +11,7 @@ namespace CP {
 
         class LeastSquaresMethod : public StatsMethod {
         public:
-            explicit LeastSquaresMethod(const RData& data): StatsMethod(data){}
+            explicit LeastSquaresMethod(const RData& data): StatsMethod(data, "LSM"){}
             Vec compute() override;
         };
     } // namespace MS;

@@ -10,7 +10,7 @@ namespace CP {
 
         class Tukey : public GradMethod {
         public:
-            Tukey(const RData& data, double del, double eps, double lr): GradMethod(data, eps, lr){
+            Tukey(const RData& data, double del, double eps, double lr): GradMethod(data, eps, lr, "TUK"){
                 auto n = _targetMatrix.size();
                 if (n > 1) {
                     double avg = _targetMatrix.sum()/n;

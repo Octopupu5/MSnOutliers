@@ -10,7 +10,7 @@ namespace CP {
 
         class Huber : public GradMethod {
             public:
-                Huber(const RData& data, double del, double eps, double lr): GradMethod(data, eps, lr), delta_(del){}
+                Huber(const RData& data, double del, double eps, double lr): GradMethod(data, eps, lr, "HUB"), delta_(del){}
                 
             private:
                 double loss(double residual) const override;
