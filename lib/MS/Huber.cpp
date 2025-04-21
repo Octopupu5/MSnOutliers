@@ -2,17 +2,17 @@
 namespace CP {
     namespace MS {
         double Huber::loss(double rem) const {
-            if (std::abs(rem) <= delta_) {
+            if (std::abs(rem) <= _delta) {
                 return 0.5 * rem * rem;
             }
-            return  delta_ * (std::abs(rem) - 0.5 * delta_);
+            return  _delta * (std::abs(rem) - 0.5 * _delta);
         }
 
         double Huber::gradient(double rem) const {
-            if (std::abs(rem) <= delta_) {
+            if (std::abs(rem) <= _delta) {
                 return rem;
             }
-            return delta_ * ((rem > 0) ? 1 : -1);
+            return _delta * ((rem > 0) ? 1 : -1);
         }
     } // namespace MS;
 } // namespace CP;

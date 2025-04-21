@@ -6,7 +6,7 @@ namespace CP {
             auto d = _featuresMatrix.cols();
             Vec w  = initialWeights_;
 
-            for (auto ep = 0; ep < epochs_; ++ep) {
+            for (auto ep = 0; ep < _epochs; ++ep) {
                 Vec grad = Vec::Zero(d);
                 double loss = 0.0;
 
@@ -22,7 +22,7 @@ namespace CP {
                     std::cout << _name << " Out on epoch: " << ep << std::endl;
                     break;
                 }
-                w -= learningRate_ * grad;
+                w -= _learningRate * grad;
             }
             return w;
         }

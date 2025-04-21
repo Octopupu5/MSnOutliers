@@ -12,7 +12,7 @@ namespace CP {
 
         class GradMethod : public StatsMethod {
         public:
-            GradMethod(const RData& data, double ep, double lr, const std::string& n): StatsMethod(data, n), epochs_(ep), learningRate_(lr){
+            GradMethod(const RData& data, const std::string& n, double delta, double ep, double lr): StatsMethod(data, n){
                 initialWeights_ = Vec::Zero(_featuresMatrix.cols());
             }
             Vec compute() override;
@@ -20,8 +20,6 @@ namespace CP {
         protected:
             virtual double gradient(double rem) const = 0;
             virtual double loss(double rem) const = 0;
-            double epochs_;
-            double learningRate_;
             Vec initialWeights_;
         };
     } // namespace MS;

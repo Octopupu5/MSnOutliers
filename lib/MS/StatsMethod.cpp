@@ -12,7 +12,7 @@ namespace CP {
             return vec[len/2];
         }
 
-        StatsMethod::StatsMethod(const RData &data, const std::string& n) {
+        StatsMethod::StatsMethod(const RData& data, const std::string& n, double delta, double ep, double lr) {
             if (data.empty()) {
                 std::cout << "Error, data is empty" << std::endl;
                 return;
@@ -32,6 +32,9 @@ namespace CP {
                 _targetMatrix[i] = data[i].target;
             }
             _name = n;
+            _delta = delta;
+            _epochs = ep;
+            _learningRate = lr;
         }
 
         void StatsMethod::makeNoise(int numNoise, Distrib& dist){

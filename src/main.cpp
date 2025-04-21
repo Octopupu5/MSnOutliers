@@ -16,46 +16,38 @@
 using json = nlohmann::json;
 using stats = std::unordered_map<std::string, Eigen::VectorXd>;
 
-stats runOnMethods(const CP::Common::RegressionData& data, const std::vector<std::string>& methods, size_t numNoise) {
+stats runOnMethods(const CP::Common::RegressionData& data, const json& method, size_t numNoise) {
     stats res;
-    std::ofstream weights;
-    weights.open("models.txt");
     CP::Distributions::ErrorDistributions dist(CP::Distributions::ErrorDistributions::DistributionType::Normal);
-    for (auto& el : methods) {
-        if (el == "LSM") {
+    for (auto &i : method.items()) {
+        if (i.key() == "LSM") {
             auto model = CP::MS::LeastSquaresMethod(data);
             model.makeNoise(numNoise, dist);
             res["LSM"] = model.compute();
-            weights << "LSM: \n" << res["LSM"] << std::endl;
-        } else if (el == "HUB") {
-            // need to parametrize here
-            auto model = CP::MS::Huber(data, 1.345, 10000, 0.001);
+        } else if (i.key() == "HUB") {
+            auto params = i.value();
+            auto model = CP::MS::Huber(data, params["delta"], params["eps"], params["lr"]);
             model.makeNoise(numNoise, dist);
             res["HUB"] = model.compute();
-            weights << "HUB: \n" << res["HUB"] << std::endl;
-        } else if (el == "TUK") {
-            // need to parametrize here
-            auto model = CP::MS::Tukey(data, 4.685, 10000, 0.0001);
+        } else if (i.key() == "TUK") {
+            auto params = i.value();
+            auto model = CP::MS::Huber(data, params["delta"], params["eps"], params["lr"]);
             model.makeNoise(numNoise, dist);
             res["TUK"] = model.compute();
-            weights << "TUK: \n" << res["TUK"] << std::endl;
-        } else if (el == "THS") {
-            // need to parametrize here
+        } else if (i.key() == "THS") {
             auto model = CP::MS::TheilSen(data);
             model.makeNoise(numNoise, dist);
             res["THS"] = model.compute();
-            weights << "THS: \n" << res["THS"] << std::endl;
-        } else if (el == "LAD") {
-            // need to parametrize here
-            auto model = CP::MS::MinAbsDeviation(data, 10000, 0.001);
+        } else if (i.key() == "LAD") {
+            auto params = i.value();
+            auto model = CP::MS::MinAbsDeviation(data, params["eps"], params["lr"]);
             model.makeNoise(numNoise, dist);
             res["LAD"] = model.compute();
-            weights << "LAD: \n" << res["LAD"] << std::endl;
         }
     }
-    weights.close();
     return res;
 }
+
 
 CP::Common::Matrix fromEigenVec(const Eigen::VectorXd& vec) {
     std::vector<std::vector<CP::Common::Feature>> f;
@@ -75,22 +67,27 @@ int main() {
     CP::Common::Matrix target({{-1.2}, {2.7}, {3.5}, {4.78}}); // -1.2 + 2.7x1 + 3.5x2 + 4.78x3
     CP::Common::Metrics calc;
 
-    for (auto method : {"LSM", /*"LAD"veryyy slooow*/}) {
+    json methods;
+    std::ifstream j("../models.json");
+    j >> methods;
+    j.close();
+
+    for (auto &method : methods) {
         std::vector<std::pair<double, double>> errors;
         for (size_t numNoise = 0; numNoise <= 50; ++numNoise) {
             double avg_error = 0;
-            size_t numExperiments = 1000;
+            size_t numExperiments = 1;
             for (size_t numExperiment = 0; numExperiment < numExperiments; ++numExperiment) {
-                stats computed = runOnMethods(data, {method}, numNoise);
+                stats computed = runOnMethods(data, method, numNoise);
                 auto [name, weights] = *(computed.begin());
                 avg_error += calc.meanSquaredError(target, std::move(fromEigenVec(weights)));
             }
             avg_error /= numExperiments;
             errors.push_back({numNoise, avg_error});
         }
-        std::string conf = std::string(SRC_CONFIGS_DIR) + "/config_" + method + ".json";
-        std::string out = std::string(SRC_OUTPUTS_DIR) + "/out_" + method + ".png";
-        Graph graph("Error vs Noise on " + std::string(method) + " method", "Noise Level", "Error", conf, out);
+        std::string conf = std::string(SRC_CONFIGS_DIR) + "/config_" + method.items().begin().key() + ".json";
+        std::string out = std::string(SRC_OUTPUTS_DIR) + "/out_" + method.items().begin().key() + ".png";
+        Graph graph("Error vs Noise on " + method.items().begin().key() + " method", "Noise Level", "Error", conf, out);
         auto plot = std::make_shared<Scatter>(errors, "blue", 15, 0.9);
         graph.addObject(plot);
         graph.saveConfig();

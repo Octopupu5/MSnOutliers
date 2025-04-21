@@ -10,12 +10,11 @@ namespace CP {
 
         class Huber : public GradMethod {
             public:
-                Huber(const RData& data, double del, double eps, double lr): GradMethod(data, eps, lr, "HUB"), delta_(del){}
+                Huber(const RData& data, double del, double eps, double lr): GradMethod(data, "HUB", del, eps, lr){}
                 
             private:
                 double loss(double residual) const override;
                 double gradient(double residual) const override;
-                double delta_;
         };
     } // namespace MS;
 } // namespace CP;

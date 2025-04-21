@@ -3,7 +3,7 @@
 namespace CP {
     namespace MS {
         double Tukey::gradient(double rem) const {
-            double u = rem / delta_;
+            double u = rem / _delta;
             if (std::abs(u) <= 1.0) {
                 return rem * (1.0 - u * u) * (1.0 - u * u);
             }
@@ -11,11 +11,11 @@ namespace CP {
         }
 
         double Tukey::loss(double rem) const {
-            if (std::abs(rem) <= delta_) {
-                double tmp = 1 - (rem / delta_) * (rem / delta_);
-                return ((delta_*delta_)/6) * (1 - (tmp * tmp * tmp));
+            if (std::abs(rem) <= _delta) {
+                double tmp = 1 - (rem / _delta) * (rem / _delta);
+                return ((_delta*_delta)/6) * (1 - (tmp * tmp * tmp));
             }
-            return ((delta_*delta_)/6);
+            return ((_delta*_delta)/6);
         } 
     } // namespace MS;
 } // namespace CP;
