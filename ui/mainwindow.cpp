@@ -3,6 +3,7 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QDebug>
+#include <QFile>
 
 using json = nlohmann::json;
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
@@ -11,14 +12,18 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
 
     QPushButton *createBtn = new QPushButton("Create model");
     QPushButton *dumpBtn = new QPushButton("Dump models");
+    QPushButton *runBtn = new QPushButton("Run on models");
+
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(createBtn);
     layout->addWidget(dumpBtn);
+    layout->addWidget(runBtn);
     layout->addStretch();
 
     connect(createBtn, &QPushButton::clicked, this, &MainWindow::openModelDialog);
     connect(dumpBtn, &QPushButton::clicked, this, &MainWindow::dumpModels);
+    connect(runBtn, &QPushButton::clicked, this, &MainWindow::runMethods);
 }
 
 void MainWindow::openModelDialog() {
@@ -31,20 +36,35 @@ void MainWindow::openModelDialog() {
 
 void MainWindow::dumpModels() {
     std::vector<json> models_;
+    std::string path = std::string(std::getenv("PATH_TO_OUTPUT"));
+    std::cout << path << std::endl;
     for (auto& el : _models) {
         json tmp;
         assert(el.size() == 4 && "Malformed data");
+        auto deltaStr = (el[1].toStdString().empty() ? "1" : el[1].toStdString());
+        auto epsStr = (el[2].toStdString().empty() ? "1000" : el[2].toStdString());
+        auto lrStr = (el[3].toStdString().empty() ? "0.001" : el[3].toStdString());
+
         tmp[el[0].toStdString()] = {
-                {"delta", el[1].toStdString()},
-                {"eps",   el[2].toStdString()},
-                {"lr",    el[3].toStdString()}
+                {"delta", std::stod(deltaStr)},
+                {"eps",   std::stod(epsStr)},
+                {"lr",    std::stod(lrStr)}
         };
         models_.push_back(std::move(tmp));
     }
 
-    std::ofstream f("models.json");
+    std::ofstream f(path + "models.json");
     json j(models_);
-    qDebug() << j.dump(4);
     f << j.dump(4);
     f.close();
+}
+
+void MainWindow::runMethods() {
+    std::string binary = std::string(std::getenv("PATH_TO_BINARY"));
+    std::string path = std::string(std::getenv("PATH_TO_OUTPUT")) + "models.json";
+    assert(QFile::exists(path) && "There is no models.json");
+
+    std::cout << binary + " " + path << std::endl;
+    int res = std::system((binary + " " + path).c_str()); // NEED TO FIX THIS!!!!
+    std::cout << res << std::endl;
 }

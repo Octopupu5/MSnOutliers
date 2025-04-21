@@ -3,7 +3,8 @@
 
 #include <QWidget>
 #include <QList>
-#include "json/single_include/nlohmann/json.hpp"
+#include "../json/single_include/nlohmann/json.hpp"
+#include <cstdlib>
 #include <iostream>
 #include <fstream>
 #include <cassert>
@@ -20,6 +21,7 @@ private:
 private slots:
     void openModelDialog();
     void dumpModels();
+    void runMethods();
 };
 
 #endif // MAINWINDOW_H

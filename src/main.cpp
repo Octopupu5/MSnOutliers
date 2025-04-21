@@ -20,17 +20,16 @@ stats runOnMethods(const CP::Common::RegressionData& data, const json& method, s
     stats res;
     CP::Distributions::ErrorDistributions dist(CP::Distributions::ErrorDistributions::DistributionType::Normal);
     for (auto &i : method.items()) {
+        auto params = i.value();
         if (i.key() == "LSM") {
             auto model = CP::MS::LeastSquaresMethod(data);
             model.makeNoise(numNoise, dist);
             res["LSM"] = model.compute();
         } else if (i.key() == "HUB") {
-            auto params = i.value();
             auto model = CP::MS::Huber(data, params["delta"], params["eps"], params["lr"]);
             model.makeNoise(numNoise, dist);
             res["HUB"] = model.compute();
         } else if (i.key() == "TUK") {
-            auto params = i.value();
             auto model = CP::MS::Huber(data, params["delta"], params["eps"], params["lr"]);
             model.makeNoise(numNoise, dist);
             res["TUK"] = model.compute();
@@ -39,7 +38,6 @@ stats runOnMethods(const CP::Common::RegressionData& data, const json& method, s
             model.makeNoise(numNoise, dist);
             res["THS"] = model.compute();
         } else if (i.key() == "LAD") {
-            auto params = i.value();
             auto model = CP::MS::MinAbsDeviation(data, params["eps"], params["lr"]);
             model.makeNoise(numNoise, dist);
             res["LAD"] = model.compute();
@@ -59,7 +57,7 @@ CP::Common::Matrix fromEigenVec(const Eigen::VectorXd& vec) {
 }
 
 
-int main() {
+int main(int argc, char **argv) {
     std::string path = std::string(DATA_DIR) + "/source.csv";
     uint32_t numFeatures = 3;
     CP::Common::FileParser parser;
@@ -68,7 +66,9 @@ int main() {
     CP::Common::Metrics calc;
 
     json methods;
-    std::ifstream j("../models.json");
+    assert(argc == 2 && "No path to file!");
+    auto path_to_models = std::string(argv[1]);
+    std::ifstream j(path_to_models);
     j >> methods;
     j.close();
 
