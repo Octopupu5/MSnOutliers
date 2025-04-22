@@ -76,7 +76,7 @@ int main(int argc, char **argv) {
         std::vector<std::pair<double, double>> errors;
         for (size_t numNoise = 0; numNoise <= 50; ++numNoise) {
             double avg_error = 0;
-            size_t numExperiments = 1;
+            size_t numExperiments = 10;
             for (size_t numExperiment = 0; numExperiment < numExperiments; ++numExperiment) {
                 stats computed = runOnMethods(data, method, numNoise);
                 auto [name, weights] = *(computed.begin());

@@ -37,7 +37,6 @@ void MainWindow::openModelDialog() {
 void MainWindow::dumpModels() {
     std::vector<json> models_;
     std::string path = std::string(std::getenv("PATH_TO_OUTPUT"));
-    std::cout << path << std::endl;
     for (auto& el : _models) {
         json tmp;
         assert(el.size() == 4 && "Malformed data");
