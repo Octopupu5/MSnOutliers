@@ -2,6 +2,7 @@
 #include "modeldialog.h"
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <QTextEdit>
 #include <QDebug>
 #include <QFile>
 
@@ -61,9 +62,22 @@ void MainWindow::dumpModels() {
 void MainWindow::runMethods() {
     std::string binary = std::string(PATH_TO_BINARY);
     std::string path = std::string(PATH_TO_OUTPUT) + "models.json";
-    assert(QFile::exists(QString::fromStdString(path)) && "There is no models.json");
-
-    std::cout << binary + " " + path << std::endl;
-    int res = std::system((binary + " " + path).c_str()); // NEED TO FIX THIS!!!!
-    std::cout << res << std::endl;
+    // assert(QFile::exists(QString::fromStdString(path)) && "There is no models.json");
+    if (!QFile::exists(QString::fromStdString(path))) {
+        QDialog *errorWindow = new QDialog(this);
+        errorWindow->setWindowTitle("Error");
+        errorWindow->resize(300, 100);
+        QTextEdit *text = new QTextEdit(errorWindow);
+        text->setPlainText("There is no models.json");
+        text->setAlignment(Qt::AlignCenter);
+        text->setReadOnly(true);
+        QVBoxLayout *layout = new QVBoxLayout(errorWindow);
+        layout->addWidget(text);
+        errorWindow->setLayout(layout);
+        errorWindow->show();
+    } else {
+        std::cout << binary + " " + path << std::endl;
+        int res = std::system((binary + " " + path).c_str()); // NEED TO FIX THIS!!!!
+        std::cout << res << std::endl;
+    }
 }
