@@ -13,6 +13,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
+set(PATH_TO_OUTPUT ${CMAKE_SOURCE_DIR}/)
+set(PATH_TO_BINARY ${CMAKE_SOURCE_DIR}/build/src/main)
+
+configure_file(
+    ${CMAKE_SOURCE_DIR}/ui/config.h.in
+    ${CMAKE_BINARY_DIR}/ui/config.h
+)
+include_directories(${CMAKE_BINARY_DIR})
+
 set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp

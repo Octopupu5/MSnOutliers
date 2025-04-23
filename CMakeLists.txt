@@ -53,6 +53,8 @@ add_library(${LIBRARY_NAME} STATIC ${SOURCES})
 
 add_subdirectory(src)
 
+add_subdirectory(ui)
+
 # add_custom_target(clean_build COMMAND ${CMAKE_COMMAND} -P ${CMAKE_SOURCE_DIR}/clean_build.cmake)
 
 #enable_testing()

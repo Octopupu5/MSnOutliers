@@ -36,7 +36,7 @@ void MainWindow::openModelDialog() {
 
 void MainWindow::dumpModels() {
     std::vector<json> models_;
-    std::string path = std::string(std::getenv("PATH_TO_OUTPUT"));
+    std::string path = std::string(PATH_TO_OUTPUT);
     for (auto& el : _models) {
         json tmp;
         assert(el.size() == 4 && "Malformed data");
@@ -59,9 +59,9 @@ void MainWindow::dumpModels() {
 }
 
 void MainWindow::runMethods() {
-    std::string binary = std::string(std::getenv("PATH_TO_BINARY"));
-    std::string path = std::string(std::getenv("PATH_TO_OUTPUT")) + "models.json";
-    assert(QFile::exists(path) && "There is no models.json");
+    std::string binary = std::string(PATH_TO_BINARY);
+    std::string path = std::string(PATH_TO_OUTPUT) + "models.json";
+    assert(QFile::exists(QString::fromStdString(path)) && "There is no models.json");
 
     std::cout << binary + " " + path << std::endl;
     int res = std::system((binary + " " + path).c_str()); // NEED TO FIX THIS!!!!

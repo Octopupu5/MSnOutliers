@@ -5,9 +5,11 @@
 #include <QList>
 #include "../json/single_include/nlohmann/json.hpp"
 #include <cstdlib>
+#include <stdlib.h>
 #include <iostream>
 #include <fstream>
 #include <cassert>
+#include "config.h"
 
 class MainWindow : public QWidget {
     Q_OBJECT
