@@ -64,7 +64,7 @@ def main(config_path):
             drawer.draw_function(obj)
     
     outputPath = config_data.get('outputPath', 'output.png')
-    plt.savefig(outputPath)
+    plt.savefig(outputPath, dpi=100, bbox_inches='tight')
     print('graph has been saved to', outputPath)
 
 if __name__ == '__main__':

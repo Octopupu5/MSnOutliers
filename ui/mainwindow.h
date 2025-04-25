@@ -24,6 +24,7 @@ private slots:
     void openModelDialog();
     void dumpModels();
     void runMethods();
+    void showImage(const QList<QString> &methods);
 };
 
 #endif // MAINWINDOW_H

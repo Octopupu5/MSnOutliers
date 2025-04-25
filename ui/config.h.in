@@ -1,3 +1,4 @@
 // config.h.in
 #define PATH_TO_OUTPUT "@PATH_TO_OUTPUT@"
 #define PATH_TO_BINARY "@PATH_TO_BINARY@"
+#define PATH_TO_PICTURES "@PATH_TO_PICTURES@"

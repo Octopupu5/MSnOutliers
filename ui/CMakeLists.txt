@@ -15,6 +15,7 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PATH_TO_OUTPUT ${CMAKE_SOURCE_DIR}/)
 set(PATH_TO_BINARY ${CMAKE_SOURCE_DIR}/build/src/main)
+set(PATH_TO_PICTURES ${CMAKE_SOURCE_DIR}/src/outputs/)
 
 configure_file(
     ${CMAKE_SOURCE_DIR}/ui/config.h.in

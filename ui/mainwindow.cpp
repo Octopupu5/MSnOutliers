@@ -5,6 +5,7 @@
 #include <QTextEdit>
 #include <QDebug>
 #include <QFile>
+#include <QLabel>
 
 using json = nlohmann::json;
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
@@ -79,5 +80,44 @@ void MainWindow::runMethods() {
         std::cout << binary + " " + path << std::endl;
         int res = std::system((binary + " " + path).c_str()); // NEED TO FIX THIS!!!!
         std::cout << res << std::endl;
+
+        QList<QString> methods;
+        for (const auto &model : _models) {
+            methods.append(model[0]);
+        }
+        showImage(methods);
+        _models.clear();
     }
+}
+
+void MainWindow::showImage(const QList<QString> &methods) {
+    QWidget *imageWindow = new QWidget();
+    imageWindow->setWindowTitle("Models");
+    imageWindow->setAttribute(Qt::WA_DeleteOnClose);
+
+    QGridLayout *layout = new QGridLayout(imageWindow);
+
+    int row = 0;
+    int col = 0;
+    for (const auto &method : methods) {
+        std::string path = std::string(PATH_TO_PICTURES) + "out_" + method.toStdString() + ".png";
+        if (QFile::exists(QString::fromStdString(path))) {
+            QLabel *imageLabel = new QLabel();
+            QPixmap pixmap(QString::fromStdString(path));
+            imageLabel->setPixmap(pixmap.scaled(400, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            imageLabel->setScaledContents(true);
+
+            layout->addWidget(imageLabel, row, col);
+
+            col++;
+            if (col >= 3) {
+                col = 0;
+                row++;
+            }
+        } else {
+            qDebug() << "Image not found for method" << method;
+        }
+    }
+
+    imageWindow->show();
 }
