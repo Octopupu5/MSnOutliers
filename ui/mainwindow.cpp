@@ -58,24 +58,14 @@ void MainWindow::dumpModels() {
     json j(models_);
     f << j.dump(4);
     f.close();
+    createDialog("Success", "Models dumped to models.json");
 }
 
 void MainWindow::runMethods() {
     std::string binary = std::string(PATH_TO_BINARY);
     std::string path = std::string(PATH_TO_OUTPUT) + "models.json";
-    // assert(QFile::exists(QString::fromStdString(path)) && "There is no models.json");
     if (!QFile::exists(QString::fromStdString(path))) {
-        QDialog *errorWindow = new QDialog(this);
-        errorWindow->setWindowTitle("Error");
-        errorWindow->resize(300, 100);
-        QTextEdit *text = new QTextEdit(errorWindow);
-        text->setPlainText("There is no models.json");
-        text->setAlignment(Qt::AlignCenter);
-        text->setReadOnly(true);
-        QVBoxLayout *layout = new QVBoxLayout(errorWindow);
-        layout->addWidget(text);
-        errorWindow->setLayout(layout);
-        errorWindow->show();
+        createDialog("Error", "There is no models.json");
     } else {
         std::cout << binary + " " + path << std::endl;
         int res = std::system((binary + " " + path).c_str()); // NEED TO FIX THIS!!!!
@@ -90,10 +80,26 @@ void MainWindow::runMethods() {
     }
 }
 
+void MainWindow::createDialog(QString title, QString message) {
+    QDialog *dialog = new QDialog(this);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    dialog->setWindowTitle(std::move(title));
+    dialog->resize(300, 100);
+    QTextEdit *text = new QTextEdit(std::move(dialog));
+    text->setPlainText(message);
+    text->setAlignment(Qt::AlignCenter);
+    text->setReadOnly(true);
+    QVBoxLayout *layout = new QVBoxLayout(dialog);
+    layout->addWidget(text);
+    dialog->setLayout(layout);
+    dialog->show();
+}
+
 void MainWindow::showImage(const QList<QString> &methods) {
     QWidget *imageWindow = new QWidget();
     imageWindow->setWindowTitle("Models");
     imageWindow->setAttribute(Qt::WA_DeleteOnClose);
+    imageWindow->resize(500, 500);
 
     QGridLayout *layout = new QGridLayout(imageWindow);
 

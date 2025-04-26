@@ -32,7 +32,7 @@ set(SRC_CONFIGS_DIR ${CMAKE_SOURCE_DIR}/src/configs)
 set(SRC_OUTPUTS_DIR ${CMAKE_SOURCE_DIR}/src/outputs)
 set(SRC_PAINTINGS_DIR ${CMAKE_SOURCE_DIR}/src/PAINTINGS)
 
-set(PYTHON_EXEC_PATH "/Users/heritagetime/VSCode/.venv/bin/python3") # path to your python interpreter
+set(PYTHON_EXEC_PATH "/home/egor2320/MSnOutliers/.venv/bin/python3") # path to your python interpreter
 
 configure_file(
     ${CMAKE_SOURCE_DIR}/src/config.h.in

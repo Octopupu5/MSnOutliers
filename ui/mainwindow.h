@@ -18,6 +18,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
 
 private:
+    void createDialog(QString title, QString message);
     QList<QStringList> _models;
 
 private slots:
