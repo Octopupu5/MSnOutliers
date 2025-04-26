@@ -55,7 +55,8 @@ void MainWindow::dumpModels() {
     }
 
     std::ofstream f(path + "models.json");
-    json j(models_);
+    json j;
+    j["models"] = std::move(models_);
     f << j.dump(4);
     f.close();
     createDialog("Success", "Models dumped to models.json");

@@ -72,7 +72,7 @@ int main(int argc, char **argv) {
     j >> methods;
     j.close();
 
-    for (auto &method : methods) {
+    for (auto &method : methods["models"]) {
         std::vector<std::pair<double, double>> errors;
         for (size_t numNoise = 0; numNoise <= 50; ++numNoise) {
             double avg_error = 0;
