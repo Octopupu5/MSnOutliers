@@ -5,6 +5,8 @@
 #include <QComboBox>
 #include <QLineEdit>
 
+#include <iostream>
+
 class ModelDialog : public QDialog {
     Q_OBJECT
 
@@ -14,10 +16,14 @@ public:
     QStringList getModelData() const;
 
 private:
-    QComboBox *_model;
-    QLineEdit *_delta;
-    QLineEdit *_epochs;
-    QLineEdit *_lr;
+    std::unique_ptr<QComboBox> _model;
+    std::unique_ptr<QComboBox> _noise;
+
+    std::unique_ptr<QLineEdit> _delta;
+    std::unique_ptr<QLineEdit>  _epochs;
+    std::unique_ptr<QLineEdit>  _lr;
+    std::unique_ptr<QLineEdit>  _param1;
+    std::unique_ptr<QLineEdit>  _param2;
 
 private slots:
     void onModelChanged(const QString &modelType);

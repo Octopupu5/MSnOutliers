@@ -1,5 +1,6 @@
 #include <iostream>
 #include <unordered_map>
+#include <unordered_set>
 #include <fstream>
 #include "COMMON/FileParser.hpp"
 #include "MS/LeastSquares.hpp"
@@ -15,47 +16,83 @@
 
 using json = nlohmann::json;
 using stats = std::unordered_map<std::string, Eigen::VectorXd>;
+using distType = CP::Distributions::ErrorDistributions::DistributionType;
 
-stats runOnMethods(const CP::Common::RegressionData& data, const json& method, size_t numNoise) {
-    stats res;
-    CP::Distributions::ErrorDistributions dist(CP::Distributions::ErrorDistributions::DistributionType::Normal);
-    for (auto &i : method.items()) {
-        auto params = i.value();
-        if (i.key() == "LSM") {
-            auto model = CP::MS::LeastSquaresMethod(data);
-            model.makeNoise(numNoise, dist);
-            res["LSM"] = model.compute();
-        } else if (i.key() == "HUB") {
-            auto model = CP::MS::Huber(data, params["delta"], params["eps"], params["lr"]);
-            model.makeNoise(numNoise, dist);
-            res["HUB"] = model.compute();
-        } else if (i.key() == "TUK") {
-            auto model = CP::MS::Huber(data, params["delta"], params["eps"], params["lr"]);
-            model.makeNoise(numNoise, dist);
-            res["TUK"] = model.compute();
-        } else if (i.key() == "THS") {
-            auto model = CP::MS::TheilSen(data);
-            model.makeNoise(numNoise, dist);
-            res["THS"] = model.compute();
-        } else if (i.key() == "LAD") {
-            auto model = CP::MS::MinAbsDeviation(data, params["eps"], params["lr"]);
-            model.makeNoise(numNoise, dist);
-            res["LAD"] = model.compute();
+namespace {
+    const std::unordered_map<std::string, distType> dists = {
+        {"\"Normal\"", distType::Normal},
+        {"\"StudentT\"", distType::StudentT},
+        {"\"Cauchy\"", distType::Cauchy},
+        {"\"Lognormal\"", distType::Lognormal},
+        {"\"Laplace\"", distType::Laplace}
+    };
+
+    const std::unordered_set<std::string> validModels = {"LSM", "HUB", "TUK", "LAD", "THS"};
+    const std::unordered_set<std::string> validDists{"Normal", "StudentT", "Cauchy", "Lognormal", "Laplace"};
+
+    stats runOnMethods(const CP::Common::RegressionData& data, const json& method, size_t numNoise) {
+        stats res;
+        CP::Distributions::ErrorDistributions dist(CP::Distributions::ErrorDistributions::DistributionType::Normal);
+        for (auto &i : method.items()) {
+            auto params = i.value();
+            CP::Distributions::ErrorDistributions dist(dists.at(params["noise"]["type"].dump()), params["noise"]["param1"], params["noise"]["param2"]);
+            if (i.key() == "LSM") {
+                auto model = CP::MS::LeastSquaresMethod(data);
+                model.makeNoise(numNoise, dist);
+                res["LSM"] = model.compute();
+            } else if (i.key() == "HUB") {
+                auto model = CP::MS::Huber(data, params["delta"], params["eps"], params["lr"]);
+                model.makeNoise(numNoise, dist);
+                res["HUB"] = model.compute();
+            } else if (i.key() == "TUK") {
+                auto model = CP::MS::Huber(data, params["delta"], params["eps"], params["lr"]);
+                model.makeNoise(numNoise, dist);
+                res["TUK"] = model.compute();
+            } else if (i.key() == "THS") {
+                auto model = CP::MS::TheilSen(data);
+                model.makeNoise(numNoise, dist);
+                res["THS"] = model.compute();
+            } else if (i.key() == "LAD") {
+                auto model = CP::MS::MinAbsDeviation(data, params["eps"], params["lr"]);
+                model.makeNoise(numNoise, dist);
+                res["LAD"] = model.compute();
+            }
         }
+        return res;
     }
-    return res;
-}
-
-
-CP::Common::Matrix fromEigenVec(const Eigen::VectorXd& vec) {
-    std::vector<std::vector<CP::Common::Feature>> f;
-    auto len = vec.size();
-    for (int i = 0; i < len; ++i) {
-        f.push_back({CP::Common::Feature(vec[i])});
+    
+    CP::Common::Matrix fromEigenVec(const Eigen::VectorXd& vec) {
+        std::vector<std::vector<CP::Common::Feature>> f;
+        auto len = vec.size();
+        for (int i = 0; i < len; ++i) {
+            f.push_back({CP::Common::Feature(vec[i])});
+        }
+        return CP::Common::Matrix(f);
     }
-    return CP::Common::Matrix(f);
-}
 
+    bool validateJson(const json& j) {
+        if (!j.contains("models") || !j["models"].is_array()) return false;
+
+        for (const auto& item : j["models"]) {
+            auto checkIter = item.items().begin();
+            checkIter.operator++();
+            if (checkIter != item.items().end()) return false;
+
+            auto name = item.items().begin().key();
+            if (validModels.find(name) == validModels.end()) return false;
+
+            if (!item[name].contains("delta") || !item[name]["delta"].is_number_float()) return false;
+            if (!item[name].contains("eps") || !item[name]["eps"].is_number_integer()) return false;
+            if (!item[name].contains("lr") || !item[name]["lr"].is_number_float()) return false;
+            if (!item[name].contains("noise")) return false;
+
+            if (!item[name]["noise"].contains("param1") || !item[name]["noise"]["param1"].is_number_float()) return false;
+            if (!item[name]["noise"].contains("param2") || !item[name]["noise"]["param2"].is_number_float()) return false;
+            if (!item[name]["noise"].contains("type") || !item[name]["noise"]["type"].is_string() || validDists.find(item[name]["noise"]["type"]) == validDists.end()) return false;
+        }
+        return true;
+    }
+}
 
 int main(int argc, char **argv) {
     std::string path = std::string(DATA_DIR) + "/source.csv";
@@ -71,6 +108,11 @@ int main(int argc, char **argv) {
     std::ifstream j(path_to_models);
     j >> methods;
     j.close();
+
+    if (!validateJson(methods)) {
+        std::cout << "Malformed json-data!" << std::endl;
+        return 1;
+    }
 
     for (auto &method : methods["models"]) {
         std::vector<std::pair<double, double>> errors;

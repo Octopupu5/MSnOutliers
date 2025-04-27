@@ -41,32 +41,40 @@ void MainWindow::dumpModels() {
     std::string path = std::string(PATH_TO_OUTPUT);
     for (auto& el : _models) {
         json tmp;
-        assert(el.size() == 4 && "Malformed data");
-        auto deltaStr = (el[1].toStdString().empty() ? "1" : el[1].toStdString());
-        auto epsStr = (el[2].toStdString().empty() ? "1000" : el[2].toStdString());
-        auto lrStr = (el[3].toStdString().empty() ? "0.001" : el[3].toStdString());
+        assert(el.size() == 7 && "Malformed data");
+        auto deltaStr    = (el[1].toStdString().empty() ? "1" : el[1].toStdString());
+        auto epsStr      = (el[2].toStdString().empty() ? "1000" : el[2].toStdString());
+        auto lrStr       = (el[3].toStdString().empty() ? "0.001" : el[3].toStdString());
+        auto param1Str   = (el[5].toStdString().empty() ? "0.0" : el[5].toStdString());
+        auto param2Str   = (el[6].toStdString().empty() ? "1.0" : el[6].toStdString());
 
         tmp[el[0].toStdString()] = {
-                {"delta", std::stod(deltaStr)},
-                {"eps",   std::stod(epsStr)},
-                {"lr",    std::stod(lrStr)}
+            {"delta", std::stod(deltaStr)},
+            {"eps",   std::stoi(epsStr)},
+            {"lr",    std::stod(lrStr)},
+            {"noise", {{"type", el[4].toStdString()},
+                       {"param1", std::stod(param1Str)},
+                       {"param2", std::stod(param2Str)}
+                      }
+            }
         };
         models_.push_back(std::move(tmp));
     }
+    _models.clear();
 
     std::ofstream f(path + "models.json");
     json j;
     j["models"] = std::move(models_);
     f << j.dump(4);
     f.close();
-    createDialog("Success", "Models dumped to models.json");
+    createDialog("Success", "Models dumped to file: models.json");
 }
 
 void MainWindow::runMethods() {
     std::string binary = std::string(PATH_TO_BINARY);
     std::string path = std::string(PATH_TO_OUTPUT) + "models.json";
     if (!QFile::exists(QString::fromStdString(path))) {
-        createDialog("Error", "There is no models.json");
+        createDialog("Error", "No such file: models.json");
     } else {
         std::cout << binary + " " + path << std::endl;
         int res = std::system((binary + " " + path).c_str()); // NEED TO FIX THIS!!!!
@@ -86,12 +94,11 @@ void MainWindow::createDialog(QString title, QString message) {
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->setWindowTitle(std::move(title));
     dialog->resize(300, 100);
-    QTextEdit *text = new QTextEdit(std::move(dialog));
-    text->setPlainText(message);
-    text->setAlignment(Qt::AlignCenter);
-    text->setReadOnly(true);
+    QLabel *label = new QLabel(this);
+    label->setAlignment(Qt::AlignCenter);
+    label->setText(message);
     QVBoxLayout *layout = new QVBoxLayout(dialog);
-    layout->addWidget(text);
+    layout->addWidget(label);
     dialog->setLayout(layout);
     dialog->show();
 }
