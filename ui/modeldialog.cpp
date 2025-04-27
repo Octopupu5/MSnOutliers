@@ -18,10 +18,16 @@ ModelDialog::ModelDialog(QWidget *parent) : QDialog(parent) {
     QValidator *integer_validator = new QRegularExpressionValidator(re_int, this);
 
     _delta = std::make_unique<QLineEdit>();
+    _delta->setText("1.0");
     _epochs = std::make_unique<QLineEdit>();
+    _epochs->setText("1000");
     _lr = std::make_unique<QLineEdit>();
+    _lr->setText("0.001");
+
     _param1 = std::make_unique<QLineEdit>();
+    _param1->setText("0.0");
     _param2 = std::make_unique<QLineEdit>();
+    _param2->setText("1.0");
 
     _delta->setValidator(validator);
     _epochs->setValidator(integer_validator);

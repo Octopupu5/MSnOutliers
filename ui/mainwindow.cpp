@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "modeldialog.h"
 #include <QPushButton>
+#include <QTableView>
 #include <QVBoxLayout>
 #include <QTextEdit>
 #include <QDebug>
@@ -8,9 +9,53 @@
 #include <QLabel>
 
 using json = nlohmann::json;
+
+void ModelTable::setData(const QList<QStringList> &data) {
+    beginResetModel();
+    _data = data;
+    endResetModel();
+}
+
+int ModelTable::rowCount(const QModelIndex &parent) const {
+    Q_UNUSED(parent);
+    return _data.size();
+}
+
+int ModelTable::columnCount(const QModelIndex &parent) const {
+    Q_UNUSED(parent);
+    return _data.isEmpty() ? 0 : _data.first().size();
+}
+
+QVariant ModelTable::data(const QModelIndex &index, int role) const {
+    if (!index.isValid() || role != Qt::DisplayRole) {
+        return QVariant();
+    }
+
+    const QStringList &row = _data.at(index.row());
+    if (index.column() >= row.size()) {
+        return QVariant();
+    }
+
+    return row.at(index.column());
+}
+
+QVariant ModelTable::headerData(int section, Qt::Orientation orientation, int role) const {
+    if (role != Qt::DisplayRole) {
+        return QVariant();
+    }
+    if (orientation == Qt::Horizontal) {
+        const QStringList headers = {"Model", "Delta", "Epochs", "Learn. Rate", "(N) Type", "(N) Param. 1", "(N) Param. 2"};
+        if (section >= 0 && section < headers.size()) {
+            return headers.at(section);
+        }
+    }
+
+    return QVariant();
+}
+
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
     setWindowTitle("Regression analysis");
-    resize(300, 150);
+    resize(750, 300);
 
     QPushButton *createBtn = new QPushButton("Create model");
     QPushButton *dumpBtn = new QPushButton("Dump models");
@@ -18,9 +63,16 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
 
 
     QVBoxLayout *layout = new QVBoxLayout(this);
+    model = new ModelTable();
+    model->setData(_models);
+    auto view = new QTableView();
+    view->setModel(model);
+
     layout->addWidget(createBtn);
     layout->addWidget(dumpBtn);
     layout->addWidget(runBtn);
+    layout->addWidget(view);
+
     layout->addStretch();
 
     connect(createBtn, &QPushButton::clicked, this, &MainWindow::openModelDialog);
@@ -33,6 +85,7 @@ void MainWindow::openModelDialog() {
     if (dialog.exec() == QDialog::Accepted) {
         QStringList result = dialog.getModelData();
         _models.push_back(std::move(result));
+        model->setData(_models);
     }
 }
 
@@ -60,7 +113,6 @@ void MainWindow::dumpModels() {
         };
         models_.push_back(std::move(tmp));
     }
-    _models.clear();
 
     std::ofstream f(path + "models.json");
     json j;
@@ -86,6 +138,7 @@ void MainWindow::runMethods() {
         }
         showImage(methods);
         _models.clear();
+        model->setData(_models);
     }
 }
 
