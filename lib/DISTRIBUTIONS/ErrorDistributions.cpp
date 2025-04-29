@@ -56,7 +56,7 @@ namespace CP {
             double normal_sample = normal(gen);
 
 
-        double chi_squared_sample = chi_squared(gen);
+            double chi_squared_sample = chi_squared(gen);
             return normal_sample / std::sqrt(chi_squared_sample / degrees_of_freedom);
         }
     }

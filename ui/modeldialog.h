@@ -2,6 +2,8 @@
 #define MODELDIALOG_H
 
 #include <QDialog>
+#include <QLabel>
+#include <QPushButton>
 #include <QComboBox>
 #include <QLineEdit>
 
@@ -12,10 +14,11 @@ class ModelDialog : public QDialog {
 
 public:
     explicit ModelDialog(QWidget *parent = nullptr);
-
     QStringList getModelData() const;
 
 private:
+    QLabel* getLabel(const QString& text);
+
     std::unique_ptr<QComboBox> _model;
     std::unique_ptr<QComboBox> _noise;
 
@@ -25,8 +28,14 @@ private:
     std::unique_ptr<QLineEdit>  _param1;
     std::unique_ptr<QLineEdit>  _param2;
 
+    std::unique_ptr<QPushButton> _info;
+
+    const QStringList distributionsList = {"Normal", "StudentT", "Cauchy", "Lognormal", "Laplace"};
+    const QStringList modelsList = {"LSM", "HUB", "TUK", "LAD", "THS"};
+
 private slots:
     void onModelChanged(const QString &modelType);
+    void onInfoButtonPushed();
 };
 
 #endif // MODELDIALOG_H
