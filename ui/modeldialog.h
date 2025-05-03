@@ -21,6 +21,7 @@ private:
 
     std::unique_ptr<QComboBox> _model;
     std::unique_ptr<QComboBox> _noise;
+    std::unique_ptr<QComboBox> _mlmodel;
 
     std::unique_ptr<QLineEdit> _delta;
     std::unique_ptr<QLineEdit>  _epochs;
@@ -30,7 +31,8 @@ private:
 
     std::unique_ptr<QPushButton> _info;
 
-    const QStringList distributionsList = {"Normal", "StudentT", "Cauchy", "Lognormal", "Laplace"};
+    const QStringList distributionsList = {"Normal", "Student", "Cauchy", "Lognormal", "Laplace"};
+    const QStringList mlModelsList = {"None", "IForest", "DBSCAN", "OCSVM"};
     const QStringList modelsList = {"LSM", "HUB", "TUK", "LAD", "THS"};
 
 private slots:

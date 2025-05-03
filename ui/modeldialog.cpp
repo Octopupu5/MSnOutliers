@@ -11,6 +11,8 @@ ModelDialog::ModelDialog(QWidget *parent) : QDialog(parent) {
     _model->addItems(modelsList);
     _noise = std::make_unique<QComboBox>();
     _noise->addItems(distributionsList);
+    _mlmodel = std::make_unique<QComboBox>();
+    _mlmodel->addItems(mlModelsList);
 
     QRegularExpression re(R"(^-?(0|[1-9]\d*)(\.\d{0,4})?$)");
     QRegularExpression re_int(R"(0|[1-9]\d*)");
@@ -48,6 +50,8 @@ ModelDialog::ModelDialog(QWidget *parent) : QDialog(parent) {
     formLayout->addRow("Parameter 2:", _param2.get());
     formLayout->addRow("About distributions:", _info.get());
 
+    formLayout->addRow("ML model for outliers detection:", _mlmodel.get());
+
     mainLayout->addLayout(formLayout);
 
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
@@ -68,7 +72,8 @@ QStringList ModelDialog::getModelData() const {
         _lr->text(),
         _noise->currentText(),
         _param1->text(),
-        _param2->text()    
+        _param2->text(),
+        _mlmodel->currentText()
     };
 }
 
