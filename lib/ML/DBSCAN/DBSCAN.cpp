@@ -45,7 +45,7 @@ namespace CP {
             _data = data;
             
             int clusterId = 0;
-            _idToCluster = std::vector<uint32_t> (data.Rows(), -1);
+            _idToCluster = std::vector<int32_t> (data.Rows(), -1);
             for (int i = 0; i < data.Rows(); ++i) {
                 if (_idToCluster[i] != -1) {
                     continue;
@@ -60,6 +60,10 @@ namespace CP {
                 ++clusterId;
                 ExpandCluster(neighbors, i, clusterId);
             }
+        }
+
+        std::vector<int32_t> DBSCAN::getIdToCluster() const {
+            return _idToCluster;
         }
     }
 }
