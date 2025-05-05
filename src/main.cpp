@@ -89,17 +89,17 @@ namespace {
             if (!item[name]["noise"].contains("param1") || !item[name]["noise"]["param1"].is_number_float()) return false;
             if (!item[name]["noise"].contains("param2") || !item[name]["noise"]["param2"].is_number_float()) return false;
             if (!item[name]["noise"].contains("type") || !item[name]["noise"]["type"].is_string() || validDists.find(item[name]["noise"]["type"]) == validDists.end()) return false;
+    
+            if (!item[name].contains("path") || !item[name]["path"].is_string()) return false;
+            if (!item[name].contains("num_feat") || !item[name]["num_feat"].is_number_integer()) return false;
         }
         return true;
     }
 }
 
 int main(int argc, char **argv) {
-    std::string path = std::string(DATA_DIR) + "/source.csv";
-    uint32_t numFeatures = 3;
     CP::Common::FileParser parser;
-    CP::Common::RegressionData data = parser.parseCSV(path, numFeatures);
-    CP::Common::Matrix target({{-1.2}, {2.7}, {3.5}, {4.78}}); // -1.2 + 2.7x1 + 3.5x2 + 4.78x3
+    CP::Common::Matrix target({{-1.2}, {2.7}, {3.5}, {4.78}}); // -1.2 + 2.7x1 + 3.5x2 + 4.78x3 -> parametrize
     CP::Common::Metrics calc;
 
     json methods;
@@ -115,6 +115,12 @@ int main(int argc, char **argv) {
     }
 
     for (auto &method : methods["models"]) {
+        std::string path = method.items().begin().value()["path"];
+        if (path.empty()) {
+            path = std::string(DATA_DIR) + "/source.csv";
+        }
+        CP::Common::RegressionData data = parser.parseCSV(path, method.items().begin().value()["num_feat"]);
+
         std::vector<std::pair<double, double>> errors;
         for (size_t numNoise = 0; numNoise <= 50; ++numNoise) {
             double avg_error = 0;
