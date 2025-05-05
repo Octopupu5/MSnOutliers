@@ -13,6 +13,7 @@
 #include "config.h"
 #include "PAINTINGS/Graph.hpp"
 #include "PAINTINGS/Scatter.hpp"
+#include "COMMON/DataDeNoiser.hpp"
 
 using json = nlohmann::json;
 using stats = std::unordered_map<std::string, Eigen::VectorXd>;
@@ -27,34 +28,31 @@ namespace {
         {"\"Laplace\"", distType::Laplace}
     };
 
-    const std::unordered_set<std::string> validModels = {"LSM", "HUB", "TUK", "LAD", "THS"};
+    const std::unordered_set<std::string> validModels{"LSM", "HUB", "TUK", "LAD", "THS"};
     const std::unordered_set<std::string> validDists{"Normal", "StudentT", "Cauchy", "Lognormal", "Laplace"};
+    const std::unordered_set<std::string> validMLModels{"None", "IForest", "DBSCAN", "OCSVM"};
 
-    stats runOnMethods(const CP::Common::RegressionData& data, const json& method, size_t numNoise) {
+    stats runOnMethods(const json& method, size_t numNoise, CP::Common::DataDeNoiser &deNoiser) {
         stats res;
         CP::Distributions::ErrorDistributions dist(CP::Distributions::ErrorDistributions::DistributionType::Normal);
         for (auto &i : method.items()) {
             auto params = i.value();
             CP::Distributions::ErrorDistributions dist(dists.at(params["noise"]["type"].dump()), params["noise"]["param1"], params["noise"]["param2"]);
+            const CP::Common::RData processedData = deNoiser.deNoise(numNoise, dist, params["mlmodel"]);
             if (i.key() == "LSM") {
-                auto model = CP::MS::LeastSquaresMethod(data);
-                model.makeNoise(numNoise, dist);
+                auto model = CP::MS::LeastSquaresMethod(processedData);
                 res["LSM"] = model.compute();
             } else if (i.key() == "HUB") {
-                auto model = CP::MS::Huber(data, params["delta"], params["eps"], params["lr"]);
-                model.makeNoise(numNoise, dist);
+                auto model = CP::MS::Huber(processedData, params["delta"], params["eps"], params["lr"]);
                 res["HUB"] = model.compute();
             } else if (i.key() == "TUK") {
-                auto model = CP::MS::Huber(data, params["delta"], params["eps"], params["lr"]);
-                model.makeNoise(numNoise, dist);
+                auto model = CP::MS::Huber(processedData, params["delta"], params["eps"], params["lr"]);
                 res["TUK"] = model.compute();
             } else if (i.key() == "THS") {
-                auto model = CP::MS::TheilSen(data);
-                model.makeNoise(numNoise, dist);
+                auto model = CP::MS::TheilSen(processedData);
                 res["THS"] = model.compute();
             } else if (i.key() == "LAD") {
-                auto model = CP::MS::MinAbsDeviation(data, params["eps"], params["lr"]);
-                model.makeNoise(numNoise, dist);
+                auto model = CP::MS::MinAbsDeviation(processedData, params["eps"], params["lr"]);
                 res["LAD"] = model.compute();
             }
         }
@@ -85,6 +83,8 @@ namespace {
             if (!item[name].contains("eps") || !item[name]["eps"].is_number_integer()) return false;
             if (!item[name].contains("lr") || !item[name]["lr"].is_number_float()) return false;
             if (!item[name].contains("noise")) return false;
+            if (!item[name].contains("mlmodel")) return false;
+            if (!item[name]["mlmodel"].is_string() || validMLModels.find(item[name]["mlmodel"]) == validMLModels.end()) return false;
 
             if (!item[name]["noise"].contains("param1") || !item[name]["noise"]["param1"].is_number_float()) return false;
             if (!item[name]["noise"].contains("param2") || !item[name]["noise"]["param2"].is_number_float()) return false;
@@ -114,6 +114,8 @@ int main(int argc, char **argv) {
         return 1;
     }
 
+    CP::Common::DataDeNoiser deNoiser(data);
+    
     for (auto &method : methods["models"]) {
         std::string path = method.items().begin().value()["path"];
         if (path.empty()) {
@@ -126,7 +128,7 @@ int main(int argc, char **argv) {
             double avg_error = 0;
             size_t numExperiments = 10;
             for (size_t numExperiment = 0; numExperiment < numExperiments; ++numExperiment) {
-                stats computed = runOnMethods(data, method, numNoise);
+                stats computed = runOnMethods(method, numNoise, deNoiser);
                 auto [name, weights] = *(computed.begin());
                 avg_error += calc.meanSquaredError(target, std::move(fromEigenVec(weights)));
             }

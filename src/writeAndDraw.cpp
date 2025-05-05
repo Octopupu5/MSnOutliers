@@ -5,7 +5,6 @@
 #include "../json/single_include/nlohmann/json.hpp"
 #include "config.h"
 #include "COMMON/Matrix.hpp"
-#include "COMMON/DataDistortion.hpp"
 #include "DISTRIBUTIONS/ErrorDistributions.hpp"
 
 #include "PAINTINGS/Graph.hpp"

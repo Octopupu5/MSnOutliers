@@ -13,6 +13,11 @@ namespace CP {
             Feature(double value);
             Feature(const std::string& name, double value);
 
+            Feature(const Feature& other) noexcept = default;
+            Feature& operator=(const Feature& other) noexcept = default;
+            Feature(Feature &&rhs) noexcept = default;
+            Feature& operator=(Feature &&rhs) noexcept = default;
+
             ~Feature() {}
 
             void SetName(const std::string& name);

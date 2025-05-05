@@ -19,6 +19,11 @@ namespace CP {
             Matrix(size_t rows, size_t cols, double scalar);
             Matrix(const std::vector<std::vector<Feature>>& data);
 
+            Matrix(const Matrix& other) noexcept = default;
+            Matrix& operator=(const Matrix& other) noexcept = default;
+            Matrix(Matrix &&rhs) noexcept = default;
+            Matrix& operator=(Matrix &&rhs) noexcept = default;
+
             Matrix RowMatrix(size_t index) const;
             Matrix ColumnMatrix(size_t index) const;
             std::vector<Feature> operator[](int index) const;
