@@ -10,6 +10,7 @@ namespace CP {
         public:
             DBSCAN(double r, uint32_t minimumClusterSize);
             void Fit(const Common::Matrix& data);
+            std::vector<int32_t> getIdToCluster() const;
 
         private:
             std::vector<uint32_t> GetNeighbors(uint32_t index) const;
@@ -17,7 +18,7 @@ namespace CP {
 
             double _r;
             uint32_t _minimumClusterSize;
-            std::vector<uint32_t> _idToCluster;
+            std::vector<int32_t> _idToCluster;
             Common::Matrix _data;
         };
     }

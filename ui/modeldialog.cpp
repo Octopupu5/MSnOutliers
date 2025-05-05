@@ -7,6 +7,7 @@ ModelDialog::ModelDialog(QWidget *parent) : QDialog(parent) {
     setWindowTitle("Model creation");
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
+
     setupComboBox("Model");
     setupComboBox("Noise");
 

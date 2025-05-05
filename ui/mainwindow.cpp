@@ -94,7 +94,7 @@ void MainWindow::dumpModels() {
     std::string path = std::string(PATH_TO_OUTPUT);
     for (auto& el : _models) {
         json tmp;
-        assert(el.size() == 7 && "Malformed data");
+        assert(el.size() == 8 && "Malformed data");
         auto deltaStr    = (el[1].toStdString().empty() ? "1" : el[1].toStdString());
         auto epsStr      = (el[2].toStdString().empty() ? "1000" : el[2].toStdString());
         auto lrStr       = (el[3].toStdString().empty() ? "0.001" : el[3].toStdString());
@@ -109,7 +109,8 @@ void MainWindow::dumpModels() {
                        {"param1", std::stod(param1Str)},
                        {"param2", std::stod(param2Str)}
                       }
-            }
+            },
+            {"mlmodel", el[7].toStdString()}
         };
         models_.push_back(std::move(tmp));
     }

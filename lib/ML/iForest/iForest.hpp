@@ -9,14 +9,15 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <queue>
 
 namespace CP {
     namespace ML {
-		class Forest {
+		class iForest {
 		public:
-			Forest();
-			Forest(uint32_t nEstimators, uint32_t depth);
-			~Forest();
+			iForest();
+			iForest(uint32_t nEstimators, uint32_t depth);
+			~iForest();
 
 			void Fit(const Common::Matrix& data);
 			static double H(double x) {
@@ -34,11 +35,10 @@ namespace CP {
 			void Clear();
 			uint64_t Rand(uint64_t min, uint64_t max);
 			uint32_t PathLength(Node* const tree, const Common::Matrix& sample);
-			Node* CreateTree(const Common::Matrix& availableData, size_t depth);
-
+			Node* CreateTree(Common::Matrix* availableData, size_t depth);
+			
 			std::random_device _device;
 			std::mt19937_64 _generator;
-			std::uniform_int_distribution<uint64_t> _distribution;
 		};
 	}
 }
