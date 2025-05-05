@@ -8,30 +8,26 @@
 #include <QLineEdit>
 
 #include <iostream>
+#include <unordered_map>
 
 class ModelDialog : public QDialog {
     Q_OBJECT
 
 public:
     explicit ModelDialog(QWidget *parent = nullptr);
-    QStringList getModelData() const;
+    QStringList getModelData();
 
 private:
     QLabel* getLabel(const QString& text);
-
-    std::unique_ptr<QComboBox> _model;
-    std::unique_ptr<QComboBox> _noise;
-
-    std::unique_ptr<QLineEdit> _delta;
-    std::unique_ptr<QLineEdit>  _epochs;
-    std::unique_ptr<QLineEdit>  _lr;
-    std::unique_ptr<QLineEdit>  _param1;
-    std::unique_ptr<QLineEdit>  _param2;
-
+    void setupComboBox(const QString& name);
+    void setupLineEdit(const QString name, QString text, QValidator *validator);
     std::unique_ptr<QPushButton> _info;
 
     const QStringList distributionsList = {"Normal", "StudentT", "Cauchy", "Lognormal", "Laplace"};
     const QStringList modelsList = {"LSM", "HUB", "TUK", "LAD", "THS"};
+
+    std::unordered_map<QString, std::unique_ptr<QComboBox>> _comboBoxes;
+    std::unordered_map<QString, std::unique_ptr<QLineEdit>> _lineEdits;
 
 private slots:
     void onModelChanged(const QString &modelType);
