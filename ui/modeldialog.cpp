@@ -2,55 +2,40 @@
 #include <QVBoxLayout>
 #include <QFormLayout>
 #include <QDialogButtonBox>
+
 ModelDialog::ModelDialog(QWidget *parent) : QDialog(parent) {
     setWindowTitle("Model creation");
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
-    _model = std::make_unique<QComboBox>();
-    _model->addItems(modelsList);
-    _noise = std::make_unique<QComboBox>();
-    _noise->addItems(distributionsList);
-    _mlmodel = std::make_unique<QComboBox>();
-    _mlmodel->addItems(mlModelsList);
+    setupComboBox("Model");
+    setupComboBox("Noise");
 
     QRegularExpression re(R"(^-?(0|[1-9]\d*)(\.\d{0,4})?$)");
     QRegularExpression re_int(R"(0|[1-9]\d*)");
     QValidator *validator = new QRegularExpressionValidator(re, this);
     QValidator *integer_validator = new QRegularExpressionValidator(re_int, this);
 
-    _delta = std::make_unique<QLineEdit>();
-    _delta->setText("1.0");
-    _epochs = std::make_unique<QLineEdit>();
-    _epochs->setText("1000");
-    _lr = std::make_unique<QLineEdit>();
-    _lr->setText("0.001");
+    setupLineEdit("Delta", "1.0", validator);
+    setupLineEdit("Epochs", "1000", integer_validator);
+    setupLineEdit("Step", "0.001", validator);
+    setupLineEdit("Param.1", "0.0", validator);
+    setupLineEdit("Param.2", "1.0", validator);
 
-    _param1 = std::make_unique<QLineEdit>();
-    _param1->setText("0.0");
-    _param2 = std::make_unique<QLineEdit>();
-    _param2->setText("1.0");
-
-    _delta->setValidator(validator);
-    _epochs->setValidator(integer_validator);
-    _lr->setValidator(validator);
-    _param1->setValidator(validator);
-    _param2->setValidator(validator);
     _info = std::make_unique<QPushButton>();
     _info->setText("Get info");
 
     QFormLayout *formLayout = new QFormLayout();
-    formLayout->addRow("Model type:", _model.get());
-    formLayout->addRow("Delta:", _delta.get());
-    formLayout->addRow("Epochs:", _epochs.get());
-    formLayout->addRow("Learning Rate:", _lr.get());
 
-    formLayout->addRow("Noise type:", _noise.get());
-    formLayout->addRow("Parameter 1:", _param1.get());
-    formLayout->addRow("Parameter 2:", _param2.get());
+    formLayout->addRow("Model type:", _comboBoxes["Model"].get());
+    formLayout->addRow("Delta:", _lineEdits["Delta"].get());
+    formLayout->addRow("Epochs:", _lineEdits["Epochs"].get());
+    formLayout->addRow("Learning Rate:", _lineEdits["Step"].get());
+
+    formLayout->addRow("Noise type:", _comboBoxes["Noise"].get());
+    formLayout->addRow("Parameter 1:", _lineEdits["Param.1"].get());
+    formLayout->addRow("Parameter 2:", _lineEdits["Param.2"].get());
     formLayout->addRow("About distributions:", _info.get());
-
-    formLayout->addRow("ML model for outliers detection:", _mlmodel.get());
 
     mainLayout->addLayout(formLayout);
 
@@ -60,20 +45,34 @@ ModelDialog::ModelDialog(QWidget *parent) : QDialog(parent) {
     connect(buttonBox, &QDialogButtonBox::accepted, this, &ModelDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &ModelDialog::reject);
     connect(_info.get(), &QPushButton::clicked, this, &ModelDialog::onInfoButtonPushed);
-    connect(_model.get(), &QComboBox::currentTextChanged, this, &ModelDialog::onModelChanged);
-    onModelChanged(_model->currentText());
+    connect(_comboBoxes["Model"].get(), &QComboBox::currentTextChanged, this, &ModelDialog::onModelChanged);
+    onModelChanged(_comboBoxes["Model"].get()->currentText());
 }
 
-QStringList ModelDialog::getModelData() const {
+void ModelDialog::setupLineEdit(const QString name, QString text, QValidator *validator) {
+    _lineEdits[name] = std::make_unique<QLineEdit>();
+    _lineEdits[name]->setText(std::move(text));
+    _lineEdits[name]->setValidator(validator);
+}
+
+void ModelDialog::setupComboBox(const QString& name) {
+    _comboBoxes[name] = std::make_unique<QComboBox>();
+    if (name == "Model") {
+        _comboBoxes[name]->addItems(modelsList);
+    } else {
+        _comboBoxes[name]->addItems(distributionsList);
+    }
+}
+
+QStringList ModelDialog::getModelData() {
     return {
-        _model->currentText(),
-        _delta->text(),
-        _epochs->text(),
-        _lr->text(),
-        _noise->currentText(),
-        _param1->text(),
-        _param2->text(),
-        _mlmodel->currentText()
+        _comboBoxes["Model"]->currentText(),
+        _lineEdits["Delta"]->text(),
+        _lineEdits["Epochs"]->text(),
+        _lineEdits["Step"]->text(),
+        _comboBoxes["Noise"]->currentText(),
+        _lineEdits["Param.1"]->text(),
+        _lineEdits["Param.2"]->text()    
     };
 }
 
@@ -92,7 +91,7 @@ void ModelDialog::onInfoButtonPushed() {
     }
     layout->addWidget(getLabel("Mean"), 1, 1);
     layout->addWidget(getLabel("Deviation"), 1, 2);
-    // add more;
+
     infoDialog->setLayout(layout);
     infoDialog->show();
 }
@@ -109,7 +108,7 @@ void ModelDialog::onModelChanged(const QString &modelType) {
     bool enableParams = (modelType != "LSM" && modelType != "LAD");
     bool enableThsDelta = (modelType != "THS");
 
-    _delta->setEnabled(enableParams && enableThsDelta);
-    _epochs->setEnabled(enableParams);
-    _lr->setEnabled(enableParams);
+    _lineEdits["Delta"]->setEnabled(enableParams && enableThsDelta);
+    _lineEdits["Epochs"]->setEnabled(enableParams);
+    _lineEdits["Step"]->setEnabled(enableParams);
 }
