@@ -31,6 +31,8 @@ set(PROJECT_SOURCES
         modeldialog.h
         generatedialog.cpp
         generatedialog.h
+        modeltemplate.cpp
+        modeltemplate.h
         mainwindow.ui
 )
 
