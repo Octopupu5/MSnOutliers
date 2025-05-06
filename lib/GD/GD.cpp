@@ -18,11 +18,11 @@ namespace CP {
 
             void GradientDescent::Run(const Common::Matrix& X, const Common::Matrix& y) {
                 _curIter = 1;
-                InitializeParams(X.Cols());
+                InitializeParams(Shape(X).second);
                 while (_stopCriterion) {
                     const Common::Matrix& prev_w = _w;
                     GradientStep(X, y);
-                    if (((N_ITERS & _stopCriterion) && _curIter < _nIters) || ((W_DIFF & _stopCriterion) && _w.L2Norm(prev_w) < _wTolerance)) {
+                    if (((N_ITERS & _stopCriterion) && _curIter < _nIters) || ((W_DIFF & _stopCriterion) && L2Norm(_w, prev_w) < _wTolerance)) {
                         break;
                     }
                     ++_curIter;
@@ -34,7 +34,7 @@ namespace CP {
             }
 
             void GradientDescent::InitializeParams(size_t nParams) {
-                _w = Common::Matrix(nParams, 1);
+                _w = Common::Matrix(nParams, Common::Row(1));
             }
 
             Common::Matrix GradientDescent::Weights() const {

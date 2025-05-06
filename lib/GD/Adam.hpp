@@ -20,13 +20,13 @@ namespace CP {
                     Common::Matrix g = _calcGrad(X, y, _w);
                     _m = _m * _beta1 + g * (1 - _beta1);
                     _v = _v * _beta2 + g * g * (1 - _beta2);
-                    _w -= _m * _learningRate / (1 - std::pow(_beta1, _curIter)) / (_v / (1 - std::pow(_beta2, _curIter)) + 0.000001).Sqrt();
+                    _w -= _m * _learningRate / (1 - std::pow(_beta1, _curIter)) / Sqrt(_v / (1 - std::pow(_beta2, _curIter)) + 0.000001);
                 }
 
                 void InitializeParams(size_t nParams) {
-                    _w = Common::Matrix(nParams, 1);
-                    _m = Common::Matrix(nParams, 1);
-                    _v = Common::Matrix(nParams, 1);
+                    _w = Common::Matrix(nParams, Common::Row(1));
+                    _m = Common::Matrix(nParams, Common::Row(1));
+                    _v = Common::Matrix(nParams, Common::Row(1));
                 }
             };
         }

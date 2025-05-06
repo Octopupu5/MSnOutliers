@@ -2,7 +2,6 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <fstream>
-#include "COMMON/FileParser.hpp"
 #include "MS/LeastSquares.hpp"
 #include "MS/Huber.hpp"
 #include "MS/Tukey.hpp"
@@ -101,7 +100,6 @@ int main(int argc, char **argv) {
     CP::Common::RegressionData data = parser.parseCSV(path, numFeatures);
     CP::Common::Matrix target({{-1.2}, {2.7}, {3.5}, {4.78}}); // -1.2 + 2.7x1 + 3.5x2 + 4.78x3
     CP::Common::Metrics calc;
-
     json methods;
     assert(argc == 2 && "No path to file!");
     auto path_to_models = std::string(argv[1]);

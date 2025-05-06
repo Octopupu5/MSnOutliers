@@ -3,15 +3,15 @@
 int main() {    
     int rows = 100;
     int cols = 100;
-    CP::Common::Matrix data = CP::Common::Matrix(rows, cols);
+    CP::Common::Matrix data = CP::Common::Matrix(rows, CP::Common::Row(cols));
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols; ++j) {
-            data.At(i, j) = CP::Common::Feature(i + j + (i % 10)); 
+            data[i][j] = CP::Common::Feature(i + j + (i % 10)); 
         }
     }
-    CP::Common::Matrix arb_row = data.RowMatrix(25);
+    CP::Common::Row arb_row = data[25];
     // double nu = 0.05;
-    double gamma = 1.0 / data.Cols();
+    double gamma = 1.0 / Shape(data).second;
     // CP::ML::OneClassSVM svm(nu, gamma);
     CP::ML::OneClassSVM svm(gamma);
     svm.Fit(data);
@@ -23,9 +23,9 @@ int main() {
         10.0, 20.0, 30.0, 40.0, 50.0, 10.0, 20.0, 30.0, 40.0, 50.0, 10.0, 20.0, 30.0, 40.0, 50.0, 10.0, 20.0, 30.0, 40.0, 50.0,
         10.0, 20.0, 30.0, 40.0, 50.0, 10.0, 20.0, 30.0, 40.0, 50.0, 10.0, 20.0, 30.0, 40.0, 50.0, 10.0, 20.0, 30.0, 40.0, 50.0},
     });
-    testSample.AddRows(arb_row);
+    testSample.push_back(arb_row);
     // 1 = anomaly; 0 = inlier
     CP::Common::Matrix answers = svm.Predict(testSample);
-    answers.Print();
+    Print(answers);
     return 0;
 }

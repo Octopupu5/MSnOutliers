@@ -10,6 +10,7 @@ ModelDialog::ModelDialog(QWidget *parent) : QDialog(parent) {
 
     setupComboBox("Model");
     setupComboBox("Noise");
+    setupComboBox("MLModel");
 
     QRegularExpression re(R"(^-?(0|[1-9]\d*)(\.\d{0,4})?$)");
     QRegularExpression re_int(R"(0|[1-9]\d*)");
@@ -37,6 +38,8 @@ ModelDialog::ModelDialog(QWidget *parent) : QDialog(parent) {
     formLayout->addRow("Parameter 2:", _lineEdits["Param.2"].get());
     formLayout->addRow("About distributions:", _info.get());
 
+    formLayout->addRow("Denoising ML model:", _comboBoxes["MLModel"].get());
+
     mainLayout->addLayout(formLayout);
 
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
@@ -59,8 +62,10 @@ void ModelDialog::setupComboBox(const QString& name) {
     _comboBoxes[name] = std::make_unique<QComboBox>();
     if (name == "Model") {
         _comboBoxes[name]->addItems(modelsList);
-    } else {
+    } else if (name == "Noise") {
         _comboBoxes[name]->addItems(distributionsList);
+    } else if (name == "MLModel") {
+        _comboBoxes[name]->addItems(mlModelsList);
     }
 }
 
@@ -72,7 +77,8 @@ QStringList ModelDialog::getModelData() {
         _lineEdits["Step"]->text(),
         _comboBoxes["Noise"]->currentText(),
         _lineEdits["Param.1"]->text(),
-        _lineEdits["Param.2"]->text()    
+        _lineEdits["Param.2"]->text(),
+        _comboBoxes["MLModel"]->currentText()
     };
 }
 

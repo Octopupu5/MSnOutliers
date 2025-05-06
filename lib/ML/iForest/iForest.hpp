@@ -26,7 +26,7 @@ namespace CP {
 			static double C(double x) {
 				return 2.0 * H(x - 1) - (2.0 * (x - 1.0) / x);
 			}
-			double PredictProba(const Common::Matrix& sample);
+			double PredictProba(const Common::Row& sample);
 		private:
 			std::vector<Node*> _trees;
 			uint32_t _nEstimators;
@@ -34,7 +34,7 @@ namespace CP {
 
 			void Clear();
 			uint64_t Rand(uint64_t min, uint64_t max);
-			uint32_t PathLength(Node* const tree, const Common::Matrix& sample);
+			uint32_t PathLength(Node* const tree, const Common::Row& sample);
 			Node* CreateTree(Common::Matrix* availableData, size_t depth);
 			
 			std::random_device _device;

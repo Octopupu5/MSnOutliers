@@ -5,7 +5,6 @@
 #include "../ML/DBSCAN/DBSCAN.hpp"
 #include "../ML/OCSVM/OneClassSVM.hpp"
 #include "../ML/iForest/iForest.hpp"
-#include "Matrix.hpp"
 #include "FileParser.hpp"
 #include <iostream>
 #include <fstream>
@@ -19,12 +18,17 @@ namespace CP {
         class DataDeNoiser {
         public:
             DataDeNoiser(const RData& data) : _originalRData(data) {
-                _originalData = Matrix(data.size(), data.size() ? data[0].features.size() + 1 : 0);
-                for (size_t i = 0; i < _originalData.Rows(); ++i) {
-                    for (size_t j = 0; j < _originalData.Cols() - 1; ++j) {
-                        _originalData.At(i, j).SetValue(data[i].features[j]);
+                if (!data.size()) {
+                    throw std::runtime_error("No data!");
+                }
+                size_t rows = data.size();
+                size_t cols = data[0].features.size();
+                _originalData = Matrix(rows, Row(cols + 1));
+                for (size_t i = 0; i < rows; ++i) {
+                    for (size_t j = 0; j < cols; ++j) {
+                        _originalData[i][j] = data[i].features[j];
                     }
-                    _originalData.At(i, _originalData.Cols() - 1).SetValue(data[i].target);
+                    _originalData[i][cols] = data[i].target;
                 }
             }
             RData deNoise(int numNoise, CP::Distributions::ErrorDistributions& dist, const std::string& mlModelType);
