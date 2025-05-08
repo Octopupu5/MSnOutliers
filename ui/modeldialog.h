@@ -18,8 +18,8 @@ namespace CP {
             QLabel* getLabel(const QString& text);
             std::unique_ptr<QPushButton> _info;
 
-            const QStringList distributionsList = {"Normal", "Student", "Cauchy", "Lognormal", "Laplace"};
-            const QStringList mlModelsList = {"None", "IForest", "DBSCAN", "OCSVM"};
+            const QStringList distributionsList = {"Normal", "Student", "Cauchy", "Laplace"};
+            const QStringList mlModelsList = {"None", "IForest", "DBSCAN", "KDE", "KNN"};
             const QStringList modelsList = {"LSM", "HUB", "TUK", "LAD", "THS"};
 
             std::unordered_map<QString, std::unique_ptr<QComboBox>> _comboBoxes;

@@ -33,7 +33,6 @@ namespace CP {
                 for (size_t i = 0; i < rows; ++i) {
                     probs.push_back({forest.PredictProba(_originalData[i]), i});
                 }
-
                 size_t sizeToClean = (size_t) (0.15 * _originalData.size());
                 std::nth_element(probs.begin(), probs.begin() + sizeToClean, probs.end());
                 for (size_t i = 0; i < rows; ++i) {
@@ -42,17 +41,41 @@ namespace CP {
                     }
                 }
             } else if (mlModelType == "DBSCAN") {
-                CP::ML::DBSCAN dbscan(40, 5); 
+                double k = 0.1;
+                double eps = k * std::sqrt(cols) * std::sqrt(std::accumulate(_originalData.begin(), _originalData.end(), 0.0, [](double sum, const std::vector<Feature>& row) {
+                    double row_sum = 0;
+                    for (const auto& val : row) {
+                        row_sum += val.Value() * val.Value();
+                    }
+                    return sum + row_sum;
+                }) / rows);
+                uint32_t min_samples = static_cast<uint32_t>(std::log(rows));
+                CP::ML::DBSCAN dbscan(eps, min_samples); 
                 dbscan.Fit(_originalData);
                 std::vector<int32_t> idToCluster = dbscan.getIdToCluster();
-
-            } else if (mlModelType == "OCSVM") {
-                CP::ML::OneClassSVM svm(1.0 / cols);
-                svm.Fit(_originalData);
-                CP::Common::Matrix answers = svm.Predict(_originalData);
+                auto [rows, cols] = Shape(_originalData);
+                for (size_t i = 0; i < rows; ++i) {
+                    if (idToCluster[i] != 0) {
+                        cleanedData.push_back(_originalRData[i]);
+                    }
+                }
+            } else if (mlModelType == "KDE") {
+                CP::ML::KernelDensityEstimator kde(1.0 / cols);
+                kde.Fit(_originalData);
+                CP::Common::Matrix answers = kde.Predict(_originalData);
                 for (size_t i = 0; i < rows; ++i) {
                     if (!answers[i][0].Value()) {
                         cleanedData.push_back(_originalRData[i]);
+                    }
+                }
+            } else if (mlModelType == "KNN") {
+                CP::ML::KNN knn(10, 0.15);
+                knn.Fit(_originalData);
+                std::vector<std::pair<double, size_t>> preds = knn.PairDistances();
+                double thres = knn.Threshold();
+                for (size_t i = 0; i < rows; ++i) {
+                    if (preds[i].first < thres) {
+                        cleanedData.push_back(_originalRData[preds[i].second]);
                     }
                 }
             } else if (mlModelType == "None") {

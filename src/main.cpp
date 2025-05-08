@@ -23,13 +23,12 @@ namespace {
         {"\"Normal\"", distType::Normal},
         {"\"StudentT\"", distType::StudentT},
         {"\"Cauchy\"", distType::Cauchy},
-        {"\"Lognormal\"", distType::Lognormal},
         {"\"Laplace\"", distType::Laplace}
     };
 
     const std::unordered_set<std::string> validModels{"LSM", "HUB", "TUK", "LAD", "THS"};
-    const std::unordered_set<std::string> validDists{"Normal", "StudentT", "Cauchy", "Lognormal", "Laplace"};
-    const std::unordered_set<std::string> validMLModels{"None", "IForest", "DBSCAN", "OCSVM"};
+    const std::unordered_set<std::string> validDists{"Normal", "StudentT", "Cauchy", "Laplace"};
+    const std::unordered_set<std::string> validMLModels{"None", "IForest", "DBSCAN", "KDE", "KNN"};
 
     stats runOnMethods(const json& method, size_t numNoise, CP::Common::DataDeNoiser &deNoiser) {
         stats res;

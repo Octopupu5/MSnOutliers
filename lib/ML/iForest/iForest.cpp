@@ -87,7 +87,7 @@ namespace CP {
 			uint32_t depth = 0.0;
 			Node* currentNode = tree;
 			while (currentNode) {
-				int featureIndex = currentNode->FeatureIndex();
+				size_t featureIndex = currentNode->FeatureIndex();
 				if (sample[featureIndex].Value() < currentNode->Predicate()) {
 					currentNode = currentNode->Left();
 				}
@@ -105,9 +105,7 @@ namespace CP {
 			for (Node* tree : _trees) {
 				avgPathLen += PathLength(tree, sample);
 			}
-			avgPathLen /= 1.0 * _nEstimators;
-			double exponent = -1.0 * (avgPathLen / C(_nEstimators));
-			return pow(2, exponent);
+			return pow(2, -1.0 * (avgPathLen / (2.0 * (log(_nEstimators - 1) + 0.5772156 - (_nEstimators - 1.0) / _nEstimators)) / _nEstimators));
 		}
 
 		uint64_t iForest::Rand(uint64_t min, uint64_t max) {

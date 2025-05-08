@@ -20,12 +20,6 @@ namespace CP {
 			~iForest();
 
 			void Fit(const Common::Matrix& data);
-			static double H(double x) {
-				return log(x) + 0.5772156;
-			}
-			static double C(double x) {
-				return 2.0 * H(x - 1) - (2.0 * (x - 1.0) / x);
-			}
 			double PredictProba(const Common::Row& sample);
 		private:
 			std::vector<Node*> _trees;

@@ -3,8 +3,9 @@
 
 #include "../DISTRIBUTIONS/ErrorDistributions.hpp"
 #include "../ML/DBSCAN/DBSCAN.hpp"
-#include "../ML/OCSVM/OneClassSVM.hpp"
+#include "../ML/KDE/KDE.hpp"
 #include "../ML/iForest/iForest.hpp"
+#include "../ML/KNN/Knn.hpp"
 #include "FileParser.hpp"
 #include <iostream>
 #include <fstream>

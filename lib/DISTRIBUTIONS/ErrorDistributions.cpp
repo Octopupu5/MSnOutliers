@@ -14,9 +14,6 @@ namespace CP {
                 case Cauchy:
                     _distribution = std::cauchy_distribution<>(param1, param2);
                     break;
-                case Lognormal:
-                    _distribution = std::lognormal_distribution<>(param1, param2);
-                    break;
                 case Laplace:
                     _distribution = std::make_pair(param1, param2);
                     break;
@@ -33,8 +30,6 @@ namespace CP {
                     return student_t_generate(gen, std::get<std::pair<double, double>>(_distribution).first);
                 case Cauchy:
                     return std::get<std::cauchy_distribution<>>(_distribution)(gen);
-                case Lognormal:
-                    return std::get<std::lognormal_distribution<>>(_distribution)(gen);
                 case Laplace: {
                         auto [mean, b] = std::get<std::pair<double, double>>(_distribution);
                         return laplace_generate(gen, mean, b);
@@ -54,8 +49,6 @@ namespace CP {
             std::normal_distribution<> normal(0.0, 1.0);
             std::chi_squared_distribution<> chi_squared(degrees_of_freedom);
             double normal_sample = normal(gen);
-
-
             double chi_squared_sample = chi_squared(gen);
             return normal_sample / std::sqrt(chi_squared_sample / degrees_of_freedom);
         }
