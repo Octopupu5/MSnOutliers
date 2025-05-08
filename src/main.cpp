@@ -2,7 +2,6 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <fstream>
-#include "COMMON/FileParser.hpp"
 #include "MS/LeastSquares.hpp"
 #include "MS/Huber.hpp"
 #include "MS/Tukey.hpp"
@@ -24,13 +23,12 @@ namespace {
         {"\"Normal\"", distType::Normal},
         {"\"StudentT\"", distType::StudentT},
         {"\"Cauchy\"", distType::Cauchy},
-        {"\"Lognormal\"", distType::Lognormal},
         {"\"Laplace\"", distType::Laplace}
     };
 
     const std::unordered_set<std::string> validModels{"LSM", "HUB", "TUK", "LAD", "THS"};
-    const std::unordered_set<std::string> validDists{"Normal", "StudentT", "Cauchy", "Lognormal", "Laplace"};
-    const std::unordered_set<std::string> validMLModels{"None", "IForest", "DBSCAN", "OCSVM"};
+    const std::unordered_set<std::string> validDists{"Normal", "StudentT", "Cauchy", "Laplace"};
+    const std::unordered_set<std::string> validMLModels{"None", "IForest", "DBSCAN", "KDE", "KNN"};
 
     stats runOnMethods(const json& method, size_t numNoise, CP::Common::DataDeNoiser &deNoiser) {
         stats res;
@@ -89,7 +87,7 @@ namespace {
             if (!item[name]["noise"].contains("param1") || !item[name]["noise"]["param1"].is_number_float()) return false;
             if (!item[name]["noise"].contains("param2") || !item[name]["noise"]["param2"].is_number_float()) return false;
             if (!item[name]["noise"].contains("type") || !item[name]["noise"]["type"].is_string() || validDists.find(item[name]["noise"]["type"]) == validDists.end()) return false;
-    
+        
             if (!item[name].contains("path") || !item[name]["path"].is_string()) return false;
             if (!item[name].contains("num_feat") || !item[name]["num_feat"].is_number_integer()) return false;
         }
@@ -101,7 +99,6 @@ int main(int argc, char **argv) {
     CP::Common::FileParser parser;
     CP::Common::Matrix target({{-1.2}, {2.7}, {3.5}, {4.78}}); // -1.2 + 2.7x1 + 3.5x2 + 4.78x3 -> parametrize
     CP::Common::Metrics calc;
-
     json methods;
     assert(argc == 2 && "No path to file!");
     auto path_to_models = std::string(argv[1]);

@@ -3,16 +3,16 @@
 int main() {    
     int rows = 100;
     int cols = 100;
-    CP::Common::Matrix data = CP::Common::Matrix(rows, cols);
+    CP::Common::Matrix data = CP::Common::Matrix(rows, CP::Common::Row(cols));
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols; ++j) {
-            data.At(i, j) = CP::Common::Feature(i + j + (i % 10)); 
+            data[i][j] = CP::Common::Feature(i + j + (i % 10)); 
         }
     }
-    CP::Common::Matrix arb_row = data.RowMatrix(1);
+    CP::Common::Row arb_row = data[1];
 
     for (int i = 0; i < 10; ++i) {
-        data.At(i, 0) = CP::Common::Feature(1000 + i); 
+        data[i][0] = CP::Common::Feature(1000 + i); 
     }
     
     CP::ML::DBSCAN dbscan(40, 5); 

@@ -39,43 +39,38 @@ namespace CP {
 		}
 		
 		Node* iForest::CreateTree(Common::Matrix* availableData, size_t depth) {
-			if (((_depth > 0) && (depth >= _depth)) || availableData->Rows() == 1) {
+			auto [rows, cols] = Shape(*availableData);
+			if (((_depth > 0) && (depth >= _depth)) || rows == 1) {
 				delete availableData;
 				return NULL;
 			}
 
-			uint32_t i = Rand(0, availableData->Rows() - 2);
-			uint32_t k = Rand(0, availableData->Cols() - 1);
-			std::vector<double> featureValues;
-			for (int j = 0; j < availableData->Rows(); ++j) {
-				featureValues.push_back(availableData->At(j, k).Value());
+			uint32_t i = Rand(0, rows - 2);
+			uint32_t k = Rand(0, cols - 1);
+			Common::Row featureValues;
+			for (int j = 0; j < rows; ++j) {
+				featureValues.push_back((*availableData)[j][k].Value());
 			}
 			
 			std::nth_element(featureValues.begin(), featureValues.begin() + i, featureValues.end());
-			double ith_statistics = featureValues[i];
+			Common::Feature ith_statistics = featureValues[i];
 			std::nth_element(featureValues.begin(), featureValues.begin() + i + 1, featureValues.end());
-			double splitValue = (ith_statistics + featureValues[i + 1]) / 2.0;
-			Node* tree = new Node(k, splitValue);
+			Common::Feature splitValue = (ith_statistics + featureValues[i + 1]) / 2.0;
+			Node* tree = new Node(k, splitValue.Value());
 			
 			size_t leftSplitSize = i + 1;
-			size_t rightSplitSize = availableData->Rows() - leftSplitSize;
-			Common::Matrix* leftSplit = new Common::Matrix(leftSplitSize, availableData->Cols());
-			Common::Matrix* rightSplit = new Common::Matrix(rightSplitSize, availableData->Cols());
+			size_t rightSplitSize = rows - leftSplitSize;
+			Common::Matrix* leftSplit = new Common::Matrix(leftSplitSize, Common::Row(cols));
+			Common::Matrix* rightSplit = new Common::Matrix(rightSplitSize, Common::Row(cols));
 			size_t leftP = 0;
 			size_t rightP = 0;
-			for (size_t j = 0; j < availableData->Rows(); ++j) {
-				for (size_t m = 0; m < availableData->Cols(); ++m) {
-					if (availableData->At(j, k).Value() <= splitValue && !(leftP == leftSplitSize)) {
-						leftSplit->At(leftP, m).SetValue(availableData->At(j, m).Value());
-					}
-					else {
-						rightSplit->At(rightP, m).SetValue(availableData->At(j, m).Value());
-					}
-				}
-				if (availableData->At(j, k).Value() <= splitValue && !(leftP == leftSplitSize)) {
+			for (size_t j = 0; j < rows; ++j) {
+				if ((*availableData)[j][k] <= splitValue && !(leftP == leftSplitSize)) {
+					(*leftSplit)[leftP] = (*availableData)[j];
 					++leftP;
 				}
 				else {
+					(*rightSplit)[rightP] = (*availableData)[j];
 					++rightP;
 				}
 			}
@@ -88,12 +83,12 @@ namespace CP {
 			return tree;
 		}
 		
-		uint32_t iForest::PathLength(Node* const tree, const Common::Matrix& sample) {
+		uint32_t iForest::PathLength(Node* const tree, const Common::Row& sample) {
 			uint32_t depth = 0.0;
 			Node* currentNode = tree;
 			while (currentNode) {
-				int featureIndex = currentNode->FeatureIndex();
-				if (sample.At(0, featureIndex).Value() < currentNode->Predicate()) {
+				size_t featureIndex = currentNode->FeatureIndex();
+				if (sample[featureIndex].Value() < currentNode->Predicate()) {
 					currentNode = currentNode->Left();
 				}
 				else {
@@ -105,14 +100,12 @@ namespace CP {
 		}
 		
 		// 1 = anomaly / 0 = inlier
-		double iForest::PredictProba(const Common::Matrix& sample) {
+		double iForest::PredictProba(const Common::Row& sample) {
 			double avgPathLen = 0.0;
 			for (Node* tree : _trees) {
 				avgPathLen += PathLength(tree, sample);
 			}
-			avgPathLen /= 1.0 * _nEstimators;
-			double exponent = -1.0 * (avgPathLen / C(_nEstimators));
-			return pow(2, exponent);
+			return pow(2, -1.0 * (avgPathLen / (2.0 * (log(_nEstimators - 1) + 0.5772156 - (_nEstimators - 1.0) / _nEstimators)) / _nEstimators));
 		}
 
 		uint64_t iForest::Rand(uint64_t min, uint64_t max) {

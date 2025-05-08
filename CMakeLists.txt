@@ -17,14 +17,12 @@ file(GLOB COMMON_SOURCES lib/COMMON/*.cpp)
 file(GLOB DISTRIBUTION_SOURCES lib/DISTRIBUTIONS/*.cpp)
 file(GLOB ML_SOURCES lib/ML/**/*.cpp)
 file(GLOB MS_SOURCES lib/MS/*.cpp)
-file(GLOB GD_SOURCES lib/GD/*.cpp)
 
 set(SOURCES
     ${COMMON_SOURCES}
     ${DISTRIBUTION_SOURCES}
     ${ML_SOURCES}
     ${MS_SOURCES}
-    ${GD_SOURCES}
 )
 
 set(SRC_DATA_DIR ${CMAKE_SOURCE_DIR}/src/data)

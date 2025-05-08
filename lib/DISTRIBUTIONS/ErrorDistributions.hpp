@@ -15,7 +15,6 @@ namespace CP {
                 StudentT,
                 Cauchy,
                 Laplace,
-                Lognormal
             };
 
             ErrorDistributions(DistributionType type, double param1 = 0.0, double param2 = 1.0);
@@ -27,7 +26,6 @@ namespace CP {
             std::variant<
                 std::normal_distribution<>,
                 std::cauchy_distribution<>,
-                std::lognormal_distribution<>,
                 std::pair<double, double>
             > _distribution;
 

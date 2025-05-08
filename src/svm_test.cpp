@@ -1,20 +1,17 @@
-#include "ML/OCSVM/OneClassSVM.hpp"
+#include "ML/KNN/Knn.hpp"
 
 int main() {    
-    int rows = 100;
+    int rows = 1000;
     int cols = 100;
-    CP::Common::Matrix data = CP::Common::Matrix(rows, cols);
+    CP::Common::Matrix data = CP::Common::Matrix(rows, CP::Common::Row(cols));
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols; ++j) {
-            data.At(i, j) = CP::Common::Feature(i + j + (i % 10)); 
+            data[i][j] = CP::Common::Feature(i + j + (i % 10)); 
         }
     }
-    CP::Common::Matrix arb_row = data.RowMatrix(25);
-    // double nu = 0.05;
-    double gamma = 1.0 / data.Cols();
-    // CP::ML::OneClassSVM svm(nu, gamma);
-    CP::ML::OneClassSVM svm(gamma);
-    svm.Fit(data);
+    CP::Common::Row arb_row = data[25];
+    CP::ML::KNN knn(10, 0.05);
+    knn.Fit(data);
     
     CP::Common::Matrix testSample = CP::Common::Matrix({
         {10.0, 20.0, 30.0, 40.0, 500.0, 10.0, 20.0, 30.0, 40.0, 50.0, 10.0, 20.0, 30.0, 40.0, 50.0, 10.0, 20.0, 30.0, 40.0, 50.0,
@@ -23,9 +20,9 @@ int main() {
         10.0, 20.0, 30.0, 40.0, 50.0, 10.0, 20.0, 30.0, 40.0, 50.0, 10.0, 20.0, 30.0, 40.0, 50.0, 10.0, 20.0, 30.0, 40.0, 50.0,
         10.0, 20.0, 30.0, 40.0, 50.0, 10.0, 20.0, 30.0, 40.0, 50.0, 10.0, 20.0, 30.0, 40.0, 50.0, 10.0, 20.0, 30.0, 40.0, 50.0},
     });
-    testSample.AddRows(arb_row);
+    testSample.push_back(arb_row);
     // 1 = anomaly; 0 = inlier
-    CP::Common::Matrix answers = svm.Predict(testSample);
-    answers.Print();
+    CP::Common::Matrix answers = knn.Predict(testSample);
+    Print(answers);
     return 0;
 }
