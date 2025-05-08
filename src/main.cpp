@@ -117,8 +117,10 @@ int main(int argc, char **argv) {
         if (path.empty()) {
             path = std::string(DATA_DIR) + "/source.csv";
         }
+        
         CP::Common::RegressionData data = parser.parseCSV(path, method.items().begin().value()["num_feat"]);
         CP::Common::DataDeNoiser deNoiser(data);
+
         std::vector<std::pair<double, double>> errors;
         for (size_t numNoise = 0; numNoise <= 50; ++numNoise) {
             double avg_error = 0;

@@ -21,6 +21,8 @@
 #include <iostream>
 #include <fstream>
 #include <cassert>
+#include <sstream>
+#include <random>
 #include "config.h"
 
 namespace CP {
@@ -49,6 +51,7 @@ namespace CP {
             explicit MainWindow(QWidget *parent = nullptr);
 
         private:
+            void generate(int numFeatures, int numSamples);
             QList<QStringList> _models;
             ModelTable *model;
 

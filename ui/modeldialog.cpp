@@ -5,7 +5,7 @@ namespace CP {
         
         void createDialog(QWidget* parent, QString title, QString name);
 
-        ModelDialog::ModelDialog(QWidget *parent) : QDialog(parent) {
+        ModelDialog::ModelDialog(QWidget *parent) : ModelTemplate(parent) {
             setWindowTitle("Model creation");
 
             QVBoxLayout *mainLayout = new QVBoxLayout(this);
@@ -57,24 +57,7 @@ namespace CP {
             onModelChanged(_comboBoxes["Model"].get()->currentText());
         }
 
-        void ModelDialog::setupLineEdit(const QString name, QString text, QValidator *validator) {
-            _lineEdits[name] = std::make_unique<QLineEdit>();
-            _lineEdits[name]->setText(std::move(text));
-            _lineEdits[name]->setValidator(validator);
-        }
-
-        void ModelDialog::setupComboBox(const QString& name) {
-            _comboBoxes[name] = std::make_unique<QComboBox>();
-            if (name == "Model") {
-                _comboBoxes[name]->addItems(modelsList);
-            } else if (name == "Noise") {
-                _comboBoxes[name]->addItems(distributionsList);
-            } else {
-                _comboBoxes[name]->addItems(mlModelsList);
-            }
-        }
-
-        QStringList ModelDialog::getModelData() {
+        QStringList ModelDialog::getData() {
             auto path = _lineEdits["Path"]->text();
             if (!QFile::exists(path)) {
                 createDialog(static_cast<QWidget*>(this->parent()), "Error", "File doesn\'t exist, field will be empty");
@@ -93,6 +76,17 @@ namespace CP {
                 path,
                 _lineEdits["Num.Feat."]->text()
             };
+        }
+
+        void ModelDialog::setupComboBox(const QString& name) {
+            _comboBoxes[name] = std::make_unique<QComboBox>();
+            if (name == "Model") {
+                _comboBoxes[name]->addItems(modelsList);
+            } else if (name == "Noise") {
+                _comboBoxes[name]->addItems(distributionsList);
+            } else {
+                _comboBoxes[name]->addItems(mlModelsList);
+            }
         }
 
         void ModelDialog::onInfoButtonPushed() {

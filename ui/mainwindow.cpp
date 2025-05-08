@@ -94,15 +94,43 @@ namespace CP {
         void MainWindow::openModelDialog() {
             ModelDialog dialog(this);
             if (dialog.exec() == QDialog::Accepted) {
-                QStringList result = dialog.getModelData();
+                QStringList result = dialog.getData();
                 _models.push_back(std::move(result));
                 model->setData(_models);
             }
         }
 
         void MainWindow::generateData() {
-            auto dialog = new GenerateDialog(this);
-            dialog->show();
+            GenerateDialog dialog(this);
+            if (dialog.exec() == QDialog::Accepted) {
+                auto result = dialog.getData();
+                int feat = (result[0].toStdString().empty() ? 3 : std::stoi(result[0].toStdString()));
+                int samp = (result[1].toStdString().empty() ? 100 : std::stoi(result[1].toStdString()));
+                generate(feat, samp);
+            }
+        }
+
+        void MainWindow::generate(int numFeatures, int numSamples) {
+            std::ostringstream s;
+            for (int i = 0; i < numSamples; ++i) {
+                for (int j = 0; j < numFeatures; ++j) {
+                    std::random_device rd;
+                    std::mt19937 gen(rd());
+                    std::uniform_real_distribution<> dis(1.0, 100.0);
+                    double random_double = dis(gen);
+                    s << random_double;
+                    if (j != numFeatures - 1) {
+                        s << ";";
+                    }
+                }
+                if (i != numSamples - 1) {
+                    s << "\n";
+                }
+            }
+            std::ofstream f("sample.csv");
+            std::cout << s.str();
+            f << s.str();
+            f.close();
         }
 
         void MainWindow::dumpModels() {
@@ -143,14 +171,17 @@ namespace CP {
         }
 
         void MainWindow::runMethods() {
+            std::ostringstream s;
+            s << std::string(PATH_TO_OUTPUT) << "models.json";
             std::string binary = std::string(PATH_TO_BINARY);
-            std::string path = std::string(PATH_TO_OUTPUT) + "models.json";
+            std::string path = s.str();
+            s.clear();
             if (!QFile::exists(QString::fromStdString(path))) {
                 createDialog(this, "Error", "No such file: models.json");
             } else {
-                std::cout << binary + " " + path << std::endl;
-                int res = std::system((binary + " " + path).c_str()); // NEED TO FIX THIS!!!!
-                std::cout << res << std::endl;
+                std::ostringstream ss;
+                ss << binary << " " << path;
+                int res = std::system(ss.str().c_str());
 
                 QList<QString> methods;
                 for (const auto &model : _models) {
@@ -173,7 +204,10 @@ namespace CP {
             int row = 0;
             int col = 0;
             for (const auto &method : methods) {
-                std::string path = std::string(PATH_TO_PICTURES) + "out_" + method.toStdString() + ".png";
+                std::ostringstream s;
+                s << std::string(PATH_TO_PICTURES) << "out_" << method.toStdString() << ".png";
+                std::string path = s.str();
+                s.clear();
                 if (QFile::exists(QString::fromStdString(path))) {
                     QLabel *imageLabel = new QLabel();
                     QPixmap pixmap(QString::fromStdString(path));
