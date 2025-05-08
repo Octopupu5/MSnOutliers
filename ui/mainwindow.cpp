@@ -183,9 +183,9 @@ namespace CP {
                 ss << binary << " " << path;
                 int res = std::system(ss.str().c_str());
 
-                QList<QString> methods;
+                QList<QPair<QString, QString>> methods;
                 for (const auto &model : _models) {
-                    methods.append(model[0]);
+                    methods.append({model[0], model[7]});
                 }
                 showImage(methods);
                 _models.clear();
@@ -193,7 +193,7 @@ namespace CP {
             }
         }
 
-        void MainWindow::showImage(const QList<QString> &methods) {
+        void MainWindow::showImage(const QList<QPair<QString, QString>> &methods) {
             QWidget *imageWindow = new QWidget();
             imageWindow->setWindowTitle("Models");
             imageWindow->setAttribute(Qt::WA_DeleteOnClose);
@@ -201,11 +201,11 @@ namespace CP {
 
             QGridLayout *layout = new QGridLayout(imageWindow);
 
-            int row = 0;
-            int col = 0;
+            size_t row = 0;
+            size_t col = 0;
             for (const auto &method : methods) {
                 std::ostringstream s;
-                s << std::string(PATH_TO_PICTURES) << "out_" << method.toStdString() << ".png";
+                s << std::string(PATH_TO_PICTURES) << "out_" << method.first.toStdString() << "_" << method.second.toStdString() << ".png";
                 std::string path = s.str();
                 s.clear();
                 if (QFile::exists(QString::fromStdString(path))) {
