@@ -60,7 +60,7 @@ namespace CP {
             void dumpModels();
             void runMethods();
             void generateData();
-            void showImage(const QList<QString> &methods);
+            void showImage(const QList<QPair<QString, QString>> &methods);
         };
     } // namespace UI;
 } // namespace CP;

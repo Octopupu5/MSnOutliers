@@ -18,24 +18,17 @@ namespace CP {
         using RData = std::vector<RegressionUnit>;
         class DataDeNoiser {
         public:
-            DataDeNoiser(const RData& data) : _originalRData(data) {
-                if (!data.size()) {
-                    throw std::runtime_error("No data!");
-                }
-                size_t rows = data.size();
-                size_t cols = data[0].features.size();
-                _originalData = Matrix(rows, Row(cols + 1));
-                for (size_t i = 0; i < rows; ++i) {
-                    for (size_t j = 0; j < cols; ++j) {
-                        _originalData[i][j] = data[i].features[j];
-                    }
-                    _originalData[i][cols] = data[i].target;
-                }
-            }
-            RData deNoise(int numNoise, CP::Distributions::ErrorDistributions& dist, const std::string& mlModelType);
+            DataDeNoiser(const RData& data);
+            void noise(int numNoise, CP::Distributions::ErrorDistributions& dist);
+            RData denoise(const std::string& mlModelType);
         private:
-            Matrix _originalData;
-            RData _originalRData;
+            void iForestDenoiser(RData& cleanedData);
+            void KDEDenoiser(RData& cleanedData);
+            void KNNDenoiser(RData& cleanedData);
+            void DBSCANDenoiser(RData& cleanedData);
+            const RData& _data;
+            RData _dataNoised;
+            Matrix _dataMatNoised;
         };
     }
 }

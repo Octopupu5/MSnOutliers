@@ -14,6 +14,8 @@
 #include "PAINTINGS/Scatter.hpp"
 #include "COMMON/DataDeNoiser.hpp"
 
+#include <future>
+
 using json = nlohmann::json;
 using stats = std::unordered_map<std::string, Eigen::VectorXd>;
 using distType = CP::Distributions::ErrorDistributions::DistributionType;
@@ -36,7 +38,8 @@ namespace {
         for (auto &i : method.items()) {
             auto params = i.value();
             CP::Distributions::ErrorDistributions dist(dists.at(params["noise"]["type"].dump()), params["noise"]["param1"], params["noise"]["param2"]);
-            const CP::Common::RData processedData = deNoiser.deNoise(numNoise, dist, params["mlmodel"]);
+            deNoiser.noise(numNoise, dist);
+            const CP::Common::RData processedData = deNoiser.denoise(params["mlmodel"]);
             if (i.key() == "LSM") {
                 auto model = CP::MS::LeastSquaresMethod(processedData);
                 res["LSM"] = model.compute();
@@ -118,23 +121,72 @@ int main(int argc, char **argv) {
         }
         
         CP::Common::RegressionData data = parser.parseCSV(path, method.items().begin().value()["num_feat"]);
-        CP::Common::DataDeNoiser deNoiser(data);
+
+        // std::vector<std::pair<double, double>> errors;
+        // for (size_t numNoise = 0; numNoise <= 50; ++numNoise) {
+        //     double avg_error = 0;
+        //     size_t numExperiments = 10;
+        //     for (size_t numExperiment = 0; numExperiment < numExperiments; ++numExperiment) {
+        //         stats computed = runOnMethods(method, numNoise, deNoiser);
+        //         auto [name, weights] = *(computed.begin());
+        //         avg_error += calc.meanSquaredError(target, std::move(fromEigenVec(weights)));
+        //     }
+        //     avg_error /= numExperiments;
+        //     errors.push_back({numNoise, avg_error});
+        // }
+
+        struct ExperimentResult {
+            size_t noise;
+            double error;
+        };
+
+        size_t maxNoise = 50;
+        size_t numExperiments = 10;
+
+        unsigned n_threads = std::thread::hardware_concurrency();
+        std::vector<std::future<ExperimentResult>> futures;
+        std::vector<std::vector<double>> errors_by_noise(maxNoise + 1);
+
+        for (size_t numNoise = 0; numNoise <= maxNoise; ++numNoise) {
+            for (size_t numExperiment = 0; numExperiment < numExperiments; ++numExperiment) {
+                while (futures.size() >= n_threads) {
+                    for (auto it = futures.begin(); it != futures.end(); ) {
+                        if (it->wait_for(std::chrono::milliseconds(0)) == std::future_status::ready) {
+                            ExperimentResult res = it->get();
+                            errors_by_noise[res.noise].push_back(res.error);
+                            it = futures.erase(it);
+                        } else {
+                            ++it;
+                        }
+                    }
+                }
+                futures.push_back(std::async(std::launch::async, [&, numNoise]() {
+                    CP::Common::DataDeNoiser deNoiser(data);
+                    stats computed = runOnMethods(method, numNoise, deNoiser);
+                    auto [name, weights] = *(computed.begin());
+                    double error = calc.meanSquaredError(target, fromEigenVec(weights));
+                    return ExperimentResult{numNoise, error};
+                }));
+            }
+        }
+
+        for (auto& fut : futures) {
+            ExperimentResult res = fut.get();
+            errors_by_noise[res.noise].push_back(res.error);
+        }
 
         std::vector<std::pair<double, double>> errors;
-        for (size_t numNoise = 0; numNoise <= 50; ++numNoise) {
-            double avg_error = 0;
-            size_t numExperiments = 10;
-            for (size_t numExperiment = 0; numExperiment < numExperiments; ++numExperiment) {
-                stats computed = runOnMethods(method, numNoise, deNoiser);
-                auto [name, weights] = *(computed.begin());
-                avg_error += calc.meanSquaredError(target, std::move(fromEigenVec(weights)));
+        for (size_t n = 0; n <= maxNoise; ++n) {
+            double avg = 0.0;
+            if(!errors_by_noise[n].empty()) {
+                avg = std::accumulate(errors_by_noise[n].begin(), errors_by_noise[n].end(), 0.0) / errors_by_noise[n].size();
             }
-            avg_error /= numExperiments;
-            errors.push_back({numNoise, avg_error});
+            errors.emplace_back(n, avg);
         }
-        std::string conf = std::string(SRC_CONFIGS_DIR) + "/config_" + method.items().begin().key() + ".json";
-        std::string out = std::string(SRC_OUTPUTS_DIR) + "/out_" + method.items().begin().key() + ".png";
-        Graph graph("Error vs Noise on " + method.items().begin().key() + " method", "Noise Level", "Error", conf, out);
+
+        std::string conf = std::string(SRC_CONFIGS_DIR) + "/config_" + method.items().begin().key() + "_" + std::string(method.items().begin().value()["mlmodel"]) + ".json";
+        std::string out = std::string(SRC_OUTPUTS_DIR) + "/out_" + method.items().begin().key() + "_" + std::string(method.items().begin().value()["mlmodel"]) + ".png";
+        Graph graph("Error vs Noise on " + method.items().begin().key() + " method with " + std::string(method.items().begin().value()["mlmodel"]) + " ML algorightm", "Noise Level", "Error", conf, out);
         auto plot = std::make_shared<Scatter>(errors, "blue", 15, 0.9);
         graph.addObject(plot);
         graph.saveConfig();

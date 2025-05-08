@@ -2,18 +2,29 @@
 
 namespace CP {
     namespace ML {
-		iForest::iForest() : _generator(_device()), _nEstimators(10), _depth(0) {}
-		iForest::iForest(uint32_t nEstimators, uint32_t depth) : _generator(_device()), _nEstimators(nEstimators), _depth(depth) {}
+		iForest::iForest(uint32_t nEstimators, uint32_t depth, const Common::Matrix& data) : _generator(_device()), _nEstimators(nEstimators), _depth(depth), _data(data) {
+			auto [rows, cols] = Shape(_data);
+			_dataRows = rows;
+			_dataCols = cols;
+		}
 		iForest::~iForest() {
 			Clear();
 		}
 
-		void iForest::Fit(const Common::Matrix& data) {
+		void iForest::Fit() {
 			Clear();
 			_trees.reserve(_nEstimators);
+			
 			for (size_t i = 0; i < _nEstimators; ++i) {
-				Common::Matrix* data_cp = new Common::Matrix(data);
-				_trees.push_back(CreateTree(data_cp, 0));
+				std::vector<size_t>* indices = new std::vector<size_t>(_dataRows);
+				for (size_t j = 0; j < _dataRows; ++j) {
+					(*indices)[j] = j;
+				}
+				std::shuffle((*indices).begin(), (*indices).end(), _generator);
+				size_t subsetSize = std::min(_dataRows, static_cast<size_t>(256));
+				(*indices).resize(subsetSize);
+				
+				_trees.push_back(CreateTree(indices, 0));
 			}
 		}
 
@@ -38,18 +49,20 @@ namespace CP {
 			_trees.clear();
 		}
 		
-		Node* iForest::CreateTree(Common::Matrix* availableData, size_t depth) {
-			auto [rows, cols] = Shape(*availableData);
+		Node* iForest::CreateTree(std::vector<size_t>* indices, size_t depth) {
+			size_t rows = (*indices).size();
 			if (((_depth > 0) && (depth >= _depth)) || rows == 1) {
-				delete availableData;
+				delete indices;
 				return NULL;
 			}
 
 			uint32_t i = Rand(0, rows - 2);
-			uint32_t k = Rand(0, cols - 1);
-			Common::Row featureValues;
-			for (int j = 0; j < rows; ++j) {
-				featureValues.push_back((*availableData)[j][k].Value());
+			uint32_t k = Rand(0, _dataCols - 1);
+			Common::Row featureValues(rows);
+			size_t j = 0;
+			for (size_t idx : (*indices)) {
+				featureValues[j] = _data[idx][k];
+				++j;
 			}
 			
 			std::nth_element(featureValues.begin(), featureValues.begin() + i, featureValues.end());
@@ -60,26 +73,26 @@ namespace CP {
 			
 			size_t leftSplitSize = i + 1;
 			size_t rightSplitSize = rows - leftSplitSize;
-			Common::Matrix* leftSplit = new Common::Matrix(leftSplitSize, Common::Row(cols));
-			Common::Matrix* rightSplit = new Common::Matrix(rightSplitSize, Common::Row(cols));
 			size_t leftP = 0;
 			size_t rightP = 0;
-			for (size_t j = 0; j < rows; ++j) {
-				if ((*availableData)[j][k] <= splitValue && !(leftP == leftSplitSize)) {
-					(*leftSplit)[leftP] = (*availableData)[j];
+			std::vector<size_t>* leftIndices = new std::vector<size_t>(leftSplitSize);
+			std::vector<size_t>* rightIndices = new std::vector<size_t>(rightSplitSize);
+			for (size_t idx : (*indices)) {
+				if (_data[idx][k] <= splitValue && !(leftP == leftSplitSize)) {
+					(*leftIndices)[leftP] = idx;
 					++leftP;
 				}
 				else {
-					(*rightSplit)[rightP] = (*availableData)[j];
+					(*rightIndices)[rightP] = idx;
 					++rightP;
 				}
 			}
 
-			delete availableData;
-			
+			delete indices;
+
 			++depth;
-			tree->ReplaceL(CreateTree(leftSplit, depth));
-			tree->ReplaceR(CreateTree(rightSplit, depth));
+			tree->ReplaceL(CreateTree(leftIndices, depth));
+			tree->ReplaceR(CreateTree(rightIndices, depth));
 			return tree;
 		}
 		
