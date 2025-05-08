@@ -29,6 +29,8 @@ set(PROJECT_SOURCES
         mainwindow.h
         modeldialog.cpp
         modeldialog.h
+        generatedialog.cpp
+        generatedialog.h
         mainwindow.ui
 )
 

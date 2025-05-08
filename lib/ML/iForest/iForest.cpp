@@ -65,18 +65,12 @@ namespace CP {
 			size_t leftP = 0;
 			size_t rightP = 0;
 			for (size_t j = 0; j < rows; ++j) {
-				for (size_t m = 0; m < cols; ++m) {
-					if ((*availableData)[j][k] <= splitValue && !(leftP == leftSplitSize)) {
-						(*leftSplit)[leftP][m] = (*availableData)[j][m];
-					}
-					else {
-						(*rightSplit)[rightP][m] = (*availableData)[j][m];
-					}
-				}
 				if ((*availableData)[j][k] <= splitValue && !(leftP == leftSplitSize)) {
+					(*leftSplit)[leftP] = (*availableData)[j];
 					++leftP;
 				}
 				else {
+					(*rightSplit)[rightP] = (*availableData)[j];
 					++rightP;
 				}
 			}

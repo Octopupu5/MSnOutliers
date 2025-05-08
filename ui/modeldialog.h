@@ -6,33 +6,42 @@
 #include <QPushButton>
 #include <QComboBox>
 #include <QLineEdit>
+#include <QFile>
+#include <QVBoxLayout>
+#include <QFormLayout>
+#include <QDialogButtonBox>
 
 #include <iostream>
 #include <unordered_map>
 
-class ModelDialog : public QDialog {
-    Q_OBJECT
+namespace CP {
+    namespace UI {
 
-public:
-    explicit ModelDialog(QWidget *parent = nullptr);
-    QStringList getModelData();
+        class ModelDialog : public QDialog {
+            Q_OBJECT
 
-private:
-    QLabel* getLabel(const QString& text);
-    void setupComboBox(const QString& name);
-    void setupLineEdit(const QString name, QString text, QValidator *validator);
-    std::unique_ptr<QPushButton> _info;
+        public:
+            explicit ModelDialog(QWidget *parent = nullptr);
+            QStringList getModelData();
 
-    const QStringList distributionsList = {"Normal", "Student", "Cauchy", "Lognormal", "Laplace"};
-    const QStringList mlModelsList = {"None", "IForest", "DBSCAN", "OCSVM"};
-    const QStringList modelsList = {"LSM", "HUB", "TUK", "LAD", "THS"};
+        private:
+            QLabel* getLabel(const QString& text);
+            void setupComboBox(const QString& name);
+            void setupLineEdit(const QString name, QString text, QValidator *validator);
+            std::unique_ptr<QPushButton> _info;
 
-    std::unordered_map<QString, std::unique_ptr<QComboBox>> _comboBoxes;
-    std::unordered_map<QString, std::unique_ptr<QLineEdit>> _lineEdits;
+            const QStringList distributionsList = {"Normal", "Student", "Cauchy", "Lognormal", "Laplace"};
+            const QStringList mlModelsList = {"None", "IForest", "DBSCAN", "OCSVM"};
+            const QStringList modelsList = {"LSM", "HUB", "TUK", "LAD", "THS"};
 
-private slots:
-    void onModelChanged(const QString &modelType);
-    void onInfoButtonPushed();
-};
+            std::unordered_map<QString, std::unique_ptr<QComboBox>> _comboBoxes;
+            std::unordered_map<QString, std::unique_ptr<QLineEdit>> _lineEdits;
+
+        private slots:
+            void onModelChanged(const QString &modelType);
+            void onInfoButtonPushed();
+        };
+    } // namespace UI;
+} // namespace CP;
 
 #endif // MODELDIALOG_H
