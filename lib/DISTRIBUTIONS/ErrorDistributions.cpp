@@ -8,7 +8,7 @@ namespace CP {
                 case Normal:
                     _distribution = std::normal_distribution<>(param1, param2);
                     break;
-                case StudentT:
+                case Student:
                     _distribution = std::pair<double, double>{param1, 0.0};
                     break;
                 case Cauchy:
@@ -26,7 +26,7 @@ namespace CP {
             switch (_type) {
                 case Normal:
                     return std::get<std::normal_distribution<>>(_distribution)(gen);
-                case StudentT:
+                case Student:
                     return student_t_generate(gen, std::get<std::pair<double, double>>(_distribution).first);
                 case Cauchy:
                     return std::get<std::cauchy_distribution<>>(_distribution)(gen);

@@ -23,13 +23,13 @@ using distType = CP::Distributions::ErrorDistributions::DistributionType;
 namespace {
     const std::unordered_map<std::string, distType> dists = {
         {"\"Normal\"", distType::Normal},
-        {"\"StudentT\"", distType::StudentT},
+        {"\"Student\"", distType::Student},
         {"\"Cauchy\"", distType::Cauchy},
         {"\"Laplace\"", distType::Laplace}
     };
 
     const std::unordered_set<std::string> validModels{"LSM", "HUB", "TUK", "LAD", "THS"};
-    const std::unordered_set<std::string> validDists{"Normal", "StudentT", "Cauchy", "Laplace"};
+    const std::unordered_set<std::string> validDists{"Normal", "Student", "Cauchy", "Laplace"};
     const std::unordered_set<std::string> validMLModels{"None", "IForest", "DBSCAN", "KDE", "KNN"};
 
     stats runOnMethods(const json& method, size_t numNoise, CP::Common::DataDeNoiser &deNoiser) {
@@ -144,14 +144,15 @@ int main(int argc, char **argv) {
                 
                 CP::Common::RegressionData data = parser.parseCSV(path, method.items().begin().value()["num_feat"]);
                 
+                size_t minNoise = 35;
                 size_t maxNoise = 50;
-                size_t numExperiments = 10;
+                size_t numExperiments = 1000;
                 
                 unsigned n_threads = std::thread::hardware_concurrency();
                 std::vector<std::future<ExperimentResult>> futures;
                 std::vector<std::vector<double>> errors_by_noise(maxNoise + 1);
 
-                for (size_t numNoise = 0; numNoise <= maxNoise; ++numNoise) {
+                for (size_t numNoise = minNoise; numNoise <= maxNoise; ++numNoise) {
                     for (size_t numExperiment = 0; numExperiment < numExperiments; ++numExperiment) {
                         while (futures.size() >= n_threads) {
                             for (auto it = futures.begin(); it != futures.end(); ) {
@@ -180,7 +181,7 @@ int main(int argc, char **argv) {
                 }
 
                 std::vector<std::pair<double, double>> errors;
-                for (size_t n = 0; n <= maxNoise; ++n) {
+                for (size_t n = minNoise; n <= maxNoise; ++n) {
                     double avg = 0.0;
                     if(!errors_by_noise[n].empty()) {
                         avg = std::accumulate(errors_by_noise[n].begin(), errors_by_noise[n].end(), 0.0) / errors_by_noise[n].size();
