@@ -193,39 +193,81 @@ namespace CP {
             }
         }
 
-        void MainWindow::showImage(const QList<QPair<QString, QString>> &methods) {
+        void MainWindow::showImage(const QList<QPair<QString, QString>>& methods) {
             QWidget *imageWindow = new QWidget();
             imageWindow->setWindowTitle("Models");
             imageWindow->setAttribute(Qt::WA_DeleteOnClose);
-            imageWindow->resize(500, 500);
+            imageWindow->resize(800, 600);
 
-            QGridLayout *layout = new QGridLayout(imageWindow);
-
-            size_t row = 0;
-            size_t col = 0;
+            QScrollArea *scrollArea = new QScrollArea(imageWindow);
+            scrollArea->setWidgetResizable(true);
+            scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+            scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+            
+            QWidget *scrollContent = new QWidget();
+            QVBoxLayout *mainLayout = new QVBoxLayout(scrollContent);
+            mainLayout->setAlignment(Qt::AlignHCenter);
+            mainLayout->setSpacing(20);
+            QMap<QString, QList<QString>> methodGroups;
             for (const auto &method : methods) {
-                std::ostringstream s;
-                s << std::string(PATH_TO_PICTURES) << "out_" << method.first.toStdString() << "_" << method.second.toStdString() << ".png";
-                std::string path = s.str();
-                s.clear();
-                if (QFile::exists(QString::fromStdString(path))) {
-                    QLabel *imageLabel = new QLabel();
-                    QPixmap pixmap(QString::fromStdString(path));
-                    imageLabel->setPixmap(pixmap.scaled(400, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-                    imageLabel->setScaledContents(true);
-
-                    layout->addWidget(imageLabel, row, col);
-
-                    col++;
-                    if (col >= 3) {
-                        col = 0;
-                        row++;
+                if (!methodGroups.contains(method.first)) {
+                    methodGroups[method.first] = QList<QString>();
+                }
+                methodGroups[method.first].append(method.second);
+            }
+            
+            for (auto it = methodGroups.constBegin(); it != methodGroups.constEnd(); ++it) {
+                const QString &modelName = it.key();
+                int numMethods = it.value().size();
+                int numGroups = (numMethods + 3) / 4;
+                for (int groupIdx = 0; groupIdx < numGroups; ++groupIdx) {
+                    std::ostringstream s;
+                    s << std::string(PATH_TO_PICTURES) << "out_" << modelName.toStdString() << "_group" << groupIdx << ".png";
+                    QString path = QString::fromStdString(s.str());
+                    
+                    if (QFile::exists(path)) {
+                        QWidget *graphContainer = new QWidget();
+                        graphContainer->setFixedWidth(700);
+                        QVBoxLayout *containerLayout = new QVBoxLayout(graphContainer);
+                        QLabel *titleLabel = new QLabel(modelName + " (Group " + QString::number(groupIdx + 1) + ")");
+                        titleLabel->setAlignment(Qt::AlignCenter);
+                        titleLabel->setStyleSheet("font-weight: bold; font-size: 14px;");
+                        containerLayout->addWidget(titleLabel);
+                        QWidget *imageContainer = new QWidget();
+                        imageContainer->setFixedSize(680, 500);
+                        QVBoxLayout *imageLayout = new QVBoxLayout(imageContainer);
+                        imageLayout->setContentsMargins(0, 0, 0, 0);
+                        
+                        QLabel *imageLabel = new QLabel();
+                        imageLabel->setAlignment(Qt::AlignCenter);
+                        QPixmap pixmap(path);
+                        
+                        imageLabel->setPixmap(pixmap.scaled(670, 490, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+                        imageLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+                        imageLabel->setMinimumSize(670, 490);
+                        imageLabel->setMaximumSize(670, 490);
+                        
+                        imageLayout->addWidget(imageLabel);
+                        containerLayout->addWidget(imageContainer);
+                        mainLayout->addWidget(graphContainer);
                     }
-                } else {
-                    qDebug() << "Image not found for method" << method;
                 }
             }
-
+            
+            if (mainLayout->count() == 0) {
+                QLabel *noImagesLabel = new QLabel("No images found for selected models");
+                noImagesLabel->setAlignment(Qt::AlignCenter);
+                noImagesLabel->setStyleSheet("font-size: 16px; color: gray;");
+                mainLayout->addWidget(noImagesLabel);
+            }
+            
+            scrollContent->setLayout(mainLayout);
+            scrollArea->setWidget(scrollContent);
+            
+            QVBoxLayout *windowLayout = new QVBoxLayout(imageWindow);
+            windowLayout->setContentsMargins(0, 0, 0, 0);
+            windowLayout->addWidget(scrollArea);
+            
             imageWindow->show();
         }
     } // namespace UI;

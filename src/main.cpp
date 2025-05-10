@@ -113,84 +113,92 @@ int main(int argc, char **argv) {
         std::cout << "Malformed json-data!" << std::endl;
         return 1;
     }
-    
+
+    struct ExperimentResult {
+        size_t noise;
+        double error;
+    };
+
+    std::unordered_map<std::string, std::vector<json>> methodGroups;
     for (auto &method : methods["models"]) {
-        std::string path = method.items().begin().value()["path"];
-        if (path.empty()) {
-            path = std::string(DATA_DIR) + "/source.csv";
-        }
-        
-        CP::Common::RegressionData data = parser.parseCSV(path, method.items().begin().value()["num_feat"]);
+        std::string methodName = method.items().begin().key();
+        methodGroups[methodName].push_back(method);
+    }
+    
+    for (auto &[methodName, methodGroup] : methodGroups) {
+        size_t graphCount = (methodGroup.size() + 3) / 4;    
+        for (size_t graphIdx = 0; graphIdx < graphCount; ++graphIdx) {
+            size_t startIdx = graphIdx * 4;
+            size_t endIdx = std::min(startIdx + 4, methodGroup.size());
+            std::string graphTitle = "Error vs Noise on " + methodName + " method (Group " + std::to_string(graphIdx + 1) + ")";
+            std::string configPath = std::string(SRC_CONFIGS_DIR) + "/config_" + methodName + "_group" + std::to_string(graphIdx) + ".json";
+            std::string outputPath = std::string(SRC_OUTPUTS_DIR) + "/out_" + methodName + "_group" + std::to_string(graphIdx) + ".png";
+            Graph graph(graphTitle, "Noise Level", "Error", configPath, outputPath);
+            const std::array<std::string, 4> colors = {"blue", "red", "green", "purple"};
+            for (size_t i = startIdx; i < endIdx; ++i) {
+                json &method = methodGroup[i];
+                std::string path = method.items().begin().value()["path"];
+                if (path.empty()) {
+                    path = std::string(DATA_DIR) + "/source.csv";
+                }
+                
+                CP::Common::RegressionData data = parser.parseCSV(path, method.items().begin().value()["num_feat"]);
+                
+                size_t maxNoise = 50;
+                size_t numExperiments = 10;
+                
+                unsigned n_threads = std::thread::hardware_concurrency();
+                std::vector<std::future<ExperimentResult>> futures;
+                std::vector<std::vector<double>> errors_by_noise(maxNoise + 1);
 
-        // std::vector<std::pair<double, double>> errors;
-        // for (size_t numNoise = 0; numNoise <= 50; ++numNoise) {
-        //     double avg_error = 0;
-        //     size_t numExperiments = 10;
-        //     for (size_t numExperiment = 0; numExperiment < numExperiments; ++numExperiment) {
-        //         stats computed = runOnMethods(method, numNoise, deNoiser);
-        //         auto [name, weights] = *(computed.begin());
-        //         avg_error += calc.meanSquaredError(target, std::move(fromEigenVec(weights)));
-        //     }
-        //     avg_error /= numExperiments;
-        //     errors.push_back({numNoise, avg_error});
-        // }
-
-        struct ExperimentResult {
-            size_t noise;
-            double error;
-        };
-
-        size_t maxNoise = 50;
-        size_t numExperiments = 10;
-
-        unsigned n_threads = std::thread::hardware_concurrency();
-        std::vector<std::future<ExperimentResult>> futures;
-        std::vector<std::vector<double>> errors_by_noise(maxNoise + 1);
-
-        for (size_t numNoise = 0; numNoise <= maxNoise; ++numNoise) {
-            for (size_t numExperiment = 0; numExperiment < numExperiments; ++numExperiment) {
-                while (futures.size() >= n_threads) {
-                    for (auto it = futures.begin(); it != futures.end(); ) {
-                        if (it->wait_for(std::chrono::milliseconds(0)) == std::future_status::ready) {
-                            ExperimentResult res = it->get();
-                            errors_by_noise[res.noise].push_back(res.error);
-                            it = futures.erase(it);
-                        } else {
-                            ++it;
+                for (size_t numNoise = 0; numNoise <= maxNoise; ++numNoise) {
+                    for (size_t numExperiment = 0; numExperiment < numExperiments; ++numExperiment) {
+                        while (futures.size() >= n_threads) {
+                            for (auto it = futures.begin(); it != futures.end(); ) {
+                                if (it->wait_for(std::chrono::milliseconds(0)) == std::future_status::ready) {
+                                    ExperimentResult res = it->get();
+                                    errors_by_noise[res.noise].push_back(res.error);
+                                    it = futures.erase(it);
+                                } else {
+                                    ++it;
+                                }
+                            }
                         }
+                        futures.push_back(std::async(std::launch::async, [&, numNoise]() {
+                            CP::Common::DataDeNoiser deNoiser(data);
+                            stats computed = runOnMethods(method, numNoise, deNoiser);
+                            auto [name, weights] = *(computed.begin());
+                            double error = calc.meanSquaredError(target, fromEigenVec(weights));
+                            return ExperimentResult{numNoise, error};
+                        }));
                     }
                 }
-                futures.push_back(std::async(std::launch::async, [&, numNoise]() {
-                    CP::Common::DataDeNoiser deNoiser(data);
-                    stats computed = runOnMethods(method, numNoise, deNoiser);
-                    auto [name, weights] = *(computed.begin());
-                    double error = calc.meanSquaredError(target, fromEigenVec(weights));
-                    return ExperimentResult{numNoise, error};
-                }));
-            }
-        }
 
-        for (auto& fut : futures) {
-            ExperimentResult res = fut.get();
-            errors_by_noise[res.noise].push_back(res.error);
-        }
+                for (auto& fut : futures) {
+                    ExperimentResult res = fut.get();
+                    errors_by_noise[res.noise].push_back(res.error);
+                }
 
-        std::vector<std::pair<double, double>> errors;
-        for (size_t n = 0; n <= maxNoise; ++n) {
-            double avg = 0.0;
-            if(!errors_by_noise[n].empty()) {
-                avg = std::accumulate(errors_by_noise[n].begin(), errors_by_noise[n].end(), 0.0) / errors_by_noise[n].size();
-            }
-            errors.emplace_back(n, avg);
+                std::vector<std::pair<double, double>> errors;
+                for (size_t n = 0; n <= maxNoise; ++n) {
+                    double avg = 0.0;
+                    if(!errors_by_noise[n].empty()) {
+                        avg = std::accumulate(errors_by_noise[n].begin(), errors_by_noise[n].end(), 0.0) / errors_by_noise[n].size();
+                    }
+                    errors.emplace_back(n, avg);
+                }
+                
+                std::string mlModel = method.items().begin().value()["mlmodel"];
+                std::string noiseType = method.items().begin().value()["noise"]["type"];
+                std::string legendName = mlModel + " / " + noiseType;
+                
+                size_t colorIdx = i - startIdx;
+                auto plot = std::make_shared<Scatter>(errors, colors[colorIdx], 15, 0.6, legendName);
+                graph.addObject(plot);
+            }                
+            graph.saveConfig();
+            graph.draw();
         }
-
-        std::string conf = std::string(SRC_CONFIGS_DIR) + "/config_" + method.items().begin().key() + "_" + std::string(method.items().begin().value()["mlmodel"]) + ".json";
-        std::string out = std::string(SRC_OUTPUTS_DIR) + "/out_" + method.items().begin().key() + "_" + std::string(method.items().begin().value()["mlmodel"]) + ".png";
-        Graph graph("Error vs Noise on " + method.items().begin().key() + " method with " + std::string(method.items().begin().value()["mlmodel"]) + " ML algorightm", "Noise Level", "Error", conf, out);
-        auto plot = std::make_shared<Scatter>(errors, "blue", 15, 0.9);
-        graph.addObject(plot);
-        graph.saveConfig();
-        graph.draw();
     }
     return 0;
 }

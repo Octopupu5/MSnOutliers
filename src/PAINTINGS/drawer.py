@@ -8,6 +8,7 @@ class Drawer:
     def __init__(self, min_x=-10, max_x=10):
         self.min_x = min_x
         self.max_x = max_x
+        self.has_labeled_items = False
 
     def draw_line(self, obj):
         orientation = obj.get('orientation', None)
@@ -30,8 +31,17 @@ class Drawer:
         points = obj.get('points', [])
         x = [p.get('x') for p in points]
         y = [p.get('y') for p in points]
-        plt.scatter(x, y, color=obj.get('color', 'red'), s=obj.get('pointSize', 5.0), alpha=obj.get('transparency', 1.0))
-        if x: self.max_x, self.min_x = max(self.max_x, max(x)), min(self.min_x, min(x))
+        label = obj.get('label', None)
+        
+        if label: self.has_labeled_items = True
+        plt.scatter(x, y, 
+                  color=obj.get('color', 'red'), 
+                  s=obj.get('pointSize', 5.0), 
+                  alpha=obj.get('transparency', 1.0), 
+                  label=label)
+                  
+        if x: 
+            self.max_x, self.min_x = max(self.max_x, max(x)), min(self.min_x, min(x))
 
     def draw_function(self, obj):
         points = obj.get('points', [])
@@ -47,24 +57,31 @@ def main(config_path):
     
     drawer = Drawer()
     
-    plt.figure()
+    plt.figure(figsize=(10, 6))
     plt.title(config_data.get('title', ''))
     plt.xlabel(config_data.get('xLabel', ''))
     plt.ylabel(config_data.get('yLabel', ''))
     
-    for obj in config_data.get('objects', []):
-        if obj.get('type') == 'points':
-            drawer.draw_points(obj)
     
     for obj in config_data.get('objects', []):
         obj_type = obj.get('type')
-        if obj_type == 'line':
+        if obj_type == 'points':
+            drawer.draw_points(obj)
+        elif obj_type == 'line':
             drawer.draw_line(obj)
         elif obj_type == 'function':
             drawer.draw_function(obj)
     
+    
+    if drawer.has_labeled_items:
+        plt.legend(loc='best')
+    
+    
+    plt.grid(True, linestyle='--', alpha=0.7)
+    plt.tight_layout()
+    
     outputPath = config_data.get('outputPath', 'output.png')
-    plt.savefig(outputPath, dpi=100, bbox_inches='tight')
+    plt.savefig(outputPath, dpi=120, bbox_inches='tight')
     print('graph has been saved to', outputPath)
 
 if __name__ == '__main__':
