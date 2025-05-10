@@ -1,0 +1,5 @@
+SRC_DATA_DIR = '/Users/heritagetime/VSCode/MSnOutliers/src/data'
+SRC_CONFIGS_DIR = '/Users/heritagetime/VSCode/MSnOutliers/src/configs'
+SRC_OUTPUTS_DIR = '/Users/heritagetime/VSCode/MSnOutliers/src/outputs'
+SRC_PAINTINGS_DIR = '/Users/heritagetime/VSCode/MSnOutliers/src/PAINTINGS'
+PYTHON_EXEC_PATH = '/Users/heritagetime/VSCode/.venv/bin/python3'

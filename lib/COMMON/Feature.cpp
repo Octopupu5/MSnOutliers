@@ -54,7 +54,7 @@ namespace CP {
         }
 
         Feature& Feature::operator/=(const Feature& other) {
-            if (fabs(other._value) <= 0.00000001) {
+            if (std::fabs(other._value) <= 0.00000001) {
                 throw std::runtime_error("Division by zero");
             }
             _value /= other._value;

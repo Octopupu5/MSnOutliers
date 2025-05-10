@@ -34,7 +34,7 @@ namespace CP {
                 }
 
                 _idToCluster[current] = clusterId;
-                std::vector<uint32_t> currentNeighbors = GetNeighbors(current);
+                std::vector<uint32_t> currentNeighbors(std::move(GetNeighbors(current)));
 
                 if (currentNeighbors.size() >= _minimumClusterSize) {
                     seeds.insert(currentNeighbors.begin(), currentNeighbors.end());
@@ -53,7 +53,7 @@ namespace CP {
                     continue;
                 }
 
-                std::vector<uint32_t> neighbors = GetNeighbors(i);
+                std::vector<uint32_t> neighbors(std::move(GetNeighbors(i)));
                 if (neighbors.size() < _minimumClusterSize) {
                     _idToCluster[i] = 0;
                     continue;

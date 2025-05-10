@@ -126,15 +126,15 @@ int main(int argc, char **argv) {
     }
     
     for (auto &[methodName, methodGroup] : methodGroups) {
-        size_t graphCount = (methodGroup.size() + 3) / 4;    
+        size_t graphCount = (methodGroup.size() + 4) / 5;    
         for (size_t graphIdx = 0; graphIdx < graphCount; ++graphIdx) {
-            size_t startIdx = graphIdx * 4;
-            size_t endIdx = std::min(startIdx + 4, methodGroup.size());
+            size_t startIdx = graphIdx * 5;
+            size_t endIdx = std::min(startIdx + 5, methodGroup.size());
             std::string graphTitle = "Error vs Noise on " + methodName + " method (Group " + std::to_string(graphIdx + 1) + ")";
             std::string configPath = std::string(SRC_CONFIGS_DIR) + "/config_" + methodName + "_group" + std::to_string(graphIdx) + ".json";
             std::string outputPath = std::string(SRC_OUTPUTS_DIR) + "/out_" + methodName + "_group" + std::to_string(graphIdx) + ".png";
             Graph graph(graphTitle, "Noise Level", "Error", configPath, outputPath);
-            const std::array<std::string, 4> colors = {"blue", "red", "green", "purple"};
+            const std::array<std::string, 5> colors = {"blue", "red", "green", "purple", "cyan"};
             for (size_t i = startIdx; i < endIdx; ++i) {
                 json &method = methodGroup[i];
                 std::string path = method.items().begin().value()["path"];
@@ -193,7 +193,7 @@ int main(int argc, char **argv) {
                 std::string legendName = mlModel + " / " + noiseType;
                 
                 size_t colorIdx = i - startIdx;
-                auto plot = std::make_shared<Scatter>(errors, colors[colorIdx], 15, 0.6, legendName);
+                auto plot = std::make_shared<Scatter>(errors, colors[colorIdx], 15, 0.45, legendName);
                 graph.addObject(plot);
             }                
             graph.saveConfig();

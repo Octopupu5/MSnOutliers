@@ -219,7 +219,7 @@ namespace CP {
             for (auto it = methodGroups.constBegin(); it != methodGroups.constEnd(); ++it) {
                 const QString &modelName = it.key();
                 int numMethods = it.value().size();
-                int numGroups = (numMethods + 3) / 4;
+                int numGroups = (numMethods + 4) / 5;
                 for (int groupIdx = 0; groupIdx < numGroups; ++groupIdx) {
                     std::ostringstream s;
                     s << std::string(PATH_TO_PICTURES) << "out_" << modelName.toStdString() << "_group" << groupIdx << ".png";
