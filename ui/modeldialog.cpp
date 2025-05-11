@@ -27,6 +27,9 @@ namespace CP {
             setupLineEdit("Num.Feat.", "3", integer_validator);
             setupLineEdit("Path", "source.csv", nullptr);
 
+            setupLineEdit("Max.Noise", "50", integer_validator);
+            setupLineEdit("Num.Exp.", "10", integer_validator);
+
             _info = std::make_unique<QPushButton>();
             _info->setText("Get info");
 
@@ -42,6 +45,8 @@ namespace CP {
             formLayout->addRow("Parameter 2:", _lineEdits["Param.2"].get());
             formLayout->addRow("Path to data", _lineEdits["Path"].get());
             formLayout->addRow("Num. features", _lineEdits["Num.Feat."].get());
+            formLayout->addRow("Max noise", _lineEdits["Max.Noise"].get());
+            formLayout->addRow("Number of experiments", _lineEdits["Num.Exp."].get());
             formLayout->addRow("About distributions:", _info.get());
             formLayout->addRow("ML model:", _comboBoxes["ML"].get());
 
@@ -74,7 +79,9 @@ namespace CP {
                 _lineEdits["Param.2"]->text(),
                 _comboBoxes["ML"]->currentText(),
                 path,
-                _lineEdits["Num.Feat."]->text()
+                _lineEdits["Num.Feat."]->text(),
+                _lineEdits["Max.Noise"]->text(),
+                _lineEdits["Num.Exp."]->text()
             };
         }
 

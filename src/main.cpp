@@ -93,6 +93,8 @@ namespace {
         
             if (!item[name].contains("path") || !item[name]["path"].is_string()) return false;
             if (!item[name].contains("num_feat") || !item[name]["num_feat"].is_number_integer()) return false;
+            if (!item[name].contains("max_noise") || !item[name]["max_noise"].is_number_integer()) return false;
+            if (!item[name].contains("num_exp") || !item[name]["num_exp"].is_number_integer()) return false;
         }
         return true;
     }
@@ -140,8 +142,8 @@ int main(int argc, char **argv) {
             double error;
         };
 
-        size_t maxNoise = 50;
-        size_t numExperiments = 10;
+        size_t maxNoise =  method.items().begin().value()["max_noise"];
+        size_t numExperiments =  method.items().begin().value()["num_exp"];
 
         unsigned n_threads = std::thread::hardware_concurrency();
         std::vector<std::future<ExperimentResult>> futures;

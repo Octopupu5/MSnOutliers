@@ -15,6 +15,7 @@
 #include "../json/single_include/nlohmann/json.hpp"
 #include "generatedialog.h"
 #include "modeldialog.h"
+#include "basicstatdialog.h"
 
 #include <cstdlib>
 #include <stdlib.h>
@@ -51,7 +52,8 @@ namespace CP {
             explicit MainWindow(QWidget *parent = nullptr);
 
         private:
-            void generate(int numFeatures, int numSamples);
+            void generate(int min, int max, int numFeatures, int numSamples, std::vector<double> coeffs);
+            std::vector<double> parseCoefficients(std::string coeffs);
             QList<QStringList> _models;
             ModelTable *model;
 
@@ -60,6 +62,7 @@ namespace CP {
             void dumpModels();
             void runMethods();
             void generateData();
+            void getBasicStatistics();
             void showImage(const QList<QPair<QString, QString>> &methods);
         };
     } // namespace UI;

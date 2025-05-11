@@ -31,4 +31,4 @@ namespace CP {
     } // namespace UI;
 } // namespace CP;
 
-#endif // MODELTEMPLATE_H
+#endif // MODELTEMPLATE_HgenerateData

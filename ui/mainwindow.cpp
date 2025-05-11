@@ -69,6 +69,7 @@ namespace CP {
             QPushButton *dumpBtn = new QPushButton("Dump models");
             QPushButton *runBtn = new QPushButton("Run on models");
             QPushButton *genBtn = new QPushButton("Generate data");
+            QPushButton *statBtn = new QPushButton("Get basic statistics");
 
 
             QVBoxLayout *layout = new QVBoxLayout(this);
@@ -82,6 +83,7 @@ namespace CP {
             layout->addWidget(runBtn);
             layout->addWidget(genBtn);
             layout->addWidget(view);
+            layout->addWidget(statBtn);
 
             layout->addStretch();
 
@@ -89,6 +91,7 @@ namespace CP {
             connect(dumpBtn, &QPushButton::clicked, this, &MainWindow::dumpModels);
             connect(runBtn, &QPushButton::clicked, this, &MainWindow::runMethods);
             connect(genBtn, &QPushButton::clicked, this, &MainWindow::generateData);
+            connect(statBtn, &QPushButton::clicked, this, &MainWindow::getBasicStatistics);
         }
 
         void MainWindow::openModelDialog() {
@@ -100,37 +103,88 @@ namespace CP {
             }
         }
 
+        std::vector<double> MainWindow::parseCoefficients(std::string coeffs) {
+            std::vector<double> res;
+            std::stringstream ss(coeffs);
+            std::string num;
+            while (std::getline(ss, num, ';')) {
+                res.push_back(num.empty() ? 0 : std::stod(num));
+            }
+            return res;
+        }
+
+
         void MainWindow::generateData() {
             GenerateDialog dialog(this);
             if (dialog.exec() == QDialog::Accepted) {
                 auto result = dialog.getData();
                 int feat = (result[0].toStdString().empty() ? 3 : std::stoi(result[0].toStdString()));
                 int samp = (result[1].toStdString().empty() ? 100 : std::stoi(result[1].toStdString()));
-                generate(feat, samp);
+                int min = (result[3].toStdString().empty() ? 1 : std::stoi(result[3].toStdString()));
+                int max = (result[4].toStdString().empty() ? 100 : std::stoi(result[4].toStdString()));
+                generate(min, max, feat, samp, std::move(parseCoefficients(std::move(result[2].toStdString()))));
             }
         }
 
-        void MainWindow::generate(int numFeatures, int numSamples) {
+        void MainWindow::getBasicStatistics() {
+            BasicStatDialog dialog(this);
+            if (dialog.exec() == QDialog::Accepted) {
+                auto result = dialog.getData();
+                if (QFile::exists(result[0])) {
+                    std::vector<double> targets;
+                    double sum = 0;
+                    std::ifstream f(result[0].toStdString());
+                    std::string currentObject;
+                    while (std::getline(f, currentObject)) {
+                        auto curLen = currentObject.size(), i = curLen - 1;
+                        while (i >= 0 && currentObject[i] != ';') {
+                            --i;
+                        }
+                        try { 
+                            double target = std::stod(std::string(currentObject.begin() + i + 1, currentObject.end()));
+                            targets.push_back(target);
+                            sum += target;
+                        } catch (...) {
+                            createDialog(this, "Error", "Error parsing file, try again");
+                        }
+                    }
+                    f.close();
+                    std::sort(targets.begin(), targets.end());
+                    auto len = targets.size();
+                    std::ostringstream s;
+                    s << "Average: " << sum/len << "\nMedian: " << targets[len/2];
+                    createDialog(this, "Statistics", QString::fromStdString(s.str())); 
+                } else {
+                    createDialog(this, "Error", "No such file");
+                }
+            }
+        }
+
+        void MainWindow::generate(int min, int max, int numFeatures, int numSamples, std::vector<double> coeffs) {
+            if (coeffs.size() != numFeatures + 1) {
+                createDialog(this, "Error", "Not enough coefficients, try again");
+                return;
+            }
             std::ostringstream s;
             for (int i = 0; i < numSamples; ++i) {
+                double target = coeffs[0];
                 for (int j = 0; j < numFeatures; ++j) {
                     std::random_device rd;
                     std::mt19937 gen(rd());
-                    std::uniform_real_distribution<> dis(1.0, 100.0);
+                    std::uniform_real_distribution<> dis(min, max);
                     double random_double = dis(gen);
-                    s << random_double;
-                    if (j != numFeatures - 1) {
-                        s << ";";
-                    }
+                    s << random_double << ";";
+                    target += random_double * coeffs[j+1];
                 }
+                s << target;
                 if (i != numSamples - 1) {
                     s << "\n";
                 }
             }
             std::ofstream f("sample.csv");
-            std::cout << s.str();
             f << s.str();
             f.close();
+            createDialog(this, "Success", "Data dumped to sample.csv");
         }
 
         void MainWindow::dumpModels() {
@@ -138,13 +192,15 @@ namespace CP {
             std::string path = std::string(PATH_TO_OUTPUT);
             for (auto& el : _models) {
                 json tmp;
-                assert(el.size() == 10 && "Malformed data");
-                auto deltaStr    = (el[1].toStdString().empty() ? "1" : el[1].toStdString());
-                auto epsStr      = (el[2].toStdString().empty() ? "1000" : el[2].toStdString());
-                auto lrStr       = (el[3].toStdString().empty() ? "0.001" : el[3].toStdString());
-                auto param1Str   = (el[5].toStdString().empty() ? "0.0" : el[5].toStdString());
-                auto param2Str   = (el[6].toStdString().empty() ? "1.0" : el[6].toStdString());
-                auto numFeatStr   = (el[9].toStdString().empty() ? "3" : el[9].toStdString());
+                assert(el.size() == 12 && "Malformed data");
+                auto deltaStr      = (el[1].toStdString().empty() ? "1" : el[1].toStdString());
+                auto epsStr        = (el[2].toStdString().empty() ? "1000" : el[2].toStdString());
+                auto lrStr         = (el[3].toStdString().empty() ? "0.001" : el[3].toStdString());
+                auto param1Str     = (el[5].toStdString().empty() ? "0.0" : el[5].toStdString());
+                auto param2Str     = (el[6].toStdString().empty() ? "1.0" : el[6].toStdString());
+                auto numFeatStr    = (el[9].toStdString().empty() ? "3" : el[9].toStdString());
+                auto maxNoiseStr   = (el[10].toStdString().empty() ? "50" : el[10].toStdString());
+                auto numExpStr     = (el[11].toStdString().empty() ? "10" : el[11].toStdString());
 
                 tmp[el[0].toStdString()] = {
                     {"delta", std::stod(deltaStr)},
@@ -157,7 +213,9 @@ namespace CP {
                     },
                     {"mlmodel", el[7].toStdString()},
                     {"path", el[8].toStdString()},
-                    {"num_feat", std::stoi(numFeatStr)}
+                    {"num_feat", std::stoi(numFeatStr)},
+                    {"max_noise", std::stoi(maxNoiseStr)},
+                    {"num_exp", std::stoi(numExpStr)}
                 };
                 models_.push_back(std::move(tmp));
             }
