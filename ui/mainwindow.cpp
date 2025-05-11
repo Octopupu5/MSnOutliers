@@ -113,7 +113,6 @@ namespace CP {
             return res;
         }
 
-
         void MainWindow::generateData() {
             GenerateDialog dialog(this);
             if (dialog.exec() == QDialog::Accepted) {
@@ -206,15 +205,17 @@ namespace CP {
             std::string path = std::string(PATH_TO_OUTPUT);
             for (auto& el : _models) {
                 json tmp;
-                assert(el.size() == 12 && "Malformed data");
+                assert(el.size() == 14 && "Malformed data");
                 auto deltaStr      = (el[1].toStdString().empty() ? "1" : el[1].toStdString());
                 auto epsStr        = (el[2].toStdString().empty() ? "1000" : el[2].toStdString());
                 auto lrStr         = (el[3].toStdString().empty() ? "0.001" : el[3].toStdString());
                 auto param1Str     = (el[5].toStdString().empty() ? "0.0" : el[5].toStdString());
                 auto param2Str     = (el[6].toStdString().empty() ? "1.0" : el[6].toStdString());
-                auto numFeatStr    = (el[9].toStdString().empty() ? "3" : el[9].toStdString());
-                auto maxNoiseStr   = (el[10].toStdString().empty() ? "50" : el[10].toStdString());
-                auto numExpStr     = (el[11].toStdString().empty() ? "10" : el[11].toStdString());
+                auto mlParam1Str   = (el[8].toStdString().empty() ? "0.0" : el[8].toStdString());
+                auto mlParam2Str   = (el[9].toStdString().empty() ? "0.0" : el[9].toStdString());
+                auto numFeatStr    = (el[11].toStdString().empty() ? "3" : el[11].toStdString());
+                auto maxNoiseStr   = (el[12].toStdString().empty() ? "50" : el[12].toStdString());
+                auto numExpStr     = (el[13].toStdString().empty() ? "10" : el[13].toStdString());
 
                 tmp[el[0].toStdString()] = {
                     {"delta", std::stod(deltaStr)},
@@ -225,8 +226,12 @@ namespace CP {
                             {"param2", std::stod(param2Str)}
                             }
                     },
-                    {"mlmodel", el[7].toStdString()},
-                    {"path", el[8].toStdString()},
+                    {"mlmodel", {{"type", el[7].toStdString()},
+                            {"param1", std::stod(mlParam1Str)},
+                            {"param2", std::stod(mlParam2Str)}
+                            }
+                    },
+                    {"path", el[10].toStdString()},
                     {"num_feat", std::stoi(numFeatStr)},
                     {"max_noise", std::stoi(maxNoiseStr)},
                     {"num_exp", std::stoi(numExpStr)}
@@ -275,7 +280,7 @@ namespace CP {
             scrollArea->setWidgetResizable(true);
             scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
             scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-            
+
             QWidget *scrollContent = new QWidget();
             QVBoxLayout *mainLayout = new QVBoxLayout(scrollContent);
             mainLayout->setAlignment(Qt::AlignHCenter);
@@ -287,7 +292,7 @@ namespace CP {
                 }
                 methodGroups[method.first].append(method.second);
             }
-            
+
             for (auto it = methodGroups.constBegin(); it != methodGroups.constEnd(); ++it) {
                 const QString &modelName = it.key();
                 int numMethods = it.value().size();
@@ -296,7 +301,7 @@ namespace CP {
                     std::ostringstream s;
                     s << std::string(PATH_TO_PICTURES) << "out_" << modelName.toStdString() << "_group" << groupIdx << ".png";
                     QString path = QString::fromStdString(s.str());
-                    
+
                     if (QFile::exists(path)) {
                         QWidget *graphContainer = new QWidget();
                         graphContainer->setFixedWidth(static_cast<int>(Defaults::IMAGES_WIDTH) + 30);
@@ -309,37 +314,36 @@ namespace CP {
                         imageContainer->setFixedSize(static_cast<int>(Defaults::IMAGES_WIDTH) + 10, static_cast<int>(Defaults::IMAGES_HEIGHT) + 10);
                         QVBoxLayout *imageLayout = new QVBoxLayout(imageContainer);
                         imageLayout->setContentsMargins(0, 0, 0, 0);
-                        
+
                         QLabel *imageLabel = new QLabel();
                         imageLabel->setAlignment(Qt::AlignCenter);
                         QPixmap pixmap(path);
-                        
+
                         imageLabel->setPixmap(pixmap.scaled(static_cast<int>(Defaults::IMAGES_WIDTH), static_cast<int>(Defaults::IMAGES_HEIGHT), Qt::KeepAspectRatio, Qt::SmoothTransformation));
                         imageLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
                         imageLabel->setMinimumSize(static_cast<int>(Defaults::IMAGES_WIDTH), static_cast<int>(Defaults::IMAGES_HEIGHT));
-                        imageLabel->setMaximumSize(static_cast<int>(Defaults::IMAGES_WIDTH), static_cast<int>(Defaults::IMAGES_HEIGHT));
-                        
+
                         imageLayout->addWidget(imageLabel);
                         containerLayout->addWidget(imageContainer);
                         mainLayout->addWidget(graphContainer);
                     }
                 }
             }
-            
+
             if (mainLayout->count() == 0) {
                 QLabel *noImagesLabel = new QLabel("No images found for selected models");
                 noImagesLabel->setAlignment(Qt::AlignCenter);
                 noImagesLabel->setStyleSheet("font-size: 16px; color: gray;");
                 mainLayout->addWidget(noImagesLabel);
             }
-            
+
             scrollContent->setLayout(mainLayout);
             scrollArea->setWidget(scrollContent);
-            
+
             QVBoxLayout *windowLayout = new QVBoxLayout(imageWindow);
             windowLayout->setContentsMargins(0, 0, 0, 0);
             windowLayout->addWidget(scrollArea);
-            
+
             imageWindow->show();
         }
     } // namespace UI;

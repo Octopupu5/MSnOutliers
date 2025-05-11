@@ -22,8 +22,10 @@ namespace CP {
             setupLineEdit("Num.Feat.", "3", integer_validator.get());
             setupLineEdit("Path", "source.csv", nullptr);
 
-            setupLineEdit("Max.Noise", "50", integer_validator.get());
-            setupLineEdit("Num.Exp.", "10", integer_validator.get());
+            setupLineEdit("Max.Noise", "50", integer_validator);
+            setupLineEdit("ML.Param.1", "0.0", validator);
+            setupLineEdit("ML.Param.2", "0.0", validator);
+            setupLineEdit("Num.Exp.", "10", integer_validator);
 
             _info = std::make_unique<QPushButton>();
             _info->setText("Get info");
@@ -41,9 +43,11 @@ namespace CP {
             formLayout->addRow("Path to data", _lineEdits["Path"].get());
             formLayout->addRow("Num. features", _lineEdits["Num.Feat."].get());
             formLayout->addRow("Max noise", _lineEdits["Max.Noise"].get());
+            formLayout->addRow("ML model:", _comboBoxes["ML"].get());
+            formLayout->addRow("ML Parameter 1:", _lineEdits["ML.Param.1"].get());
+            formLayout->addRow("ML Parameter 2:", _lineEdits["ML.Param.2"].get());
             formLayout->addRow("Number of experiments", _lineEdits["Num.Exp."].get());
             formLayout->addRow("About distributions:", _info.get());
-            formLayout->addRow("ML model:", _comboBoxes["ML"].get());
 
             mainLayout->addLayout(formLayout);
 
@@ -73,10 +77,13 @@ namespace CP {
                 _lineEdits["Param.1"]->text(),
                 _lineEdits["Param.2"]->text(),
                 _comboBoxes["ML"]->currentText(),
+                _lineEdits["ML.Param.1"]->text(),
+                _lineEdits["ML.Param.2"]->text(),
                 path,
                 _lineEdits["Num.Feat."]->text(),
                 _lineEdits["Max.Noise"]->text(),
                 _lineEdits["Num.Exp."]->text()
+
             };
         }
 

@@ -1,5 +1,7 @@
 #include "DataDeNoiser.hpp"
 
+#define EPS 0.000001
+
 namespace CP {
     namespace Common {
         DataDeNoiser::DataDeNoiser(const RData& data) : _data(data) {
@@ -42,25 +44,33 @@ namespace CP {
             }
         }
 
-        RData DataDeNoiser::denoise(const std::string& mlModelType) {
+        RData DataDeNoiser::denoise(const std::string& mlModelType, double param1, double param2) {
             RData cleanedData;
             if (mlModelType == "IForest") {
-                iForestDenoiser(cleanedData);
+                iForestDenoiser(cleanedData, int(param1), int(param2));
             } else if (mlModelType == "DBSCAN") {
-                DBSCANDenoiser(cleanedData);
+                DBSCANDenoiser(cleanedData, param1, int(param2));
             } else if (mlModelType == "KDE") {
-                KDEDenoiser(cleanedData);
+                KDEDenoiser(cleanedData, int(param1));
             } else if (mlModelType == "KNN") {
-                KNNDenoiser(cleanedData);
+                KNNDenoiser(cleanedData, int(param1), param2);
             } else if (mlModelType == "None") {
                 return _dataNoised;
             }
             return cleanedData;
         }
 
-        void DataDeNoiser::iForestDenoiser(RData& cleanedData) {
+        void DataDeNoiser::iForestDenoiser(RData& cleanedData, int nEstimators, int depth) {
             auto [rows, cols] = Shape(_dataMatNoised);
-            CP::ML::iForest forest(100, 12, _dataMatNoised);
+
+            if (!nEstimators) {
+                nEstimators = 100;
+            }
+            if (!depth) {
+                depth = 12;
+            }
+
+            CP::ML::iForest forest(nEstimators, depth, _dataMatNoised); // default : 100, 12
             forest.Fit();
             std::vector<std::pair<double, size_t>> probs;
             for (size_t i = 0; i < rows; ++i) {
@@ -75,9 +85,14 @@ namespace CP {
             }
         }
 
-        void DataDeNoiser::KDEDenoiser(RData& cleanedData) {
+        void DataDeNoiser::KDEDenoiser(RData& cleanedData, double gamma) {
             auto [rows, cols] = Shape(_dataMatNoised);
-            CP::ML::KernelDensityEstimator kde(1.0 / cols);
+
+            if (std::fabs(gamma) <= EPS) {
+                gamma = 1.0 / cols;
+            }
+            
+            CP::ML::KernelDensityEstimator kde(gamma); // default : 1.0 / cols
             kde.Fit(_dataMatNoised);
             CP::Common::Matrix answers = kde.Predict(_dataMatNoised);
             for (size_t i = 0; i < rows; ++i) {
@@ -87,9 +102,17 @@ namespace CP {
             }
         }
 
-        void DataDeNoiser::KNNDenoiser(RData& cleanedData) {
+        void DataDeNoiser::KNNDenoiser(RData& cleanedData, int k, double contamination) {
             auto [rows, cols] = Shape(_dataMatNoised);
-            CP::ML::KNN knn(10, 0.15);
+
+            if (!k) {
+                k = 10;
+            }
+            if (std::fabs(contamination) <= EPS) {
+                contamination = 0.15;
+            }
+            
+            CP::ML::KNN knn(k, contamination); // default 10, 0.15
             knn.Fit(_dataMatNoised);
             std::vector<std::pair<double, size_t>> preds = knn.PairDistances();
             double thres = knn.Threshold();
@@ -100,18 +123,25 @@ namespace CP {
             }
         }
 
-        void DataDeNoiser::DBSCANDenoiser(RData& cleanedData) {
+        void DataDeNoiser::DBSCANDenoiser(RData& cleanedData, double r, int minClusterSize) {
             auto [rows, cols] = Shape(_dataMatNoised);
-            double k = 0.1;
-            double eps = k * std::sqrt(cols) * std::sqrt(std::accumulate(_dataMatNoised.begin(), _dataMatNoised.end(), 0.0, [](double sum, const std::vector<Feature>& row) {
-                double row_sum = 0;
-                for (const auto& val : row) {
-                    row_sum += val.Value() * val.Value();
-                }
-                return sum + row_sum;
-            }) / rows);
-            uint32_t min_samples = static_cast<uint32_t>(std::log(rows));
-            CP::ML::DBSCAN dbscan(eps, min_samples); 
+
+            if (std::fabs(r) <= EPS) {
+                double k = 0.1; // default : 0.1 * ... , log(rows)
+                r = k * std::sqrt(cols) * std::sqrt(std::accumulate(_dataMatNoised.begin(), _dataMatNoised.end(), 0.0, [](double sum, const std::vector<Feature>& row) {
+                    double row_sum = 0;
+                    for (const auto& val : row) {
+                        row_sum += val.Value() * val.Value();
+                    }
+                    return sum + row_sum;
+                }) / rows);
+            }
+
+            if (!minClusterSize) {
+                minClusterSize = static_cast<uint32_t>(std::log(rows));
+            }
+
+            CP::ML::DBSCAN dbscan(r, minClusterSize); 
             dbscan.Fit(_dataMatNoised);
             std::vector<int32_t> idToCluster = dbscan.getIdToCluster();
             for (size_t i = 0; i < rows; ++i) {
