@@ -4,13 +4,11 @@ namespace CP {
     namespace UI {
 
         GenerateDialog::GenerateDialog(QWidget *parent) : ModelTemplate(parent) {
-            QRegularExpression re_int(R"(0|[1-9]\d*)");
-            QValidator *integer_validator = new QRegularExpressionValidator(re_int, this);
-            setupLineEdit("Min", "1", integer_validator);
-            setupLineEdit("Max", "100", integer_validator);
-            setupLineEdit("Features", "3", integer_validator);
-            setupLineEdit("Samples", "100", integer_validator);
-            setupLineEdit("Coefficients", "", nullptr); // validator here;
+            setupLineEdit("Min", "1", integer_validator.get());
+            setupLineEdit("Max", "100", integer_validator.get());
+            setupLineEdit("Features", "3", integer_validator.get());
+            setupLineEdit("Samples", "100", integer_validator.get());
+            setupLineEdit("Coefficients", "", coeffs_validator.get());
 
             QVBoxLayout *mainLayout = new QVBoxLayout(this);
             QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);

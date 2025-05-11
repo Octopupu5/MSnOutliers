@@ -14,21 +14,16 @@ namespace CP {
             setupComboBox("Noise");
             setupComboBox("ML");
 
-            QRegularExpression re(R"(^-?(0|[1-9]\d*)(\.\d{0,4})?$)");
-            QRegularExpression re_int(R"(0|[1-9]\d*)");
-            QValidator *validator = new QRegularExpressionValidator(re, this);
-            QValidator *integer_validator = new QRegularExpressionValidator(re_int, this);
-
-            setupLineEdit("Delta", "1.0", validator);
-            setupLineEdit("Epochs", "1000", integer_validator);
-            setupLineEdit("Step", "0.001", validator);
-            setupLineEdit("Param.1", "0.0", validator);
-            setupLineEdit("Param.2", "1.0", validator);
-            setupLineEdit("Num.Feat.", "3", integer_validator);
+            setupLineEdit("Delta", "1.0", validator.get());
+            setupLineEdit("Epochs", "1000", integer_validator.get());
+            setupLineEdit("Step", "0.001", validator.get());
+            setupLineEdit("Param.1", "0.0", validator.get());
+            setupLineEdit("Param.2", "1.0", validator.get());
+            setupLineEdit("Num.Feat.", "3", integer_validator.get());
             setupLineEdit("Path", "source.csv", nullptr);
 
-            setupLineEdit("Max.Noise", "50", integer_validator);
-            setupLineEdit("Num.Exp.", "10", integer_validator);
+            setupLineEdit("Max.Noise", "50", integer_validator.get());
+            setupLineEdit("Num.Exp.", "10", integer_validator.get());
 
             _info = std::make_unique<QPushButton>();
             _info->setText("Get info");

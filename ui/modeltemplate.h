@@ -23,12 +23,13 @@ namespace CP {
             Q_OBJECT
 
         public:
-            explicit ModelTemplate(QWidget *parent = nullptr) : QDialog(parent) {}
+            explicit ModelTemplate(QWidget *parent = nullptr);
             virtual QStringList getData() = 0;
 
         protected:
             void setupLineEdit(const QString name, QString text, QValidator *validator);
             std::unordered_map<QString, std::unique_ptr<QLineEdit>> _lineEdits;
+            std::unique_ptr<QValidator> validator, integer_validator, coeffs_validator;
         };
     } // namespace UI;
 } // namespace CP;
