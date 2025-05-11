@@ -11,6 +11,7 @@
 #include <QDebug>
 #include <QFile>
 #include <QLabel>
+#include <QScrollArea>
 
 #include "../json/single_include/nlohmann/json.hpp"
 #include "generatedialog.h"

@@ -32,12 +32,13 @@ namespace CP {
                 }
                 _dataMatNoised[i][cols - 1] = _data[i].target;
             }
-            
+
             for (int i = 0; i < numNoise; ++i) {
                 size_t currentIndex = indices[i];
                 double noise = dist.generate(gen);
+
                 _dataNoised[currentIndex].target += noise;
-                _dataMatNoised[i][cols - 1] += noise;
+                _dataMatNoised[currentIndex][cols - 1] += noise;
             }
         }
 

@@ -17,31 +17,32 @@ namespace CP {
             return L2Norm(trueValues, predictions) / rows / cols;
         }
 
-        double Metrics::r2Score(const Matrix& trueValues, const Matrix& predictions) {
+        double Metrics::meanAbsolutePercentageError(const Matrix& trueValues, const Matrix& predictions) {
             auto [rows, cols] = Shape(trueValues);
-            double meanTrue = ColumnWiseMean(trueValues)[0][0].Value();
-            double totalSumOfSquares = L2Norm(trueValues, Matrix(rows, Row(cols, meanTrue)));
-            double residualSumOfSquares = L2Norm(trueValues, predictions);
-            return 1.0 - (residualSumOfSquares / totalSumOfSquares);
-        }
-
-        // double Metrics::meanAbsolutePercentageError(const Matrix& trueValues, const Matrix& predictions) {
-        //     auto [rows, cols] = Shape(trueValues);
-        //     return ((trueValues - predictions).Abs() / trueValues).Sum() / rows / cols * 100;
-        // }
-
-        // double Metrics::symmetricMeanAbsolutePercentageError(const Matrix& trueValues, const Matrix& predictions) {
-        //     auto [rows, cols] = Shape(trueValues);
-        //     return ((trueValues - predictions).Abs() / ((Abs(trueValues) + Abs(predictions)) / 2.0)).Sum() / rows / cols * 100;
-        // }
-
-        double Metrics::adjustedR2Score(const Matrix& trueValues, const Matrix& predictions, int numFeatures) {
-            double r2 = r2Score(trueValues, predictions);
-            auto [n, cols] = Shape(trueValues);
-            if (n <= numFeatures + 1) {
-                throw std::invalid_argument("Number of features must be less than the number of samples.");
+            double sum = 0.0;
+            for (size_t i = 0; i < rows; ++i) {
+                for (size_t j = 0; j < cols; ++j) {
+                    double numerator = std::abs((trueValues[i][j] - predictions[i][j]).Value());
+                    double denominator = std::abs(trueValues[i][j].Value());
+                    if (denominator != 0.0)
+                        sum += numerator / denominator;
+                }
             }
-            return 1.0 - ((1.0 - r2) * (n - 1) / (n - numFeatures - 1));
+            return sum / (rows * cols) * 100.0;
+        }
+        
+        double Metrics::symmetricMeanAbsolutePercentageError(const Matrix& trueValues, const Matrix& predictions) {
+            auto [rows, cols] = Shape(trueValues);
+            double sum = 0.0;
+            for (size_t i = 0; i < rows; ++i) {
+                for (size_t j = 0; j < cols; ++j) {
+                    double numerator = std::abs((trueValues[i][j] - predictions[i][j]).Value());
+                    double denominator = (std::abs(trueValues[i][j].Value()) + std::abs(predictions[i][j].Value())) / 2.0;
+                    if (denominator != 0.0)
+                        sum += numerator / denominator;
+                }
+            }
+            return sum / (rows * cols) * 100.0;
         }
     }
 }

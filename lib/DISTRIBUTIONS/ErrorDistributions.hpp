@@ -12,7 +12,7 @@ namespace CP {
         public:
             enum DistributionType {
                 Normal,
-                StudentT,
+                Student,
                 Cauchy,
                 Laplace,
             };

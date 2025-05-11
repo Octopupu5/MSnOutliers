@@ -16,7 +16,6 @@ namespace CP {
         class StatsMethod {
         public:
             explicit StatsMethod(const RData& data, const std::string& n, double delta=1, double ep=1000, double lr=0.001);
-            void makeNoise(int percent, Distrib& dist);
             virtual Eigen::VectorXd compute() { return Eigen::VectorXd::Zero(_featuresMatrix.cols()); }
 
         protected:
