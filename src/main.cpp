@@ -32,7 +32,7 @@ namespace {
     const std::unordered_set<std::string> validDists{"Normal", "Student", "Cauchy", "Laplace"};
     const std::unordered_set<std::string> validMLModels{"None", "IForest", "DBSCAN", "KDE", "KNN"};
 
-    stats runOnMethods(const json& method, size_t numNoise, CP::Common::DataDeNoiser &deNoiser) {
+    stats runOnMethods(const json& method, size_t numNoise, CP::Common::DataDeNoiser &deNoiser, bool dumpModels) {
         stats res;
         CP::Distributions::ErrorDistributions dist(CP::Distributions::ErrorDistributions::DistributionType::Normal);
         for (auto &i : method.items()) {
@@ -56,6 +56,13 @@ namespace {
                 auto model = CP::MS::MinAbsDeviation(processedData, params["eps"], params["lr"]);
                 res["LAD"] = model.compute();
             }
+        }
+        if (dumpModels) {
+            std::ofstream f("report.txt");
+            for (auto &[name, vec] : res) {
+                f << name << " " << vec << "\n";
+            }
+            f.close();
         }
         return res;
     }
@@ -97,14 +104,25 @@ namespace {
             if (!item[name].contains("num_feat") || !item[name]["num_feat"].is_number_integer()) return false;
             if (!item[name].contains("max_noise") || !item[name]["max_noise"].is_number_integer()) return false;
             if (!item[name].contains("num_exp") || !item[name]["num_exp"].is_number_integer()) return false;
+            if (!item[name].contains("target") || !item[name]["target"].is_string()) return false;
         }
         return true;
     }
 }
 
+CP::Common::Matrix parseTarget(std::string tar) {
+    std::stringstream s(tar);
+    std::string cur;
+    CP::Common::Matrix res;
+    
+    while(std::getline(s, cur, ';')) {
+        res.push_back({std::stod(cur)});
+    }
+    return res;
+}
+
 int main(int argc, char **argv) {
     CP::Common::FileParser parser;
-    CP::Common::Matrix target({{-1.2}, {2.7}, {3.5}, {4.78}}); // -1.2 + 2.7x1 + 3.5x2 + 4.78x3 -> parametrize
     CP::Common::Metrics calc;
     json methods;
     assert(argc == 2 && "No path to file!");
@@ -145,12 +163,18 @@ int main(int argc, char **argv) {
                 if (path.empty()) {
                     path = std::string(DATA_DIR) + "/source.csv";
                 }
+                size_t numFeat = method.items().begin().value()["num_feat"];
+                CP::Common::RegressionData data = parser.parseCSV(path, numFeat);
+                std::string tar = method.items().begin().value()["target"].dump();
+                bool dryRun = (tar == "\"dry\"");
+                auto target = dryRun ? std::move(CP::Common::Matrix()) : std::move(parseTarget(std::move(std::string(tar.begin() + 1, tar.end() - 1))));
+                while (!dryRun && target.size() != numFeat + 1) {
+                    target.push_back({0});
+                }
                 
-                CP::Common::RegressionData data = parser.parseCSV(path, method.items().begin().value()["num_feat"]);
-                
-                size_t minNoise = 35;
-                size_t maxNoise =  method.items().begin().value()["max_noise"];
-                size_t numExperiments =  method.items().begin().value()["num_exp"];
+                size_t minNoise = dryRun ? 0 : 35;
+                size_t maxNoise =  dryRun ? 0 : (static_cast<size_t>(method.items().begin().value()["max_noise"]));
+                size_t numExperiments = dryRun ? 1 : static_cast<size_t>(method.items().begin().value()["num_exp"]);
                 
                 unsigned n_threads = std::thread::hardware_concurrency();
                 std::vector<std::future<ExperimentResult>> futures;
@@ -169,11 +193,11 @@ int main(int argc, char **argv) {
                                 }
                             }
                         }
-                        futures.push_back(std::async(std::launch::async, [&, numNoise]() {
+                        futures.push_back(std::async(std::launch::async, [&, numNoise, dryRun]() {
                             CP::Common::DataDeNoiser deNoiser(data);
-                            stats computed = runOnMethods(method, numNoise, deNoiser);
+                            stats computed = runOnMethods(method, numNoise, deNoiser, dryRun);
                             auto [name, weights] = *(computed.begin());
-                            double error = calc.meanSquaredError(target, fromEigenVec(weights));
+                            double error = dryRun ? 0 : calc.meanSquaredError(target, fromEigenVec(weights));
                             return ExperimentResult{numNoise, error};
                         }));
                     }

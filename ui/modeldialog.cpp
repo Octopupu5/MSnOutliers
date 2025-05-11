@@ -21,6 +21,8 @@ namespace CP {
             setupLineEdit("Param.2", "1.0", validator.get());
             setupLineEdit("Num.Feat.", "3", integer_validator.get());
             setupLineEdit("Path", "source.csv", nullptr);
+            setupLineEdit("Target", "-1.2;2.7;3.5;4.78", coeffs_validator.get());
+            
 
             setupLineEdit("Max.Noise", "50", integer_validator.get());
             setupLineEdit("ML.Param.1", "0.0", validator.get());
@@ -40,9 +42,10 @@ namespace CP {
             formLayout->addRow("Noise type:", _comboBoxes["Noise"].get());
             formLayout->addRow("Parameter 1:", _lineEdits["Param.1"].get());
             formLayout->addRow("Parameter 2:", _lineEdits["Param.2"].get());
-            formLayout->addRow("Path to data", _lineEdits["Path"].get());
-            formLayout->addRow("Num. features", _lineEdits["Num.Feat."].get());
-            formLayout->addRow("Max noise", _lineEdits["Max.Noise"].get());
+            formLayout->addRow("Path to data:", _lineEdits["Path"].get());
+            formLayout->addRow("Target: ", _lineEdits["Target"].get());
+            formLayout->addRow("Num. features:", _lineEdits["Num.Feat."].get());
+            formLayout->addRow("Max noise:", _lineEdits["Max.Noise"].get());
             formLayout->addRow("ML model:", _comboBoxes["ML"].get());
             formLayout->addRow("ML Parameter 1:", _lineEdits["ML.Param.1"].get());
             formLayout->addRow("ML Parameter 2:", _lineEdits["ML.Param.2"].get());
@@ -82,8 +85,8 @@ namespace CP {
                 path,
                 _lineEdits["Num.Feat."]->text(),
                 _lineEdits["Max.Noise"]->text(),
-                _lineEdits["Num.Exp."]->text()
-
+                _lineEdits["Num.Exp."]->text(),
+                _lineEdits["Target"]->text(),
             };
         }
 

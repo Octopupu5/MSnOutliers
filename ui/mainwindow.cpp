@@ -52,7 +52,9 @@ namespace CP {
                 return QVariant();
             }
             if (orientation == Qt::Horizontal) {
-                const QStringList headers = {"Model", "Delta", "Epochs", "Learn. Rate", "(N) Type", "(N) Param. 1", "(N) Param. 2", "ML", "Data", "Num. features"};
+                const QStringList headers = {"Model", "Delta", "Epochs", "Learn. Rate", "(N) Type", "(N) Param. 1", 
+                                             "(N) Param. 2", "ML", "(ML) Param. 1", "(ML) Param. 2", "Data", "Num. features",
+                                             "Max. Noise", "Num. Exp.", "Target"};
                 if (section >= 0 && section < headers.size()) {
                     return headers.at(section);
                 }
@@ -205,7 +207,7 @@ namespace CP {
             std::string path = std::string(PATH_TO_OUTPUT);
             for (auto& el : _models) {
                 json tmp;
-                assert(el.size() == 14 && "Malformed data");
+                assert(el.size() == 15 && "Malformed data");
                 auto deltaStr      = (el[1].toStdString().empty() ? "1" : el[1].toStdString());
                 auto epsStr        = (el[2].toStdString().empty() ? "1000" : el[2].toStdString());
                 auto lrStr         = (el[3].toStdString().empty() ? "0.001" : el[3].toStdString());
@@ -234,7 +236,8 @@ namespace CP {
                     {"path", el[10].toStdString()},
                     {"num_feat", std::stoi(numFeatStr)},
                     {"max_noise", std::stoi(maxNoiseStr)},
-                    {"num_exp", std::stoi(numExpStr)}
+                    {"num_exp", std::stoi(numExpStr)},
+                    {"target", el[14].isEmpty() ? "dry" : el[14].toStdString()}
                 };
                 models_.push_back(std::move(tmp));
             }
