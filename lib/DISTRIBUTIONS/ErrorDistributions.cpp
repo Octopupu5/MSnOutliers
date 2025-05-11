@@ -2,8 +2,7 @@
 
 namespace CP {
     namespace Distributions {
-        ErrorDistributions::ErrorDistributions(DistributionType type, double param1, double param2)
-            : _type(type) {
+        ErrorDistributions::ErrorDistributions(DistributionType type, double param1, double param2) : _type(type) {
             switch (_type) {
                 case Normal:
                     _distribution = std::normal_distribution<>(param1, param2);

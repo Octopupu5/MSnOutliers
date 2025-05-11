@@ -44,7 +44,7 @@ namespace CP {
 
         void DataDeNoiser::noise(int numNoise, CP::Distributions::ErrorDistributions& dist, bool scale) {
             size_t rows = _data.size();
-            
+
             assert((numNoise >= 0 && numNoise <= rows) && "numNoise must be somewhere in between 0 and target size");
         
             std::random_device rd;
@@ -140,7 +140,7 @@ namespace CP {
             kde.Fit(_dataMatNoised);
             CP::Common::Matrix answers = kde.Predict(_dataMatNoised);
             for (size_t i = 0; i < rows; ++i) {
-                if (!answers[i][0].Value()) {
+                if (!answers[i][0]) {
                     cleanedData.push_back(_dataNoised[i]);
                     _denoisedIndices[i] = false;
                 } else {
@@ -178,10 +178,10 @@ namespace CP {
 
             if (std::fabs(r) <= EPS) {
                 double k = 0.1; // default : 0.1 * ... , log(rows)
-                r = k * std::sqrt(cols) * std::sqrt(std::accumulate(_dataMatNoised.begin(), _dataMatNoised.end(), 0.0, [](double sum, const std::vector<Feature>& row) {
+                r = k * std::sqrt(cols) * std::sqrt(std::accumulate(_dataMatNoised.begin(), _dataMatNoised.end(), 0.0, [](double sum, const std::vector<double>& row) {
                     double row_sum = 0;
                     for (const auto& val : row) {
-                        row_sum += val.Value() * val.Value();
+                        row_sum += val * val;
                     }
                     return sum + row_sum;
                 }) / rows);

@@ -7,10 +7,10 @@ namespace CP {
         DBSCAN::DBSCAN(double r, uint32_t minimumClusterSize) : _r(r), _minimumClusterSize(minimumClusterSize) {}
 
         std::vector<uint32_t> DBSCAN::GetNeighbors(uint32_t index) const {
-            auto [rows, cols] = Shape(_data);
+            auto [rows, cols] = Common::Shape(_data);
             std::vector<uint32_t> neighbors;
             for (size_t i = 0; i < rows; ++i) {
-                if (L2Norm(_data[index], _data[i]) <= _r) {
+                if (Common::L2Norm(_data[index], _data[i]) <= _r) {
                     neighbors.push_back(i);
                 }
             }
@@ -44,7 +44,7 @@ namespace CP {
 
         void DBSCAN::Fit(const Common::Matrix& data) {
             _data = data;
-            auto [rows, cols] = Shape(_data);
+            auto [rows, cols] = Common::Shape(_data);
             
             int clusterId = 0;
             _idToCluster = std::vector<int32_t> (rows, -1);

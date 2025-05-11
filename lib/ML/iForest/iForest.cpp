@@ -3,7 +3,7 @@
 namespace CP {
     namespace ML {
 		iForest::iForest(uint32_t nEstimators, uint32_t depth, const Common::Matrix& data) : _generator(_device()), _nEstimators(nEstimators), _depth(depth), _data(data) {
-			auto [rows, cols] = Shape(_data);
+			auto [rows, cols] = Common::Shape(_data);
 			_dataRows = rows;
 			_dataCols = cols;
 		}
@@ -66,10 +66,10 @@ namespace CP {
 			}
 			
 			std::nth_element(featureValues.begin(), featureValues.begin() + i, featureValues.end());
-			Common::Feature ith_statistics = featureValues[i];
+			double ith_statistics = featureValues[i];
 			std::nth_element(featureValues.begin(), featureValues.begin() + i + 1, featureValues.end());
-			Common::Feature splitValue = (ith_statistics + featureValues[i + 1]) / 2.0;
-			Node* tree = new Node(k, splitValue.Value());
+			double splitValue = (ith_statistics + featureValues[i + 1]) / 2.0;
+			Node* tree = new Node(k, splitValue);
 			
 			size_t leftSplitSize = i + 1;
 			size_t rightSplitSize = rows - leftSplitSize;
@@ -101,7 +101,7 @@ namespace CP {
 			Node* currentNode = tree;
 			while (currentNode) {
 				size_t featureIndex = currentNode->FeatureIndex();
-				if (sample[featureIndex].Value() < currentNode->Predicate()) {
+				if (sample[featureIndex] < currentNode->Predicate()) {
 					currentNode = currentNode->Left();
 				}
 				else {

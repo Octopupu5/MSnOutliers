@@ -155,7 +155,7 @@ namespace CP {
                     auto len = targets.size();
                     double avg = sum/len;
                     std::ostringstream s;
-                    s << "Max: " << targets[0] << "\n Min: " << targets[len-1] << "\n";
+                    s << "Max: " << targets[len-1] << "\n Min: " << targets[0] << "\n";
                     s << "Average: " << avg << "\nMedian: " << targets[len/2] << "\n";
                     s << "Deviation: " << sum_squares/len - avg * avg;
                     createDialog(this, "Statistics", QString::fromStdString(s.str())); 

@@ -24,8 +24,6 @@ namespace CP {
             double Precision();
             double Recall();
             double F1();
-            std::vector<bool> _noisedIndices;
-            std::vector<bool> _denoisedIndices;
         private:
             void IForestDenoiser(RData& cleanedData, int nEstimators, int depth);
             void KDEDenoiser(RData& cleanedData, double gamma);
@@ -38,6 +36,8 @@ namespace CP {
             double _precision;
             double _recall;
             double _f1Score;
+            std::vector<bool> _noisedIndices;
+            std::vector<bool> _denoisedIndices;
         };
     }
 }

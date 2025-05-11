@@ -1,0 +1,264 @@
+{
+    "results": [
+        {
+            "data_path": "/Users/heritagetime/VSCode/MSnOutliers/src/data/source.csv",
+            "max_noise": 50,
+            "metrics_by_noise_level": [
+                {
+                    "detection_metrics": {
+                        "f1_score": 0.0,
+                        "precision": 0.0,
+                        "recall": 0.0
+                    },
+                    "metrics": {
+                        "MAE": 0.04298501838397097,
+                        "MAPE": 3.441257900856275,
+                        "MSE": 0.010344494676976785,
+                        "RMSE": 0.0809756437828726,
+                        "SMAPE": 3.501901589026777
+                    },
+                    "noise_level": 35
+                },
+                {
+                    "detection_metrics": {
+                        "f1_score": 0.0,
+                        "precision": 0.0,
+                        "recall": 0.0
+                    },
+                    "metrics": {
+                        "MAE": 0.041996032935255306,
+                        "MAPE": 3.357551218191236,
+                        "MSE": 0.010059429190746868,
+                        "RMSE": 0.07896531714177282,
+                        "SMAPE": 3.398519311261113
+                    },
+                    "noise_level": 36
+                },
+                {
+                    "detection_metrics": {
+                        "f1_score": 0.0,
+                        "precision": 0.0,
+                        "recall": 0.0
+                    },
+                    "metrics": {
+                        "MAE": 0.04355950672556412,
+                        "MAPE": 3.4875305897782227,
+                        "MSE": 0.010543095149768183,
+                        "RMSE": 0.0820487488502775,
+                        "SMAPE": 3.5325377581416006
+                    },
+                    "noise_level": 37
+                },
+                {
+                    "detection_metrics": {
+                        "f1_score": 0.0,
+                        "precision": 0.0,
+                        "recall": 0.0
+                    },
+                    "metrics": {
+                        "MAE": 0.046147125091851746,
+                        "MAPE": 3.6969069658953178,
+                        "MSE": 0.011905396113028233,
+                        "RMSE": 0.08700614426285293,
+                        "SMAPE": 3.72668479606013
+                    },
+                    "noise_level": 38
+                },
+                {
+                    "detection_metrics": {
+                        "f1_score": 0.0,
+                        "precision": 0.0,
+                        "recall": 0.0
+                    },
+                    "metrics": {
+                        "MAE": 0.04603693915669475,
+                        "MAPE": 3.688346090710555,
+                        "MSE": 0.011817017456199303,
+                        "RMSE": 0.0867972763732762,
+                        "SMAPE": 3.769987919946409
+                    },
+                    "noise_level": 39
+                },
+                {
+                    "detection_metrics": {
+                        "f1_score": 0.0,
+                        "precision": 0.0,
+                        "recall": 0.0
+                    },
+                    "metrics": {
+                        "MAE": 0.04614503798725085,
+                        "MAPE": 3.693214067666085,
+                        "MSE": 0.012091816780588538,
+                        "RMSE": 0.08685128791000728,
+                        "SMAPE": 3.7940862507736197
+                    },
+                    "noise_level": 40
+                },
+                {
+                    "detection_metrics": {
+                        "f1_score": 0.0,
+                        "precision": 0.0,
+                        "recall": 0.0
+                    },
+                    "metrics": {
+                        "MAE": 0.045288375315980484,
+                        "MAPE": 3.6246452169544066,
+                        "MSE": 0.011397626736411008,
+                        "RMSE": 0.08526245030932958,
+                        "SMAPE": 3.689834647200512
+                    },
+                    "noise_level": 41
+                },
+                {
+                    "detection_metrics": {
+                        "f1_score": 0.0,
+                        "precision": 0.0,
+                        "recall": 0.0
+                    },
+                    "metrics": {
+                        "MAE": 0.04815923252537166,
+                        "MAPE": 3.8588480081578638,
+                        "MSE": 0.012957040340888504,
+                        "RMSE": 0.09082469792677059,
+                        "SMAPE": 3.940576661149196
+                    },
+                    "noise_level": 42
+                },
+                {
+                    "detection_metrics": {
+                        "f1_score": 0.0,
+                        "precision": 0.0,
+                        "recall": 0.0
+                    },
+                    "metrics": {
+                        "MAE": 0.04812679001645648,
+                        "MAPE": 3.8529787253003867,
+                        "MSE": 0.01285433471044844,
+                        "RMSE": 0.09066056831145161,
+                        "SMAPE": 3.9025772490652884
+                    },
+                    "noise_level": 43
+                },
+                {
+                    "detection_metrics": {
+                        "f1_score": 0.0,
+                        "precision": 0.0,
+                        "recall": 0.0
+                    },
+                    "metrics": {
+                        "MAE": 0.048383567063582246,
+                        "MAPE": 3.8725987835918807,
+                        "MSE": 0.013042800784619757,
+                        "RMSE": 0.09107939176493868,
+                        "SMAPE": 3.944875913006284
+                    },
+                    "noise_level": 44
+                },
+                {
+                    "detection_metrics": {
+                        "f1_score": 0.0,
+                        "precision": 0.0,
+                        "recall": 0.0
+                    },
+                    "metrics": {
+                        "MAE": 0.048988219159811365,
+                        "MAPE": 3.9215634723351096,
+                        "MSE": 0.013587624838184542,
+                        "RMSE": 0.09224390474077528,
+                        "SMAPE": 3.9600049385475717
+                    },
+                    "noise_level": 45
+                },
+                {
+                    "detection_metrics": {
+                        "f1_score": 0.0,
+                        "precision": 0.0,
+                        "recall": 0.0
+                    },
+                    "metrics": {
+                        "MAE": 0.0477558011035804,
+                        "MAPE": 3.8182063332121143,
+                        "MSE": 0.012440683133451794,
+                        "RMSE": 0.08976284337306326,
+                        "SMAPE": 3.895802683094678
+                    },
+                    "noise_level": 46
+                },
+                {
+                    "detection_metrics": {
+                        "f1_score": 0.0,
+                        "precision": 0.0,
+                        "recall": 0.0
+                    },
+                    "metrics": {
+                        "MAE": 0.04711802961156819,
+                        "MAPE": 3.764875066499335,
+                        "MSE": 0.012647581625567755,
+                        "RMSE": 0.08851655301310282,
+                        "SMAPE": 3.8076904652524033
+                    },
+                    "noise_level": 47
+                },
+                {
+                    "detection_metrics": {
+                        "f1_score": 0.0,
+                        "precision": 0.0,
+                        "recall": 0.0
+                    },
+                    "metrics": {
+                        "MAE": 0.0496065826966062,
+                        "MAPE": 3.9695018042730963,
+                        "MSE": 0.013768203590639676,
+                        "RMSE": 0.09337102817291215,
+                        "SMAPE": 3.99626291654356
+                    },
+                    "noise_level": 48
+                },
+                {
+                    "detection_metrics": {
+                        "f1_score": 0.0,
+                        "precision": 0.0,
+                        "recall": 0.0
+                    },
+                    "metrics": {
+                        "MAE": 0.05031218936911729,
+                        "MAPE": 4.02799579207753,
+                        "MSE": 0.013913403009927425,
+                        "RMSE": 0.09475392750141622,
+                        "SMAPE": 4.089575795144718
+                    },
+                    "noise_level": 49
+                },
+                {
+                    "detection_metrics": {
+                        "f1_score": 0.0,
+                        "precision": 0.0,
+                        "recall": 0.0
+                    },
+                    "metrics": {
+                        "MAE": 0.05087518158396465,
+                        "MAPE": 4.074521786090408,
+                        "MSE": 0.014015359111033139,
+                        "RMSE": 0.09585531387688674,
+                        "SMAPE": 4.160151042682339
+                    },
+                    "noise_level": 50
+                }
+            ],
+            "min_noise": 35,
+            "mlmodel": "None",
+            "mlmodel_params": {
+                "param1": 0.0,
+                "param2": 0.0
+            },
+            "model": "LSM",
+            "noise_params": {
+                "param1": 0.0,
+                "param2": 1.0
+            },
+            "noise_type": "Normal",
+            "num_experiments": 1000,
+            "num_features": 3
+        }
+    ]
+}

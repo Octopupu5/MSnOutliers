@@ -10,8 +10,7 @@ namespace CP {
     namespace ML {
         class KNN {
         public:
-            KNN(size_t k = 10, double contamination = 0.01);
-
+            KNN(size_t k, double contamination);
             void Fit(const Common::Matrix& data);
             Common::Matrix Predict(const Common::Matrix& data) const;
             double Threshold() const;

@@ -19,7 +19,7 @@ namespace CP {
                     if (i == j) {
                         continue;
                     }
-                    distances.push_back(L2Norm(data[i], data[j]));
+                    distances.push_back(Common::L2Norm(data[i], data[j]));
                 }
                 std::nth_element(distances.begin(), distances.begin() + _k - 1, distances.end());
                 _sortedDistances[i] = {distances[_k - 1], i};
@@ -36,7 +36,7 @@ namespace CP {
                 std::vector<double> distances;
                 distances.reserve(_train.size());
                 for (const auto& x : _train) {
-                    distances.push_back(L2Norm(x, data[i]));
+                    distances.push_back(Common::L2Norm(x, data[i]));
                 }
                 std::nth_element(distances.begin(), distances.begin() + _k - 1, distances.end());
                 double kdist = distances[_k - 1];
