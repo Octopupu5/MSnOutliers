@@ -131,11 +131,12 @@ namespace CP {
             descrParameters("Deg. of freedom", "IGNORED", 2);
             descrParameters("Location", "Scale", 3);
             descrParameters("Location", "Scale", 4);
-            descrParameters("", "", 5);
-            descrParameters("K", "Contamination", 6);
-            descrParameters("Gamma", "IGNORED", 7);
-            descrParameters("Num. estimators", "Depth", 8);
-            descrParameters("R", "Min cluster size", 9);
+            descrParameters("IGNORED", "IGNORED", 5);
+            descrParameters("", "", 6);
+            descrParameters("K", "Contamination", 7);
+            descrParameters("Gamma", "IGNORED", 8);
+            descrParameters("Num. estimators", "Depth", 9);
+            descrParameters("R", "Min cluster size", 10);
 
 
 

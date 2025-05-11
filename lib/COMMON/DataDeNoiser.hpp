@@ -19,7 +19,7 @@ namespace CP {
         class DataDeNoiser {
         public:
             DataDeNoiser(const RData& data);
-            void noise(int numNoise, CP::Distributions::ErrorDistributions& dist);
+            void noise(int numNoise, CP::Distributions::ErrorDistributions& dist, bool scale = false);
             RData denoise(const std::string& mlModelType, double param1, double param2);
             double Precision();
             double Recall();

@@ -42,7 +42,7 @@ namespace CP {
             _f1Score = (_precision + _recall > 0) ? 2.0 * _precision * _recall / (_precision + _recall) : 0.0;
         }
 
-        void DataDeNoiser::noise(int numNoise, CP::Distributions::ErrorDistributions& dist) {
+        void DataDeNoiser::noise(int numNoise, CP::Distributions::ErrorDistributions& dist, bool scale) {
             size_t rows = _data.size();
             
             assert((numNoise >= 0 && numNoise <= rows) && "numNoise must be somewhere in between 0 and target size");
@@ -71,10 +71,14 @@ namespace CP {
 
             for (int i = 0; i < numNoise; ++i) {
                 size_t currentIndex = indices[i];
-                double noise = dist.generate(gen);
-
-                _dataNoised[currentIndex].target += noise;
-                _dataMatNoised[currentIndex][cols - 1] += noise;
+                if (scale) {
+                    _dataNoised[currentIndex].target *= 100;
+                    _dataMatNoised[currentIndex][cols - 1] *= 100;
+                } else {
+                    double noise = dist.generate(gen);
+                    _dataNoised[currentIndex].target += noise;
+                    _dataMatNoised[currentIndex][cols - 1] += noise;
+                }
                 _noisedIndices[currentIndex] = true;
             }
         }

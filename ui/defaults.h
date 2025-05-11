@@ -6,7 +6,7 @@ namespace CP {
         enum class Defaults: int {
             DIALOG_WIDTH = 300,
             DIALOG_HEIGHT = 100,
-            MAIN_WINDOW_WIDTH = 1500,
+            MAIN_WINDOW_WIDTH = 1700,
             MAIN_WINDOW_HEIGHT = 300,
             FEATURES = 3,
             SAMPLES = 100,

@@ -29,16 +29,20 @@ namespace {
     };
 
     const std::unordered_set<std::string> validModels{"LSM", "HUB", "TUK", "LAD", "THS"};
-    const std::unordered_set<std::string> validDists{"Normal", "Student", "Cauchy", "Laplace"};
+    const std::unordered_set<std::string> validDists{"Normal", "Student", "Cauchy", "Laplace", "Scale"};
     const std::unordered_set<std::string> validMLModels{"None", "IForest", "DBSCAN", "KDE", "KNN"};
 
     stats runOnMethods(const json& method, size_t numNoise, CP::Common::DataDeNoiser &deNoiser, bool dumpModels) {
         stats res;
-        CP::Distributions::ErrorDistributions dist(CP::Distributions::ErrorDistributions::DistributionType::Normal);
         for (auto &i : method.items()) {
             auto params = i.value();
-            CP::Distributions::ErrorDistributions dist(dists.at(params["noise"]["type"].dump()), params["noise"]["param1"], params["noise"]["param2"]);
-            deNoiser.noise(numNoise, dist);
+            if (params["noise"]["type"].dump() == "\"Scale\"") {
+                CP::Distributions::ErrorDistributions dummyDist(distType::Normal);
+                deNoiser.noise(numNoise, dummyDist, true);
+            } else {
+                CP::Distributions::ErrorDistributions dist(dists.at(params["noise"]["type"].dump()), params["noise"]["param1"], params["noise"]["param2"]);
+                deNoiser.noise(numNoise, dist);
+            }
             const CP::Common::RData processedData = deNoiser.denoise(params["mlmodel"]["type"], params["mlmodel"]["param1"], params["mlmodel"]["param2"]);
             if (i.key() == "LSM") {
                 auto model = CP::MS::LeastSquaresMethod(processedData);
@@ -277,7 +281,13 @@ int main(int argc, char **argv) {
                 CP::Common::RegressionData data = parser.parseCSV(path, numFeat);
                 std::string tar = method.items().begin().value()["target"].dump();
                 bool dryRun = (tar == "\"dry\"");
+                if (dryRun) {
+                    CP::Common::DataDeNoiser deNoiser(data);
+                    stats computed = runOnMethods(method, 0, deNoiser, dryRun);
+                    continue;
+                }
                 auto target = dryRun ? std::move(CP::Common::Matrix()) : std::move(parseTarget(std::move(std::string(tar.begin() + 1, tar.end() - 1))));
+
 
                 if (target.size() > numFeat + 1) {
                     target.resize(numFeat + 1);

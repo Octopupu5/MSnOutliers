@@ -18,7 +18,7 @@ namespace CP {
             QLabel* getLabel(const QString& text);
             std::unique_ptr<QPushButton> _info;
 
-            const QStringList distributionsList = {"Normal", "Student", "Cauchy", "Laplace"};
+            const QStringList distributionsList = {"Normal", "Student", "Cauchy", "Laplace", "Scale"};
             const QStringList mlModelsList = {"None", "IForest", "DBSCAN", "KDE", "KNN"};
             const QStringList modelsList = {"LSM", "HUB", "TUK", "LAD", "THS"};
 
