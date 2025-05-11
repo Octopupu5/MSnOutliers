@@ -35,6 +35,7 @@ set(PROJECT_SOURCES
         modeltemplate.h
         basicstatdialog.cpp
         basicstatdialog.h
+        defaults.h
         mainwindow.ui
 )
 

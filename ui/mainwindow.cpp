@@ -195,7 +195,6 @@ namespace CP {
             f << s.str();
             s.clear();
             f.close();
-            createDialog(this, "Success", "Data dumped to sample.csv");
             std::ostringstream ss;
             ss << "Data dumped to sample.csv\nSample:\n" << sample;
             createDialog(this, "Success", QString::fromStdString(ss.str()));
@@ -323,7 +322,6 @@ namespace CP {
                         imageLabel->setPixmap(pixmap.scaled(static_cast<int>(Defaults::IMAGES_WIDTH), static_cast<int>(Defaults::IMAGES_HEIGHT), Qt::KeepAspectRatio, Qt::SmoothTransformation));
                         imageLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
                         imageLabel->setMinimumSize(static_cast<int>(Defaults::IMAGES_WIDTH), static_cast<int>(Defaults::IMAGES_HEIGHT));
-                        imageLabel->setMaximumSize(static_cast<int>(Defaults::IMAGES_WIDTH), static_cast<int>(Defaults::IMAGES_HEIGHT));
 
                         imageLayout->addWidget(imageLabel);
                         containerLayout->addWidget(imageContainer);
