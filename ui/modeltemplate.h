@@ -1,6 +1,8 @@
 #ifndef MODELTEMPLATE_H
 #define MODELTEMPLATE_H
 
+#include "defaults.h"
+
 #include <QDialog>
 #include <QLabel>
 #include <QPushButton>

@@ -24,7 +24,7 @@ namespace CP {
 
             mainLayout->addLayout(formLayout);
             mainLayout->addWidget(buttonBox);
-            resize(400, 100);
+            resize(static_cast<int>(Defaults::DIALOG_WIDTH) + 100, static_cast<int>(Defaults::DIALOG_HEIGHT));
             setWindowTitle("Generate data");
 
             connect(buttonBox, &QDialogButtonBox::accepted, this, &GenerateDialog::accept);

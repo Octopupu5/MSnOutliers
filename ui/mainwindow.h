@@ -14,6 +14,7 @@
 #include <QScrollArea>
 
 #include "../json/single_include/nlohmann/json.hpp"
+#include "defaults.h"
 #include "generatedialog.h"
 #include "modeldialog.h"
 #include "basicstatdialog.h"
@@ -26,6 +27,7 @@
 #include <sstream>
 #include <random>
 #include "config.h"
+
 
 namespace CP {
     namespace UI {

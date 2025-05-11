@@ -11,7 +11,7 @@ namespace CP {
 
             mainLayout->addLayout(formLayout);
             mainLayout->addWidget(buttonBox);
-            resize(200, 100);
+            resize(static_cast<int>(Defaults::DIALOG_WIDTH) + 100, static_cast<int>(Defaults::DIALOG_HEIGHT));
             setWindowTitle("Basic analysis");
 
             connect(buttonBox, &QDialogButtonBox::accepted, this, &BasicStatDialog::accept);

@@ -100,7 +100,7 @@ namespace CP {
             QDialog* infoDialog = new QDialog(this);
             infoDialog->setWindowTitle("Distributions\' parameters");
             infoDialog->setAttribute(Qt::WA_DeleteOnClose);
-            infoDialog->resize(300, 300);
+            infoDialog->resize(static_cast<int>(Defaults::DIALOG_WIDTH) + 100, static_cast<int>(Defaults::DIALOG_WIDTH));
 
             QGridLayout *layout = new QGridLayout();
             layout->addWidget(getLabel("Distribution"), 0, 0);

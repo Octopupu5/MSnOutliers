@@ -8,7 +8,7 @@ namespace CP {
             QDialog *dialog = new QDialog(parent);
             dialog->setAttribute(Qt::WA_DeleteOnClose);
             dialog->setWindowTitle(std::move(title));
-            dialog->resize(300, 100);
+            dialog->resize(static_cast<int>(Defaults::DIALOG_WIDTH), static_cast<int>(Defaults::DIALOG_HEIGHT));
             QLabel *label = new QLabel(parent);
             label->setAlignment(Qt::AlignCenter);
             label->setText(message);
@@ -63,7 +63,7 @@ namespace CP {
 
         MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
             setWindowTitle("Regression analysis");
-            resize(1050, 300);
+            resize(static_cast<int>(Defaults::MAIN_WINDOW_WIDTH), static_cast<int>(Defaults::MAIN_WINDOW_HEIGHT));
 
             QPushButton *createBtn = new QPushButton("Create model");
             QPushButton *dumpBtn = new QPushButton("Dump models");
@@ -118,10 +118,10 @@ namespace CP {
             GenerateDialog dialog(this);
             if (dialog.exec() == QDialog::Accepted) {
                 auto result = dialog.getData();
-                int feat = (result[0].toStdString().empty() ? 3 : std::stoi(result[0].toStdString()));
-                int samp = (result[1].toStdString().empty() ? 100 : std::stoi(result[1].toStdString()));
-                int min = (result[3].toStdString().empty() ? 1 : std::stoi(result[3].toStdString()));
-                int max = (result[4].toStdString().empty() ? 100 : std::stoi(result[4].toStdString()));
+                int feat = (result[0].toStdString().empty() ? static_cast<int>(Defaults::FEATURES) : std::stoi(result[0].toStdString()));
+                int samp = (result[1].toStdString().empty() ? static_cast<int>(Defaults::SAMPLES) : std::stoi(result[1].toStdString()));
+                int min = (result[3].toStdString().empty() ? static_cast<int>(Defaults::GEN_MIN) : std::stoi(result[3].toStdString()));
+                int max = (result[4].toStdString().empty() ? static_cast<int>(Defaults::GEN_MAX) : std::stoi(result[4].toStdString()));
                 generate(min, max, feat, samp, std::move(parseCoefficients(std::move(result[2].toStdString()))));
             }
         }
@@ -170,6 +170,7 @@ namespace CP {
                 return;
             }
             std::ostringstream s;
+            std::string sample = "";
             for (int i = 0; i < numSamples; ++i) {
                 double target = coeffs[0];
                 for (int j = 0; j < numFeatures; ++j) {
@@ -184,11 +185,20 @@ namespace CP {
                 if (i != numSamples - 1) {
                     s << "\n";
                 }
+                if (i == static_cast<int>(Defaults::GEN_DISPLAY)) {
+                    sample = s.str();
+                }
+            }
+            if (sample.empty()) {
+                sample = s.str();
             }
             std::ofstream f("sample.csv");
             f << s.str();
+            s.clear();
             f.close();
-            createDialog(this, "Success", "Data dumped to sample.csv");
+            std::ostringstream ss;
+            ss << "Data dumped to sample.csv\nSample:\n" << sample;
+            createDialog(this, "Success", QString::fromStdString(ss.str()));
         }
 
         void MainWindow::dumpModels() {
@@ -289,14 +299,14 @@ namespace CP {
                     
                     if (QFile::exists(path)) {
                         QWidget *graphContainer = new QWidget();
-                        graphContainer->setFixedWidth(700);
+                        graphContainer->setFixedWidth(static_cast<int>(Defaults::IMAGES_WIDTH) + 30);
                         QVBoxLayout *containerLayout = new QVBoxLayout(graphContainer);
                         QLabel *titleLabel = new QLabel(modelName + " (Group " + QString::number(groupIdx + 1) + ")");
                         titleLabel->setAlignment(Qt::AlignCenter);
                         titleLabel->setStyleSheet("font-weight: bold; font-size: 14px;");
                         containerLayout->addWidget(titleLabel);
                         QWidget *imageContainer = new QWidget();
-                        imageContainer->setFixedSize(680, 500);
+                        imageContainer->setFixedSize(static_cast<int>(Defaults::IMAGES_WIDTH) + 10, static_cast<int>(Defaults::IMAGES_HEIGHT) + 10);
                         QVBoxLayout *imageLayout = new QVBoxLayout(imageContainer);
                         imageLayout->setContentsMargins(0, 0, 0, 0);
                         
@@ -304,10 +314,10 @@ namespace CP {
                         imageLabel->setAlignment(Qt::AlignCenter);
                         QPixmap pixmap(path);
                         
-                        imageLabel->setPixmap(pixmap.scaled(670, 490, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+                        imageLabel->setPixmap(pixmap.scaled(static_cast<int>(Defaults::IMAGES_WIDTH), static_cast<int>(Defaults::IMAGES_HEIGHT), Qt::KeepAspectRatio, Qt::SmoothTransformation));
                         imageLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-                        imageLabel->setMinimumSize(670, 490);
-                        imageLabel->setMaximumSize(670, 490);
+                        imageLabel->setMinimumSize(static_cast<int>(Defaults::IMAGES_WIDTH), static_cast<int>(Defaults::IMAGES_HEIGHT));
+                        imageLabel->setMaximumSize(static_cast<int>(Defaults::IMAGES_WIDTH), static_cast<int>(Defaults::IMAGES_HEIGHT));
                         
                         imageLayout->addWidget(imageLabel);
                         containerLayout->addWidget(imageContainer);
