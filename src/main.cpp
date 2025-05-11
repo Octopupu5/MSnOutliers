@@ -102,6 +102,7 @@ namespace {
         
             if (!item[name].contains("path") || !item[name]["path"].is_string()) return false;
             if (!item[name].contains("num_feat") || !item[name]["num_feat"].is_number_integer()) return false;
+            if (!item[name].contains("min_noise") || !item[name]["min_noise"].is_number_integer()) return false;
             if (!item[name].contains("max_noise") || !item[name]["max_noise"].is_number_integer()) return false;
             if (!item[name].contains("num_exp") || !item[name]["num_exp"].is_number_integer()) return false;
             if (!item[name].contains("target") || !item[name]["target"].is_string()) return false;
@@ -168,13 +169,18 @@ int main(int argc, char **argv) {
                 std::string tar = method.items().begin().value()["target"].dump();
                 bool dryRun = (tar == "\"dry\"");
                 auto target = dryRun ? std::move(CP::Common::Matrix()) : std::move(parseTarget(std::move(std::string(tar.begin() + 1, tar.end() - 1))));
-                while (!dryRun && target.size() != numFeat + 1) {
+
+                if (target.size() > numFeat + 1) {
+                    target.resize(numFeat + 1);
+                }
+
+                while (!dryRun && target.size() < numFeat + 1) {
                     target.push_back({0});
                 }
                 
-                size_t minNoise = dryRun ? 0 : 35;
+                size_t minNoise = dryRun ? 0 : (static_cast<size_t>(method.items().begin().value()["min_noise"]));
                 size_t maxNoise =  dryRun ? 0 : (static_cast<size_t>(method.items().begin().value()["max_noise"]));
-                size_t numExperiments = dryRun ? 1 : static_cast<size_t>(method.items().begin().value()["num_exp"]);
+                size_t numExperiments = dryRun ? 1 : (static_cast<size_t>(method.items().begin().value()["num_exp"]));
                 
                 unsigned n_threads = std::thread::hardware_concurrency();
                 std::vector<std::future<ExperimentResult>> futures;

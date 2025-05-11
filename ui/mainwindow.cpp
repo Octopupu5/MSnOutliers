@@ -54,7 +54,7 @@ namespace CP {
             if (orientation == Qt::Horizontal) {
                 const QStringList headers = {"Model", "Delta", "Epochs", "Learn. Rate", "(N) Type", "(N) Param. 1", 
                                              "(N) Param. 2", "ML", "(ML) Param. 1", "(ML) Param. 2", "Data", "Num. features",
-                                             "Max. Noise", "Num. Exp.", "Target"};
+                                             "Min. Noise", "Max. Noise", "Num. Exp.", "Target"};
                 if (section >= 0 && section < headers.size()) {
                     return headers.at(section);
                 }
@@ -207,7 +207,7 @@ namespace CP {
             std::string path = std::string(PATH_TO_OUTPUT);
             for (auto& el : _models) {
                 json tmp;
-                assert(el.size() == 15 && "Malformed data");
+                assert(el.size() == 16 && "Malformed data");
                 auto deltaStr      = (el[1].toStdString().empty() ? "1" : el[1].toStdString());
                 auto epsStr        = (el[2].toStdString().empty() ? "1000" : el[2].toStdString());
                 auto lrStr         = (el[3].toStdString().empty() ? "0.001" : el[3].toStdString());
@@ -216,8 +216,9 @@ namespace CP {
                 auto mlParam1Str   = (el[8].toStdString().empty() ? "0.0" : el[8].toStdString());
                 auto mlParam2Str   = (el[9].toStdString().empty() ? "0.0" : el[9].toStdString());
                 auto numFeatStr    = (el[11].toStdString().empty() ? "3" : el[11].toStdString());
-                auto maxNoiseStr   = (el[12].toStdString().empty() ? "50" : el[12].toStdString());
-                auto numExpStr     = (el[13].toStdString().empty() ? "10" : el[13].toStdString());
+                auto minNoiseStr   = (el[12].toStdString().empty() ? "10" : el[12].toStdString());
+                auto maxNoiseStr   = (el[13].toStdString().empty() ? "50" : el[13].toStdString());
+                auto numExpStr     = (el[14].toStdString().empty() ? "10" : el[14].toStdString());
 
                 tmp[el[0].toStdString()] = {
                     {"delta", std::stod(deltaStr)},
@@ -235,9 +236,10 @@ namespace CP {
                     },
                     {"path", el[10].toStdString()},
                     {"num_feat", std::stoi(numFeatStr)},
+                    {"min_noise", std::stoi(minNoiseStr)},
                     {"max_noise", std::stoi(maxNoiseStr)},
                     {"num_exp", std::stoi(numExpStr)},
-                    {"target", el[14].isEmpty() ? "dry" : el[14].toStdString()}
+                    {"target", el[15].isEmpty() ? "dry" : el[15].toStdString()}
                 };
                 models_.push_back(std::move(tmp));
             }

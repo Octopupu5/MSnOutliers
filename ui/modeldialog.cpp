@@ -23,7 +23,7 @@ namespace CP {
             setupLineEdit("Path", "source.csv", nullptr);
             setupLineEdit("Target", "-1.2;2.7;3.5;4.78", coeffs_validator.get());
             
-
+            setupLineEdit("Min.Noise", "35", integer_validator.get());
             setupLineEdit("Max.Noise", "50", integer_validator.get());
             setupLineEdit("ML.Param.1", "0.0", validator.get());
             setupLineEdit("ML.Param.2", "0.0", validator.get());
@@ -45,6 +45,7 @@ namespace CP {
             formLayout->addRow("Path to data:", _lineEdits["Path"].get());
             formLayout->addRow("Target: ", _lineEdits["Target"].get());
             formLayout->addRow("Num. features:", _lineEdits["Num.Feat."].get());
+            formLayout->addRow("Min noise:", _lineEdits["Min.Noise"].get());
             formLayout->addRow("Max noise:", _lineEdits["Max.Noise"].get());
             formLayout->addRow("ML model:", _comboBoxes["ML"].get());
             formLayout->addRow("ML Parameter 1:", _lineEdits["ML.Param.1"].get());
@@ -84,6 +85,7 @@ namespace CP {
                 _lineEdits["ML.Param.2"]->text(),
                 path,
                 _lineEdits["Num.Feat."]->text(),
+                _lineEdits["Min.Noise"]->text(),
                 _lineEdits["Max.Noise"]->text(),
                 _lineEdits["Num.Exp."]->text(),
                 _lineEdits["Target"]->text(),
@@ -103,7 +105,7 @@ namespace CP {
 
         void ModelDialog::onInfoButtonPushed() {
             QDialog* infoDialog = new QDialog(this);
-            infoDialog->setWindowTitle("Distributions\' parameters");
+            infoDialog->setWindowTitle("Parameters");
             infoDialog->setAttribute(Qt::WA_DeleteOnClose);
             infoDialog->resize(static_cast<int>(Defaults::DIALOG_WIDTH) + 100, static_cast<int>(Defaults::DIALOG_WIDTH));
 
@@ -111,11 +113,31 @@ namespace CP {
             layout->addWidget(getLabel("Distribution"), 0, 0);
             layout->addWidget(getLabel("Parameter 1"), 0, 1);
             layout->addWidget(getLabel("Parameter 2"), 0, 2);
-            for (int i = 0; i < distributionsList.size(); ++i) {
+            size_t distSize =  distributionsList.size();
+            size_t mlSize = mlModelsList.size();
+            for (int i = 0; i < distSize; ++i) {
                 layout->addWidget(getLabel(distributionsList[i]), i+1, 0);
             }
-            layout->addWidget(getLabel("Mean"), 1, 1);
-            layout->addWidget(getLabel("Deviation"), 1, 2);
+            for (int i = 0; i < mlSize; ++i) {
+                if (mlModelsList[i] != "None") {
+                    layout->addWidget(getLabel(mlModelsList[i]), i + distSize + 1, 0);
+                }
+            }
+            auto descrParameters = [&](std::string first, std::string second, int pos) {
+                layout->addWidget(getLabel(QString::fromStdString(first)), pos, 1);
+                layout->addWidget(getLabel(QString::fromStdString(second)), pos, 2);
+            };
+            descrParameters("Mean", "Deviation", 1);
+            descrParameters("Deg. of freedom", "IGNORED", 2);
+            descrParameters("Location", "Scale", 3);
+            descrParameters("Location", "Scale", 4);
+            descrParameters("", "", 5);
+            descrParameters("K", "Contamination", 6);
+            descrParameters("Gamma", "IGNORED", 7);
+            descrParameters("Num. estimators", "Depth", 8);
+            descrParameters("R", "Min cluster size", 9);
+
+
 
             infoDialog->setLayout(layout);
             infoDialog->show();
