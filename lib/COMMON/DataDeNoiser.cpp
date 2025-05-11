@@ -10,6 +10,38 @@ namespace CP {
             }
         }
 
+        double DataDeNoiser::Precision() {
+            return _precision;
+        }
+
+        double DataDeNoiser::Recall() {
+            return _recall;
+        }
+
+        double DataDeNoiser::F1() {
+            return _f1Score;
+        }
+
+        void DataDeNoiser::CalculateMetrics() {
+            size_t truePositives = 0;
+            size_t falsePositives = 0;
+            size_t falseNegatives = 0;
+            
+            for (size_t i = 0; i < _noisedIndices.size(); ++i) {
+                if (_noisedIndices[i] && _denoisedIndices[i]) {
+                    ++truePositives;
+                } else if (!_noisedIndices[i] && _denoisedIndices[i]) {
+                    ++falsePositives;
+                } else if (_noisedIndices[i] && !_denoisedIndices[i]) {
+                    ++falseNegatives;
+                }
+            }
+            
+            _precision = (truePositives + falsePositives > 0) ? static_cast<double>(truePositives) / (truePositives + falsePositives) : 0.0;
+            _recall = (truePositives + falseNegatives > 0) ? static_cast<double>(truePositives) / (truePositives + falseNegatives) : 0.0;
+            _f1Score = (_precision + _recall > 0) ? 2.0 * _precision * _recall / (_precision + _recall) : 0.0;
+        }
+
         void DataDeNoiser::noise(int numNoise, CP::Distributions::ErrorDistributions& dist) {
             size_t rows = _data.size();
             
@@ -28,6 +60,8 @@ namespace CP {
             size_t cols = _data[0].features.size() + 1;
             _dataMatNoised = Matrix(rows, Row(cols));
             _dataNoised = RData(_data);
+            _noisedIndices.resize(rows, false);
+            _denoisedIndices.resize(rows, false);
             for (size_t i = 0; i < rows; ++i) {
                 for (size_t j = 0; j < cols - 1; ++j) {
                     _dataMatNoised[i][j] = _data[i].features[j];
@@ -41,13 +75,14 @@ namespace CP {
 
                 _dataNoised[currentIndex].target += noise;
                 _dataMatNoised[currentIndex][cols - 1] += noise;
+                _noisedIndices[currentIndex] = true;
             }
         }
 
         RData DataDeNoiser::denoise(const std::string& mlModelType, double param1, double param2) {
             RData cleanedData;
             if (mlModelType == "IForest") {
-                iForestDenoiser(cleanedData, int(param1), int(param2));
+                IForestDenoiser(cleanedData, int(param1), int(param2));
             } else if (mlModelType == "DBSCAN") {
                 DBSCANDenoiser(cleanedData, param1, int(param2));
             } else if (mlModelType == "KDE") {
@@ -55,12 +90,14 @@ namespace CP {
             } else if (mlModelType == "KNN") {
                 KNNDenoiser(cleanedData, int(param1), param2);
             } else if (mlModelType == "None") {
+                _precision = _recall = _f1Score = 0.0;
                 return _dataNoised;
             }
+            CalculateMetrics();
             return cleanedData;
         }
 
-        void DataDeNoiser::iForestDenoiser(RData& cleanedData, int nEstimators, int depth) {
+        void DataDeNoiser::IForestDenoiser(RData& cleanedData, int nEstimators, int depth) {
             auto [rows, cols] = Shape(_dataMatNoised);
 
             if (!nEstimators) {
@@ -81,6 +118,9 @@ namespace CP {
             for (size_t i = 0; i < rows; ++i) {
                 if (probs[i].first > probs[sizeToClean].first) {
                     cleanedData.push_back(_dataNoised[probs[i].second]);
+                    _denoisedIndices[i] = false;
+                } else {
+                    _denoisedIndices[i] = true;
                 }
             }
         }
@@ -98,6 +138,9 @@ namespace CP {
             for (size_t i = 0; i < rows; ++i) {
                 if (!answers[i][0].Value()) {
                     cleanedData.push_back(_dataNoised[i]);
+                    _denoisedIndices[i] = false;
+                } else {
+                    _denoisedIndices[i] = true;
                 }
             }
         }
@@ -119,6 +162,9 @@ namespace CP {
             for (size_t i = 0; i < rows; ++i) {
                 if (preds[i].first < thres) {
                     cleanedData.push_back(_dataNoised[preds[i].second]);
+                    _denoisedIndices[i] = false;
+                } else {
+                    _denoisedIndices[i] = true;
                 }
             }
         }
@@ -147,6 +193,9 @@ namespace CP {
             for (size_t i = 0; i < rows; ++i) {
                 if (idToCluster[i] != 0) {
                     cleanedData.push_back(_dataNoised[i]);
+                    _denoisedIndices[i] = false;
+                } else {
+                    _denoisedIndices[i] = true;
                 }
             }
         }
