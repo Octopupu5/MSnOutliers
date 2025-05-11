@@ -20,12 +20,12 @@ namespace CP {
         public:
             DataDeNoiser(const RData& data);
             void noise(int numNoise, CP::Distributions::ErrorDistributions& dist);
-            RData denoise(const std::string& mlModelType);
+            RData denoise(const std::string& mlModelType, double param1, double param2);
         private:
-            void iForestDenoiser(RData& cleanedData);
-            void KDEDenoiser(RData& cleanedData);
-            void KNNDenoiser(RData& cleanedData);
-            void DBSCANDenoiser(RData& cleanedData);
+            void iForestDenoiser(RData& cleanedData, int nEstimators, int depth);
+            void KDEDenoiser(RData& cleanedData, double gamma);
+            void KNNDenoiser(RData& cleanedData, int k, double contamination);
+            void DBSCANDenoiser(RData& cleanedData, double r, int minClusterSize);
             const RData& _data;
             RData _dataNoised;
             Matrix _dataMatNoised;

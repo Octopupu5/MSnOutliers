@@ -205,7 +205,7 @@ namespace CP {
             std::string path = std::string(PATH_TO_OUTPUT);
             for (auto& el : _models) {
                 json tmp;
-                assert(el.size() == 12 && "Malformed data");
+                assert(el.size() == 14 && "Malformed data");
                 auto deltaStr      = (el[1].toStdString().empty() ? "1" : el[1].toStdString());
                 auto epsStr        = (el[2].toStdString().empty() ? "1000" : el[2].toStdString());
                 auto lrStr         = (el[3].toStdString().empty() ? "0.001" : el[3].toStdString());
@@ -213,9 +213,9 @@ namespace CP {
                 auto param2Str     = (el[6].toStdString().empty() ? "1.0" : el[6].toStdString());
                 auto mlParam1Str   = (el[8].toStdString().empty() ? "0.0" : el[8].toStdString());
                 auto mlParam2Str   = (el[9].toStdString().empty() ? "0.0" : el[9].toStdString());
-                auto numFeatStr    = (el[11].toStdString().empty() ? "3" : el[9].toStdString());
-                auto maxNoiseStr   = (el[12].toStdString().empty() ? "50" : el[10].toStdString());
-                auto numExpStr     = (el[13].toStdString().empty() ? "10" : el[11].toStdString());
+                auto numFeatStr    = (el[11].toStdString().empty() ? "3" : el[11].toStdString());
+                auto maxNoiseStr   = (el[12].toStdString().empty() ? "50" : el[12].toStdString());
+                auto numExpStr     = (el[13].toStdString().empty() ? "10" : el[13].toStdString());
 
                 tmp[el[0].toStdString()] = {
                     {"delta", std::stod(deltaStr)},

@@ -39,7 +39,7 @@ namespace {
             auto params = i.value();
             CP::Distributions::ErrorDistributions dist(dists.at(params["noise"]["type"].dump()), params["noise"]["param1"], params["noise"]["param2"]);
             deNoiser.noise(numNoise, dist);
-            const CP::Common::RData processedData = deNoiser.denoise(params["mlmodel"]);
+            const CP::Common::RData processedData = deNoiser.denoise(params["mlmodel"]["type"], params["mlmodel"]["param1"], params["mlmodel"]["param2"]);
             if (i.key() == "LSM") {
                 auto model = CP::MS::LeastSquaresMethod(processedData);
                 res["LSM"] = model.compute();
@@ -85,7 +85,9 @@ namespace {
             if (!item[name].contains("lr") || !item[name]["lr"].is_number_float()) return false;
             if (!item[name].contains("noise")) return false;
             if (!item[name].contains("mlmodel")) return false;
-            if (!item[name]["mlmodel"].is_string() || validMLModels.find(item[name]["mlmodel"]) == validMLModels.end()) return false;
+            if (!item[name]["mlmodel"].contains("param1") || !item[name]["mlmodel"]["param1"].is_number_float()) return false;
+            if (!item[name]["mlmodel"].contains("param2") || !item[name]["mlmodel"]["param2"].is_number_float()) return false;
+            if (!item[name]["mlmodel"].contains("type") || validMLModels.find(item[name]["mlmodel"]["type"]) == validMLModels.end()) return false;
 
             if (!item[name]["noise"].contains("param1") || !item[name]["noise"]["param1"].is_number_float()) return false;
             if (!item[name]["noise"].contains("param2") || !item[name]["noise"]["param2"].is_number_float()) return false;
@@ -191,7 +193,7 @@ int main(int argc, char **argv) {
                     errors.emplace_back(n, avg);
                 }
                 
-                std::string mlModel = method.items().begin().value()["mlmodel"];
+                std::string mlModel = method.items().begin().value()["mlmodel"]["type"];
                 std::string noiseType = method.items().begin().value()["noise"]["type"];
                 std::string legendName = mlModel + " / " + noiseType;
                 
