@@ -21,14 +21,23 @@ namespace CP {
             DataDeNoiser(const RData& data);
             void noise(int numNoise, CP::Distributions::ErrorDistributions& dist);
             RData denoise(const std::string& mlModelType, double param1, double param2);
+            double Precision();
+            double Recall();
+            double F1();
         private:
-            void iForestDenoiser(RData& cleanedData, int nEstimators, int depth);
+            void IForestDenoiser(RData& cleanedData, int nEstimators, int depth);
             void KDEDenoiser(RData& cleanedData, double gamma);
             void KNNDenoiser(RData& cleanedData, int k, double contamination);
             void DBSCANDenoiser(RData& cleanedData, double r, int minClusterSize);
+            void CalculateMetrics();
             const RData& _data;
             RData _dataNoised;
             Matrix _dataMatNoised;
+            double _precision;
+            double _recall;
+            double _f1Score;
+            std::vector<bool> _noisedIndices;
+            std::vector<bool> _denoisedIndices;
         };
     }
 }
