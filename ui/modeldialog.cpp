@@ -22,10 +22,10 @@ namespace CP {
             setupLineEdit("Num.Feat.", "3", integer_validator.get());
             setupLineEdit("Path", "source.csv", nullptr);
 
-            setupLineEdit("Max.Noise", "50", integer_validator);
-            setupLineEdit("ML.Param.1", "0.0", validator);
-            setupLineEdit("ML.Param.2", "0.0", validator);
-            setupLineEdit("Num.Exp.", "10", integer_validator);
+            setupLineEdit("Max.Noise", "50", integer_validator.get());
+            setupLineEdit("ML.Param.1", "0.0", validator.get());
+            setupLineEdit("ML.Param.2", "0.0", validator.get());
+            setupLineEdit("Num.Exp.", "10", integer_validator.get());
 
             _info = std::make_unique<QPushButton>();
             _info->setText("Get info");
