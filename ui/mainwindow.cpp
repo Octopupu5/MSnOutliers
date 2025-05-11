@@ -69,7 +69,7 @@ namespace CP {
             QPushButton *dumpBtn = new QPushButton("Dump models");
             QPushButton *runBtn = new QPushButton("Run on models");
             QPushButton *genBtn = new QPushButton("Generate data");
-            QPushButton *statBtn = new QPushButton("Get basic statistics");
+            QPushButton *statBtn = new QPushButton("Calculate statistics");
 
 
             QVBoxLayout *layout = new QVBoxLayout(this);
@@ -132,7 +132,7 @@ namespace CP {
                 auto result = dialog.getData();
                 if (QFile::exists(result[0])) {
                     std::vector<double> targets;
-                    double sum = 0;
+                    double sum = 0, sum_squares = 0;
                     std::ifstream f(result[0].toStdString());
                     std::string currentObject;
                     while (std::getline(f, currentObject)) {
@@ -144,6 +144,7 @@ namespace CP {
                             double target = std::stod(std::string(currentObject.begin() + i + 1, currentObject.end()));
                             targets.push_back(target);
                             sum += target;
+                            sum_squares += (target * target);
                         } catch (...) {
                             createDialog(this, "Error", "Error parsing file, try again");
                         }
@@ -151,8 +152,11 @@ namespace CP {
                     f.close();
                     std::sort(targets.begin(), targets.end());
                     auto len = targets.size();
+                    double avg = sum/len;
                     std::ostringstream s;
-                    s << "Average: " << sum/len << "\nMedian: " << targets[len/2];
+                    s << "Max: " << targets[0] << "\n Min: " << targets[len-1] << "\n";
+                    s << "Average: " << avg << "\nMedian: " << targets[len/2] << "\n";
+                    s << "Deviation: " << sum_squares/len - avg * avg;
                     createDialog(this, "Statistics", QString::fromStdString(s.str())); 
                 } else {
                     createDialog(this, "Error", "No such file");
