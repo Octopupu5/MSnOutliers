@@ -133,12 +133,10 @@ namespace CP {
             descrParameters("Location", "Scale", 4);
             descrParameters("IGNORED", "IGNORED", 5);
             descrParameters("", "", 6);
-            descrParameters("K", "Contamination", 7);
-            descrParameters("Gamma", "IGNORED", 8);
-            descrParameters("Num. estimators", "Depth", 9);
-            descrParameters("R", "Min cluster size", 10);
-
-
+            descrParameters("Num. estimators", "Depth", 7);
+            descrParameters("R", "Min cluster size", 8);
+            descrParameters("Gamma", "IGNORED", 9);        
+            descrParameters("K", "Contamination", 10);
 
             infoDialog->setLayout(layout);
             infoDialog->show();
