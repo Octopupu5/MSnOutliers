@@ -120,6 +120,9 @@ namespace CP {
                 _precision = _recall = _f1Score = 0.0;
                 return _dataNoised;
             }
+            if (!cleanedData.size()) {
+                cleanedData = _dataNoised;
+            }
             CalculateMetrics();
             return cleanedData;
         }
@@ -210,23 +213,12 @@ namespace CP {
             CP::ML::DBSCAN dbscan(r, minClusterSize); 
             dbscan.Fit(_dataMatNoised);
             std::vector<int32_t> idToCluster = dbscan.getIdToCluster();
-            size_t outliers = 0;
             for (size_t i = 0; i < rows; ++i) {
-                outliers += (idToCluster[i] == 0);
-            }
-            if (outliers == rows) {
-                for (size_t i = 0; i < rows; ++i) {
+                if (idToCluster[i] != 0) {
                     cleanedData.push_back(_dataNoised[i]);
                     _denoisedIndices[i] = false;
-                }
-            } else {
-                for (size_t i = 0; i < rows; ++i) {
-                    if (idToCluster[i] != 0) {
-                        cleanedData.push_back(_dataNoised[i]);
-                        _denoisedIndices[i] = false;
-                    } else {
-                        _denoisedIndices[i] = true;
-                    }
+                } else {
+                    _denoisedIndices[i] = true;
                 }
             }
         }
