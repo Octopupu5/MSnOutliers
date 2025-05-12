@@ -7,7 +7,6 @@ namespace CP {
 	namespace ML {
 		class Node {
 		public:
-			Node();
 			Node(const uint64_t& feature, double predicate);
 			~Node();
 

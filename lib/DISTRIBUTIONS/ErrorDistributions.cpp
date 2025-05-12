@@ -26,25 +26,25 @@ namespace CP {
                 case Normal:
                     return std::get<std::normal_distribution<>>(_distribution)(gen);
                 case Student:
-                    return student_t_generate(gen, std::get<std::pair<double, double>>(_distribution).first);
+                    return studentGenerate(gen, std::get<std::pair<double, double>>(_distribution).first);
                 case Cauchy:
                     return std::get<std::cauchy_distribution<>>(_distribution)(gen);
                 case Laplace: {
                         auto [mean, b] = std::get<std::pair<double, double>>(_distribution);
-                        return laplace_generate(gen, mean, b);
+                        return laplaceGenerate(gen, mean, b);
                     }
                 default:
                     throw std::runtime_error("aboba");
             }
         }
 
-        double ErrorDistributions::laplace_generate(std::mt19937& gen, double mean, double b) {
+        double ErrorDistributions::laplaceGenerate(std::mt19937& gen, double mean, double b) {
             std::uniform_real_distribution<> uniform(0.0, 1.0);
             double u = uniform(gen) - 0.5;
             return mean - b * (u < 0 ? 1 : -1) * std::log(1 - 2 * std::abs(u));
         }
 
-        double ErrorDistributions::student_t_generate(std::mt19937& gen, double degrees_of_freedom) {
+        double ErrorDistributions::studentGenerate(std::mt19937& gen, double degrees_of_freedom) {
             std::normal_distribution<> normal(0.0, 1.0);
             std::chi_squared_distribution<> chi_squared(degrees_of_freedom);
             double normal_sample = normal(gen);
