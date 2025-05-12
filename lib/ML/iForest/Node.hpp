@@ -24,8 +24,8 @@ namespace CP {
 			uint64_t _j;
 			double _predicate;
 
-			Node* _sub_l;
-			Node* _sub_r;
+			Node* _subL;
+			Node* _subR;
 		};
 	}
 }
