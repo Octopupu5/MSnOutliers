@@ -18,30 +18,12 @@ namespace CP {
             return {rows, cols};
         }
 
-        static void CheckIndices(const Matrix& data, size_t row, size_t col) {
-            auto [rows, cols] = Shape(data);
-            if (row >= rows || col >= cols || row < 0 || col < 0) {
-                throw std::out_of_range("Index out of bounds");
-            }
-        }
-
         static void EnsureSameShape(const Matrix& lhs, const Matrix& rhs) {
             auto [lhs_rows, lhs_cols] = Shape(lhs);
             auto [rhs_rows, rhs_cols] = Shape(rhs);
             if (lhs_rows != rhs_rows || lhs_cols != rhs_cols) {
                 throw std::invalid_argument("Arrays must have the same shape for this operation");
             }
-        }
-
-        static Matrix T(const Matrix& data) {
-            auto [rows, cols] = Shape(data);
-            Matrix result(cols, Row(cols));
-            for (size_t i = 0; i < rows; ++i) {
-                for (size_t j = 0; j < cols; ++j) {
-                    result[j][i] = data[i][j];
-                }
-            }
-            return result;
         }
         
         template <typename Function>

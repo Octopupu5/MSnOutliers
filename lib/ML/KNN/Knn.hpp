@@ -19,7 +19,7 @@ namespace CP {
             size_t _k;
             double _contamination;
             std::vector<std::pair<double, size_t>> _sortedDistances;
-            Common::Matrix _train;
+            Common::Matrix _data;
             double _threshold;
         };
     }

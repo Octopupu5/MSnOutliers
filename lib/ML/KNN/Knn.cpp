@@ -8,7 +8,7 @@ namespace CP {
         KNN::KNN(size_t k, double contamination) : _k(k), _contamination(contamination), _threshold(0.0) {}
 
         void KNN::Fit(const Common::Matrix& data) {
-            _train = data;
+            _data = data;
             size_t n = data.size();
             _sortedDistances = std::vector<std::pair<double, size_t>>(n);
 
@@ -34,8 +34,8 @@ namespace CP {
             Common::Matrix out(n, Common::Row(1, 0.0));
             for (size_t i = 0; i < n; ++i) {
                 std::vector<double> distances;
-                distances.reserve(_train.size());
-                for (const auto& x : _train) {
+                distances.reserve(_data.size());
+                for (const auto& x : _data) {
                     distances.push_back(Common::L2Norm(x, data[i]));
                 }
                 std::nth_element(distances.begin(), distances.begin() + _k - 1, distances.end());
