@@ -1,4 +1,5 @@
 #include "StatsMethod.hpp"
+#include "LeastSquares.hpp"
 #ifndef CP_2025_GRAD_METHOD_H
 #define CP_2025_GRAD_METHOD_H
 
@@ -13,7 +14,7 @@ namespace CP {
         class GradMethod : public StatsMethod {
         public:
             GradMethod(const RData& data, const std::string& n, double delta, double ep, double lr): StatsMethod(data, n){
-                initialWeights_ = Vec::Zero(_featuresMatrix.cols());
+                initialWeights_ = std::move(Vec::Zero(_featuresMatrix.cols()));
             }
             Vec compute() override;
 

@@ -45,7 +45,7 @@ namespace CP {
         void DataDeNoiser::noise(int numNoise, CP::Distributions::ErrorDistributions& dist, bool scale) {
             size_t rows = _data.size();
 
-            assert((numNoise >= 0 && numNoise <= rows) && "numNoise must be somewhere in between 0 and target size");
+            assert((numNoise >= 0 && numNoise <= 100) && "numNoise must be somewhere in between 0 and 100");
         
             std::random_device rd;
             std::mt19937 gen(rd());
@@ -75,7 +75,9 @@ namespace CP {
                 _dataMatNoised[i][cols - 1] = _data[i].target;
             }
 
-            for (int i = 0; i < numNoise; ++i) {
+            int i = 0;
+
+            while ((i - (static_cast<double>(numNoise)/rows)) < 1e-9) {
                 size_t currentIndex = indices[i];
                 means[cols - 1] -= _data[currentIndex].target / rows;
                 squareMeans[cols - 1] -= (_data[currentIndex].target * _data[currentIndex].target) / rows;
@@ -90,6 +92,7 @@ namespace CP {
                 means[cols - 1] += _data[currentIndex].target / rows;
                 squareMeans[cols - 1] += (_data[currentIndex].target * _data[currentIndex].target) / rows;
                 _noisedIndices[currentIndex] = true;
+                ++i;
             }
 
             for (size_t i = 0; i < rows; ++i) {
