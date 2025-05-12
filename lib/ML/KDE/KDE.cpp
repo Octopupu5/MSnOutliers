@@ -6,7 +6,7 @@ namespace CP {
 
         void KernelDensityEstimator::Fit(const Common::Matrix& data) {
             auto [rows, cols] = Common::Shape(data);
-            _trainData = data;
+            _data = data;
             _kernelMatrix = Common::Matrix(rows, Common::Row(rows));
             for (size_t i = 0; i < rows; ++i) {
                 for (size_t j = 0; j < rows; ++j) {
@@ -18,12 +18,12 @@ namespace CP {
 
         Common::Matrix KernelDensityEstimator::Predict(const Common::Matrix& data) const {
             auto [nSamples, nFeatures] = Common::Shape(data);
-            auto [nTrain, nCols] = Common::Shape(_trainData);
+            auto [nTrain, nCols] = Common::Shape(_data);
             Common::Matrix predictions(nSamples, Common::Row(1));
             for (size_t i = 0; i < nSamples; ++i) {
                 double density = 0.0;
                 for (size_t j = 0; j < nTrain; ++j) {
-                    density += Kernel(data[i], _trainData[j]);
+                    density += Kernel(data[i], _data[j]);
                 }
                 density /= nTrain;
                 predictions[i][0] = (density >= _rho) ? 0 : 1;
@@ -36,7 +36,7 @@ namespace CP {
         }
 
         void KernelDensityEstimator::FindThreshold() {
-            auto [rows, cols] = Common::Shape(_trainData);
+            auto [rows, cols] = Common::Shape(_data);
             double sum = 0.0;
             for (size_t i = 0; i < rows; ++i) {
                 double selfDensity = 0.0;

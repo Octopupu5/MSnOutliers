@@ -16,7 +16,7 @@ namespace CP {
             void FindThreshold();
             float _gamma;
             double _rho;
-            Common::Matrix _trainData;
+            Common::Matrix _data;
             Common::Matrix _kernelMatrix;
         };
     }
