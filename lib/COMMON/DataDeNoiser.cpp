@@ -62,15 +62,23 @@ namespace CP {
             _dataNoised = RData(_data);
             _noisedIndices.resize(rows, false);
             _denoisedIndices.resize(rows, false);
+            std::vector<double> means(rows);
+            std::vector<double> squareMeans(rows);
             for (size_t i = 0; i < rows; ++i) {
                 for (size_t j = 0; j < cols - 1; ++j) {
+                    means[j] += _data[i].features[j] / rows;
+                    squareMeans[j] += (_data[i].features[j] * _data[i].features[j]) / rows;
                     _dataMatNoised[i][j] = _data[i].features[j];
                 }
+                means[cols - 1] += _data[i].target / rows;
+                squareMeans[cols - 1] += (_data[i].target * _data[i].target) / rows;
                 _dataMatNoised[i][cols - 1] = _data[i].target;
             }
 
             for (int i = 0; i < numNoise; ++i) {
                 size_t currentIndex = indices[i];
+                means[cols - 1] -= _data[currentIndex].target / rows;
+                squareMeans[cols - 1] -= (_data[currentIndex].target * _data[currentIndex].target) / rows;
                 if (scale) {
                     _dataNoised[currentIndex].target *= 100;
                     _dataMatNoised[currentIndex][cols - 1] *= 100;
@@ -79,7 +87,22 @@ namespace CP {
                     _dataNoised[currentIndex].target += noise;
                     _dataMatNoised[currentIndex][cols - 1] += noise;
                 }
+                means[cols - 1] += _data[currentIndex].target / rows;
+                squareMeans[cols - 1] += (_data[currentIndex].target * _data[currentIndex].target) / rows;
                 _noisedIndices[currentIndex] = true;
+            }
+
+            for (size_t i = 0; i < rows; ++i) {
+                for (size_t j = 0; j < cols - 1; ++j) {
+                    double deviation = squareMeans[j] - (means[j] * means[j]);
+                    if (std::fabs(deviation) >= EPS) {
+                        _dataMatNoised[i][j] = (_dataMatNoised[i][j] - means[j]) / deviation;
+                    }
+                }
+                double deviation = squareMeans[cols - 1] - (means[cols - 1] * means[cols - 1]);
+                if (std::fabs(deviation) >= EPS) {
+                    _dataMatNoised[i][cols - 1] = (_dataMatNoised[i][cols - 1] - means[cols - 1]) / deviation;
+                }
             }
         }
 
@@ -177,14 +200,7 @@ namespace CP {
             auto [rows, cols] = Shape(_dataMatNoised);
 
             if (std::fabs(r) <= EPS) {
-                double k = 0.1; // default : 0.1 * ... , log(rows)
-                r = k * std::sqrt(cols) * std::sqrt(std::accumulate(_dataMatNoised.begin(), _dataMatNoised.end(), 0.0, [](double sum, const std::vector<double>& row) {
-                    double row_sum = 0;
-                    for (const auto& val : row) {
-                        row_sum += val * val;
-                    }
-                    return sum + row_sum;
-                }) / rows);
+                r = 0.05;
             }
 
             if (!minClusterSize) {
@@ -194,12 +210,23 @@ namespace CP {
             CP::ML::DBSCAN dbscan(r, minClusterSize); 
             dbscan.Fit(_dataMatNoised);
             std::vector<int32_t> idToCluster = dbscan.getIdToCluster();
+            size_t outliers = 0;
             for (size_t i = 0; i < rows; ++i) {
-                if (idToCluster[i] != 0) {
+                outliers += (idToCluster[i] == 0);
+            }
+            if (outliers == rows) {
+                for (size_t i = 0; i < rows; ++i) {
                     cleanedData.push_back(_dataNoised[i]);
                     _denoisedIndices[i] = false;
-                } else {
-                    _denoisedIndices[i] = true;
+                }
+            } else {
+                for (size_t i = 0; i < rows; ++i) {
+                    if (idToCluster[i] != 0) {
+                        cleanedData.push_back(_dataNoised[i]);
+                        _denoisedIndices[i] = false;
+                    } else {
+                        _denoisedIndices[i] = true;
+                    }
                 }
             }
         }
