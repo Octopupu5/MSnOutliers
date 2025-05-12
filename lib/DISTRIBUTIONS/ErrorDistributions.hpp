@@ -16,8 +16,8 @@ namespace CP {
         private:
             DistributionType _type;
             std::variant<std::normal_distribution<>, std::cauchy_distribution<>, std::pair<double, double>> _distribution;
-            double laplace_generate(std::mt19937& gen, double mean, double b);
-            double student_t_generate(std::mt19937& gen, double degrees_of_freedom);
+            double laplaceGenerate(std::mt19937& gen, double mean, double b);
+            double studentGenerate(std::mt19937& gen, double degrees_of_freedom);
         };
     }
 }
