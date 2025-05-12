@@ -10,7 +10,8 @@ namespace CP {
             auto [rows, cols] = Common::Shape(_data);
             std::vector<uint32_t> neighbors;
             for (size_t i = 0; i < rows; ++i) {
-                if (Common::L2Norm(_data[index], _data[i]) <= _r) {
+                double norm = Common::L2Norm(_data[index], _data[i]);
+                if (norm <= _r) {
                     neighbors.push_back(i);
                 }
             }
